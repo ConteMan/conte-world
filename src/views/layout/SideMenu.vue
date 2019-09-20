@@ -17,22 +17,10 @@
                         @open="handleOpen"
                         @close="handleClose"
                         :collapse="isCollapse">
-                    <router-link to="/">
-                        <el-menu-item index="1">
-                            <i class="el-icon-location"></i>
-                            <span slot="title">Home</span>
-                        </el-menu-item>
-                    </router-link>
                     <router-link to="/c/yuncun">
                         <el-menu-item index="2">
                             <i class="el-icon-headset"></i>
                             <span slot="title">Yuncun</span>
-                        </el-menu-item>
-                    </router-link>
-                    <router-link to="/c/vcharts">
-                        <el-menu-item index="3">
-                            <i class="el-icon-s-data"></i>
-                            <span slot="title">LineChart</span>
                         </el-menu-item>
                     </router-link>
                 </el-menu>

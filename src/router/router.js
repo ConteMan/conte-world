@@ -19,7 +19,7 @@ export default new Router({
       path: '/c', //组件
       name: 'components',
       component: () => import('../views/c/index'), //懒加载
-      redirect:'/c/vcharts', //重定向
+      redirect:'/c/yuncun', //重定向
       children: [
         {
           path: 'yuncun',
@@ -28,21 +28,8 @@ export default new Router({
             title: '云村乐评'
           },
           component: () => import('../views/c/Yuncun.vue') //懒加载
-        },
-        {
-          path: 'vcharts',
-          name: 'vcharts',
-          meta: {
-            title: 'echart'
-          },
-          component: () => import('../views/c/Vcharts.vue')
-        },
+        }
       ]
-    },
-    {
-      path: '/datav',
-      name: 'datav',
-      component: () => import('../views/datav/index.vue')
     },
     { path: '*',
       redirect:'/'
