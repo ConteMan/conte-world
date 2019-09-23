@@ -5,7 +5,14 @@
 </template>
 
 <script>
+    import enquireScreen from "@/untils/device";
     export default {
+        created() {
+            var _this = this
+            enquireScreen( isMobile => {
+                _this.$store.commit('setting/setDevice', isMobile)
+            })
+        }
     }
 </script>
 

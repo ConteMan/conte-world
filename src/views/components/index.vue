@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import SideMenu from "layout/SideMenu";
+    import SideMenu from "./layout/SideMenu";
     export default {
         name: "CHome",
         components: {SideMenu},

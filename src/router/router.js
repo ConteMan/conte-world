@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home'
+import Yuncun from '@/views/yuncun/index'
+import Login from '@/views/antd-admin/login/Login'
 
 Vue.use(Router)
 
@@ -11,15 +12,24 @@ export default new Router({
       path: '/', //主页
       name: 'home',
       meta: {
-        title: '云村乐评'
+        title: '云村乐评1'
       },
-      component: Home
+      component: Yuncun
     },
     {
-      path: '/c', //组件
+      path: '/admin/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/admin',
+      name: 'antd-admin',
+    },
+    {
+      path: '/components', //组件
       name: 'components',
-      component: () => import('../views/c/index'), //懒加载
-      redirect:'/c/yuncun', //重定向
+      component: () => import('@/views/components/index'), //懒加载
+      redirect:'/components/yuncun', //重定向
       children: [
         {
           path: 'yuncun',
@@ -27,7 +37,7 @@ export default new Router({
           meta: {
             title: '云村乐评'
           },
-          component: () => import('../views/c/Yuncun.vue') //懒加载
+          component: () => import('@/views/components/Yuncun.vue') //懒加载
         }
       ]
     },
