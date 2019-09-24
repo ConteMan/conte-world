@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import YuncunCard from "../../components/YuncunCard";
+    import YuncunCard from "../../../components/default/YuncunCard";
     export default {
         name: "Yuncun",
         components: {

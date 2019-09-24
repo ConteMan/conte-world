@@ -110,7 +110,7 @@ export default {
           .extra{
             flex: 0 1 auto;
             margin-left: 88px;
-            min-width: 242px;
+            min-width: 372px;
             text-align: right;
           }
           .action{

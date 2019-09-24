@@ -25,9 +25,9 @@
 <script>
 import GlobalHeader from './GlobalHeader'
 import GlobalFooter from './GlobalFooter'
-import Drawer from '../../components/antd/tool/Drawer'
-import SiderMenu from '../../components/antd/menu/SiderMenu'
-import Setting from '../../components/antd/setting/Setting'
+import Drawer from '@antdcomponents/tool/Drawer'
+import SiderMenu from '@antdcomponents/menu/SiderMenu'
+import Setting from '@antdcomponents/setting/Setting'
 
 const minHeight = window.innerHeight - 64 - 24 - 122
 

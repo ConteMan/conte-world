@@ -1,30 +1,18 @@
 import Vue from 'vue'
-import App from '@/App.vue'
+import App from '@/views/default/App.vue'
 
-import router from '@/router/router'
-import store from '@/store/store'
+import router from '@/router/default'
+import store from '@/store/default'
 import axios from 'axios'
-
-import echarts from "echarts";
-import eDark from '@/assets/css/dark'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-import 'ant-design-vue/dist/antd.css'
-import Antd from 'ant-design-vue'
-
 import '@/assets/js/common.js'
 import api from '@/api'
 
-import particlesJS from 'particles.js'
-
-Vue.use(Antd)
 Vue.use(ElementUI)
-Vue.use(particlesJS)
 
-Vue.prototype.$eDark = eDark
-Vue.prototype.$echarts = echarts
 Vue.prototype.$axios = axios
 Vue.prototype.$api = api
 Vue.config.productionTip = false

@@ -25,7 +25,7 @@
 
 <script>
 import GlobalLayout from './GlobalLayout'
-import Contextmenu from '../../components/antd/menu/Contextmenu'
+import Contextmenu from '@antdcomponents/menu/Contextmenu'
 export default {
   name: 'MenuView',
   components: {Contextmenu, GlobalLayout},
@@ -64,7 +64,8 @@ export default {
       }
     },
     'activePage': function (key) {
-      this.$router.push(key)
+      this.$router.push(key).catch(err=>{
+      })
     },
     'multipage': function (newVal, oldVal) {
       if (!newVal) {
