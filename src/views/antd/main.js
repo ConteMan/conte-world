@@ -1,18 +1,19 @@
 import Vue from 'vue'
 import App from '@/views/antd/App.vue'
 
-import '@/mock'
 import router from '@/router/antd'
-import store from '@/store/antd'
+import 'ant-design-vue/dist/antd.css'
+import Antd from 'ant-design-vue'
+
+import Viser from 'viser-vue'
 
 import axios from 'axios'
-import 'ant-design-vue/dist/antd.css'
-
-import Antd from 'ant-design-vue'
 import '@/assets/js/common.js'
 
 import api from '@/api'
-import Viser from 'viser-vue'
+
+import '@/mock'
+import store from '@/store/antd'
 import PouchDB from 'pouchdb'
 
 Vue.use(Antd)
@@ -37,12 +38,22 @@ new Vue({
 
 //路由发生变化修改页面
 router.beforeEach((to, from, next) => {
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
     document.title = to.meta.title || 'title is missing'
     next()
 })
 router.afterEach(() => {
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
 })
+
+if ('scrollRestoration' in history) {
+    // 默认值为'auto'
+    history.scrollRestoration = 'manual';
+}
+
+window.onhashchange = function() {
+}
+
+window.onpopstate = function () {
+}
+
+window.onscroll = function() {
+}

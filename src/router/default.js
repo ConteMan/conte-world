@@ -11,7 +11,7 @@ export default new Router({
       path: '/',
       name: 'home',
       meta: {
-        title: '云村乐评1'
+        title: '云村乐评'
       },
       component: Yuncun
     },

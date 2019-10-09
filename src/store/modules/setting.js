@@ -11,7 +11,7 @@ export default {
             {link: 'https://github.com/iczer/vue-antd-admin', icon: 'github'},
             {link: 'https://ant.design', name: 'Ant Design'}
         ],
-        multipage: true
+        multipage: false
     },
     mutations: {
         setDevice (state, isMobile) {

@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0c15f4"],{4684:function(n,u,a){"use strict";a.r(u);var c=function(){var n=this,u=n.$createElement,a=n._self._c||u;return a("YuncunCard")},e=[],t=a("aa7f"),r={name:"Yuncun",components:{YuncunCard:t["a"]}},o=r,s=a("2877"),l=Object(s["a"])(o,c,e,!1,null,"8a1952b4",null);u["default"]=l.exports}}]);

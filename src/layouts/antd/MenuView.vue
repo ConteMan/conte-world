@@ -52,6 +52,12 @@ export default {
     this.linkList.push(this.$route.fullPath)
     this.activePage = this.$route.fullPath
   },
+  updated(){
+    console.log('menuView------'+document.documentElement.scrollTop)
+  },
+  activated(){
+    console.log('menuViewactivated------'+document.documentElement.scrollTop)
+  },
   watch: {
     '$route': function (newRoute, oldRoute) {
       this.activePage = newRoute.fullPath
@@ -64,6 +70,7 @@ export default {
       }
     },
     'activePage': function (key) {
+      console.log('menuViewactivePage------'+document.documentElement.scrollTop)
       this.$router.push(key).catch(err=>{
       })
     },
