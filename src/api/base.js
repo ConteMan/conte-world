@@ -1,7 +1,8 @@
 const base = {
     base: '',
     websocket: '',
-    apiIsConte: 'http://192.168.1.89:19306'
+    apiIsConte: 'http://api.isconte.com',
+    apiTopList: 'https://www.printf520.com:8080',
 }
 
 export default base;

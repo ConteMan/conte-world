@@ -1,69 +1,67 @@
 <template>
-    <div class="container">
-        <a-row type="flex" justify="center" class="search">
-            <a-col span="10">
-                <a-input-group compact>
-                    <a-select class="selectCom" defaultValue="baidu" size="large">
-                        <a-select-option value="baidu">百度</a-select-option>
-                        <a-select-option value="google">谷歌</a-select-option>
-                    </a-select>
-                    <a-input class="inputCom" placeholder="" size="large"></a-input>
-                    <a-button class="searchButton" icon="search" size="large"></a-button>
-                </a-input-group>
-            </a-col>
-        </a-row>
-    </div>
+    <global-layout>
+        <template v-slot:content>
+            <div class="c-container">
+<!--                <a-row>-->
+<!--                    <a-col span="24">-->
+<!--                        <IPSearch class="c-border ipsearch"></IPSearch>-->
+<!--                    </a-col>-->
+<!--                </a-row>-->
+<!--                <a-row class="m-top-5" :gutter="16">-->
+<!--                    <a-col span="12">-->
+<!--                        <v2ex-list class="c-border"></v2ex-list>-->
+<!--                    </a-col>-->
+<!--                    <a-col span="12">-->
+<!--                        <one-card class="c-border"></one-card>-->
+<!--                    </a-col>-->
+<!--                </a-row>-->
+                <a-row class="m-top-5">
+                    <a-col span="24">
+                        <top-list-tab></top-list-tab>
+                    </a-col>
+                </a-row>
+            </div>
+        </template>
+    </global-layout>
 </template>
 
 <script>
+    import GlobalLayout from "../../../layouts/common/GlobalLayout"
+    import IPSearch from "../../../components/nav/search/IPSearch"
+    import V2exList from "../../../components/common/v2ex/V2exList"
+    import OneCard from "../../../components/common/one/OneCard"
+    import TopListTab from "../../../components/common/topList/TopListTab";
+
     export default {
-        name: "index"
+        name: "index",
+        components: {
+            GlobalLayout,
+            IPSearch,
+            V2exList,
+            OneCard,
+            TopListTab,
+        }
     }
 </script>
 
-<style scoped lang="less" rel="stylesheet/less" type="text/less">
-    @color: #d9d9d9;
-
-    @NoBlue:{
-        border-color: @color;
-        -webkit-box-shadow: none;
-        box-shadow: none;
+<style scoped lang="less">
+    .c-container{
+        width: 100%;
+        overflow: hidden;
     }
-
-    .container{
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .search{
-            width: 100%;
-        }
-        .selectCom{
-            width: 100px;
-        }
-        .searchButton{
-            width: 80px;
-        }
-        .inputCom{
-            width: calc(100% - 180px);
-        }
-        /deep/ .ant-input{
-            border-left: none;
-        }
-        /deep/ .ant-input:hover,.ant-input:focus,.ant-btn:hover,.ant-btn:focus,.ant-btn:after{
-            @NoBlue();
-        }
-        /deep/ .ant-btn:focus,.ant-btn:hover{
-            color: black;
-        }
-        /deep/ .ant-select-selection:hover,.ant-select-selection:focus,.ant-select-open .ant-select-selection,.ant-select-focused .ant-select-selection,.ant-select-selection:focus, .ant-select-selection:active{
-            border-right: none;
-            @NoBlue();
-        }
-        /deep/ .ant-select-focused .ant-select-selection{
-            @NoBlue();
-        }
+    .c-border{
+        border: 1px solid #000000;
     }
+    .ipsearch{
+        min-width: 250px;
+        height: 200px;
+        padding: 20px;
 
+    }
+    .m-top-5{
+        margin-top: 16px;
+    }
+    /deep/ .ant-layout-header{
+        background-color: #f0f2f5;
+    }
 </style>
