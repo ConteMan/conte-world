@@ -39,10 +39,15 @@ module.exports = {
         //     template: 'public/botalk/index.html',
         //     filename: 'botalk.html'
         // },
+        // nav:{
+        //     entry: 'src/views/nav/main.js',
+        //     template: 'public/nav/index.html',
+        //     filename: 'nav.html'
+        // },
         nav:{
-            entry: 'src/views/nav/main.js',
-            template: 'public/nav/index.html',
-            filename: 'nav.html'
+            entry: 'src/views/card/main.js',
+            template: 'public/card/index.html',
+            filename: 'card.html'
         }
     }
 }

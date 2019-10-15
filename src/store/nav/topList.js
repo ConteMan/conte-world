@@ -1,4 +1,5 @@
 import api from "@/api"
+import Vue from "vue"
 
 export default {
     state: {
@@ -13,7 +14,11 @@ export default {
             state.types = types
         },
         setTypeInfo(state, data){
-            state.infos[data.id] = data.info
+            var infos = state.infos
+            infos[data.id] = data.info
+            var newInfo = {}
+            Object.assign(newInfo, infos)
+            state.infos = newInfo
         }
     },
     actions: {

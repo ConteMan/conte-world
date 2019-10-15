@@ -17,9 +17,6 @@
                         <a-avatar slot="avatar" :src="item.member.avatar_mini" />
                     </a-list-item-meta>
                 </a-skeleton>
-                <div v-if="!listLoading">
-                    {{item.content}}
-                </div>
             </a-list-item>
         </a-list>
     </div>

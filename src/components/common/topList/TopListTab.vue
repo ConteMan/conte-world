@@ -1,8 +1,19 @@
 <template>
     <div>
-        <a-tabs v-model="activeKey" tabPosition="left" @change="onChange">
+        <a-tabs v-model="activeKey" tabPosition="left" :style="{height: '500px'}" @change="onChange">
             <a-tab-pane v-for="typeItem in types" :tab="typeItem.title" :key="typeItem.id">
-                <top-list-list v-bind:data="typeInfo[typeItem.id]" v-bind:id="typeItem.id"></top-list-list>
+                <div style="height: 500px;overflow: auto;">
+                    <a-skeleton :loading="!typeInfo[typeItem.id]" active>
+                        <a-list
+                                itemLayout="horizontal"
+                                :dataSource="typeInfo[typeItem.id]"
+                        >
+                            <a-list-item slot="renderItem" slot-scope="sItem, sIndex">
+                                <a :href="sItem.url" target="_blank">{{ sItem.title }}</a>
+                            </a-list-item>
+                        </a-list>
+                    </a-skeleton>
+                </div>
             </a-tab-pane>
         </a-tabs>
     </div>
@@ -10,12 +21,10 @@
 
 <script>
     import { mapState,mapGetters } from "vuex"
-    import TopListList from "./TopListList";
 
     export default {
         name: "TopListTab",
         components:{
-            TopListList
         },
         data(){
             return {
@@ -43,17 +52,15 @@
                 this.$store.dispatch('getTypeInfo', this.activeKey)
             },
             onChange(activeKey){
-                console.log(this.typeInfo[activeKey])
                 if (this.typeInfo[activeKey] == undefined){
+                    console.log('reload')
                     this.getTypeInfo()
-                } else {
-                    console.log('+++++')
                 }
             }
         },
         watch: {
             typeInfo: function () {
-                console.log('------------')
+                console.log('refresh')
             }
         }
     }

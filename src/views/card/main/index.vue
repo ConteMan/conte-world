@@ -22,16 +22,16 @@
 <!--                        <top-list-tab class="c-border"></top-list-tab>-->
 <!--                    </a-col>-->
 <!--                </a-row>-->
-                <a-row class="m-top-5">
-                    <a-col span="10">
-                        <site-card-list class="c-border"></site-card-list>
-                    </a-col>
-                </a-row>
 <!--                <a-row class="m-top-5">-->
-<!--                    <a-col span="24">-->
-<!--                        <site-grid-card class="c-border"></site-grid-card>-->
+<!--                    <a-col span="10">-->
+<!--                        <site-card-list class="c-border"></site-card-list>-->
 <!--                    </a-col>-->
 <!--                </a-row>-->
+                <a-row class="m-top-5">
+                    <a-col span="24">
+                        <site-grid-card class="c-border"></site-grid-card>
+                    </a-col>
+                </a-row>
             </div>
         </template>
     </global-layout>
