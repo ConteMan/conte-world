@@ -11,7 +11,25 @@ export default new Router({
             meta: {
                 title: "Conte can't stop"
             },
-            component:  () => import("../views/main/index")
+            component:  () => import("@/layout/BaseLayout"),
+            children: [
+                {
+                    path: '/index',
+                    name: 'Index',
+                    meta: {
+                        title: '首页',
+                    },
+                    component: () => import('@/views/main/index')
+                },
+                {
+                    path: '/about',
+                    name: 'About',
+                    meta: {
+                        title: '关于',
+                    },
+                    component: () => import('@/views/main/about')
+                },
+            ]
         },
     ]
 })

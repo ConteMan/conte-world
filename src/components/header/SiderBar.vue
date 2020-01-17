@@ -1,8 +1,7 @@
 <template>
     <div class="container">
-        <div class="nav-item">Talk</div>
-        <div class="nav-item">Think</div>
-        <div class="nav-item">About</div>
+        <div class="nav-item"> <router-link :to="{name: 'Index'}">主页</router-link></div>
+        <div class="nav-item"><router-link :to="{name: 'About'}">关于</router-link></div>
     </div>
 </template>
 
@@ -23,6 +22,12 @@
         font-size: 12px;
         padding: 15px 0;
         border-bottom: 1px solid @border-color;
+    }
+    .nav-item > a {
+        color: @font-color-grey;
+    }
+    .nav-item:hover > a {
+        color: red;
     }
     .nav-item:last-of-type {
         border-bottom: none;
