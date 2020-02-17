@@ -1,6 +1,8 @@
 <template>
     <div class="container">
         <div class="nav-item"> <router-link :to="{name: 'Index'}">主页</router-link></div>
+        <div class="nav-item"> <router-link :to="{name: 'Film'}">电影</router-link></div>
+        <div class="nav-item"> <router-link :to="{name: 'One'}">一个</router-link></div>
         <div class="nav-item"><router-link :to="{name: 'About'}">关于</router-link></div>
     </div>
 </template>

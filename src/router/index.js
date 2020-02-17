@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import film from '@/router/modules/film'
+import one from '@/router/modules/one'
+
 Vue.use(Router)
 
 export default new Router({
@@ -31,5 +34,7 @@ export default new Router({
                 },
             ]
         },
+        film,
+        one,
     ]
 })

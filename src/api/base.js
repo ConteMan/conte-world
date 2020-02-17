@@ -1,3 +1,4 @@
 export default {
-    api_conte: 'http://api.isconte.com',
+    api_isconte: 'http://api.isconte.com',
+    k_isconte: 'http://192.168.0.5:3000',
 }
