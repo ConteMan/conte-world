@@ -3,7 +3,7 @@ import base from "@/api/base"
 
 const one = {
     ones() {
-        return request.get(`${base.api_isconte}/ones`)
+        return request.get(`${base.k_isconte}/one/random`)
     },
     ajaxList(data) {
         var requestData = {

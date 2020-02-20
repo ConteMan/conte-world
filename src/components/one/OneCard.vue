@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        {{ one.text }}
+        {{ one.content }}
         <div class="from">{{ one.text_authors }}</div>
     </div>
 </template>
@@ -19,7 +19,7 @@
             ones() {
                 oneApi.ones().then(
                     (response) => {
-                        this.one = response.data
+                        this.one = response.data.data
                     }
                 )
             }
