@@ -22,7 +22,7 @@ export default new Router({
                     meta: {
                         title: '首页',
                     },
-                    component: () => import('@/views/main/index')
+                    component: () => import('@/views/main')
                 },
                 {
                     path: '/about',
@@ -30,7 +30,7 @@ export default new Router({
                     meta: {
                         title: '关于',
                     },
-                    component: () => import('@/views/main/about')
+                    component: () => import('@/views/about')
                 },
             ]
         },

@@ -7,8 +7,6 @@
                         {{ $config.siteName }}
                     </div>
                     <sider-bar/>
-                    <base-timer class="timer"/>
-                    <one-card class="one" />
                     <div class="footer">
                         @2019 <span class="beian"><a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a></span>
                     </div>
@@ -23,17 +21,11 @@
 
 <script>
     import SiderBar from "@/components/header/SiderBar";
-    import OneCard from "@/components/one/OneCard";
     import BaseTimer from "@/components/time/base"
 
     export default {
         name: "BaseLayout",
-        components: {BaseTimer, OneCard, SiderBar},
-        compantents: {
-            SiderBar,
-            OneCard,
-            BaseTimer,
-        }
+        components: {BaseTimer,  SiderBar},
     }
 </script>
 

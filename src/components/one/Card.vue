@@ -1,15 +1,17 @@
 <template>
     <div class="container">
-        {{ one.content }}
+        <div class="content">
+            {{ one.content }}
+        </div>
         <div class="from">{{ one.text_authors }}</div>
     </div>
 </template>
 
 <script>
-    import oneApi from "@/api/one/index"
+    import oneApi from "@/api/one"
 
     export default {
-        name: "OneCard",
+        name: "Card",
         data() {
             return {
                 one: {},
@@ -34,8 +36,15 @@
     @import "~@/style/variables";
 
     .container {
+        width: 100%;
+        height: 100%;
+        max-height: 500px;
         font-size: 12px;
         line-height: 20px;
         color: @font-color-grey;
+        text-align: center;
+        display: flex;
+        flex-flow: wrap;
+        margin: 0 20%;
     }
 </style>
