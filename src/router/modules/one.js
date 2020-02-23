@@ -1,6 +1,6 @@
 export default {
     path: '/one',
-    name: 'One',
+    name: 'OneBase',
     meta: {
         title: "One"
     },

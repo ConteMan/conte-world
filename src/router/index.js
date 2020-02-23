@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import film from '@/router/modules/film'
 import one from '@/router/modules/one'
+import article from "@/router/modules/article"
 
 Vue.use(Router)
 
@@ -36,5 +37,6 @@ export default new Router({
         },
         film,
         one,
+        article,
     ]
 })
