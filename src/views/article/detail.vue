@@ -1,6 +1,6 @@
 <template>
     <div>
-        <iframe :srcdoc="data" style="width: 100%;height: 100vh; border: none;"></iframe>
+        <iframe :srcdoc="data" style="width: 100%;height: calc(100vh - 4px); border: none;" frameborder="0" scrolling="auto"></iframe>
     </div>
 </template>
 
