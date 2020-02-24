@@ -32,7 +32,21 @@ export const routes = [
     article,
     film,
     //about,
+    {
+        path: '*',
+        name: '404',
+        meta: {
+            title: "404"
+        },
+        redirect: { name: 'One' },
+    }
 ]
+
+
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return routerPush.call(this, location).catch(error => error)
+}
 
 export default new Router({
     routes: routes

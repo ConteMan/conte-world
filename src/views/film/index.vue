@@ -24,7 +24,7 @@
 
                             <a-divider orientation="left">链接</a-divider>
                             <div>
-                                <a :href="row.link">{{ row.link }}</a>
+                                <a :href="row.link" target="_blank">{{ row.link }}</a>
                             </div>
 
                             <a-divider orientation="left">海报</a-divider>

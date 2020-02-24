@@ -8,7 +8,14 @@
                     </div>
                     <sider-bar/>
                     <div class="footer">
-                        @{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br> <div class="beian"><a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a></div>
+                        @{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br>
+                        <div class="beian">
+                            <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>
+                        </div>
+                        <br>
+                        <div class="beian">
+                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030702002732">{{ $config.policeBeian }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -27,7 +34,7 @@
                         </div>
                         <sider-bar/>
                         <div class="footer">
-                            @{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br> <div class="beian"><a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a></div>
+                            ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br> <div class="beian"><a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a></div>
                         </div>
                     </div>
                 </div>
@@ -140,6 +147,7 @@
             }
 
             .footer {
+                color: @font-color-footer;
                 font-size: 12px;
                 position: absolute;
                 bottom: 0;
@@ -147,13 +155,14 @@
                 max-width: @sider-width;
                 padding: 10px 0 10px;
                 border-top: 1px solid @border-color;
-
                 .beian {
+                    line-height: 14px;
+                    font-size: 12px;
                     display: inline-block;
-                    color: @font-color-grey;
                     margin: 5px 0 0 0;
+                    color: @font-color-footer;
                     a:any-link {
-                        color: @font-color-grey;
+                        color: @font-color-footer;
                     }
                 }
             }
