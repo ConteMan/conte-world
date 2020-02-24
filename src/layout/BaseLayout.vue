@@ -33,15 +33,15 @@
                 </div>
             </a-drawer>
             <div class="trigger" v-if="isDrawer" @click="()=> {this.drawerVisible = true}">
-                <a-icon class="trigger-icon" type="double-right" style="font-size: 18px; margin: 20px 0 0 0;"/>
+                <div class="trigger-content">
+                    <a-icon class="trigger-icon" type="double-right" style="font-size: 18px; margin: 20px 0 0 0;"/>
+                </div>
             </div>
             <div class="c-main">
                 <router-view/>
             </div>
             <div class="c-right-bar">
-                <div class="c-rb-content">
-
-                </div>
+                <div class="c-rb-content"></div>
             </div>
         </div>
     </div>
@@ -140,6 +140,7 @@
             }
 
             .footer {
+                font-size: 12px;
                 position: absolute;
                 bottom: 0;
                 width: 100%;
@@ -175,19 +176,28 @@
             border-left: 1px solid @border-color;
         }
     }
+    .siderbar-drawer {
+        .c-header {
+            width: 200px;
+        }
+        .c-header-content {
+            border-right: none;
+        }
+    }
     .trigger {
         position: absolute;
         width: 20px;
         height: 100vh;
         left: 0;
         border: none;
+        .trigger-content {
+            height: 100%;
+            width: 20px;
+            position: fixed;
+            border-right: 1px solid @border-color;
+        }
         .trigger-icon {
             color: @grey;
-        }
-    }
-    .trigger:hover {
-        .trigger-icon {
-            color: @red;
         }
     }
 </style>
