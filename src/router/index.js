@@ -15,7 +15,7 @@ export const routes = [
         meta: {
             title: "首页"
         },
-        redirect: { name: 'Index' },
+        redirect: { name: 'One' },
         component:  () => import("@/layout/BaseLayout"),
         children: [
             {
@@ -28,10 +28,10 @@ export const routes = [
             }
         ]
     },
-    film,
     one,
     article,
-    about,
+    film,
+    //about,
 ]
 
 export default new Router({

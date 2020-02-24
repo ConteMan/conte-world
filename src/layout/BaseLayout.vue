@@ -1,19 +1,47 @@
 <template>
     <div class="c-root">
         <div class="c-container">
-            <div class="c-header">
+            <div class="c-header" v-if="!isDrawer">
                 <div class="c-header-content">
                     <div class="title">
                         {{ $config.siteName }}
                     </div>
                     <sider-bar/>
                     <div class="footer">
-                        @2019 <span class="beian"><a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a></span>
+                        @{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br> <div class="beian"><a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a></div>
                     </div>
                 </div>
             </div>
+            <a-drawer
+                v-else
+                placement="left"
+                wrapClassName="siderbar-drawer"
+                :closable="false"
+                :visible="drawerVisible"
+                @close="drawerClose"
+            >
+                <div class="c-header">
+                    <div class="c-header-content">
+                        <div class="title">
+                            {{ $config.siteName }}
+                        </div>
+                        <sider-bar/>
+                        <div class="footer">
+                            @{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br> <div class="beian"><a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a></div>
+                        </div>
+                    </div>
+                </div>
+            </a-drawer>
+            <div class="trigger" v-if="isDrawer" @click="()=> {this.drawerVisible = true}">
+                <a-icon class="trigger-icon" type="double-right" style="font-size: 18px; margin: 20px 0 0 0;"/>
+            </div>
             <div class="c-main">
                 <router-view/>
+            </div>
+            <div class="c-right-bar">
+                <div class="c-rb-content">
+
+                </div>
             </div>
         </div>
     </div>
@@ -21,16 +49,59 @@
 
 <script>
     import SiderBar from "@/components/header/SiderBar";
-    import BaseTimer from "@/components/time/base"
 
     export default {
         name: "BaseLayout",
-        components: {BaseTimer,  SiderBar},
+        components: {
+            SiderBar,
+        },
+        data() {
+            return {
+                fullWidth: document.body.clientWidth,
+                timer: false,
+                drawerVisible: false,
+            }
+        },
+        computed: {
+            isDrawer: function() {
+                if (this.fullWidth < 736) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        },
+        mounted() {
+            window.onresize = () => {
+                if(!this.timer) {
+                    this.timer = true
+                    setTimeout(
+                        () => {
+                            this.fullWidth = document.body.clientWidth
+                            this.timer = false
+                        },
+                        400
+                    )
+                }
+            }
+        },
+        methods: {
+            drawerClose() {
+                this.drawerVisible = false
+            }
+        },
+        beforeRouteLeave (to, from, next) {
+            if (this.isDrawer && this.drawerVisible) {
+                this.drawerVisible = false
+            }
+            next()
+        },
     }
 </script>
 
 <style scoped lang="less">
     @import "~@/style/index";
+
     .c-root {
         height: 100%;
         display: flex;
@@ -59,6 +130,7 @@
             height: 100%;
             max-width: @sider-width;
             position: fixed;
+            border-right: 1px solid @border-color;
 
             .title {
                 font-size: 16px;
@@ -66,26 +138,19 @@
                 padding: 20px 0 10px;
                 border-bottom: 1px solid @border-color;
             }
-            .timer {
-                padding: 10px 0;
-                border-top: 1px solid @border-color;
-            }
-            .one {
-                padding: 10px 0;
-                border-top: 1px solid @border-color;
-            }
 
             .footer {
                 position: absolute;
                 bottom: 0;
                 width: 100%;
                 max-width: @sider-width;
-                padding: 10px 0 20px;
+                padding: 10px 0 10px;
                 border-top: 1px solid @border-color;
 
                 .beian {
+                    display: inline-block;
                     color: @font-color-grey;
-                    margin-left: 5px;
+                    margin: 5px 0 0 0;
                     a:any-link {
                         color: @font-color-grey;
                     }
@@ -99,7 +164,30 @@
 
         max-width:@main-width;
         height: 100%;
-        border-left: 1px solid @border-color;
-        border-right: 1px solid @border-color;
+    }
+    .c-right-bar {
+        flex-grow: 0;
+        .c-rb-content {
+            width: 100%;
+            height: 100%;
+            max-width: 1px;
+            position: fixed;
+            border-left: 1px solid @border-color;
+        }
+    }
+    .trigger {
+        position: absolute;
+        width: 20px;
+        height: 100vh;
+        left: 0;
+        border: none;
+        .trigger-icon {
+            color: @grey;
+        }
+    }
+    .trigger:hover {
+        .trigger-icon {
+            color: @red;
+        }
     }
 </style>

@@ -17,4 +17,12 @@
     #app {
         height: 100vh;
     }
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -ms-overflow-style: none;
+    }
+    body::-webkit-scrollbar{
+        display:none;
+    }
 </style>

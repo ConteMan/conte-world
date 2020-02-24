@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="tool-bar">
-            <a-icon class="tool-icon" type="reload" @click="ones"/>
+            <a-icon class="tool-icon" type="reload" @click="ones" :spin="loading"/>
         </div>
         <div class="one">
             {{ one.content }}
@@ -19,12 +19,15 @@
         data() {
             return {
                 one: {},
+                loading: false
             }
         },
         methods: {
             ones() {
+                this.loading = true
                 oneApi.ones().then(
                     (response) => {
+                        this.loading = false
                         this.one = response.data.data
                     }
                 )

@@ -1,6 +1,6 @@
 <template>
     <div class="nav-container">
-        <div class="nav-item" :class="{ active: item.active }" v-for="item in routes"><router-link :to="{name: item.name}">{{ item.meta.title }}</router-link></div>
+        <div class="nav-item" :class="{ active: item.active }" v-for="item in routes" @click="$router.push({name: item.name})">{{ item.meta.title }}</div>
     </div>
 </template>
 
@@ -39,21 +39,15 @@
             padding: 15px 0;
             margin: 0 24px 0 0;
             border-bottom: 1px solid @border-color;
+            cursor: pointer;
         }
-        .nav-item > a {
+        .nav-item,.nav-item:focus {
             color: @font-color-grey;
-            text-decoration: none;
         }
-        .nav-item:hover > a {
-            color: @red;
+        .nav-item:hover {
+            color: @red-60;
         }
-        .nav-item:focus > a {
-            text-decoration: none;
-        }
-        .nav-item:last-of-type {
-            //border-bottom: none;
-        }
-        .nav-item.active > a {
+        .nav-item.active {
             font-weight: @font-bold;
             color: @red;
         }

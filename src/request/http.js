@@ -43,7 +43,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     // 请求成功
     res => {
-        console.log(res)
         return res.status === 200 ? Promise.resolve(res) : Promise.reject(res)
     },
     // 请求失败

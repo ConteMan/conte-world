@@ -1,20 +1,44 @@
 <template>
-    <vxe-grid
-            resizable
-            border="none"
-            show-header-overflow
-            highlight-hover-row
-            height="auto"
-            width="100%"
-            size="small"
-            :loading="loading"
-            :columns="tableColumn"
-            :data="tableData"
-            :toolbar="tableToolbar"
-            :pager-config="tablePage"
-            :seq-config="{startIndex: (tablePage.currentPage - 1) * tablePage.pageSize}"
-            @page-change="handlePageChange"
-    ></vxe-grid>
+    <div>
+        <div class="list-header">
+            {{ $config.filmTitle }}
+        </div>
+        <div style="height: calc(100% - 55px);position: relative">
+            <vxe-grid
+                border="none"
+                show-header-overflow
+                highlight-hover-row
+                width="100%"
+                size="small"
+                :loading="loading"
+                :data="tableData"
+                :pager-config="tablePage"
+                :seq-config="{startIndex: (tablePage.currentPage - 1) * tablePage.pageSize}"
+                @page-change="handlePageChange"
+            >
+                <vxe-table-column type="expand" width="60">
+                    <template v-slot:content="{ row, rowIndex }">
+                        <template>
+                            <a-divider orientation="left">信息</a-divider>
+                            <div>{{ row.intro }}</div>
+
+                            <a-divider orientation="left">链接</a-divider>
+                            <div>
+                                <a :href="row.link">{{ row.link }}</a>
+                            </div>
+
+                            <a-divider orientation="left">海报</a-divider>
+                            <div>
+                                <a :href="row.pic">{{ row.pic }}</a>
+                            </div>
+                        </template>
+                    </template>
+                </vxe-table-column>
+                <vxe-table-column field="date" title="日期" width="100"></vxe-table-column>
+                <vxe-table-column field="title" title="名称" showOverflow="tooltip"></vxe-table-column>
+            </vxe-grid>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -25,42 +49,6 @@
         data() {
             return {
                 loading: false,
-                tableColumn: [
-                    { type: 'seq', width: 50 },
-                    {
-                        field: 'date',
-                        title: '日期',
-                        showOverflow: 'tooltip',
-                    },
-                    {
-                        field: 'title',
-                        title: '名称',
-                        showOverflow: 'tooltip',
-                    },
-                    {
-                        field: 'intro',
-                        title: '简介',
-                        showOverflow: 'tooltip',
-                    },
-                    {
-                        field: 'link',
-                        title: '链接',
-                        showOverflow: 'tooltip',
-                        slots: {
-                            // 使用 JSX 渲染函数
-                            default: ({ row }, h) => {
-                                return [
-                                    <a href={ row.link }>{ row.link }</a>
-                                ]
-                            }
-                        }
-                    },
-                    {
-                        field: 'pic',
-                        title: '图片',
-                        showOverflow: 'tooltip',
-                    }
-                ],
                 tableData: [],
                 tableToolbar: {
                     refresh: true,
@@ -68,14 +56,14 @@
                     custom: true
                 },
                 tablePage: {
+                    size: 'mini',
                     total: 0,
                     currentPage: 1,
                     pageSize: 15,
-                    align: 'left',
+                    align: 'right',
                     pageSizes: [15],
                     'pager-count': 5,
-                    layouts: ['Sizes', 'PrevJump', 'PrevPage', 'Number', 'NextPage', 'NextJump', 'FullJump', 'Total', 'PageCount'],
-                    perfect: true
+                    layouts: ['PrevPage', 'Number', 'NextPage', 'FullJump','PageCount','Total' ],
                 },
             }
         },
@@ -105,6 +93,19 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    /deep/ .vxe-pager--wrapper {
+        margin: 10px 15px 0 0;
+    }
+    /deep/ .vxe-body--expanded-column {
+        background: #fafafa;
+        .vxe-body--expanded-cell {
+            padding: 0 20px 20px;
+            font-size: 12px;
+            .ant-divider-inner-text {
+                font-size: 12px;
+            }
+        }
+    }
 
 </style>

@@ -4,6 +4,7 @@ import store from "./store"
 
 router.beforeEach(async(to, from, next) => {
     document.title = config.siteName + ' - ' + to.meta.title
+
     let toName = to.name
     routes.forEach((item, index) => {
         item.active = false
@@ -23,7 +24,7 @@ router.beforeEach(async(to, from, next) => {
         }
         if (typeof item.active === "undefined") item.active = false
     })
-    console.log(routes)
     store.commit('setRoutes', routes)
+
     next()
 })
