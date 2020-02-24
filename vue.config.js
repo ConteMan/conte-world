@@ -4,6 +4,8 @@ function resolve (dir) {
     return path.join(__dirname, dir)
 }
 
+const CompressionWebpackPlugin = require("compression-webpack-plugin")
+
 module.exports = {
     publicPath: '/',
     lintOnSave: false,
@@ -16,6 +18,19 @@ module.exports = {
     chainWebpack: config => {
         config.resolve.alias
             .set('@', resolve('src'))
+    },
+    configureWebpack: config => {
+        const plugins = []
+        plugins.push(
+            new CompressionWebpackPlugin({
+                filename: '[path].gz[query]',
+                algorithm: 'gzip',
+                test: /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i,
+                threshold: 10240,
+                minRatio: 0.8
+            })
+        )
+        config.plugins = [...config.plugins, ...plugins]
     },
     css: {
         loaderOptions: {
