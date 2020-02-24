@@ -1,17 +1,35 @@
 <template>
     <div>
-        <div v-for="item in data">
-            <a @click="turnTo({name: 'ArticleDetail', params: {id: item.slug}})" style="cursor: pointer;">{{ item.title }} {{ item.slug }}</a>
+        <div class="list-header">
+            {{ $config.articleListTitle }}
         </div>
+        <a-list
+            itemLayout="vertical"
+            size="small"
+            :bordered="false"
+            :loading="loading"
+            :dataSource="data"
+        >
+            <a-list-item slot="renderItem" slot-scope="item, index" :key="item.slug" @click="turnTo({name: 'ArticleDetail', params: {id: item.slug}})">
+                <div class="article-l-item">
+                    <div class="article-l-title">{{ item.title }}</div>
+                    <div class="article-l-time">
+                        {{ $dayjs(item.published_at).format("YYYY-MM-DD") }}
+                    </div>
+                </div>
+            </a-list-item>
+        </a-list>
     </div>
 </template>
 
 <script>
     import yuqueApi from "@/api/yuque"
+
     export default {
         name: "index",
         data() {
             return {
+                loading: false,
                 data: []
             }
         },
@@ -23,8 +41,10 @@
               this.$router.push(params)
             },
             list() {
+                this.loading = true
                 yuqueApi.docs().then(
                     responese => {
+                        this.loading = false
                         this.data = responese.data.data
                     }
                 )
@@ -33,6 +53,27 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    @import "~@/style/variables";
 
+    /deep/ .ant-list-vertical .ant-list-item-content {
+        margin: 0;
+        padding: 10px 8px;
+    }
+    .article-l-item {
+        cursor: pointer;
+        .article-l-title {
+            display: inline-block;
+        }
+        .article-l-time {
+            display: inline-block;
+            text-align: right;
+            float: right;
+        }
+    }
+    .article-l-item:hover {
+        .article-l-title{
+            color: @red;
+        }
+    }
 </style>

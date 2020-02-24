@@ -1,9 +1,13 @@
 <template>
-    <div class="container">
-        <div class="content">
-            {{ one.content }}
+    <div>
+        <div class="tool-bar">
+            <a-icon class="tool-icon" type="reload" @click="ones"/>
         </div>
-        <div class="from">{{ one.text_authors }}</div>
+        <div class="one">
+            {{ one.content }}
+            <br>
+            {{ one.text_authors }}
+        </div>
     </div>
 </template>
 
@@ -26,7 +30,7 @@
                 )
             }
         },
-        mounted() {
+        created() {
             this.ones()
         },
     }
@@ -35,7 +39,7 @@
 <style scoped lang="less">
     @import "~@/style/variables";
 
-    .container {
+    .one {
         width: 100%;
         height: 100%;
         max-height: 500px;
@@ -43,8 +47,14 @@
         line-height: 20px;
         color: @font-color-grey;
         text-align: center;
-        display: flex;
-        flex-flow: wrap;
-        margin: 0 20%;
+        margin: 20% 0;
+        padding: 0 10px;
+    }
+    .tool-bar {
+        height: 20px;
+        padding: 10px;
+        .tool-icon {
+            float: right;
+        }
     }
 </style>

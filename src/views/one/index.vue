@@ -1,5 +1,10 @@
 <template>
-  <card/>
+  <div>
+    <div class="list-header">
+      {{ $config.oneTitle }}
+    </div>
+    <card/>
+  </div>
 </template>
 
 <script>

@@ -2,8 +2,9 @@ export default {
     path: '/article',
     name: 'ArticleBase',
     meta: {
-        title: "Article"
+        title: "文章"
     },
+    redirect: { name: 'Article' },
     component:  () => import("@/layout/BaseLayout"),
     children: [
         {

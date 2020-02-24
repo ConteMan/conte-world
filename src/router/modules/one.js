@@ -2,8 +2,9 @@ export default {
     path: '/one',
     name: 'OneBase',
     meta: {
-        title: "One"
+        title: "一个"
     },
+    redirect: { name: 'One' },
     component:  () => import("@/layout/BaseLayout"),
     children: [
         {

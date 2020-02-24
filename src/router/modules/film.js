@@ -1,9 +1,10 @@
 export default {
     path: '/film',
-    name: 'Film',
+    name: 'FilmBase',
     meta: {
-        title: "Movie long life"
+        title: "电影"
     },
+    redirect: { name: 'Film' },
     component:  () => import("@/layout/BaseLayout"),
     children: [
         {

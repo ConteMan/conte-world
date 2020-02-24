@@ -3,11 +3,18 @@ import App from './App'
 import router from '@/router/index'
 import store from '@/store/index'
 
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+Vue.use(Antd);
+
 import config from '@/config' //全局配置
 Vue.prototype.$config = config
 
 import api from '@/api'
 Vue.prototype.$api = api
+
+import dayjs from "dayjs"
+Vue.prototype.$dayjs = dayjs
 
 Vue.config.productionTip = false
 
@@ -19,7 +26,6 @@ import '@/permission'
 import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/index.css'
-
 Vue.use(VXETable)
 
 new Vue({

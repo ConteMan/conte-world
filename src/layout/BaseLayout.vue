@@ -76,6 +76,8 @@
             }
 
             .footer {
+                position: absolute;
+                bottom: 0;
                 width: 100%;
                 max-width: @sider-width;
                 padding: 10px 0 20px;

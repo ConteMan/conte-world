@@ -4,39 +4,36 @@ import Router from 'vue-router'
 import film from '@/router/modules/film'
 import one from '@/router/modules/one'
 import article from "@/router/modules/article"
+import about from "@/router/modules/about"
 
 Vue.use(Router)
 
-export default new Router({
-    routes: [
-        {
-            path: '/',
-            name: 'Home',
-            meta: {
-                title: "Conte can't stop"
-            },
-            component:  () => import("@/layout/BaseLayout"),
-            children: [
-                {
-                    path: '/index',
-                    name: 'Index',
-                    meta: {
-                        title: '首页',
-                    },
-                    component: () => import('@/views/main')
-                },
-                {
-                    path: '/about',
-                    name: 'About',
-                    meta: {
-                        title: '关于',
-                    },
-                    component: () => import('@/views/about')
-                },
-            ]
+export const routes = [
+    {
+        path: '/',
+        name: 'IndexBase',
+        meta: {
+            title: "首页"
         },
-        film,
-        one,
-        article,
-    ]
+        redirect: { name: 'Index' },
+        component:  () => import("@/layout/BaseLayout"),
+        children: [
+            {
+                path: '/index',
+                name: 'Index',
+                meta: {
+                    title: '首页',
+                },
+                component: () => import('@/views/main')
+            }
+        ]
+    },
+    film,
+    one,
+    article,
+    about,
+]
+
+export default new Router({
+    routes: routes
 })
