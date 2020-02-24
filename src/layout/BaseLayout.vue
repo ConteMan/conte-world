@@ -8,7 +8,7 @@
                     </div>
                     <sider-bar/>
                     <div class="footer">
-                        @{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br>
+                        ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br>
                         <div class="beian">
                             <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>
                         </div>
@@ -34,7 +34,14 @@
                         </div>
                         <sider-bar/>
                         <div class="footer">
-                            ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br> <div class="beian"><a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a></div>
+                            ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br>
+                            <div class="beian">
+                                <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>
+                            </div>
+                            <br>
+                            <div class="beian">
+                                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030702002732">{{ $config.policeBeian }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>

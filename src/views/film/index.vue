@@ -20,15 +20,15 @@
                     <template v-slot:content="{ row, rowIndex }">
                         <template>
                             <a-divider orientation="left">信息</a-divider>
-                            <div>{{ row.intro }}</div>
+                            <div class="word-inline">{{ row.intro }}</div>
 
                             <a-divider orientation="left">链接</a-divider>
-                            <div>
+                            <div class="word-inline">
                                 <a :href="row.link" target="_blank">{{ row.link }}</a>
                             </div>
 
                             <a-divider orientation="left">海报</a-divider>
-                            <div>
+                            <div class="word-inline">
                                 <a :href="row.pic">{{ row.pic }}</a>
                             </div>
                         </template>
@@ -107,5 +107,7 @@
             }
         }
     }
-
+    .word-inline {
+        word-break: break-all;
+    }
 </style>
