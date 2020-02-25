@@ -3,9 +3,9 @@ import config from "@/config"
 import store from "./store"
 
 router.beforeEach(async(to, from, next) => {
-    document.title = config.siteName + 'の' + to.meta.title
+    document.title = to.meta.title+ ' ' +config.siteName
 
-    let blackList = ['IndexBase', '404', 'AboutBase']
+    let blackList = ['IndexBase', '404', 'AboutBase', 'LoginBase']
     let toName = to.name
     let finalRoutes = []
     routes.forEach((item, index) => {
