@@ -1,35 +1,30 @@
 <template>
     <div>
         <div class="list-header">
-            {{ title }}
+            {{ $config.changelogTitle }}
         </div>
-        <iframe :srcdoc="data" style="width: 100%;height: calc(100vh - 4px); border: none;" frameborder="0" scrolling="auto"></iframe>
+        <iframe class="iframe" :srcdoc="data" style="width: 100%;height: calc(100vh - 4px); border: none;" frameborder="0" scrolling="auto"></iframe>
     </div>
 </template>
 
 <script>
-    import yuqueApi from "@/api/yuque"
+    import systemApi from "@/api/system"
 
     export default {
         name: "index",
         data() {
             return {
-                data: '',
-                title: '',
+                data: ''
             }
         },
         created() {
             this.detail()
         },
         methods: {
-            turnTo(params) {
-                this.$route.push(params)
-            },
             detail() {
-                yuqueApi.docDetail(this.$route.params.id).then(
+                systemApi.changelog().then(
                     responese => {
                         this.data = responese.data.data.body_html
-                        this.title = responese.data.data.title
                     }
                 )
             },
@@ -37,6 +32,8 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+    .iframe {
+        margin: 4px 10px;
+    }
 </style>

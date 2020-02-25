@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App'
-import router from '@/router/index'
-import store from '@/store/index'
+import router from '@/router'
+import store from '@/store'
+
+import 'normalize.css/normalize.css'
 
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
@@ -16,9 +18,11 @@ Vue.prototype.$api = api
 import dayjs from "dayjs"
 Vue.prototype.$dayjs = dayjs
 
+import _ from "lodash"
+Vue.prototype._ = _
+
 Vue.config.productionTip = false
 
-import 'normalize.css'
 import '@/style/index.less'
 
 import '@/permission'

@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import user from "@/store/modules/user"
+
 export default new Vuex.Store({
     state: {
         loading: false, //全局加载
@@ -25,5 +27,6 @@ export default new Vuex.Store({
         }
     },
     modules: {
+        user
     }
 })
