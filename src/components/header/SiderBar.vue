@@ -1,6 +1,6 @@
 <template>
     <div class="nav-container">
-        <div class="nav-item" :class="{ active: item.active }" v-for="item in routes" @click="$router.push({name: item.name})">{{ item.meta.title }}</div>
+        <div class="nav-item" :class="{ active: (item.active || item.name == $route.matched[0].name) }" v-for="item in routes" v-if="!item.hidden" @click="$router.push({name: item.name})">{{ item.meta.title }}</div>
     </div>
 </template>
 
@@ -19,8 +19,6 @@
                     routes: 'routes'
                 }
             ),
-        },
-        mounted() {
         },
     }
 </script>

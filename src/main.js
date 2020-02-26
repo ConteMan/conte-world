@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
-import router from '@/router'
 import store from '@/store'
+import router,{ routes } from '@/router'
 
 import 'normalize.css/normalize.css'
 
@@ -37,3 +37,5 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+store.commit("SET_ROUTES", routes)

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from "@/store"
 
 import film from '@/router/modules/film'
 import one from '@/router/modules/one'
@@ -7,6 +8,8 @@ import article from "@/router/modules/article"
 import about from "@/router/modules/about"
 import changelog from "@/router/modules/changelog"
 import login from "@/router/modules/login"
+import mine from "@/router/modules/mine"
+import logout from "@/router/modules/logout"
 
 Vue.use(Router)
 
@@ -53,25 +56,8 @@ export const noneRoute = [
 
 //登录可见路由
 export const authRoutes = [
-    {
-        path: '/mine',
-        name: 'MineBase',
-        meta: {
-            title: "我"
-        },
-        redirect: { name: 'User' },
-        component:  () => import("@/layout/BaseLayout"),
-        children: [
-            {
-                path: '/index',
-                name: 'Mine',
-                meta: {
-                    title: '我',
-                },
-                component: () => import('@/views/mine')
-            }
-        ]
-    },
+    mine,
+    logout,
 ]
 
 const routerPush = Router.prototype.push
@@ -79,6 +65,21 @@ Router.prototype.push = function push(location) {
     return routerPush.call(this, location).catch(error => error)
 }
 
-export default new Router({
-    routes: [...routes, ...authRoutes]
-})
+const createRouter = function () {
+    return new Router({
+        // mode: 'history', // require service support
+        scrollBehavior: () => ({ y: 0 }),
+        routes: routes
+    })
+
+}
+
+const router = createRouter()
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher // reset router
+}
+
+export default router

@@ -43,6 +43,7 @@
 
 <script>
     import userApi from "@/api/user"
+    import { setToken } from "@/untils/auth"
 
     export default {
         name: "index",
@@ -64,7 +65,9 @@
                         }
                         userApi.login(data).then(
                             response => {
-                                console.log(response.data.data)
+                                let data = response.data.data
+                                setToken(data.token)
+                                this.$router.push({ path: '/' })
                             }
                         )
                     }

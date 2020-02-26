@@ -13,6 +13,12 @@ const user = {
             method: 'post',
             data: qs.stringify(requestData)
         })
+    },
+    info() {
+        return request({
+            url: `${base.k_isconte}/user`,
+            method: 'get',
+        })
     }
 }
 

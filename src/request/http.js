@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Message from 'ant-design-vue/lib/message'
+import { getToken } from "@/untils/auth"
 
 /**
  * 请求失败后的错误统一处理
@@ -35,6 +37,10 @@ instance.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencod
  */
 instance.interceptors.request.use(
     config => {
+        let token = getToken()
+        if (token){ //Vuex 获取 token
+            config.headers.Authorization = 'Bearer '+ token
+        }
         return config;
     },
     error => Promise.error(error))
@@ -49,6 +55,7 @@ instance.interceptors.response.use(
     error => {
         const { response } = error;
         if (response) {
+            Message.error(response.data.message);
             // 请求已发出，但是不在2xx的范围
             errorHandle(response.status, response.data.message);
             return Promise.reject(response);
@@ -61,6 +68,7 @@ instance.interceptors.response.use(
             } else {
                 return Promise.reject(error);
             }
+            Message.error('网络异常');
         }
     });
 

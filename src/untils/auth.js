@@ -1,15 +1,15 @@
-import store from "@/store"
-import router, { routes,authRoutes,noneRoute } from "@/router"
-import Message from 'ant-design-vue/lib/message'
+import Cookies from "js-cookie"
 
-//登录处理
-export function loginDeal(data) {
-    try {
-        //加入登录后可见路由
+const tokenKey = 'Isconte-Token'
 
-        store.commit('user/setToken', data.token)
-        router.push({name: 'Mine'})
-    } catch (e) {
-        console.log(e)
-    }
+export function getToken() {
+    return Cookies.get(tokenKey)
+}
+
+export function setToken(token) {
+    return Cookies.set(tokenKey, token)
+}
+
+export function removeToken() {
+    return Cookies.remove(tokenKey)
 }
