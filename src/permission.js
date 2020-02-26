@@ -1,4 +1,4 @@
-import router, { resetRouter } from "@/router"
+import router, { routes as constRotes, resetRouter } from "@/router"
 import config from "@/config"
 import store from "./store"
 import { getToken,removeToken } from "@/untils/auth"
@@ -15,9 +15,8 @@ router.beforeEach(async(to, from, next) => {
         await store.commit("user/SET_TOKEN", '')
         resetRouter()
         removeToken()
-        const routes = store.getters['routes']
         let finalRoutes = []
-        routes.forEach((item, index) => {
+        constRotes.forEach((item, index) => {
             if(item.name == 'LoginBase' || item.name == 'Logout') {
                 return
             }
