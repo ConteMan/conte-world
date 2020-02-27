@@ -19,6 +19,22 @@ const user = {
             url: `${base.k_isconte}/user`,
             method: 'get',
         })
+    },
+    setting() {
+        return request({
+            url: `${base.k_isconte}/user/setting`,
+            method: 'get',
+        })
+    },
+    updateSetting(data) {
+        return request({
+            url: `${base.k_isconte}/user/setting`,
+            method: 'post',
+            data: data,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
     }
 }
 

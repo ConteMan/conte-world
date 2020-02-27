@@ -10,8 +10,7 @@ router.beforeEach(async(to, from, next) => {
 
     let toName = to.name
 
-    console.log(toName)
-    if(toName == 'Logout' || !toName){
+    if(toName == 'Logout' || to.path == '/logout'){
         await store.commit("user/SET_TOKEN", '')
         resetRouter()
         removeToken()
@@ -23,11 +22,11 @@ router.beforeEach(async(to, from, next) => {
             finalRoutes.push(item)
         })
         await store.commit('SET_ROUTES', finalRoutes)
-        console.log(111111111111)
         next({ path: '/' })
     }
 
     //登录状态判断
+    let cookieLogin = false
     const hasToken = getToken()
     if (hasToken) {
         if (to.name == 'Login') {
@@ -38,13 +37,13 @@ router.beforeEach(async(to, from, next) => {
                 await store.commit("user/SET_TOKEN", hasToken)
                 const addRoutes = await store.dispatch("generateRoutes")
                 router.addRoutes(addRoutes)
+                cookieLogin = true
             }
         }
     }
 
     //路由菜单处理，激活状态
     const routes = store.getters['routes']
-    console.log(routes)
 
     let finalRoutes = []
     let isMatchRoute = false
@@ -79,5 +78,10 @@ router.beforeEach(async(to, from, next) => {
     }
     await store.commit('SET_ROUTES', finalRoutes)
 
-    next()
+    if (cookieLogin) {
+        //确保路由添加完毕
+        next({ ...to, replace: true })
+    } else {
+        next()
+    }
 })

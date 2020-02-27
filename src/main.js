@@ -21,6 +21,13 @@ Vue.prototype.$dayjs = dayjs
 import _ from "lodash"
 Vue.prototype._ = _
 
+import { message } from 'ant-design-vue' //消息提示
+Vue.prototype.$message = message;
+Vue.prototype.$message.config({
+  top: '20px',
+  duration: 2,
+})
+
 Vue.config.productionTip = false
 
 import '@/style/index.less'

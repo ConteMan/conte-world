@@ -18,6 +18,7 @@ export const routes = [
     {
         path: '/',
         name: 'IndexBase',
+        hidden: true,
         meta: {
             title: "首页"
         },

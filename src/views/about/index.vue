@@ -1,6 +1,11 @@
 <template>
     <div>
-        B
+        <div class="list-header">
+            关于 ConteMan 的一切
+        </div>
+        <div>
+
+        </div>
     </div>
 </template>
 

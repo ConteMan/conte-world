@@ -16,11 +16,74 @@ body {
   line-height: 55px;
   text-align: center;
   font-size: 12px;
-  border-bottom: 1px solid #e6ecf0;
+  border-bottom: 1px solid @grey;
+}
+
+.back-header {
+  top: 0;
+  width: 100%;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  font-size: 12px;
+  border-bottom: 1px solid @grey;
+  .back-btn {
+    display: inline-block;
+    width: 40px;
+    border-right:1px solid @grey ;
+  }
+  .back-btn:hover {
+    color: @red-60;
+    cursor: pointer;
+  }
+  .title {
+    display: inline-block;
+    width: calc(100% - 40px);
+    padding: 0 40px 0 0;
+  }
+}
+
+.tab-header {
+  top: 0;
+  width: 100%;
+  height: 55px;
+  line-height: 55px;
+  font-size: 12px;
+  border-bottom: 1px solid @grey;
+  text-align: left;
+  padding: 0 20px;
 }
 
 .siderbar-drawer {
   .ant-drawer-body {
     padding: 0 10px;
+  }
+}
+
+.list-container {
+  .title {
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: @font-bold;
+    border-bottom: 1px solid @border-color;
+  }
+  .item {
+    padding: 15px 20px;
+    border-bottom: 1px solid @border-color;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .content {
+      display: inline-block;
+    }
+    .operation {
+      right: 0;
+      display: inline-block;
+    }
+  }
+  .divider {
+    height: 8px;
+    background: @grey;
   }
 }
