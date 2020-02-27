@@ -15,7 +15,6 @@
                       'username',
                       { rules: [{ required: true, message: 'Please input your username!' }] },
                     ]"
-                    placeholder="这个用户很强！"
                 >
                     <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
                 </a-input>
@@ -27,14 +26,13 @@
                       { rules: [{ required: true, message: 'Please input your Password!' }] },
                     ]"
                     type="password"
-                    placeholder="不要告诉别人！"
                 >
                     <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
                 </a-input>
             </a-form-item>
             <a-form-item>
-                <a-button type="primary" html-type="submit" class="login-form-button">
-                    Log in
+                <a-button block size="small" type="primary" html-type="submit" class="login-form-button">
+                    登录
                 </a-button>
             </a-form-item>
         </a-form>
@@ -77,6 +75,32 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    @import "~@/style/index";
 
+    /deep/.login-form {
+        .ant-form-item {
+            font-size: 12px;
+            padding: 10px 20px 0 20px;
+        }
+        .ant-input,label {
+            font-size: 12px;
+        }
+        .title {
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: @font-bold;
+            margin: 0;
+            .ant-form-item-control {
+                line-height: 24px;
+            }
+        }
+        input {
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            border-radius: unset;
+            box-shadow: unset;
+        }
+    }
 </style>

@@ -13,16 +13,18 @@ router.beforeEach(async(to, from, next) => {
     if(toName == 'Logout' || to.path == '/logout'){
         await store.commit("user/SET_TOKEN", '')
         resetRouter()
-        removeToken()
+        await removeToken()
         let finalRoutes = []
         constRotes.forEach((item, index) => {
-            if(item.name == 'LoginBase' || item.name == 'Logout') {
+            if(item.name == 'Logout') {
                 return
             }
             finalRoutes.push(item)
         })
         await store.commit('SET_ROUTES', finalRoutes)
-        next({ path: '/' })
+        console.log(router)
+        next({name: 'One'})
+        return
     }
 
     //登录状态判断

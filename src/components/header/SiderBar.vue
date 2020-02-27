@@ -48,6 +48,8 @@
         .nav-item.active {
             font-weight: @font-bold;
             color: @red;
+            border-bottom: 1px solid red;
         }
+
     }
 </style>
