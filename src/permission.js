@@ -22,7 +22,6 @@ router.beforeEach(async(to, from, next) => {
             finalRoutes.push(item)
         })
         await store.commit('SET_ROUTES', finalRoutes)
-        console.log(router)
         next({name: 'One'})
         return
     }

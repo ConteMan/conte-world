@@ -1,6 +1,7 @@
+import router,{ resetRouter } from "@/router"
 import axios from 'axios'
 import Message from 'ant-design-vue/lib/message'
-import { getToken } from "@/untils/auth"
+import { getToken,removeToken } from "@/untils/auth"
 
 /**
  * 请求失败后的错误统一处理
@@ -56,6 +57,9 @@ instance.interceptors.response.use(
         const { response } = error;
         if (response) {
             Message.error(response.data.message);
+            if (response.data.status == 401) {
+                router.push({name: 'Logout'})
+            }
             // 请求已发出，但是不在2xx的范围
             errorHandle(response.status, response.data.message);
             return Promise.reject(response);

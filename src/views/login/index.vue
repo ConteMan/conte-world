@@ -63,9 +63,11 @@
                         }
                         userApi.login(data).then(
                             response => {
-                                let data = response.data.data
-                                setToken(data.token)
-                                this.$router.push({ path: '/' })
+                                if (response.data.status == 200){
+                                    let data = response.data.data
+                                    setToken(data.token)
+                                    this.$router.push({ path: '/' })
+                                }
                             }
                         )
                     }

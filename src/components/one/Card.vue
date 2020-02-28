@@ -2,7 +2,7 @@
     <div>
         <a-skeleton :loading="loading" :avatar="false" :title="false" active :paragraph="{rows: 6, width:['100%', '100%', '100%', '100%', '100%', '100%']}" >
         </a-skeleton>
-        <div v-show="!imageLoading">
+        <div class="card-container" v-show="!imageLoading">
             <div class="tool-bar">
                 <div class="title">{{ one.title }}</div>
                 <div class="date">{{ $dayjs(one.date).format('YYYY / MM / DD') }}</div>
@@ -63,6 +63,10 @@
     /deep/ .ant-skeleton-paragraph {
         padding-inline-start: 0 !important;
     }
+    .card-container {
+        margin: auto;
+        max-width: 800px;
+    }
     .one {
         width: 100%;
         height: 100%;
@@ -98,6 +102,7 @@
         }
         .tool-icon {
             float: right;
+            line-height: 22px;
         }
     }
 </style>

@@ -3,22 +3,24 @@
         <div class="list-header">
             {{ $config.articleListTitle }}
         </div>
-        <a-list
-            itemLayout="vertical"
-            size="small"
-            :bordered="false"
-            :loading="loading"
-            :dataSource="data"
-        >
-            <a-list-item slot="renderItem" slot-scope="item, index" :key="item.slug" @click="turnTo({name: 'ArticleDetail', params: {id: item.slug}})">
-                <div class="article-l-item">
-                    <div class="article-l-title">{{ item.title }}</div>
-                    <div class="article-l-time">
-                        {{ $dayjs(item.published_at).format("YYYY-MM-DD") }}
+        <div class="list-container">
+            <a-list
+                    itemLayout="vertical"
+                    size="small"
+                    :bordered="false"
+                    :loading="loading"
+                    :dataSource="data"
+            >
+                <a-list-item slot="renderItem" slot-scope="item, index" :key="item.slug" @click="turnTo({name: 'ArticleDetail', params: {id: item.slug}})">
+                    <div class="article-l-item">
+                        <div class="article-l-title">{{ item.title }}</div>
+                        <div class="article-l-time">
+                            {{ $dayjs(item.published_at).format("YYYY-MM-DD") }}
+                        </div>
                     </div>
-                </div>
-            </a-list-item>
-        </a-list>
+                </a-list-item>
+            </a-list>
+        </div>
     </div>
 </template>
 
@@ -59,6 +61,9 @@
     /deep/ .ant-list-vertical .ant-list-item-content {
         margin: 0;
         padding: 10px 8px;
+    }
+    .list-container {
+        padding: 0 10px;
     }
     .article-l-item {
         cursor: pointer;
