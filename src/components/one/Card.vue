@@ -1,21 +1,25 @@
 <template>
     <div>
-        <div class="tool-bar">
-            <div class="title">{{ one.title }}</div>
-            <div class="date">{{ $dayjs(one.date).format('YYYY / MM / DD') }}</div>
-            <a-icon class="tool-icon" type="reload" @click="ones" :spin="loading"/>
-        </div>
-        <div class="one">
-            {{ one.content }}
-            <br>
-            {{ one.text_authors }}
-
-            <div class="img-container">
-                <img :src="one.img_url"/>
-                <div>{{ one.picture_author }}</div>
+        <a-skeleton :loading="loading" :avatar="false" :title="false" active :paragraph="{rows: 6, width:['100%', '100%', '100%', '100%', '100%', '100%']}" >
+        </a-skeleton>
+        <div v-show="!imageLoading">
+            <div class="tool-bar">
+                <div class="title">{{ one.title }}</div>
+                <div class="date">{{ $dayjs(one.date).format('YYYY / MM / DD') }}</div>
+                <a-icon class="tool-icon" type="reload" @click="ones" :spin="loading"/>
+            </div>
+            <div class="one">
+                {{ one.content }}
+                <br>
+                {{ one.text_authors }}
+                    <div class="img-container">
+                        <img :src="one.img_url" @load="showLoad"/>
+                        <div>{{ one.picture_author }}</div>
+                    </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -26,18 +30,25 @@
         data() {
             return {
                 one: {},
-                loading: false
+                loading: false,
+                imageLoading: true,
             }
         },
         methods: {
             ones() {
                 this.loading = true
+                this.imageLoading = true
                 oneApi.ones().then(
                     (response) => {
-                        this.loading = false
                         this.one = response.data.data
                     }
                 )
+            },
+            showLoad() {
+                setTimeout(() => {
+                    this.imageLoading = false
+                    this.loading = false
+                }, 800)
             }
         },
         created() {
@@ -49,6 +60,9 @@
 <style scoped lang="less">
     @import "~@/style/variables";
 
+    /deep/ .ant-skeleton-paragraph {
+        padding-inline-start: 0 !important;
+    }
     .one {
         width: 100%;
         height: 100%;
@@ -58,7 +72,6 @@
         color: @font-color-grey;
         text-align: center;
         margin: 10% 0;
-        padding: 0 20px;
         .img-container {
             padding: 40px 0;
             width: 100%;
@@ -73,7 +86,6 @@
     .tool-bar {
         text-align: center;
         height: 20px;
-        padding: 10px 20px;
         .title {
             float: left;
             display: inline-block;

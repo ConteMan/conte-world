@@ -3,7 +3,7 @@
         <div class="list-header">
             {{ $config.oneTitle }}
         </div>
-        <card/>
+        <card class="card"/>
     </div>
 </template>
 
@@ -18,6 +18,8 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+    .card {
+        padding: 20px;
+    }
 </style>
