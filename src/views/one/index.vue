@@ -15,6 +15,8 @@
         components: {
             Card
         },
+        mounted() {
+        }
     }
 </script>
 
