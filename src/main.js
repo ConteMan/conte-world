@@ -9,7 +9,7 @@ import VueAnalytics from "vue-analytics";
 
 Vue.use(VueAnalytics, {
   id: process.env.VUE_APP_BASE_GA,
-  disableScriptLoader: true,
+  //disableScriptLoader: true,
   router,
   autoTracking: {
     pageviewOnLoad: false

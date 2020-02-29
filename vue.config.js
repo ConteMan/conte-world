@@ -19,7 +19,7 @@ module.exports = {
         config.resolve.alias
             .set('@', resolve('src'))
         config.plugin("html").tap(args => {
-            args[0].ga = process.env.BASE_GA;
+            args[0].ga = process.env.VUE_APP_BASE_GA;
             return args;
         });
     },
