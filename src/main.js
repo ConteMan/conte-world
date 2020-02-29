@@ -12,7 +12,7 @@ Vue.use(VueAnalytics, {
   //disableScriptLoader: true,
   router,
   autoTracking: {
-    pageviewOnLoad: false
+    pageviewOnLoad: true
   }
 });
 
