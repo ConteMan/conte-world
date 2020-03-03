@@ -8633,6 +8633,11 @@ websocket-extensions@>=0.1.1:
   resolved "https://registry.npm.taobao.org/websocket-extensions/download/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
   integrity sha1-XS/yKXcAPsaHpLhwc9+7rBRszyk=
 
+websocket-heartbeat-js@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.npm.taobao.org/websocket-heartbeat-js/download/websocket-heartbeat-js-1.0.10.tgz#2f4a24bc329b2cd62e57ebeb2629b8c1d09de5de"
+  integrity sha1-L0okvDKbLNYuV+vrJim4wdCd5d4=
+
 which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/which-module/download/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
