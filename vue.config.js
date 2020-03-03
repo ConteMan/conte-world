@@ -18,6 +18,11 @@ module.exports = {
     chainWebpack: config => {
         config.resolve.alias
             .set('@', resolve('src'))
+        config.plugin("html").tap(args => {
+            args[0].ga = process.env.VUE_APP_BASE_GA;
+            args[0].hm = process.env.VUE_APP_BASE_HM;
+            return args;
+        });
     },
     configureWebpack: config => {
         const plugins = []

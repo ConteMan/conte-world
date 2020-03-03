@@ -83,6 +83,10 @@ router.beforeEach(async(to, from, next) => {
         //确保路由添加完毕
         next({ ...to, replace: true })
     } else {
+        if (to.path) {
+            window._hmt.push(['_trackPageview', '/#' + to.fullPath])
+            console.log(to.fullPath)
+        }
         next()
     }
 })

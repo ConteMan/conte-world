@@ -5,6 +5,17 @@ import router,{ routes } from '@/router'
 
 import 'normalize.css/normalize.css'
 
+import VueAnalytics from "vue-analytics";
+
+Vue.use(VueAnalytics, {
+  id: process.env.VUE_APP_BASE_GA,
+  //disableScriptLoader: true,
+  router,
+  autoTracking: {
+    pageviewOnLoad: true
+  }
+});
+
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 Vue.use(Antd);

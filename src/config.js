@@ -3,6 +3,7 @@ export default {
     beian: '粤ICP备17015159号-1',
     policeBeian: '粤公网安备 44030702002732号',
     siteCreateTime: '2019',
+    GA: 'UA-108159539-1',
 
     oneTitle: '复杂的世界，一个就够了',
     articleListTitle: '和这个世界谈谈',
