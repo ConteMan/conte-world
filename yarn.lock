@@ -757,6 +757,11 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
+"@sphinxxxx/color-conversion@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.npm.taobao.org/@sphinxxxx/color-conversion/download/@sphinxxxx/color-conversion-2.2.2.tgz#03ecc29279e3c0c832f6185a5bfa3497858ac8ca"
+  integrity sha1-A+zCknnjwMgy9hhaW/o0l4WKyMo=
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/@types/color-name/download/@types/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -1179,6 +1184,11 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
+ace-builds@^1.4.8:
+  version "1.4.8"
+  resolved "https://registry.npm.taobao.org/ace-builds/download/ace-builds-1.4.8.tgz#d14be41d30294a2a12581f0bcfee4b696481ffdd"
+  integrity sha1-0UvkHTApSioSWB8Lz+5LaWSB/90=
+
 acorn-jsx@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npm.taobao.org/acorn-jsx/download/acorn-jsx-3.0.1.tgz?cache=0&sync_timestamp=1570991424796&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Facorn-jsx%2Fdownload%2Facorn-jsx-3.0.1.tgz#afdf9488fb1ecefc8348f6fb22f464e32a58b36b"
@@ -1262,6 +1272,16 @@ ajv@^6.1.0, ajv@^6.10.2, ajv@^6.5.5, ajv@^6.9.1:
   integrity sha1-086gTWsBeyiUrWkED+yLYj60vVI=
   dependencies:
     fast-deep-equal "^2.0.1"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.4.1"
+    uri-js "^4.2.2"
+
+ajv@^6.11.0:
+  version "6.12.0"
+  resolved "https://registry.npm.taobao.org/ajv/download/ajv-6.12.0.tgz?cache=0&sync_timestamp=1582379551272&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fajv%2Fdownload%2Fajv-6.12.0.tgz#06d60b96d87b8454a5adaba86e7854da629db4b7"
+  integrity sha1-BtYLlth7hFSlrauobnhU2mKdtLc=
+  dependencies:
+    fast-deep-equal "^3.1.1"
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
@@ -3619,6 +3639,11 @@ fast-deep-equal@^2.0.1:
   resolved "https://registry.npm.taobao.org/fast-deep-equal/download/fast-deep-equal-2.0.1.tgz?cache=0&sync_timestamp=1575383928809&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffast-deep-equal%2Fdownload%2Ffast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
   integrity sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=
 
+fast-deep-equal@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.npm.taobao.org/fast-deep-equal/download/fast-deep-equal-3.1.1.tgz#545145077c501491e33b15ec408c294376e94ae4"
+  integrity sha1-VFFFB3xQFJHjOxXsQIwpQ3bpSuQ=
+
 fast-glob@^2.2.6:
   version "2.2.7"
   resolved "https://registry.npm.taobao.org/fast-glob/download/fast-glob-2.2.7.tgz?cache=0&sync_timestamp=1575198899462&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffast-glob%2Fdownload%2Ffast-glob-2.2.7.tgz#6953857c3afa475fff92ee6015d52da70a4cd39d"
@@ -4876,10 +4901,20 @@ isstream@~0.1.2:
   resolved "https://registry.npm.taobao.org/isstream/download/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
+javascript-natural-sort@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.npm.taobao.org/javascript-natural-sort/download/javascript-natural-sort-0.7.1.tgz#f9e2303d4507f6d74355a73664d1440fb5a0ef59"
+  integrity sha1-+eIwPUUH9tdDVac2ZNFED7Wg71k=
+
 javascript-stringify@^1.6.0:
   version "1.6.0"
   resolved "https://registry.npm.taobao.org/javascript-stringify/download/javascript-stringify-1.6.0.tgz?cache=0&sync_timestamp=1572948916758&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjavascript-stringify%2Fdownload%2Fjavascript-stringify-1.6.0.tgz#142d111f3a6e3dae8f4a9afd77d45855b5a9cce3"
   integrity sha1-FC0RHzpuPa6PSpr9d9RYVbWpzOM=
+
+jmespath@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.npm.taobao.org/jmespath/download/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
+  integrity sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=
 
 js-cookie@^2.2.1:
   version "2.2.1"
@@ -4956,6 +4991,11 @@ json-schema@0.2.3:
   resolved "https://registry.npm.taobao.org/json-schema/download/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
   integrity sha1-tIDIkuWaLwWVTOcnvT8qTogvnhM=
 
+json-source-map@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.npm.taobao.org/json-source-map/download/json-source-map-0.6.1.tgz#e0b1f6f4ce13a9ad57e2ae165a24d06e62c79a0f"
+  integrity sha1-4LH29M4Tqa1X4q4WWiTQbmLHmg8=
+
 json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/json-stable-stringify-without-jsonify/download/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
@@ -4996,6 +5036,20 @@ json5@^2.1.0:
   integrity sha1-gbbLBOm6SW8ccAXQe0NoomOPkLY=
   dependencies:
     minimist "^1.2.0"
+
+jsoneditor@^8.6.1:
+  version "8.6.1"
+  resolved "https://registry.npm.taobao.org/jsoneditor/download/jsoneditor-8.6.1.tgz#de28a81e7d1a2f1a3eecbd1221b3a641f1ec595a"
+  integrity sha1-3iioHn0aLxo+7L0SIbOmQfHsWVo=
+  dependencies:
+    ace-builds "^1.4.8"
+    ajv "^6.11.0"
+    javascript-natural-sort "^0.7.1"
+    jmespath "^0.15.0"
+    json-source-map "^0.6.1"
+    mobius1-selectr "^2.4.13"
+    picomodal "^3.0.0"
+    vanilla-picker "^2.10.1"
 
 jsonfile@^4.0.0:
   version "4.0.0"
@@ -5529,6 +5583,11 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+mobius1-selectr@^2.4.13:
+  version "2.4.13"
+  resolved "https://registry.npm.taobao.org/mobius1-selectr/download/mobius1-selectr-2.4.13.tgz#0019dfd9f984840d6e40f70683ab3ec78ce3b5df"
+  integrity sha1-ABnf2fmEhA1uQPcGg6s+x4zjtd8=
 
 moment@^2.21.0:
   version "2.24.0"
@@ -6229,6 +6288,11 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/performance-now/download/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+picomodal@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/picomodal/download/picomodal-3.0.0.tgz#facd30f4fbf34a809c1e04ea525f004f399c0b82"
+  integrity sha1-+s0w9PvzSoCcHgTqUl8ATzmcC4I=
 
 pify@^2.0.0:
   version "2.3.0"
@@ -8349,6 +8413,13 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+vanilla-picker@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.npm.taobao.org/vanilla-picker/download/vanilla-picker-2.10.1.tgz#b07d6df8e0c3655e39a7da11e68adc00affa2b12"
+  integrity sha1-sH1t+ODDZV45p9oR5orcAK/6KxI=
+  dependencies:
+    "@sphinxxxx/color-conversion" "^2.2.2"
 
 vary@~1.1.2:
   version "1.1.2"

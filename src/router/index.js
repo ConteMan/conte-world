@@ -10,6 +10,7 @@ import changelog from "@/router/modules/changelog"
 import login from "@/router/modules/login"
 import mine from "@/router/modules/mine"
 import logout from "@/router/modules/logout"
+import tool from "@/router/modules/tool"
 
 Vue.use(Router)
 
@@ -38,6 +39,7 @@ export const routes = [
     one,
     article,
     film,
+    tool,
     changelog,
     about,
     login,
