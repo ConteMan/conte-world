@@ -24,8 +24,12 @@
 </script>
 
 <style scoped lang="less">
-    @import "~@/style/index";
+    @import "~@/style/variables";
 
+    .tab-header {
+        position: relative;
+        top: 0;
+    }
     .tab-item {
         display: inline-block;
         padding: 4px 6px;

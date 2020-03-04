@@ -30,7 +30,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        padding: 10px 0;
+        padding: 10px 20px;
         .nav-item {
             width: fit-content;
             font-size: 12px;

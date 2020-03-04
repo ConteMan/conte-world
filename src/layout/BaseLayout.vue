@@ -7,16 +7,7 @@
                         {{ $config.siteName }}
                     </div>
                     <sider-bar/>
-                    <div class="footer">
-                        ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br>
-                        <div class="beian">
-                            <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>
-                        </div>
-                        <br>
-                        <div class="beian">
-                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030702002732">{{ $config.policeBeian }}</a>
-                        </div>
-                    </div>
+                    <tool-bar/>
                 </div>
             </div>
             <a-drawer
@@ -33,16 +24,7 @@
                             {{ $config.siteName }}
                         </div>
                         <sider-bar/>
-                        <div class="footer">
-                            ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }} <br>
-                            <div class="beian">
-                                <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>
-                            </div>
-                            <br>
-                            <div class="beian">
-                                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030702002732">{{ $config.policeBeian }}</a>
-                            </div>
-                        </div>
+                        <tool-bar/>
                     </div>
                 </div>
             </a-drawer>
@@ -53,45 +35,30 @@
             </div>
             <div class="c-main" :class="{ 'full-width': setting.fullWidth }">
                 <router-view/>
+                <foot-bar/>
             </div>
             <div class="c-right-bar">
-                <div class="c-rb-content"></div>
-            </div>
-        </div>
-
-        <div class="setting">
-            <a-icon type="setting" @click="showSettingDrawer"/>
-        </div>
-        <a-drawer
-            placement="right"
-            wrapClassName="setting-drawer"
-            :closable="false"
-            :visible="settingDrawerVisible"
-            @close="drawerClose"
-        >
-            <div class="list-container">
-                <div class="title">基础</div>
-                <div class="item">
-                    <div class="content">
-                        宽屏
-                    </div>
-                    <div class="operation">
-                        <a-switch size="small" :defaultChecked="setting.fullWidth" @change="widthSetting"/>
-                    </div>
+                <div class="c-rb-content">
                 </div>
             </div>
-        </a-drawer>
+        </div>
     </div>
 </template>
 
 <script>
     import Cookies from "js-cookie"
+    import VueDraggableResizable from 'vue-draggable-resizable'
     import SiderBar from "@/components/header/SiderBar";
+    import FootBar from "@/layout/components/FootBar"
+    import ToolBar from "@/layout/components/ToolBar"
 
     export default {
         name: "BaseLayout",
         components: {
+            VueDraggableResizable,
             SiderBar,
+            FootBar,
+            ToolBar
         },
         data() {
             return {
@@ -168,7 +135,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "~@/style/index";
+    @import "~@/style/variables";
 
     .c-root {
         height: 100%;
@@ -199,34 +166,17 @@
             max-width: @sider-width;
             position: fixed;
             border-right: 1px solid @border-color;
+            border-left:  1px solid @border-color;
 
             .title {
+                text-align: center;
                 font-size: 16px;
                 font-weight: 600;
-                padding: 20px 0 10px;
+                padding: 20px 20px 10px;
                 border-bottom: 1px solid @border-color;
             }
 
-            .footer {
-                color: @font-color-footer;
-                font-size: 12px;
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                max-width: @sider-width;
-                padding: 10px 0 10px;
-                border-top: 1px solid @border-color;
-                .beian {
-                    line-height: 14px;
-                    font-size: 12px;
-                    display: inline-block;
-                    margin: 5px 0 0 0;
-                    color: @font-color-footer;
-                    a:any-link {
-                        color: @font-color-footer;
-                    }
-                }
-            }
+
         }
     }
     .c-main {

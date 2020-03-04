@@ -6,32 +6,40 @@ import login from "@/router/modules/login"
 import logout from "@/router/modules/logout"
 
 router.beforeEach(async(to, from, next) => {
-    document.title = to.meta.title+ ' ' +config.siteName
+    if(to.meta.title) {
+        document.title = to.meta.title+ ' ' +config.siteName
+    }
 
     let toName = to.name
+    const hasToken = getToken()
 
     if(toName == 'Logout' || to.path == '/logout'){
-        await store.commit("user/SET_TOKEN", '')
-        resetRouter()
-        await removeToken()
-        let finalRoutes = []
-        constRotes.forEach((item, index) => {
-            if(item.name == 'Logout') {
-                return
-            }
-            finalRoutes.push(item)
-        })
-        await store.commit('SET_ROUTES', finalRoutes)
-        next({name: 'One'})
-        return
+        if (!hasToken) {
+            next({name: 'One'})
+            return
+        } else {
+            await store.commit("user/SET_TOKEN", '')
+            resetRouter()
+            await removeToken()
+            let finalRoutes = []
+            constRotes.forEach((item, index) => {
+                if(item.name == 'Logout') {
+                    return
+                }
+                finalRoutes.push(item)
+            })
+            await store.commit('SET_ROUTES', finalRoutes)
+            next({name: 'One'})
+            return
+        }
     }
 
     //登录状态判断
     let cookieLogin = false
-    const hasToken = getToken()
     if (hasToken) {
         if (to.name == 'Login') {
-            next({name: 'IndexBase'})
+            next({name: 'Mine'})
+            return
         } else {
             const hasVToken = store.getters["user/token"]
             if (!hasVToken) {

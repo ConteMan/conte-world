@@ -8450,6 +8450,11 @@ vue-analytics@^5.22.1:
   resolved "https://registry.npm.taobao.org/vue-analytics/download/vue-analytics-5.22.1.tgz#9d6b32da56daee1b9dfb23a267b50349a03f710f"
   integrity sha1-nWsy2lba7hud+yOiZ7UDSaA/cQ8=
 
+vue-draggable-resizable@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/vue-draggable-resizable/download/vue-draggable-resizable-2.1.0.tgz#b590212aef3c07d040aeceda784438068170fb08"
+  integrity sha1-tZAhKu88B9BArs7aeEQ4BoFw+wg=
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"

@@ -1,6 +1,7 @@
 export default {
     path: '/login',
     name: 'LoginBase',
+    hidden: true,
     meta: {
         title: "登录"
     },
