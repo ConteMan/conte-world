@@ -38,6 +38,9 @@
                 settingKey: 'Isconte-Setting',
                 setting: {},
             }
+        },
+        method() {
+
         }
     }
 </script>
