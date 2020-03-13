@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from "@/store"
 
 import film from '@/router/modules/film'
 import one from '@/router/modules/one'

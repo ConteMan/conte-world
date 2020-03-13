@@ -49,7 +49,6 @@
         },
         created() {
             this.info()
-            console.log(Vue)
         }
     }
 </script>

@@ -33,7 +33,7 @@
                     <a-icon class="trigger-icon" type="double-right" style="font-size: 18px; margin: 20px 0 0 0;"/>
                 </div>
             </div>
-            <div class="c-main" :class="{ 'full-width': setting.fullWidth }">
+            <div class="c-main" :class="{ 'full-width': widthType > 1 }">
                 <router-view/>
                 <foot-bar/>
             </div>
@@ -46,11 +46,11 @@
 </template>
 
 <script>
-    import Cookies from "js-cookie"
     import VueDraggableResizable from 'vue-draggable-resizable'
     import SiderBar from "@/components/header/SiderBar";
     import FootBar from "@/layout/components/FootBar"
     import ToolBar from "@/layout/components/ToolBar"
+    import { mixin } from '@/untils/mixin'
 
     export default {
         name: "BaseLayout",
@@ -65,23 +65,12 @@
                 fullWidth: document.body.clientWidth,
                 timer: false,
                 drawerVisible: false,
-                settingDrawerVisible: false,
-
-                settingKey: 'Isconte-Setting',
-                setting: {},
             }
         },
+        mixins: [mixin],
         computed: {
             isDrawer: function() {
                 return this.fullWidth < 736;
-            }
-        },
-        watch: {
-            setting: {
-                handler (n, o) {
-                    Cookies.set(this.settingKey, n)
-                },
-                deep: true
             }
         },
         mounted() {
@@ -97,33 +86,16 @@
                     )
                 }
             }
-
-            let cookieSetting = Cookies.get(this.settingKey)
-            if (!cookieSetting) {
-                this.setting = {
-                    fullWidth: false,
-                }
-            } else {
-                this.setting = JSON.parse(cookieSetting)
-            }
         },
+        // watch: {
+        //   widthType(old){
+        //     console.log(old)
+        //   }
+        // },
         methods: {
             drawerClose() {
                 this.drawerVisible = false
-                this.settingDrawerVisible = false
             },
-            showSettingDrawer() {
-                this.settingDrawerVisible = true
-            },
-            widthSetting(checked) {
-                if (!this.setting) {
-                    this.setting = {
-                        fullWidth: checked,
-                    }
-                } else {
-                    this.setting.fullWidth = checked
-                }
-            }
         },
         beforeRouteLeave (to, from, next) {
             if (this.isDrawer && this.drawerVisible) {

@@ -3,14 +3,14 @@
         <div class="tool-container">
             <a-button class="btn" shape="circle" icon="user" size="small" @click="$router.push({name: 'Login'})"></a-button>
             <a-button class="btn" shape="circle" icon="poweroff" size="small" @click="$router.push({name: 'Logout'})"></a-button>
-            <a-button class="btn" shape="circle" icon="setting" size="small"></a-button>
+            <a-button class="btn" shape="circle" icon="setting" size="small" @click="showDrawer"></a-button>
         </div>
 
         <a-drawer
             placement="right"
             wrapClassName="setting-drawer"
             :closable="false"
-            :visible="settingDrawerVisible"
+            :visible="drawer"
             @close="drawerClose"
         >
             <div class="list-container">
@@ -20,7 +20,7 @@
                         宽屏
                     </div>
                     <div class="operation">
-                        <a-switch size="small" :defaultChecked="setting.fullWidth" @change="widthSetting"/>
+                        <a-switch size="small" :defaultChecked="widthType > 1" @change="widthTypeChange"/>
                     </div>
                 </div>
             </div>
@@ -29,18 +29,27 @@
 </template>
 
 <script>
+    import { mixin } from '@/untils/mixin'
+    import { WIDTH_TYPE } from '@/store/mutation-types'
+
     export default {
         name: "ToolBar",
         data() {
             return {
-                settingDrawerVisible: false,
-
-                settingKey: 'Isconte-Setting',
-                setting: {},
+                drawer: false,
             }
         },
-        method() {
-
+        mixins: [mixin],
+        methods: {
+            drawerClose() {
+                this.drawer = false
+            },
+            showDrawer() {
+                this.drawer = true
+            },
+            widthTypeChange(checked) {
+                this.$store.commit(WIDTH_TYPE, checked ? 2 : 1)
+            }
         }
     }
 </script>

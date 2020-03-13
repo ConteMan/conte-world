@@ -1,15 +1,15 @@
-import Cookies from "js-cookie"
-
-const tokenKey = 'Isconte-Token'
+import Vue from 'vue'
+import store from '@/store'
+import {
+    ACCESS_TOKEN,
+} from '@/store/mutation-types'
 
 export function getToken() {
-    return Cookies.get(tokenKey)
+    return Vue.ls.get(ACCESS_TOKEN)
 }
-
 export function setToken(token) {
-    return Cookies.set(tokenKey, token)
+    return Vue.ls.set(ACCESS_TOKEN, token)
 }
-
 export function removeToken() {
-    return Cookies.remove(tokenKey)
+    store.commit('user/REMOVE_ACCESS_TOKEN')
 }

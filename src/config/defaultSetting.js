@@ -9,4 +9,13 @@ export default {
     articleListTitle: '和这个世界谈谈',
     filmTitle: '看过一千部电影，世界上就没有稀奇的事情',
     changelogTitle: '每一次更新都是一次进步',
+
+    storageOptions: {
+        namespace: 'isconte__', // key prefix
+        name: 'ls', // name variable Vue.[ls] or this.[$ls],
+        storage: 'local' // storage name session, local, memory
+    },
+    defaultRouteName: 'One',
+
+    widthType: 1, //1 居中，2 宽屏
 }

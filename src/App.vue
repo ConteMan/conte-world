@@ -15,7 +15,7 @@
         font-family: PingFang SC,Hiragino Sans GB,Microsoft Yahei,WenQuanYi Micro Hei,sans-serif;
     }
     #app {
-        height: 100vh;
+        min-height: 100vh;
     }
     body {
         -webkit-font-smoothing: antialiased;
