@@ -12,6 +12,7 @@
                         v-bind="formItemLayout"
                         v-for="item in cat.fields"
                         :label="item.name"
+                        :key="item.code"
                     >
                         <a-input
                             v-decorator="[String(item.code)]"

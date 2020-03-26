@@ -10,19 +10,8 @@
     }
 </script>
 
-<style lang="less">
-    body {
-        font-family: PingFang SC,Hiragino Sans GB,Microsoft Yahei,WenQuanYi Micro Hei,sans-serif;
-    }
+<style scoped lang="less">
     #app {
         min-height: 100vh;
-    }
-    body {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        -ms-overflow-style: none;
-    }
-    body::-webkit-scrollbar{
-        display:none;
     }
 </style>
