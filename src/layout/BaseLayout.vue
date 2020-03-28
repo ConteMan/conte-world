@@ -1,24 +1,9 @@
 <template>
-    <div class="c-root">
-        <div class="c-container">
-            <div class="c-header" v-if="!isDrawer">
-                <div class="c-header-content">
-                    <div class="title">
-                        {{ $config.siteName }}
-                    </div>
-                    <sider-bar/>
-                    <tool-bar/>
-                </div>
-            </div>
-            <a-drawer
-                v-else
-                placement="left"
-                wrapClassName="siderbar-drawer"
-                :closable="false"
-                :visible="drawerVisible"
-                @close="drawerClose"
-            >
-                <div class="c-header">
+    <div>
+        <!-- v1 版 -->
+        <div v-if="layoutVersion == 'v1'" class="c-root">
+            <div class="c-container">
+                <div class="c-header" v-if="!isDrawer">
                     <div class="c-header-content">
                         <div class="title">
                             {{ $config.siteName }}
@@ -27,20 +12,43 @@
                         <tool-bar/>
                     </div>
                 </div>
-            </a-drawer>
-            <div class="trigger" v-if="isDrawer" @click="()=> {this.drawerVisible = true}">
-                <div class="trigger-content">
-                    <a-icon class="trigger-icon" type="double-right" style="font-size: 18px; margin: 20px 0 0 0;"/>
+                <a-drawer
+                        v-else
+                        placement="left"
+                        wrapClassName="siderbar-drawer"
+                        :closable="false"
+                        :visible="drawerVisible"
+                        @close="drawerClose"
+                >
+                    <div class="c-header">
+                        <div class="c-header-content">
+                            <div class="title">
+                                {{ $config.siteName }}
+                            </div>
+                            <sider-bar/>
+                            <tool-bar/>
+                        </div>
+                    </div>
+                </a-drawer>
+                <div class="trigger" v-if="isDrawer" @click="()=> {this.drawerVisible = true}">
+                    <div class="trigger-content">
+                        <a-icon class="trigger-icon" type="double-right" style="font-size: 18px; margin: 20px 0 0 0;"/>
+                    </div>
+                </div>
+                <div class="c-main" :class="{ 'full-width': widthType > 1 }">
+                    <router-view/>
+                    <foot-bar/>
+                </div>
+                <div class="c-right-bar">
+                    <div class="c-rb-content">
+                    </div>
                 </div>
             </div>
-            <div class="c-main" :class="{ 'full-width': widthType > 1 }">
-                <router-view/>
-                <foot-bar/>
-            </div>
-            <div class="c-right-bar">
-                <div class="c-rb-content">
-                </div>
-            </div>
+        </div>
+
+        <!-- v2 版 -->
+        <div v-if="layoutVersion == 'v2'">
+
         </div>
     </div>
 </template>
@@ -74,6 +82,7 @@
             }
         },
         mounted() {
+            console.log(this.layoutVersion)
             window.onresize = () => {
                 if(!this.timer) {
                     this.timer = true
