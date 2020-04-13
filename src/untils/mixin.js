@@ -5,6 +5,7 @@ const mixin = {
         ...mapState({
             layoutVersion: state => state.setting.layoutVersion,
             widthType: state => state.setting.widthType,
+            menuStatus: state => state.setting.menuStatus,
         })
     },
     methods: {

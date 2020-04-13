@@ -13,12 +13,12 @@
                     </div>
                 </div>
                 <a-drawer
-                        v-else
-                        placement="left"
-                        wrapClassName="siderbar-drawer"
-                        :closable="false"
-                        :visible="drawerVisible"
-                        @close="drawerClose"
+                    v-else
+                    placement="left"
+                    wrapClassName="siderbar-drawer"
+                    :closable="false"
+                    :visible="drawerVisible"
+                    @close="drawerClose"
                 >
                     <div class="c-header">
                         <div class="c-header-content">
@@ -47,42 +47,80 @@
         </div>
 
         <!-- v2 版 -->
-        <div v-if="layoutVersion == 'v2'">
-
-        </div>
+        <template v-if="layoutVersion == 'v2'">
+            <float-actions/>
+            <div v-if="!isDrawer" class="v2-container" >
+                <div v-if="menuStatus" class="v2-sider-container">
+                    <sider-bar/>
+                </div>
+                <div class="v2-content-container" :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus}">
+                    <router-view/>
+                    <v2-footer/>
+                </div>
+            </div>
+            <div v-else>
+                <a-drawer
+                    placement="left"
+                    wrapClassName="siderbar-drawer"
+                    :closable="false"
+                    :visible="menuStatus"
+                    width="40%"
+                    @close="drawerClose"
+                >
+                    <sider-bar/>
+                </a-drawer>
+                <div class="v2-content-container" :class="{ 'full-width': true }">
+                    <router-view/>
+                    <v2-footer/>
+                </div>
+            </div>
+        </template>
     </div>
 </template>
 
 <script>
-    import VueDraggableResizable from 'vue-draggable-resizable'
     import SiderBar from "@/components/header/SiderBar";
-    import FootBar from "@/layout/components/FootBar"
-    import ToolBar from "@/layout/components/ToolBar"
+    import FootBar from "@/layout/components/v1/FootBar"
+    import ToolBar from "@/layout/components/v1/ToolBar"
+
+    import V2Header from "@/layout/components/v2/Header"
+    import FloatActions from "@/layout/components/v2/FloatActions"
+    import V2Footer from "@/layout/components/v2/Footer"
+    import {
+        MENU_ACTION,
+    } from '@/store/mutation-types'
     import { mixin } from '@/untils/mixin'
+    import {mapMutations} from "vuex"
 
     export default {
         name: "BaseLayout",
         components: {
-            VueDraggableResizable,
             SiderBar,
             FootBar,
-            ToolBar
+            ToolBar,
+
+            FloatActions,
+            V2Header,
+            V2Footer,
         },
         data() {
             return {
                 fullWidth: document.body.clientWidth,
                 timer: false,
                 drawerVisible: false,
+                menuVisible: true,
             }
         },
         mixins: [mixin],
         computed: {
             isDrawer: function() {
-                return this.fullWidth < 736;
+                return this.fullWidth <= 768;
+            },
+            isPC: function () {
+                return !/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)
             }
         },
         mounted() {
-            console.log(this.layoutVersion)
             window.onresize = () => {
                 if(!this.timer) {
                     this.timer = true
@@ -90,21 +128,17 @@
                         () => {
                             this.fullWidth = document.body.clientWidth
                             this.timer = false
-                        },
-                        400
-                    )
+                        }, 400)
                 }
             }
         },
-        // watch: {
-        //   widthType(old){
-        //     console.log(old)
-        //   }
-        // },
         methods: {
             drawerClose() {
-                this.drawerVisible = false
+                this.menuAction(false)
             },
+            ...mapMutations({
+                menuAction: 'MENU_ACTION',
+            })
         },
         beforeRouteLeave (to, from, next) {
             if (this.isDrawer && this.drawerVisible) {
@@ -214,4 +248,49 @@
         height: 20px;
         font-size: 14px;
     }
+
+    .v2-trigger {
+        position: fixed;
+        width: 100px;
+        text-align: center;
+        z-index: 9999;
+        .trigger-icon {
+            font-size: 20px;
+            line-height: 55px;
+            cursor: pointer;
+        }
+    }
+    .v2-container {
+        height: 100%;
+        .v2-sider-container {
+            position: fixed;
+            height: 100%;
+            width: 100px;
+            margin: 0;
+            border-right: 1px solid @border-color;
+            text-align: center;
+            .nav-container {
+                display: block;
+                height: calc(100% - 55px);
+                text-align: center;
+                margin-top: 55px;
+                padding: 20px;
+                /deep/ .nav-item {
+                    margin: 0;
+                    width: 100% !important;
+                }
+            }
+        }
+        .v2-content-container {
+            position: relative;
+            margin: 0 0 0 100px;
+            div:first-child {
+                min-height: 100vh;
+            }
+        }
+        .v2-content-container.no-menu {
+            margin: 0;
+        }
+    }
+
 </style>

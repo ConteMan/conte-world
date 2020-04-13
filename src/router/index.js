@@ -1,8 +1,9 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue"
+import Router from "vue-router"
 
-import film from '@/router/modules/film'
-import one from '@/router/modules/one'
+import main from "@/router/modules/main"
+import film from "@/router/modules/film"
+import one from "@/router/modules/one"
 import article from "@/router/modules/article"
 import about from "@/router/modules/about"
 import changelog from "@/router/modules/changelog"
@@ -15,26 +16,7 @@ Vue.use(Router)
 
 //通用路由
 export const routes = [
-    {
-        path: '/',
-        name: 'IndexBase',
-        hidden: true,
-        meta: {
-            title: "首页"
-        },
-        redirect: { name: 'One' },
-        component:  () => import("@/layout/BaseLayout"),
-        children: [
-            {
-                path: '/index',
-                name: 'Index',
-                meta: {
-                    title: '首页',
-                },
-                component: () => import('@/views/main')
-            }
-        ]
-    },
+    main,
     one,
     article,
     film,

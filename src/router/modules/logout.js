@@ -3,6 +3,6 @@ export default {
     name: 'Logout',
     hidden: true,
     meta: {
-        title: "退出"
+        title: ""
     },
 }

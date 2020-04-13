@@ -32,7 +32,6 @@
         },
         methods: {
             update() {
-                console.log(this.$refs['update-btn'])
                 this.$refs['update-btn'].sLoading = true
                 oneApi.update({}).then(
                     response => {

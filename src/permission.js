@@ -7,7 +7,7 @@ import { removeToken } from '@/untils/auth'
 
 router.beforeEach(async(to, from, next) => {
     if(to.meta.title) {
-        document.title = to.meta.title+ ' ' +config.siteName
+        document.title = to.meta.title+ ' - ' +config.siteName
     }
 
     let toName = to.name

@@ -2,7 +2,7 @@ export default {
     path: '/changelog',
     name: 'ChangelogBase',
     meta: {
-        title: "更新日志"
+        title: "更新"
     },
     component:  () => import("@/layout/BaseLayout"),
     redirect: { name: 'Changelog' },
@@ -11,7 +11,7 @@ export default {
             path: 'index',
             name: 'Changelog',
             meta: {
-                title: '更新日志',
+                title: '更新',
             },
             component: () => import('@/views/changelog')
         },

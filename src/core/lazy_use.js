@@ -20,15 +20,18 @@ import VXETable from 'vxe-table'
 import 'vxe-table/lib/index.css'
 
 Vue.use(VueStorage, defaultSetting.storageOptions)
-Vue.use(VueAnalytics, {
-    id: process.env.VUE_APP_BASE_GA,
-    disableScriptLoader: false,
-    router,
-    autoTracking: {
-        pageviewOnLoad: true
-    }
-})
 Vue.use(VXETable)
+
+if (process.env.NODE_ENV == 'production') {
+    Vue.use(VueAnalytics, {
+        id: process.env.VUE_APP_BASE_GA,
+        disableScriptLoader: false,
+        router,
+        autoTracking: {
+            pageviewOnLoad: true
+        }
+    })
+}
 
 Vue.prototype.$config = config
 Vue.prototype.$api = api

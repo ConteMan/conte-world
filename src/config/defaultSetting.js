@@ -21,6 +21,7 @@ export default {
     defaultRouteName: 'One',
 
     //local setting
-    widthType: 1, //1 居中，2 宽屏
     layoutVersion: 'v2', //前端布局版本
+    widthType: 1, //1 居中，2 宽屏
+    menuStatus: true, //展示菜单
 }
