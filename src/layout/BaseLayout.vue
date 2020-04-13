@@ -49,7 +49,7 @@
         <!-- v2 版 -->
         <template v-if="layoutVersion == 'v2'">
             <float-actions/>
-            <div v-if="!isDrawer" class="v2-container" >
+            <div v-if="!isDrawer" class="v2-container">
                 <div v-if="menuStatus" class="v2-sider-container">
                     <sider-bar/>
                 </div>
@@ -58,7 +58,7 @@
                     <v2-footer/>
                 </div>
             </div>
-            <div v-else>
+            <div v-else  class="v2-container">
                 <a-drawer
                     placement="left"
                     wrapClassName="siderbar-drawer"
@@ -69,7 +69,7 @@
                 >
                     <sider-bar/>
                 </a-drawer>
-                <div class="v2-content-container" :class="{ 'full-width': true }">
+                <div class="v2-content-container no-menu">
                     <router-view/>
                     <v2-footer/>
                 </div>
