@@ -89,7 +89,7 @@
     import {
         MENU_ACTION,
     } from '@/store/mutation-types'
-    import { mixin } from '@/untils/mixin'
+    import { mixin } from '@/utils/mixin'
     import {mapMutations} from "vuex"
 
     export default {

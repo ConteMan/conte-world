@@ -1,7 +1,7 @@
-import router,{ resetRouter } from "@/router"
+import router from "@/router"
 import axios from 'axios'
 import Message from 'ant-design-vue/lib/message'
-import { getToken,removeToken } from "@/untils/auth"
+import { getToken } from "@/utils/auth"
 
 /**
  * 请求失败后的错误统一处理

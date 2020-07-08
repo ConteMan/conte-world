@@ -41,7 +41,7 @@
 
 <script>
     import userApi from "@/api/user"
-    import { setToken } from "@/untils/auth"
+    import { setToken } from "@/utils/auth"
 
     export default {
         name: "index",

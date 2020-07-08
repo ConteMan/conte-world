@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import { mixin } from '@/untils/mixin'
+    import { mixin } from '@/utils/mixin'
     import { WIDTH_TYPE } from '@/store/mutation-types'
 
     export default {

@@ -44,7 +44,7 @@
         MENU_ACTION,
         WIDTH_TYPE
     } from '@/store/mutation-types'
-    import { mixin } from '@/untils/mixin'
+    import { mixin } from '@/utils/mixin'
 
     export default {
         name: "FloatActions",

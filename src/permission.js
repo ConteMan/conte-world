@@ -3,7 +3,7 @@ import router, { resetRouter, authRoutes } from "@/router"
 import store from "./store"
 import config from "@/config/defaultSetting"
 import { ACCESS_TOKEN,ROUTES } from '@/store/mutation-types'
-import { removeToken } from '@/untils/auth'
+import { removeToken } from '@/utils/auth'
 
 router.beforeEach(async(to, from, next) => {
     if(to.meta.title) {
