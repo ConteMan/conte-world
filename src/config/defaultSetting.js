@@ -1,6 +1,7 @@
 export default {
     //site
     siteName: "泊物誌",
+    siteUrl: 'http://isconte.com',
     beian: '粤ICP备17015159号-1',
     policeBeian: '粤公网安备 44030702002732号',
     siteCreateTime: '2019',

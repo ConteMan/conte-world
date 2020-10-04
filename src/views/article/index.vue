@@ -11,7 +11,7 @@
                     :loading="loading"
                     :dataSource="data"
             >
-                <a-list-item slot="renderItem" slot-scope="item, index" :key="item.slug" @click="turnTo({name: 'ArticleDetail', params: {id: item.slug}})">
+                <a-list-item slot="renderItem" slot-scope="item, index" :key="item.slug" @click="turnTo({name: 'ArticleDetail', params: {id: item.id}})">
                     <div class="article-l-item">
                         <div class="article-l-title">{{ item.title }}</div>
                         <div class="article-l-time">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import yuqueApi from "@/api/yuque"
+    import articleApi from "@/api/article"
 
     export default {
         name: "index",
@@ -44,10 +44,10 @@
             },
             list() {
                 this.loading = true
-                yuqueApi.docs().then(
+              articleApi.docs().then(
                     responese => {
                         this.loading = false
-                        this.data = responese.data.data
+                        this.data = responese.data.data.items
                     }
                 )
             },

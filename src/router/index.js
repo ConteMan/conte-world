@@ -1,29 +1,17 @@
 import Vue from "vue"
 import Router from "vue-router"
 
-import main from "@/router/modules/main"
-import film from "@/router/modules/film"
 import one from "@/router/modules/one"
+import film from "@/router/modules/film"
 import article from "@/router/modules/article"
-import about from "@/router/modules/about"
-import changelog from "@/router/modules/changelog"
-import login from "@/router/modules/login"
-import mine from "@/router/modules/mine"
-import logout from "@/router/modules/logout"
-import tool from "@/router/modules/tool"
 
 Vue.use(Router)
 
 //通用路由
 export const routes = [
-    main,
     one,
     article,
     film,
-    tool,
-    changelog,
-    about,
-    login,
 ]
 
 //未定义路由
@@ -40,8 +28,6 @@ export const noneRoute = [
 
 //登录可见路由
 export const authRoutes = [
-    mine,
-    logout,
 ]
 
 const routerPush = Router.prototype.push
@@ -51,7 +37,7 @@ Router.prototype.push = function push(location) {
 
 const createRouter = function () {
     return new Router({
-        // mode: 'history', // require service support
+        mode: 'history', // require service support
         scrollBehavior: () => ({ y: 0 }),
         routes: routes
     })

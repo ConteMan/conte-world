@@ -8,6 +8,7 @@ import '@/core/lazy_use'
 import '@/permission'
 
 import 'normalize.css/normalize.css'
+import '@/style/markdown.css'
 import '@/style/index.less'
 
 Vue.config.productionTip = false

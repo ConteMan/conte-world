@@ -1,6 +1,6 @@
 {
-  "name": "v-iscontey",
-  "version": "0.0.1",
+  "name": "conte-world-f",
+  "version": "0.1.10",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

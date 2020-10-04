@@ -1,7 +1,7 @@
 <template>
     <div class="c-footer">
         <div class="year">
-            ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }}
+          <a :href="$config.siteUrl">{{ $config.siteName }}</a> ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }}
         </div>
         <div class="beian">
             <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>

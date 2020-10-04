@@ -8,19 +8,25 @@
                 {{ title }}
             </div>
         </div>
+      <template v-if="platform === 'YUQUE'">
         <iframe :srcdoc="data" style="width: 100%;height: calc(100vh - 4px); border: none;" frameborder="0" scrolling="auto"></iframe>
+      </template>
+      <template v-else>
+        <div class="markdown-container markdown-body" v-html="data"></div>
+      </template>
     </div>
 </template>
 
 <script>
-    import yuqueApi from "@/api/yuque"
+    import articleApi from "@/api/article"
 
     export default {
         name: "index",
         data() {
             return {
-                data: '',
-                title: '',
+              data: '',
+              title: '',
+              platform: 'ORI',
             }
         },
         created() {
@@ -31,10 +37,19 @@
                 this.$route.push(params)
             },
             detail() {
-                yuqueApi.docDetail(this.$route.params.id).then(
+              articleApi.docDetail(this.$route.params.id).then(
                     responese => {
-                        this.data = responese.data.data.body_html
-                        this.title = responese.data.data.title
+                      if(responese.data.code === 0) {
+                        const data = responese.data.data.res;
+                        const platform = data.platform;
+                        if (platform === 'ORI') {
+                          this.data = data.content_html;
+                        }
+                        if (platform === 'YUQUE') {
+                          this.data = data.yuque_content.body_html;
+                        }
+                        this.title = data.title;
+                      }
                     }
                 )
             },
@@ -42,6 +57,8 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+  .markdown-container {
+    padding: 16px;
+  }
 </style>

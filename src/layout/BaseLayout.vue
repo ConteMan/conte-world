@@ -1,106 +1,47 @@
 <template>
     <div>
-        <!-- v1 版 -->
-        <div v-if="layoutVersion == 'v1'" class="c-root">
-            <div class="c-container">
-                <div class="c-header" v-if="!isDrawer">
-                    <div class="c-header-content">
-                        <div class="title">
-                            {{ $config.siteName }}
-                        </div>
-                        <sider-bar/>
-                        <tool-bar/>
-                    </div>
-                </div>
-                <a-drawer
-                    v-else
-                    placement="left"
-                    wrapClassName="siderbar-drawer"
-                    :closable="false"
-                    :visible="drawerVisible"
-                    @close="drawerClose"
-                >
-                    <div class="c-header">
-                        <div class="c-header-content">
-                            <div class="title">
-                                {{ $config.siteName }}
-                            </div>
-                            <sider-bar/>
-                            <tool-bar/>
-                        </div>
-                    </div>
-                </a-drawer>
-                <div class="trigger" v-if="isDrawer" @click="()=> {this.drawerVisible = true}">
-                    <div class="trigger-content">
-                        <a-icon class="trigger-icon" type="double-right" style="font-size: 18px; margin: 20px 0 0 0;"/>
-                    </div>
-                </div>
-                <div class="c-main" :class="{ 'full-width': widthType > 1 }">
-                    <router-view/>
-                    <foot-bar/>
-                </div>
-                <div class="c-right-bar">
-                    <div class="c-rb-content">
-                    </div>
-                </div>
+        <float-actions/>
+        <div v-if="!isDrawer" class="v2-container">
+            <div v-if="menuStatus" class="v2-sider-container">
+                <sider-bar/>
+            </div>
+            <div class="v2-content-container" :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus}">
+                <router-view/>
+                <v2-footer/>
             </div>
         </div>
-
-        <!-- v2 版 -->
-        <template v-if="layoutVersion == 'v2'">
-            <float-actions/>
-            <div v-if="!isDrawer" class="v2-container">
-                <div v-if="menuStatus" class="v2-sider-container">
-                    <sider-bar/>
-                </div>
-                <div class="v2-content-container" :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus}">
-                    <router-view/>
-                    <v2-footer/>
-                </div>
+        <div v-else  class="v2-container">
+            <a-drawer
+                placement="left"
+                wrapClassName="siderbar-drawer"
+                :closable="false"
+                :visible="menuStatus"
+                width="40%"
+                @close="drawerClose"
+            >
+                <sider-bar/>
+            </a-drawer>
+            <div class="v2-content-container no-menu">
+                <router-view/>
+                <v2-footer/>
             </div>
-            <div v-else  class="v2-container">
-                <a-drawer
-                    placement="left"
-                    wrapClassName="siderbar-drawer"
-                    :closable="false"
-                    :visible="menuStatus"
-                    width="40%"
-                    @close="drawerClose"
-                >
-                    <sider-bar/>
-                </a-drawer>
-                <div class="v2-content-container no-menu">
-                    <router-view/>
-                    <v2-footer/>
-                </div>
-            </div>
-        </template>
+        </div>
     </div>
 </template>
 
 <script>
     import SiderBar from "@/components/header/SiderBar";
-    import FootBar from "@/layout/components/v1/FootBar"
-    import ToolBar from "@/layout/components/v1/ToolBar"
-
-    import V2Header from "@/layout/components/v2/Header"
     import FloatActions from "@/layout/components/v2/FloatActions"
     import V2Footer from "@/layout/components/v2/Footer"
-    import {
-        MENU_ACTION,
-    } from '@/store/mutation-types'
+
     import { mixin } from '@/utils/mixin'
-    import {mapMutations} from "vuex"
+    import { mapMutations } from "vuex"
 
     export default {
         name: "BaseLayout",
         components: {
             SiderBar,
-            FootBar,
-            ToolBar,
-
             FloatActions,
-            V2Header,
             V2Footer,
         },
         data() {
@@ -116,9 +57,6 @@
             isDrawer: function() {
                 return this.fullWidth <= 768;
             },
-            isPC: function () {
-                return !/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)
-            }
         },
         mounted() {
             window.onresize = () => {
@@ -292,5 +230,4 @@
             margin: 0;
         }
     }
-
 </style>
