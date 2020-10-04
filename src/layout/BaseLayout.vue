@@ -207,10 +207,9 @@
             text-align: center;
             .nav-container {
                 display: block;
-                height: calc(100% - 55px);
+                height: 100%;
                 text-align: center;
-                margin-top: 55px;
-                padding: 20px;
+                padding: 0 20px;
                 /deep/ .nav-item {
                     margin: 0;
                     width: 100% !important;

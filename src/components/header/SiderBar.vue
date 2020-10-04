@@ -1,7 +1,9 @@
 <template>
-    <div class="nav-container">
-        <div class="nav-item" :class="{ active: (item.active || item.name == $route.matched[0].name) }" v-for="item in routes" v-if="!item.hidden" @click="$router.push({name: item.name})">{{ item.meta.title }}</div>
+  <div class="nav-container">
+    <div class="nav-item" :key="item.name" :class="{ active: (item.active || item.name == $route.matched[0].name) }" v-for="item in routes" @click="$router.push({name: item.name})">
+      {{ item.meta.title }}
     </div>
+  </div>
 </template>
 
 <script>
@@ -27,10 +29,12 @@
     @import "~@/style/variables";
 
     .nav-container {
-        display: flex;
-        flex-direction: row;
+        display: flex !important;
+        flex-direction: column;
         flex-wrap: wrap;
         padding: 10px 20px;
+        align-items: center;
+        justify-content: center;
         .nav-item {
             width: fit-content;
             font-size: 12px;
@@ -48,8 +52,7 @@
         .nav-item.active {
             font-weight: @font-bold;
             color: @red;
-            border-bottom: 1px solid red;
+            border-bottom: 1px solid @red;
         }
-
     }
 </style>
