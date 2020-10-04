@@ -1,40 +1,29 @@
 <template>
     <div class="container">
         <div class="item">
-            <a-button icon="menu" @click="menuAction"/>
+          <a-button @click="menuAction">
+            <a-icon type="appstore" :theme="menuIconTheme"/>
+          </a-button>
         </div>
     </div>
 </template>
 
 <script>
-    import { mapGetters, mapMutations } from 'vuex'
+    import { mapMutations } from 'vuex'
     import { mixin } from '@/utils/mixin'
 
     export default {
         name: "FloatActions",
-        data() {
-            return {
-                drawer: false,
-            }
-        },
         computed: {
-            ...mapGetters(
-                {
-                    accessToken: 'accessToken'
-                }
-            ),
+            menuIconTheme: function() {
+                return this.menuStatus ? 'filled' : 'outlined';
+            }
         },
         mixins: [ mixin ],
         methods: {
             ...mapMutations({
                 menuAction: 'MENU_ACTION',
             }),
-            drawerClose() {
-                this.drawer = false
-            },
-            showDrawer() {
-                this.drawer = true
-            },
         }
     }
 </script>
@@ -48,6 +37,15 @@
         z-index: 9999;
         .item {
             margin: 10px 0 0 0;
+            .ant-btn:hover, .ant-btn:focus {
+              color: unset;
+              border-color: #d9d9d9;
+              box-shadow: none;
+            }
+            .ant-btn {
+              padding: 0 10px;
+            }
+            --antd-wave-shadow-color: none;
         }
     }
 </style>

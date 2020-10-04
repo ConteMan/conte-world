@@ -7,7 +7,7 @@
             <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>
         </div>
         <div class="beian">
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030702002732">{{ $config.policeBeian }}</a>
+            <a :href="'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode='+$config.policeBeianNum">{{ $config.policeBeian }}</a>
         </div>
     </div>
 </template>
@@ -22,18 +22,23 @@
     @import "~@/style/variables";
 
     .c-footer {
-        text-align: center;
+        padding: 8px 16px;
+        text-align: left;
         font-size: 12px;
         width: 100%;
         height: 55px;
-        line-height: 55px;
+        line-height: 1.5em;
         border-top: 1px solid @border-color;
         .year {
-            display: inline-block;
+          color: @red-20;
+          a, a:visited {
+            color: @red-20;
+          }
         }
         .beian {
+            font-size: 4px;
+            margin-right: 4px;
             display: inline-block;
-            margin: 0 0 0 10px;
             color: @font-color-footer;
             a:any-link {
                 color: @font-color-footer;

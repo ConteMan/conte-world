@@ -3,7 +3,8 @@ export default {
     siteName: "ConteWorld",
     siteUrl: 'http://isconte.com',
     beian: '粤ICP备17015159号-1',
-    policeBeian: '粤公网安备 44030702002732号',
+    policeBeian: '粤公网安备44030702002732号',
+    policeBeianNum: '44030702002732',
     siteCreateTime: '2019',
     GA: 'UA-108159539-1',
 

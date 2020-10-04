@@ -5,7 +5,7 @@
             <div v-if="menuStatus" class="v2-sider-container">
                 <sider-bar/>
             </div>
-            <div class="v2-content-container" :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus}">
+            <div class="v2-content-container" :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus, 'exist-menu': menuStatus}">
                 <router-view/>
                 <v2-footer/>
             </div>
@@ -128,8 +128,6 @@
                 padding: 20px 20px 10px;
                 border-bottom: 1px solid @border-color;
             }
-
-
         }
     }
     .c-main {

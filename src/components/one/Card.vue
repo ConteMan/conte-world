@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-skeleton :loading="loading" :avatar="false" :title="false" active :paragraph="{rows: 6, width:['100%', '100%', '100%', '100%', '100%', '100%']}" >
+        <a-skeleton class="skeleton" :loading="loading" :avatar="false" :title="false" active :paragraph="{rows: 6, width:['100%', '60%', '60%', '100%', '100%', '100%']}" >
         </a-skeleton>
         <div class="card-container" v-show="!imageLoading">
             <div class="tool-bar">
@@ -63,7 +63,7 @@
     /deep/ .ant-skeleton-paragraph {
         padding-inline-start: 0 !important;
     }
-    .card-container {
+    .card-container,.skeleton {
         margin: auto;
         max-width: 800px;
     }

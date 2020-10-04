@@ -28,24 +28,30 @@ body::-webkit-scrollbar {
   height: 55px;
   line-height: 55px;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
   border-bottom: 1px solid @grey;
   position: fixed;
   background: white;
-  z-index: 9999;
+  z-index: 999;
 }
-
+.exist-menu {
+  .list-header,.back-header {
+    width: calc(100% - 100px);
+  }
+}
 .back-header {
   top: 0;
   width: 100%;
   height: 55px;
   line-height: 55px;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
   border-bottom: 1px solid @grey;
   position: fixed;
   background: white;
-  z-index: 9999;
+  z-index: 999;
   .back-btn {
     display: inline-block;
     width: 40px;
