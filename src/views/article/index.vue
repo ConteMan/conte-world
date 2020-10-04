@@ -3,7 +3,7 @@
         <div class="list-header">
             {{ $config.articleListTitle }}
         </div>
-        <div class="list-container">
+        <div class="fixed-header-container list-container">
             <a-list
                     itemLayout="vertical"
                     size="small"
@@ -62,9 +62,7 @@
         margin: 0;
         padding: 10px 8px;
     }
-    .list-container {
-        padding: 0 10px;
-    }
+    .list-container {}
     .article-l-item {
         cursor: pointer;
         .article-l-title {

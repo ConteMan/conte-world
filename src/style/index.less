@@ -30,6 +30,9 @@ body::-webkit-scrollbar {
   text-align: center;
   font-size: 12px;
   border-bottom: 1px solid @grey;
+  position: fixed;
+  background: white;
+  z-index: 9999;
 }
 
 .back-header {
@@ -40,6 +43,9 @@ body::-webkit-scrollbar {
   text-align: center;
   font-size: 12px;
   border-bottom: 1px solid @grey;
+  position: fixed;
+  background: white;
+  z-index: 9999;
   .back-btn {
     display: inline-block;
     width: 40px;
@@ -100,4 +106,8 @@ body::-webkit-scrollbar {
     height: 8px;
     background: @grey;
   }
+}
+
+.fixed-header-container {
+  padding: 71px 16px 0 16px;
 }

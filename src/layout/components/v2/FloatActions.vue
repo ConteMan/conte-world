@@ -42,10 +42,10 @@
 <style scoped lang="less">
     .container {
         position: fixed;
-        bottom: 65px;
-        right: 20px;
+        bottom: 64px;
+        right: 16px;
         height: max-content;
-        z-index: 999;
+        z-index: 9999;
         .item {
             margin: 10px 0 0 0;
         }

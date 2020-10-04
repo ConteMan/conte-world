@@ -3,7 +3,7 @@
         <div class="list-header">
             {{ $config.filmTitle }}
         </div>
-        <div style="height: calc(100% - 55px);position: relative">
+        <div class="fixed-header-container" style="height: calc(100% - 55px);position: relative">
             <vxe-grid
                 border="none"
                 show-header-overflow

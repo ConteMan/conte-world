@@ -1,6 +1,6 @@
 export default {
     //site
-    siteName: "泊物誌",
+    siteName: "ConteWorld",
     siteUrl: 'http://isconte.com',
     beian: '粤ICP备17015159号-1',
     policeBeian: '粤公网安备 44030702002732号',

@@ -59,6 +59,8 @@
 
 <style scoped lang="less">
   .markdown-container {
-    padding: 16px;
+    max-width: 800px;
+    margin: auto;
+    padding: 71px 16px 16px;
   }
 </style>

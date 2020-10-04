@@ -3,7 +3,7 @@
         <div class="list-header">
             {{ $config.oneTitle }}
         </div>
-        <card class="card"/>
+        <card class="fixed-header-container card"/>
     </div>
 </template>
 
@@ -21,7 +21,4 @@
 </script>
 
 <style scoped lang="less">
-    .card {
-        padding: 20px;
-    }
 </style>
