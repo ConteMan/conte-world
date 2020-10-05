@@ -36,7 +36,7 @@
           }
         }
         .beian {
-            font-size: 4px;
+            font-size: 12px;
             margin-right: 4px;
             display: inline-block;
             color: @font-color-footer;
