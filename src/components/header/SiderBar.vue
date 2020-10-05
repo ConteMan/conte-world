@@ -29,6 +29,7 @@
     @import "~@/style/variables";
 
     .nav-container {
+        height: 100%;
         display: flex !important;
         flex-direction: column;
         flex-wrap: wrap;
