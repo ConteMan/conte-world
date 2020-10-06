@@ -45,10 +45,9 @@
                 drawerVisible: false,
             }
         },
-        mixins: [mixin],
+        mixins: [ mixin ],
         computed: {
             isDrawer: function() {
-                console.log(this.fullWidth <= 768);
                 return this.fullWidth <= 768;
             },
         },
@@ -73,8 +72,8 @@
             })
         },
         beforeRouteLeave (to, from, next) {
-            if (this.isDrawer && this.drawerVisible) {
-                this.drawerVisible = false
+            if (this.isDrawer) {
+              this.menuAction(false)
             }
             next()
         },
