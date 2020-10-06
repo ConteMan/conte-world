@@ -5,15 +5,15 @@
         </div>
         <div class="fixed-header-container list-container">
             <a-list
-                    itemLayout="vertical"
-                    size="small"
-                    :bordered="false"
-                    :loading="loading"
-                    :dataSource="data"
+              itemLayout="vertical"
+              size="small"
+              :bordered="false"
+              :loading="loading"
+              :dataSource="data"
             >
-                <a-list-item slot="renderItem" slot-scope="item, index" :key="item.slug" @click="turnTo({name: 'ArticleDetail', params: {id: item.id}})">
+                <a-list-item slot="renderItem" slot-scope="item" :key="item.slug" @click="turnTo({name: 'ArticleDetail', params: {id: item.id}})">
                     <div class="article-l-item">
-                        <div class="article-l-title">{{ item.title }}</div>
+                        <div class="article-l-title" :title="item.title">{{ item.title }}</div>
                         <div class="article-l-time">
                             {{ $dayjs(item.published_at).format("YYYY-MM-DD") }}
                         </div>
@@ -66,12 +66,11 @@
     .article-l-item {
         cursor: pointer;
         .article-l-title {
-            display: inline-block;
+          font-size: 14px;
         }
         .article-l-time {
-            display: inline-block;
-            text-align: right;
-            float: right;
+          font-size: 12px;
+          text-align: left;
         }
     }
     .article-l-item:hover {

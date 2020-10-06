@@ -3,10 +3,10 @@
         <a-skeleton class="skeleton" :loading="false" :avatar="false" :title="false" active :paragraph="{rows: 6, width:['100%', '60%', '60%', '100%', '100%', '100%']}" >
         </a-skeleton>
         <div class="card-container" v-show="!imageLoading">
-            <div class="tool-bar">
-              <div class="title"><a :href="one.url" target="_blank">{{ one.title }}</a></div>
-                <div class="date">{{ $dayjs(one.date).format('YYYY / MM / DD') }}</div>
-                <a-icon class="tool-icon" type="reload" @click="ones" :spin="loading"/>
+            <div class="tool-bar" @click="ones" >
+<!--              <div class="title"><a :href="one.url" target="_blank">{{ one.title }}</a></div>-->
+<!--              <div class="date">{{ $dayjs(one.date).format('YYYY / MM / DD') }}</div>-->
+              <a-icon class="tool-icon" type="reload" :spin="loading"/>
             </div>
             <div class="one">
                 <div class="content">{{ one.content }}</div>
