@@ -9,7 +9,7 @@
                 <a-icon class="tool-icon" type="reload" @click="ones" :spin="loading"/>
             </div>
             <div class="one">
-                <span class="content">{{ one.content }}</span>
+                <div class="content">{{ one.content }}</div>
                 <br>
                 {{ one.text_authors }}
 <!--                <div class="img-container">-->
