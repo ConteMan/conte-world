@@ -1,21 +1,21 @@
 <template>
     <div>
-        <a-skeleton class="skeleton" :loading="loading" :avatar="false" :title="false" active :paragraph="{rows: 6, width:['100%', '60%', '60%', '100%', '100%', '100%']}" >
+        <a-skeleton class="skeleton" :loading="false" :avatar="false" :title="false" active :paragraph="{rows: 6, width:['100%', '60%', '60%', '100%', '100%', '100%']}" >
         </a-skeleton>
         <div class="card-container" v-show="!imageLoading">
             <div class="tool-bar">
-                <div class="title">{{ one.title }}</div>
+              <div class="title"><a :href="one.url" target="_blank">{{ one.title }}</a></div>
                 <div class="date">{{ $dayjs(one.date).format('YYYY / MM / DD') }}</div>
                 <a-icon class="tool-icon" type="reload" @click="ones" :spin="loading"/>
             </div>
             <div class="one">
-                {{ one.content }}
+                <span class="content">{{ one.content }}</span>
                 <br>
                 {{ one.text_authors }}
-                    <div class="img-container">
-                        <img :src="one.img_url" @load="showLoad"/>
-                        <div>{{ one.picture_author }}</div>
-                    </div>
+<!--                <div class="img-container">-->
+<!--                    <img :src="one.img_url" @load="showLoad"/>-->
+<!--                    <div>{{ one.picture_author }}</div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -31,16 +31,17 @@
             return {
                 one: {},
                 loading: false,
-                imageLoading: true,
+                imageLoading: false,
             }
         },
         methods: {
             ones() {
                 this.loading = true
-                this.imageLoading = true
+                this.imageLoading = false
                 oneApi.ones().then(
                     (response) => {
                         this.one = response.data.data
+                        this.loading = false
                     }
                 )
             },
@@ -85,6 +86,29 @@
                 padding: 10px 0;
             }
         }
+        .content {
+          position: relative;
+        }
+        .content::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: -0.25em;
+            right: -0.25em;
+            background-color: @red-20;
+            transform-origin: center right;
+            transform: scaleX(0);
+            transition: transform 0.2s ease-in-out;
+        }
+        .content:hover::before {
+            transform: scaleX(1);
+            transform-origin: center left;
+        }
+        .content:hover {
+          color: white;
+        }
     }
     .tool-bar {
         text-align: center;
@@ -94,6 +118,12 @@
             display: inline-block;
             width: 60px;
             text-align: left;
+            a,a:visited {
+              color: @font-color-grey;
+            }
+            a:hover {
+              color: @red;
+            }
         }
         .date {
             display: inline-block;
