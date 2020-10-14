@@ -9,7 +9,7 @@ export default {
     GA: 'UA-108159539-1',
 
     //modules
-    oneTitle: "ConteWorld / 泊世录",
+    oneTitle: "一个就够了",
     articleListTitle: '和这个世界谈谈',
     filmTitle: '看过一千部电影，世界上就没有稀奇的事情',
     changelogTitle: '每一次更新都是一次进步',

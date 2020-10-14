@@ -1,6 +1,7 @@
 import Vue from "vue"
 import Router from "vue-router"
 
+import landpage from "@/router/modules/landpage"
 import one from "@/router/modules/one"
 import film from "@/router/modules/film"
 import article from "@/router/modules/article"
@@ -9,6 +10,7 @@ Vue.use(Router)
 
 //通用路由
 export const routes = [
+    landpage,
     one,
     article,
     film,
@@ -22,7 +24,7 @@ export const noneRoute = [
         meta: {
             title: "404"
         },
-        redirect: { name: 'One' },
+        redirect: { name: 'Landpage' },
     }
 ]
 
