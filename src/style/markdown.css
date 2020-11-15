@@ -21,7 +21,7 @@
 .markdown-body h4 .octicon-link,
 .markdown-body h5 .octicon-link,
 .markdown-body h6 .octicon-link {
-    color: #1b1f23;
+    color: rgb(190, 192, 195) !important;
     vertical-align: middle;
     visibility: hidden;
 }

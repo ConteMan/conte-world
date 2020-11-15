@@ -79,7 +79,7 @@ body::-webkit-scrollbar {
   padding: 0 20px;
 }
 
-.siderbar-drawer {
+.sidebar-drawer {
   .ant-drawer-body {
     height: 100vh;
     padding: 0 10px;
@@ -117,4 +117,71 @@ body::-webkit-scrollbar {
 
 .fixed-header-container {
   padding: 71px 16px 0 16px;
+}
+
+.vxe-pager .vxe-pager--jump .vxe-pager--goto {
+  margin: 0 5px;
+}
+.vxe-pager .vxe-pager--jump .vxe-pager--goto, .vxe-pager .vxe-pager--sizes>.vxe-input {
+  height: auto;
+}
+
+.dark-theme {
+  background: @dark-theme-bg;
+  font: @dark-theme-color;
+  transition: all 300ms;
+  opacity: 0.99;
+  .list-header {
+    background: @dark-theme-bg;
+    color: @dark-theme-color;
+    border-bottom-color: @dark-theme-border;
+    transition: all 300ms;
+  }
+  .back-header {
+    background: @dark-theme-bg;
+    border-bottom-color: @dark-theme-border;
+    .back-btn {
+      border-right-color: @dark-theme-border;
+      .back-btn-icon {
+        color: @dark-theme-color;
+      }
+    }
+    .title {
+      color: @dark-theme-color;
+    }
+  }
+
+  .markdown-body {
+    h1, h2, h3, h4, h5, h6 {
+      color: @dark-theme-color;
+    }
+    h1, h2 {
+      border-bottom-color: @dark-theme-border;
+    }
+    pre {
+      background-color: @grey-20;
+      code {
+        background-color: unset;
+      }
+    }
+  }
+
+  .vxe-table.border--inner .vxe-table--header-wrapper, .vxe-table.border--none .vxe-table--header-wrapper,
+  .vxe-table .vxe-table--body-wrapper, .vxe-table .vxe-table--footer-wrapper {
+    background: @dark-theme-bg;
+  }
+  .vxe-table {
+    color: @dark-theme-color;
+    background: @dark-theme-bg;
+    .row--hover {
+      background: @grey-20;
+    }
+    .vxe-body--expanded-column {
+      background: @grey-20;
+      border-bottom-color: @dark-theme-border;
+    }
+    .ant-divider-horizontal.ant-divider-with-text-center::before, .ant-divider-horizontal.ant-divider-with-text-left::before, .ant-divider-horizontal.ant-divider-with-text-right::before, .ant-divider-horizontal.ant-divider-with-text-center::after, .ant-divider-horizontal.ant-divider-with-text-left::after, .ant-divider-horizontal.ant-divider-with-text-right::after {
+      border-top-color: @dark-theme-border;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 export const ACCESS_TOKEN = 'ACCESS_TOKEN'
 export const LOADING = 'LOADING'
+export const DARKMODE = 'DARKMODE'
 export const ROUTES = 'ROUTES'
 
 export const LAYOUT_VERSION = 'LAYOUT_VERSION'
