@@ -6,7 +6,8 @@
         <a-col :xs="22" :sm="22" :md="20" :lg="16" :xl="10">
           <div class="col-container">
             <div class="bg-logo">
-              <img :src="logoImageUrl"/>
+              <img v-if="darkMode" src="@/assets/img/conteman_circle_deal_dark_1000x1000.png"/>
+              <img v-else src="@/assets/img/conteman_circle_1000x1000.png"/>
             </div>
             <div class="title">
               <span>Conte World / 泊世录</span>
@@ -79,11 +80,6 @@ export default {
       ],
       avatarBg: false,
     }
-  },
-  computed: {
-    logoImageUrl: function() {
-      return this.darkMode ? 'http://img.cdn.isconte.com/conteman_circle_deal_dark_1000x1000.png' : 'http://img.cdn.isconte.com/conteman_circle_1000x1000.png'
-    },
   },
   methods: {
     showAvatar() {
@@ -220,7 +216,6 @@ export default {
 
   .bg-logo {
     transition: all 300ms;
-    background-image: url('http://img.cdn.isconte.com/conteman_circle_deal_dark_1000x1000.png');
   }
 }
 </style>
