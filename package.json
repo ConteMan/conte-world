@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "dev-build": "vue-cli-service build --mode development",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/"
   },
   "dependencies": {
     "ant-design-vue": "^1.5.1",
@@ -33,9 +34,9 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.12.2",
     "compression-webpack-plugin": "^3.1.0",
-    "eslint": "^5.16.0",
+    "eslint": "^7.15.0",
     "eslint-plugin-html": "^5.0.0",
-    "eslint-plugin-vue": "^5.2.3",
+    "eslint-plugin-vue": "^7.3.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.10"

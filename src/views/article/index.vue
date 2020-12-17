@@ -11,7 +11,11 @@
         :loading="loading"
         :dataSource="data"
       >
-        <a-list-item slot="renderItem" slot-scope="item" :key="item.slug" @click="turnTo({name: 'ArticleDetail', params: {id: item.id}})">
+        <a-list-item
+slot="renderItem"
+slot-scope="item"
+:key="item.slug"
+                     @click="turnTo({name: 'ArticleDetail', params: {id: item.id}})">
           <div class="article-l-item">
             <div class="article-l-title" :title="item.title">{{ item.title }}</div>
             <div class="article-l-time">
@@ -25,10 +29,10 @@
 </template>
 
 <script>
-import articleApi from "@/api/article"
+import articleApi from '@/api/article'
 
 export default {
-  name: "index",
+  name: 'Index',
   data() {
     return {
       loading: false,
@@ -45,9 +49,9 @@ export default {
     list() {
       this.loading = true
       articleApi.docs().then(
-        responese => {
+        response => {
           this.loading = false
-          this.data = responese.data.data.items
+          this.data = response.data.data.items
         }
       )
     },
@@ -65,16 +69,19 @@ export default {
 
 .article-l-item {
   cursor: pointer;
+
   .article-l-title {
     font-size: 14px;
   }
+
   .article-l-time {
     font-size: 12px;
     text-align: left;
   }
 }
+
 .article-l-item:hover {
-  .article-l-title{
+  .article-l-title {
     color: @red;
   }
 }
@@ -83,6 +90,7 @@ export default {
   .article-l-item {
     color: @dark-theme-color;
   }
+
   .list-container .ant-list-item {
     border-bottom-color: @dark-theme-border;
   }

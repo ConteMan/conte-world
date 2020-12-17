@@ -2,24 +2,27 @@
 @import "~ant-design-vue/dist/antd.less";
 @import "variables"; //变量
 
-html,body {
-  height: -webkit-fill-available;
+html, body {
+  height: 100%;
 }
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "更纱黑体 SC",PingFang SC,Hiragino Sans GB,Microsoft Yahei,WenQuanYi Micro Hei,sans-serif;
+  font-family: "更纱黑体 SC", PingFang SC, Hiragino Sans GB, Microsoft Yahei, WenQuanYi Micro Hei, sans-serif;
   font-size: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: none;
-  a,a:hover {
-    text-decoration:none;
+
+  a, a:hover {
+    text-decoration: none;
   }
 }
 
 body::-webkit-scrollbar {
-  display:none;
+  display: none;
+  width: 0 !important;
 }
 
 .list-header {
@@ -35,11 +38,13 @@ body::-webkit-scrollbar {
   background: white;
   z-index: 999;
 }
+
 .exist-menu {
-  .list-header,.back-header {
+  .list-header, .back-header {
     width: calc(100% - 100px);
   }
 }
+
 .back-header {
   top: 0;
   width: 100%;
@@ -52,15 +57,18 @@ body::-webkit-scrollbar {
   position: fixed;
   background: white;
   z-index: 999;
+
   .back-btn {
     display: inline-block;
     width: 40px;
-    border-right:1px solid @grey ;
+    border-right: 1px solid @grey;
   }
+
   .back-btn:hover {
     color: @red-60;
     cursor: pointer;
   }
+
   .title {
     display: inline-block;
     width: calc(100% - 40px);
@@ -80,6 +88,9 @@ body::-webkit-scrollbar {
 }
 
 .sidebar-drawer {
+  .ant-drawer-wrapper-body::-webkit-scrollbar {
+    width: 0 !important;
+  }
   .ant-drawer-body {
     height: 100vh;
     padding: 0 10px;
@@ -93,6 +104,7 @@ body::-webkit-scrollbar {
     font-weight: @font-bold;
     border-bottom: 1px solid @border-color;
   }
+
   .item {
     font-size: 12px;
     padding: 15px 20px;
@@ -101,14 +113,17 @@ body::-webkit-scrollbar {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
     .content {
       display: inline-block;
     }
+
     .operation {
       right: 0;
       display: inline-block;
     }
   }
+
   .divider {
     height: 8px;
     background: @grey;
@@ -122,21 +137,25 @@ body::-webkit-scrollbar {
 .vxe-pager .vxe-pager--jump .vxe-pager--goto {
   margin: 0 5px;
 }
-.vxe-pager .vxe-pager--jump .vxe-pager--goto, .vxe-pager .vxe-pager--sizes>.vxe-input {
+
+.vxe-pager .vxe-pager--jump .vxe-pager--goto, .vxe-pager .vxe-pager--sizes > .vxe-input {
   height: auto;
 }
 
+// 暗黑模式
 .dark-theme {
   background: @dark-theme-bg;
-  font: @dark-theme-color;
+  color: @dark-theme-color;
   transition: all 300ms;
   opacity: 0.99;
+
   .list-header {
     background: @dark-theme-bg;
     color: @dark-theme-color;
     border-bottom-color: @dark-theme-border;
     transition: all 300ms;
   }
+
   .back-header {
     background: @dark-theme-bg;
     border-bottom-color: @dark-theme-border;
@@ -170,6 +189,7 @@ body::-webkit-scrollbar {
   .vxe-table .vxe-table--body-wrapper, .vxe-table .vxe-table--footer-wrapper {
     background: @dark-theme-bg;
   }
+
   .vxe-table {
     color: @dark-theme-color;
     background: @dark-theme-bg;
@@ -182,6 +202,19 @@ body::-webkit-scrollbar {
     }
     .ant-divider-horizontal.ant-divider-with-text-center::before, .ant-divider-horizontal.ant-divider-with-text-left::before, .ant-divider-horizontal.ant-divider-with-text-right::before, .ant-divider-horizontal.ant-divider-with-text-center::after, .ant-divider-horizontal.ant-divider-with-text-left::after, .ant-divider-horizontal.ant-divider-with-text-right::after {
       border-top-color: @dark-theme-border;
+    }
+  }
+  .sidebar-drawer {
+    .ant-drawer-mask {
+      opacity: 0.6;
+      background: @dark-theme-bg;
+    }
+    .ant-drawer-wrapper-body,.ant-drawer-body {
+      color: @dark-theme-color;
+      background: @dark-theme-bg;
+    }
+    .ant-drawer-wrapper-body {
+      border-right: 1px solid @dark-theme-color;
     }
   }
 }

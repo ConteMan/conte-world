@@ -1,13 +1,17 @@
 <template>
   <div class="c-footer">
     <div class="year">
-      <a :href="$config.siteUrl">{{ $config.siteName }}</a> ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }}
+      <a :href="$config.siteUrl">{{ $config.siteName }}</a> ©{{ $config.siteCreateTime }} - {{
+        $dayjs().format('YYYY')
+      }}
     </div>
     <div class="beian">
       <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>
     </div>
     <div class="beian">
-      <a :href="'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode='+$config.policeBeianNum">{{ $config.policeBeian }}</a>
+      <a :href="'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode='+$config.policeBeianNum">{{
+          $config.policeBeian
+        }}</a>
     </div>
   </div>
 </template>
@@ -16,8 +20,8 @@
 import { mixin } from '@/utils/mixin'
 
 export default {
-  name: "Footer",
-  mixins: [ mixin ],
+  name: 'Footer',
+  mixins: [mixin],
 }
 </script>
 
@@ -32,22 +36,27 @@ export default {
   height: 55px;
   line-height: 1.5em;
   border-top: 1px solid @border-color;
+
   .year {
     color: @red-20;
+
     a, a:visited {
       color: @red-20;
     }
   }
+
   .beian {
     font-size: 10px;
     margin-right: 4px;
     display: inline-block;
     color: @font-color-footer;
+
     a:any-link {
       color: @font-color-footer;
     }
   }
 }
+
 .dark-theme {
   .c-footer {
     border-top-color: @dark-theme-border;

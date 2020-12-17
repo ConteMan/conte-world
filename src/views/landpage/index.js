@@ -1,2 +1,3 @@
-import Landpage from "@/views/landpage/Landpage";
-export default Landpage;
+import Landpage from '@/views/landpage/Landpage'
+
+export default Landpage

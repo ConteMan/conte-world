@@ -2,7 +2,7 @@ import {
   LOADING,
   DARKMODE
 } from '@/store/mutation-types'
-import { isBoolean } from "xe-utils"
+import { isBoolean } from 'xe-utils'
 
 const app = {
   namespaced: true,
@@ -18,8 +18,7 @@ const app = {
       state.darkMode = isBoolean(type) ? type : !state.darkMode
     }
   },
-  actions: {
-  }
+  actions: {}
 }
 
 export default app

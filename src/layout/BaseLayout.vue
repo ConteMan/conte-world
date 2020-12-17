@@ -15,7 +15,10 @@
       >
         <sidebar/>
       </a-drawer>
-      <div class="content-container" :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer}">
+      <div
+        class="content-container"
+        :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer}"
+      >
         <router-view/>
         <foot-bar/>
       </div>
@@ -24,15 +27,15 @@
 </template>
 
 <script>
-import Sidebar from "@/components/header/Sidebar";
-import FloatActions from "@/layout/components/v2/FloatActions"
-import FootBar from "@/layout/components/v2/Footer"
+import Sidebar from '@/components/header/Sidebar'
+import FloatActions from '@/layout/components/v2/FloatActions'
+import FootBar from '@/layout/components/v2/Footer'
 
 import { mixin } from '@/utils/mixin'
-import { mapMutations } from "vuex"
+import { mapMutations } from 'vuex'
 
 export default {
-  name: "BaseLayout",
+  name: 'BaseLayout',
   components: {
     Sidebar,
     FloatActions,
@@ -45,15 +48,15 @@ export default {
       drawerVisible: false,
     }
   },
-  mixins: [ mixin ],
+  mixins: [mixin],
   computed: {
     isDrawer: function() {
-      return this.fullWidth <= 768;
+      return this.fullWidth <= 768
     },
   },
   mounted() {
     window.onresize = () => {
-      if(!this.timer) {
+      if (!this.timer) {
         this.timer = true
         setTimeout(
           () => {
@@ -71,7 +74,7 @@ export default {
       menuAction: 'MENU_ACTION',
     })
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     if (this.isDrawer) {
       this.menuAction(false)
     }
@@ -85,6 +88,7 @@ export default {
 
 .base-container {
   height: 100%;
+
   .side-container {
     position: fixed;
     height: 100%;
@@ -93,18 +97,22 @@ export default {
     border-right: 1px solid @border-color;
     text-align: center;
   }
+
   .content-container {
     position: relative;
     margin: 0 0 0 100px;
+
     div:first-child {
       min-height: 100vh;
       padding: 0 0 16px 0;
     }
   }
+
   .content-container.no-menu {
     margin: 0;
   }
 }
+
 .dark-theme {
   .base-container {
     .side-container {

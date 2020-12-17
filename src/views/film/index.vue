@@ -17,7 +17,7 @@
         @page-change="handlePageChange"
       >
         <vxe-table-column type="expand" width="60">
-          <template v-slot:content="{ row, rowIndex }">
+          <template v-slot:content="{ row }">
             <template>
               <a-divider orientation="left">信息</a-divider>
               <div class="word-inline">{{ row.intro }}</div>
@@ -25,11 +25,6 @@
               <a-divider orientation="left">链接</a-divider>
               <div class="word-inline">
                 <a :href="row.link" target="_blank">{{ row.link }}</a>
-              </div>
-
-              <a-divider orientation="left">海报</a-divider>
-              <div class="word-inline">
-                <a :href="row.pic">{{ row.pic }}</a>
               </div>
             </template>
           </template>
@@ -42,10 +37,10 @@
 </template>
 
 <script>
-import doubanApi from "@/api/douban"
+import doubanApi from '@/api/douban'
 
 export default {
-  name: "index",
+  name: 'Index',
   data() {
     return {
       loading: false,
@@ -63,7 +58,7 @@ export default {
         align: 'left',
         pageSizes: [15],
         'pager-count': 5,
-        layouts: ['PrevPage', 'Number', 'NextPage', 'FullJump','PageCount','Total' ],
+        layouts: ['PrevPage', 'Number', 'NextPage', 'FullJump', 'PageCount', 'Total'],
       },
     }
   },
@@ -72,19 +67,19 @@ export default {
   },
   methods: {
     list() {
-      let params = {
+      const params = {
         start: (this.tablePage.currentPage - 1) * this.tablePage.pageSize,
       }
       this.loading = true
       doubanApi.movieCollect(params).then(
-        responese => {
+        response => {
           this.loading = false
-          this.tableData = responese.data.data
-          this.tablePage.total = responese.data.total
+          this.tableData = response.data.data.items
+          this.tablePage.total = response.data.data.total_count
         }
       )
     },
-    handlePageChange ({ currentPage, pageSize }) {
+    handlePageChange({ currentPage, pageSize }) {
       this.tablePage.currentPage = currentPage
       this.tablePage.pageSize = pageSize
       this.list()
@@ -99,16 +94,20 @@ export default {
 /deep/ .vxe-pager--wrapper {
   margin: 10px 15px 0 0;
 }
+
 /deep/ .vxe-body--expanded-column {
   background: #fafafa;
+
   .vxe-body--expanded-cell {
     padding: 0 20px 20px;
     font-size: 12px;
+
     .ant-divider-inner-text {
       font-size: 12px;
     }
   }
 }
+
 .word-inline {
   word-break: break-all;
 }

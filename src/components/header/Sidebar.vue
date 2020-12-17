@@ -1,6 +1,12 @@
 <template>
   <div class="nav-container">
-    <div class="nav-item" :key="item.name" :class="{ active: (item.active || item.name == $route.matched[0].name) }" v-for="item in routes" @click="$router.push({name: item.name})">
+    <div
+      class="nav-item"
+      :class="{ active: (item.active || item.name == $route.matched[0].name) }"
+      v-for="item in routes"
+      :key="item.name"
+      @click="$router.push({name: item.name})"
+    >
       <div class="des">{{ item.meta.title }}</div>
     </div>
   </div>
@@ -8,14 +14,13 @@
 
 <script>
 import { mixin } from '@/utils/mixin'
-import { mapGetters } from "vuex"
+import { mapGetters } from 'vuex'
 
 export default {
-  name: "Sidebar",
-  mixins: [ mixin ],
+  name: 'Sidebar',
+  mixins: [mixin],
   data() {
-    return {
-    }
+    return {}
   },
   computed: {
     ...mapGetters(
@@ -37,10 +42,12 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+
   .nav-item {
     width: 100%;
     padding: 24px 0 0 0;
     cursor: pointer;
+
     .des {
       margin: auto;
       line-height: 1.2;
@@ -49,20 +56,24 @@ export default {
       border-bottom: 1px solid @border-color;
     }
   }
-  .nav-item,.nav-item:focus {
+
+  .nav-item, .nav-item:focus {
     color: @font-color-grey;
   }
+
   .nav-item:hover {
     color: @red-60;
   }
+
   .nav-item.active {
-    .des{
+    .des {
       font-weight: @font-bold;
       color: @red;
       border-bottom: 1px solid @red;
     }
   }
 }
+
 .dark-theme {
   .nav-container {
     .nav-item {
@@ -70,9 +81,11 @@ export default {
         border-bottom: 1px solid @dark-theme-border;
       }
     }
+
     .nav-item {
       color: @font-color-grey2;
     }
+
     .nav-item:hover {
       color: white;
     }

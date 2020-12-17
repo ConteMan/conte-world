@@ -17,12 +17,16 @@
               </div>
               <div class="color-row bg-light-grey nav">
                 <a-space :size="20">
-                  <span v-for="item in nav" :key="item.name" @click="$router.push({ path: item.router })">{{ item.name }}</span>
+                  <span v-for="item in nav" :key="item.name" @click="$router.push({ path: item.router })">{{
+                      item.name
+                    }}</span>
                 </a-space>
               </div>
               <div class="color-row bg-grey social">
                 <a-space :size="20">
-                  <a v-for="itemSocial in socials" :href="itemSocial.url" :key="itemSocial.name">{{ itemSocial.name }}</a>
+                  <a v-for="itemSocial in socials" :href="itemSocial.url" :key="itemSocial.name">{{
+                      itemSocial.name
+                    }}</a>
                 </a-space>
               </div>
             </template>
@@ -36,16 +40,16 @@
 
 <script>
 import { mixin } from '@/utils/mixin'
-import Footer from "@/layout/components/v2/Footer"
-import FloatActions from "@/layout/components/v2/FloatActions"
+import Footer from '@/layout/components/v2/Footer'
+import FloatActions from '@/layout/components/v2/FloatActions'
 
 export default {
-  name: "Landpage",
+  name: 'Landpage',
   components: {
     Footer,
     FloatActions,
   },
-  mixins: [ mixin ],
+  mixins: [mixin],
   data() {
     return {
       slogan: 'Slow down, not so much to seize.',
@@ -78,12 +82,12 @@ export default {
   },
   computed: {
     logoImageUrl: function() {
-      return this.darkMode ? 'http://img.cdn.isconte.com/conteman_circle_deal_dark_1000x1000.png' : 'http://img.cdn.isconte.com/conteman_circle_1000x1000.png';
+      return this.darkMode ? 'http://img.cdn.isconte.com/conteman_circle_deal_dark_1000x1000.png' : 'http://img.cdn.isconte.com/conteman_circle_1000x1000.png'
     },
   },
   methods: {
     showAvatar() {
-      this.avatarBg = !this.avatarBg;
+      this.avatarBg = !this.avatarBg
     }
   }
 }
@@ -97,12 +101,14 @@ export default {
     min-height: 100vh;
   }
 }
+
 .title {
   margin-top: 50px;
   height: 50px;
   font-size: 24px;
   line-height: 50px;
   opacity: 0.99;
+
   .avatar {
     margin-left: 20px;
     height: 50px;
@@ -111,79 +117,107 @@ export default {
     margin-top: -7px;
   }
 }
+
 .col-container {
   width: 100%;
 }
+
 .color-row {
   width: 100%;
   height: 50px;
   line-height: 50px;
   padding: 0 20px;
 }
+
 .bg-grey {
   background: #BDBDBD;
   opacity: 0.95;
 }
+
 .bg-light-grey {
   background: #E0E0E0;
   opacity: 0.95;
 }
+
 .slogan {
   margin-top: 20px;
   color: white;
 }
+
 .nav {
   span {
     cursor: pointer;
     color: #333333;
   }
+
   span:hover {
     color: #EB5757;
     border-bottom: 1px solid #EB5757;
   }
 }
+
 .social {
   a {
     color: white;
   }
+
   a:hover {
     color: #EB5757;
     border-bottom: 1px solid #EB5757;
   }
 }
+
 .bg-logo {
   position: absolute;
   width: 180px;
   top: 10px;
   right: 2px;
   opacity: 0.3;
+
   img {
     width: 100%;
   }
 }
+
 .bg-logo {
   -webkit-animation: myRotate 30s linear infinite;
   animation: myRotate 30s linear infinite;
 }
+
 .avatar:hover {
-  -webkit-animation:myRotate 3s linear infinite;
-  animation:myRotate 3s linear infinite;
+  -webkit-animation: myRotate 3s linear infinite;
+  animation: myRotate 3s linear infinite;
 }
-@-webkit-keyframes myRotate{
-  0%{ -webkit-transform: rotate(0deg);}
-  50%{ -webkit-transform: rotate(180deg);}
-  100%{ -webkit-transform: rotate(360deg);}
+
+@-webkit-keyframes myRotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
-@keyframes myRotate{
-  0%{ -webkit-transform: rotate(0deg);}
-  50%{ -webkit-transform: rotate(180deg);}
-  100%{ -webkit-transform: rotate(360deg);}
+
+@keyframes myRotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 .dark-theme {
   .title {
     color: @font-color-grey2;
   }
+
   .bg-logo {
     transition: all 300ms;
     background-image: url('http://img.cdn.isconte.com/conteman_circle_deal_dark_1000x1000.png');

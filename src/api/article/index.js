@@ -1,9 +1,9 @@
-import request from "@/request/http"
-import base from "@/api/base"
+import request from '@/request/http'
+import base from '@/api/base'
 
 const article = {
   docs() {
-    return request.get(`${base.e_isconte}/api/articles/index`)
+    return request.get(`${base.e_isconte}/api/articles`)
   },
   docDetail(id) {
     return request({
@@ -13,4 +13,4 @@ const article = {
   }
 }
 
-export default article;
+export default article

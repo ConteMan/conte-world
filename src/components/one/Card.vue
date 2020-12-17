@@ -9,19 +9,13 @@
       :paragraph="{rows: 6, width:['100%', '60%', '60%', '100%', '100%', '100%']}"
     />
     <div class="card-container" v-show="!imageLoading">
-      <div class="tool-bar" @click="ones" >
-        <!--              <div class="title"><a :href="one.url" target="_blank">{{ one.title }}</a></div>-->
-        <!--              <div class="date">{{ $dayjs(one.date).format('YYYY / MM / DD') }}</div>-->
+      <div class="tool-bar" @click="ones">
         <a-icon class="tool-icon" type="reload" :spin="loading"/>
       </div>
       <div class="one">
         <div class="content">{{ one.content }}</div>
         <br>
         {{ one.text_authors }}
-        <!--                <div class="img-container">-->
-        <!--                    <img :src="one.img_url" @load="showLoad"/>-->
-        <!--                    <div>{{ one.picture_author }}</div>-->
-        <!--                </div>-->
       </div>
     </div>
   </div>
@@ -29,10 +23,10 @@
 </template>
 
 <script>
-import oneApi from "@/api/one"
+import oneApi from '@/api/one'
 
 export default {
-  name: "Card",
+  name: 'Card',
   data() {
     return {
       one: {},
@@ -70,10 +64,12 @@ export default {
 /deep/ .ant-skeleton-paragraph {
   padding-inline-start: 0 !important;
 }
-.card-container,.skeleton {
+
+.card-container, .skeleton {
   margin: auto;
   max-width: 800px;
 }
+
 .one {
   width: 100%;
   height: 100%;
@@ -82,19 +78,24 @@ export default {
   color: @font-color-grey;
   text-align: center;
   margin: 10% 0;
+
   .img-container {
     padding: 40px 0;
     width: 100%;
+
     img {
       width: 100%;
     }
+
     div {
       padding: 10px 0;
     }
   }
+
   .content {
     position: relative;
   }
+
   .content::before {
     content: '';
     position: absolute;
@@ -104,37 +105,45 @@ export default {
     left: -0.25em;
     right: -0.25em;
     background-color: @red-20;
-    transform-origin: center right;
+    transform-origin: center;
     transform: scaleX(0);
     transition: transform 0.2s ease-in-out;
   }
+
   .content:hover::before {
     transform: scaleX(1);
-    transform-origin: center left;
+    transform-origin: center;
   }
+
   .content:hover {
     color: white;
   }
 }
+
 .tool-bar {
   text-align: center;
   height: 20px;
+
   .title {
     float: left;
     display: inline-block;
     width: 60px;
     text-align: left;
-    a,a:visited {
+
+    a, a:visited {
       color: @font-color-grey;
     }
+
     a:hover {
       color: @red;
     }
   }
+
   .date {
     display: inline-block;
     margin-left: -60px;
   }
+
   .tool-icon {
     float: right;
     line-height: 22px;
@@ -145,6 +154,7 @@ export default {
   .one {
     color: @dark-theme-color;
   }
+
   .tool-bar {
     .tool-icon {
       color: @dark-theme-color;
