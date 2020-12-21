@@ -9,6 +9,9 @@
     >
       <div class="des">{{ item.meta.title }}</div>
     </div>
+    <div class="nav-item" @click="turnUrl('https://wiki.isconte.com')">
+      <div class="des en">WIKI</div>
+    </div>
   </div>
 </template>
 
@@ -29,6 +32,12 @@ export default {
       }
     ),
   },
+  methods: {
+    turnUrl(url) {
+      window.location.href = url
+      return true
+    }
+  }
 }
 </script>
 
@@ -54,6 +63,10 @@ export default {
       width: min-content;
       font-size: 14px;
       border-bottom: 1px solid @border-color;
+    }
+    .en {
+      writing-mode: vertical-rl;
+      letter-spacing: 2px;
     }
   }
 

@@ -6,8 +6,8 @@
         <a-col :xs="22" :sm="22" :md="20" :lg="16" :xl="10">
           <div class="col-container">
             <div class="bg-logo">
-              <img v-if="darkMode" src="@/assets/img/conteman_circle_deal_dark_1000x1000.png"/>
-              <img v-else src="@/assets/img/conteman_circle_1000x1000.png"/>
+              <img alt="conteman" v-if="darkMode" src="@/assets/img/conteman_circle_deal_dark_1000x1000.png"/>
+              <img alt="conteman" v-else src="@/assets/img/conteman_circle_1000x1000.png"/>
             </div>
             <div class="title">
               <span>Conte World / 泊世录</span>
@@ -21,6 +21,7 @@
                   <span v-for="item in nav" :key="item.name" @click="$router.push({ path: item.router })">{{
                       item.name
                     }}</span>
+                 <span @click="turnUrl('https://wiki.isconte.com')">WIKI</span>
                 </a-space>
               </div>
               <div class="color-row bg-grey social">
@@ -70,7 +71,7 @@ export default {
       ],
       socials: [
         {
-          name: 'Github',
+          name: 'GITHUB',
           url: 'https://github.com/ConteMan',
         },
         {
@@ -82,8 +83,9 @@ export default {
     }
   },
   methods: {
-    showAvatar() {
-      this.avatarBg = !this.avatarBg
+    turnUrl(url) {
+      window.location.href = url
+      return true
     }
   }
 }
