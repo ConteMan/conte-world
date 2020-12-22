@@ -28,8 +28,8 @@
 
 <script>
 import Sidebar from '@/components/header/Sidebar'
-import FloatActions from '@/layout/components/v2/FloatActions'
-import FootBar from '@/layout/components/v2/Footer'
+import FloatActions from '@/layout/components/FloatActions'
+import FootBar from '@/layout/components/Footer'
 
 import { mixin } from '@/utils/mixin'
 import { mapMutations } from 'vuex'

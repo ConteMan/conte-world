@@ -42,8 +42,8 @@
 
 <script>
 import { mixin } from '@/utils/mixin'
-import Footer from '@/layout/components/v2/Footer'
-import FloatActions from '@/layout/components/v2/FloatActions'
+import Footer from '@/layout/components/Footer'
+import FloatActions from '@/layout/components/FloatActions'
 
 export default {
   name: 'Landpage',

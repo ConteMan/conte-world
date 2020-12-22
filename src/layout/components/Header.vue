@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "~@/style/variables";
+@import "~@/style/variables.less";
 
 .header {
   position: fixed;
