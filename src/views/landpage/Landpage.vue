@@ -10,7 +10,7 @@
               <img alt="conteman" v-else src="@/assets/img/conteman_circle_1000x1000.png"/>
             </div>
             <div class="title">
-              <span>Conte World / 泊世录</span>
+              <span>{{ title }}</span>
             </div>
             <template v-if="!avatarBg">
               <div class="color-row bg-grey slogan">
@@ -54,6 +54,7 @@ export default {
   mixins: [mixin],
   data() {
     return {
+      title: 'ConteWorld / 泊世录',
       slogan: 'Slow down, not so much to seize.',
       nav: [
         {
@@ -77,6 +78,10 @@ export default {
         {
           name: 'V2EX',
           url: 'https://v2ex.com/Conte',
+        },
+        {
+          name: '少数派',
+          url: 'https://sspai.com/u/Conte/updates',
         },
       ],
       avatarBg: false,
