@@ -68,6 +68,10 @@ export default {
         {
           name: '电影',
           router: '/film',
+        },
+        {
+          name: '世界线',
+          router: '/worldline',
         }
       ],
       socials: [

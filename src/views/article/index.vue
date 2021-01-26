@@ -12,10 +12,11 @@
         :dataSource="data"
       >
         <a-list-item
-slot="renderItem"
-slot-scope="item"
-:key="item.slug"
-                     @click="turnTo({name: 'ArticleDetail', params: {id: item.id}})">
+          slot="renderItem"
+          slot-scope="item"
+          :key="item.slug"
+          @click="turnTo({name: 'ArticleDetail', params: {id: item.id}})"
+        >
           <div class="article-l-item">
             <div class="article-l-title" :title="item.title">{{ item.title }}</div>
             <div class="article-l-time">

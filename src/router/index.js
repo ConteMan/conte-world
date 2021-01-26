@@ -5,6 +5,7 @@ import landpage from '@/router/modules/landpage'
 import one from '@/router/modules/one'
 import film from '@/router/modules/film'
 import article from '@/router/modules/article'
+import worldline from '@/router/modules/worldline'
 
 Vue.use(Router)
 
@@ -14,6 +15,7 @@ export const routes = [
   one,
   article,
   film,
+  worldline,
 ]
 
 // 未定义路由
