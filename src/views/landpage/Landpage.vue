@@ -12,31 +12,29 @@
             <div class="title">
               <span>{{ title }}</span>
             </div>
-            <template v-if="!avatarBg">
-              <div class="color-row bg-grey slogan">
-                {{ slogan }}
-              </div>
-              <div class="color-row bg-light-grey nav">
-                <a-space :size="20">
-                  <span v-for="item in nav" :key="item.name" @click="$router.push({ path: item.router })">{{
-                      item.name
-                    }}</span>
-                 <span @click="turnUrl('https://wiki.isconte.com')">WIKI</span>
-                </a-space>
-              </div>
-              <div class="color-row bg-grey social">
-                <a-space :size="20">
-                  <a v-for="itemSocial in socials" :href="itemSocial.url" :key="itemSocial.name">{{
-                      itemSocial.name
-                    }}</a>
-                </a-space>
-              </div>
-            </template>
+            <div class="color-row bg-grey slogan">
+              {{ slogan }}
+            </div>
+            <div class="color-row bg-light-grey nav">
+              <a-space :size="20">
+                <span v-for="item in nav" :key="item.name" @click="$router.push({ path: item.router })">
+                  {{ item.name }}
+                </span>
+                <span @click="turnUrl('https://wiki.isconte.com')">WIKI</span>
+              </a-space>
+            </div>
+            <div class="color-row bg-grey social">
+              <a-space :size="20">
+                <a v-for="itemSocial in socials" :href="itemSocial.url" :key="itemSocial.name">{{
+                    itemSocial.name
+                  }}</a>
+              </a-space>
+            </div>
           </div>
         </a-col>
       </a-row>
     </div>
-    <Footer></Footer>
+    <Footer/>
   </div>
 </template>
 
@@ -88,7 +86,6 @@ export default {
           url: 'https://sspai.com/u/Conte/updates',
         },
       ],
-      avatarBg: false,
     }
   },
   methods: {
