@@ -8,7 +8,7 @@ export default {
   component: () => import('@/layout/BaseLayout'),
   children: [
     {
-      path: 'index',
+      path: '',
       name: 'One',
       meta: {
         title: '一个',

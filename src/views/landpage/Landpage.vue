@@ -20,14 +20,15 @@
                 <span v-for="item in nav" :key="item.name" @click="$router.push({ path: item.router })">
                   {{ item.name }}
                 </span>
-                <span @click="turnUrl('https://wiki.isconte.com')">WIKI</span>
               </a-space>
             </div>
-            <div class="color-row bg-grey social">
+            <div class="color-row bg-grey project">
+              <span @click="turnUrl('https://wiki.isconte.com')">WIKI</span>
+            </div>
+            <div class="color-row bg-light-grey social">
               <a-space :size="20">
-                <a v-for="itemSocial in socials" :href="itemSocial.url" :key="itemSocial.name">{{
-                    itemSocial.name
-                  }}</a>
+                <a v-for="item in socials" :key="item.id" :href="item.value">
+                  {{ item.code }}</a>
               </a-space>
             </div>
           </div>
@@ -42,6 +43,7 @@
 import { mixin } from '@/utils/mixin'
 import Footer from '@/layout/components/Footer'
 import FloatActions from '@/layout/components/FloatActions'
+import commonApi from '@/api/common'
 
 export default {
   name: 'Landpage',
@@ -72,26 +74,23 @@ export default {
           router: '/worldline',
         }
       ],
-      socials: [
-        {
-          name: 'GITHUB',
-          url: 'https://github.com/ConteMan',
-        },
-        {
-          name: 'V2EX',
-          url: 'https://v2ex.com/Conte',
-        },
-        {
-          name: '少数派',
-          url: 'https://sspai.com/u/Conte/updates',
-        },
-      ],
+      socials: [],
     }
+  },
+  created() {
+    this.getSocails()
   },
   methods: {
     turnUrl(url) {
       window.location.href = url
       return true
+    },
+    // 社交信息
+    async getSocails() {
+      const res = await commonApi.socials()
+      if (res.data.code === 0) {
+        this.socials = res.data.data.items
+      }
     }
   }
 }
@@ -103,11 +102,11 @@ export default {
 .page-container {
   .content {
     min-height: 100vh;
+    display: grid;
   }
 }
 
 .title {
-  margin-top: 50px;
   height: 50px;
   font-size: 24px;
   line-height: 50px;
@@ -124,6 +123,7 @@ export default {
 
 .col-container {
   width: 100%;
+  margin-top: -70px;
 }
 
 .color-row {
@@ -162,7 +162,7 @@ export default {
 
 .social {
   a {
-    color: white;
+    color: #333333;
   }
 
   a:hover {
@@ -171,10 +171,22 @@ export default {
   }
 }
 
+.project {
+  span {
+    cursor: pointer;
+    color: white;
+  }
+
+  span:hover {
+    color: #EB5757;
+    border-bottom: 1px solid #EB5757;
+  }
+}
+
 .bg-logo {
   position: absolute;
   width: 180px;
-  top: 10px;
+  top: -120px;
   right: 2px;
   opacity: 0.3;
 
