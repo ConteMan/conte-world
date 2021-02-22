@@ -58,10 +58,6 @@ export default {
       slogan: 'Slow down, not so much to seize.',
       nav: [
         {
-          name: '一个',
-          router: '/one',
-        },
-        {
           name: '文章',
           router: '/article',
         },
@@ -69,10 +65,6 @@ export default {
           name: '电影',
           router: '/film',
         },
-        {
-          name: '世界线',
-          router: '/worldline',
-        }
       ],
       socials: [],
     }

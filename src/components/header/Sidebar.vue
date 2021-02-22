@@ -9,9 +9,6 @@
     >
       <div class="des">{{ item.meta.title }}</div>
     </div>
-    <div class="nav-item" @click="turnUrl('https://wiki.isconte.com')">
-      <div class="des en">WIKI</div>
-    </div>
   </div>
 </template>
 

@@ -19,7 +19,9 @@
         class="content-container"
         :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer}"
       >
-        <router-view/>
+        <transition name="fade">
+          <router-view/>
+        </transition>
       </div>
     </div>
   </div>
