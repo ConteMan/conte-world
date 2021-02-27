@@ -20,7 +20,7 @@
           <div class="article-l-item">
             <div class="article-l-title" :title="item.title">{{ item.title }}</div>
             <div class="article-l-time">
-              {{ $dayjs(item.published_at).format("YYYY-MM-DD") }}
+              {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
             </div>
           </div>
         </a-list-item>

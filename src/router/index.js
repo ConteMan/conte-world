@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import landpage from '@/router/modules/landpage'
-import film from '@/router/modules/film'
 import article from '@/router/modules/article'
+import movie from '@/router/modules/movie'
 
 Vue.use(Router)
 
@@ -11,7 +11,7 @@ Vue.use(Router)
 export const routes = [
   landpage,
   article,
-  film,
+  movie,
 ]
 
 // 未定义路由

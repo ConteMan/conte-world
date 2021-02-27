@@ -40,7 +40,7 @@
 import doubanApi from '@/api/douban'
 
 export default {
-  name: 'Index',
+  name: 'Movie',
   data() {
     return {
       loading: false,

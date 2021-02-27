@@ -1,40 +1,49 @@
 <template>
   <div class="page-container" :class="{ 'container': darkMode}">
     <float-actions :show-menu="false"/>
-    <div class="content" :class="{ 'container': darkMode}">
-      <a-row type="flex" justify="center" align="middle">
-        <a-col :xs="22" :sm="22" :md="20" :lg="16" :xl="10">
-          <div class="col-container">
-            <div class="bg-logo">
-              <img alt="conteman" v-if="darkMode" src="@/assets/img/conteman_circle_deal_dark_1000x1000.png"/>
-              <img alt="conteman" v-else src="@/assets/img/conteman_circle_1000x1000.png"/>
-            </div>
-            <div class="title">
-              <span>{{ title }}</span>
-            </div>
-            <div class="color-row bg-grey slogan">
-              {{ slogan }}
-            </div>
-            <div class="color-row bg-light-grey nav">
-              <a-space :size="20">
-                <span v-for="item in nav" :key="item.name" @click="$router.push({ path: item.router })">
-                  {{ item.name }}
-                </span>
-              </a-space>
-            </div>
-            <div class="color-row bg-grey project">
-              <span @click="turnUrl('https://wiki.isconte.com')">WIKI</span>
-            </div>
-            <div class="color-row bg-light-grey social">
-              <a-space :size="20">
-                <a v-for="item in socials" :key="item.id" :href="item.value">
-                  {{ item.code }}</a>
-              </a-space>
-            </div>
-          </div>
-        </a-col>
-      </a-row>
-    </div>
+      <div class="content" :class="{ 'container': darkMode}">
+        <a-row type="flex" justify="center" align="middle">
+          <a-col :xs="22" :sm="22" :md="20" :lg="16" :xl="10">
+            <a-spin :spinning="loading">
+              <div class="col-container">
+                <template v-if="!loading">
+                  <div class="bg-logo">
+                    <img alt="conteman" v-if="darkMode" src="@/assets/img/conteman_circle_deal_dark_1000x1000.png"/>
+                    <img alt="conteman" v-else src="@/assets/img/conteman_circle_1000x1000.png"/>
+                  </div>
+                  <div class="title">
+                    <span>{{ title }}</span>
+                  </div>
+                  <div class="color-row bg-grey slogan">
+                    {{ slogan }}
+                  </div>
+                  <div class="color-row bg-light-grey nav">
+                    <a-space :size="spaceSize">
+                      <span v-for="item in nav.items" :key="item.id" @click="$router.push({ path: item.value })">
+                        {{ item.code }}
+                      </span>
+                    </a-space>
+                  </div>
+                  <div class="color-row bg-grey site">
+                    <a-space :size="spaceSize">
+                      <span v-for="item in site.items" :key="item.id" @click="turnUrl(item.value)">
+                        {{ item.code }}
+                      </span>
+                    </a-space>
+                  </div>
+                  <div class="color-row bg-light-grey social">
+                    <a-space :size="spaceSize">
+                      <a v-for="item in social.items" :key="item.id" :href="item.value">
+                        {{ item.code }}
+                      </a>
+                    </a-space>
+                  </div>
+                </template>
+              </div>
+            </a-spin>
+          </a-col>
+        </a-row>
+      </div>
     <Footer/>
   </div>
 </template>
@@ -54,34 +63,45 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      title: 'ConteWorld / 泊世录',
-      slogan: 'Slow down, not so much to seize.',
-      nav: [
-        {
-          name: '文章',
-          router: '/article',
-        },
-        {
-          name: '电影',
-          router: '/film',
-        },
-      ],
-      socials: [],
+      title: '',
+      slogan: '',
+      nav: [],
+      site: [],
+      social: [],
+
+      loading: true,
+      loadingTime: 500,
+      spaceSize: 20,
     }
   },
   created() {
-    this.getSocails()
+    this.getBase()
   },
   methods: {
     turnUrl(url) {
       window.location.href = url
       return true
     },
-    // 社交信息
-    async getSocails() {
-      const res = await commonApi.socials()
+    async getBase() {
+      const start = this.$dayjs().millisecond()
+      const res = await commonApi.base()
       if (res.data.code === 0) {
-        this.socials = res.data.data.items
+        const base = res.data.data
+        this.title = base.title
+        this.slogan = base.slogan
+        this.nav = base.nav
+        this.site = base.site
+        this.social = base.social
+
+        const end = this.$dayjs().millisecond()
+        const time = end - start
+        if (time < this.loadingTime) {
+          setTimeout(() => {
+            this.loading = false
+          }, this.loadingTime - time)
+        } else {
+          this.loading = false
+        }
       }
     }
   }
@@ -163,7 +183,7 @@ export default {
   }
 }
 
-.project {
+.site {
   span {
     cursor: pointer;
     color: white;
@@ -177,11 +197,9 @@ export default {
 
 .bg-logo {
   position: absolute;
-  width: 180px;
-  top: -120px;
-  right: 2px;
-  opacity: 0.3;
-
+  width: 220px;
+  top: 60px;
+  right: 20px;
   img {
     width: 100%;
   }
