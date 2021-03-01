@@ -5,7 +5,7 @@
       :class="{ active: (item.active || item.name == $route.matched[0].name) }"
       v-for="item in routes"
       :key="item.name"
-      @click="$router.push({name: item.name})"
+      @click="$router.push({path: item.path})"
     >
       <div class="des">{{ item.meta.title }}</div>
     </div>
@@ -53,7 +53,6 @@ export default {
     width: 100%;
     padding: 24px 0 0 0;
     cursor: pointer;
-
     .des {
       margin: auto;
       line-height: 1.2;
@@ -91,11 +90,9 @@ export default {
         border-bottom: 1px solid @dark-theme-border;
       }
     }
-
     .nav-item {
       color: @font-color-grey2;
     }
-
     .nav-item:hover {
       color: white;
     }

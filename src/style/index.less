@@ -9,7 +9,7 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-  font-family: "更纱黑体 SC", PingFang SC, Hiragino Sans GB, Microsoft Yahei, WenQuanYi Micro Hei, sans-serif;
+  font-family: "更纱黑体 SC", "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -163,6 +163,19 @@ body::-webkit-scrollbar {
 .vxe-pager .vxe-pager--jump-next:not(.is--disabled):hover, .vxe-pager .vxe-pager--jump-prev:not(.is--disabled):hover,
 .vxe-pager .vxe-pager--next-btn:not(.is--disabled):hover, .vxe-pager .vxe-pager--num-btn:not(.is--disabled):hover,
 .vxe-pager .vxe-pager--prev-btn:not(.is--disabled):hover {
+  color: @red;
+}
+
+// Spin 样式
+.spin-loading-container {
+  .ant-spin {
+    background-color: white;
+  }
+}
+.spin-loading {
+  color: @red;
+}
+.ant-spin-text {
   color: @red;
 }
 

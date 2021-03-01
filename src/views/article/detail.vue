@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="back-header">
-      <div class="back-btn" @click="$router.push({ name: 'Article' })">
+      <div class="back-btn" @click="$router.push({ path: '/article' })">
         <a-icon class="back-btn-icon" type="left"/>
       </div>
       <div class="title">
@@ -11,7 +11,7 @@
     <template v-if="platform === 'YUQUE'">
       <iframe
         :srcdoc="data"
-        style="width: 100%;height: calc(100vh - 4px); border: none;"
+        style="width:100%; height:calc(100vh - 4px); border:none;"
         frameborder="0"
         scrolling="auto"
       ></iframe>
@@ -26,12 +26,17 @@
 import articleApi from '@/api/article'
 
 export default {
-  name: 'Index',
+  name: 'Detail',
   data() {
     return {
       data: '',
       title: '',
       platform: 'ORI',
+    }
+  },
+  computed: {
+    id: function() {
+      return this.$route.params.id
     }
   },
   created() {
@@ -42,7 +47,7 @@ export default {
       this.$route.push(params)
     },
     detail() {
-      articleApi.docDetail(this.$route.params.id).then(
+      articleApi.docDetail(this.id).then(
         response => {
           if (response.data.code === 0) {
             const data = response.data.data.res

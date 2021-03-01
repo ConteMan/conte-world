@@ -103,7 +103,7 @@ export default {
 
     div:first-child {
       min-height: 100vh;
-      padding: 0 0 16px 0;
+      // padding: 0 0 16px 0;
     }
   }
 

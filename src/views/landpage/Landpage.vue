@@ -4,8 +4,8 @@
     <div class="content" :class="{ 'container': darkMode}">
       <a-row type="flex" justify="center" align="middle">
         <a-col :xs="22" :sm="22" :md="20" :lg="16" :xl="10">
-          <a-spin :spinning="loading" wrapperClassName="loading-container" tip="Hello, ConteMan">
-            <a-icon slot="indicator" class="loading" type="loading" spin />
+          <a-spin :spinning="loading" wrapperClassName="spin-loading-container" tip="Hello, ConteMan">
+            <a-icon slot="indicator" class="spin-loading" type="loading" spin />
             <div class="col-container">
               <template v-if="!loading">
                 <div class="bg-logo">
@@ -122,14 +122,6 @@ export default {
   .content {
     min-height: 100vh;
     display: grid;
-    .loading {
-      color: @hover-color;
-    }
-    .loading-container {
-      @{deep} .ant-spin-text {
-        color: @hover-color;
-      }
-    }
     .col-container {
       width: 100%;
       margin-top: -70px;

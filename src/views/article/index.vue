@@ -3,29 +3,35 @@
     <div class="list-header">
       {{ $config.articleListTitle }}
     </div>
-    <div class="fixed-header-container list-container">
-      <a-list
-        itemLayout="vertical"
-        size="small"
-        :bordered="false"
-        :loading="loading"
-        :dataSource="data"
+      <a-spin
+        :spinning="loading"
+        wrapperClassName="spin-loading-container"
+        tip="Hello, ConteMan"
       >
-        <a-list-item
-          slot="renderItem"
-          slot-scope="item"
-          :key="item.slug"
-          @click="turnTo({name: 'ArticleDetail', params: {id: item.id}})"
+      <a-icon slot="indicator" class="spin-loading" type="loading" spin />
+      <div class="fixed-header-container list-container">
+        <a-list
+          itemLayout="vertical"
+          size="small"
+          :bordered="false"
+          :dataSource="data"
         >
-          <div class="article-l-item">
-            <div class="article-l-title" :title="item.title">{{ item.title }}</div>
-            <div class="article-l-time">
-              {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+          <a-list-item
+            slot="renderItem"
+            slot-scope="item"
+            :key="item.slug"
+            @click="$router.push({name: 'ArticleDetail', params: {id: item.id}})"
+          >
+            <div class="article-l-item">
+              <div class="article-l-title" :title="item.title">{{ item.title }}</div>
+              <div class="article-l-time">
+                {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+              </div>
             </div>
-          </div>
-        </a-list-item>
-      </a-list>
-    </div>
+          </a-list-item>
+        </a-list>
+      </div>
+    </a-spin>
   </div>
 </template>
 
@@ -33,26 +39,27 @@
 import articleApi from '@/api/article'
 
 export default {
-  name: 'Index',
+  name: 'Article',
   data() {
     return {
+      data: [],
       loading: false,
-      data: []
     }
   },
   created() {
     this.list()
   },
   methods: {
-    turnTo(params) {
-      this.$router.push(params)
-    },
     list() {
       this.loading = true
       articleApi.docs().then(
         response => {
-          this.loading = false
-          this.data = response.data.data.items
+          setTimeout(() => {
+            this.loading = false
+          }, 200)
+          if (response.data.code === 0) {
+            this.data = response.data.data.items
+          }
         }
       )
     },
@@ -63,9 +70,13 @@ export default {
 <style scoped lang="less">
 @import "~@/style/variables";
 
-/deep/ .ant-list-vertical .ant-list-item-content {
+@{deep} .ant-list-vertical .ant-list-item-content {
   margin: 0;
   padding: 10px 8px;
+}
+
+.list-container {
+  height: calc(100vh - 1px);
 }
 
 .article-l-item {
