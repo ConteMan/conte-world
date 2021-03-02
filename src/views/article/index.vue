@@ -1,68 +1,91 @@
 <template>
-  <div>
-    <div class="list-header">
-      {{ $config.articleListTitle }}
-    </div>
-      <a-spin
-        :spinning="loading"
-        wrapperClassName="spin-loading-container"
-        tip="Hello, ConteMan"
-      >
+  <div :style="{ 'height': listHeight }">
+    <a-spin
+      :spinning="loading"
+      wrapperClassName="spin-loading-container"
+      tip="Hello, ConteMan"
+    >
       <a-icon slot="indicator" class="spin-loading" type="loading" spin />
-      <div class="fixed-header-container list-container">
-        <a-list
-          itemLayout="vertical"
-          size="small"
-          :bordered="false"
-          :dataSource="data"
-        >
-          <a-list-item
-            slot="renderItem"
-            slot-scope="item"
-            :key="item.slug"
-            @click="$router.push({name: 'ArticleDetail', params: {id: item.id}})"
-          >
-            <div class="article-l-item">
-              <div class="article-l-title" :title="item.title">{{ item.title }}</div>
-              <div class="article-l-time">
-                {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+      <div
+        class="list-content"
+        v-infinite-scroll="loadMore"
+        infinite-scroll-delay="1000"
+        :infinite-scroll-disabled="busy"
+        infinite-scroll-distance="200"
+        infinite-scroll-immediate-check="true"
+        :style="{ 'height': listHeight }"
+      >
+        <template v-if="items.length">
+          <template v-for="item in items">
+            <div :key="item.id" class="list-item" @click="$router.push({name: 'ArticleDetail', params: {id: item.id}})">
+              <div class="title">
+                {{ item.title }}
+              </div>
+              <div class="info">
+                <span class="time">
+                  {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+                </span>
               </div>
             </div>
-          </a-list-item>
-        </a-list>
+          </template>
+        </template>
       </div>
     </a-spin>
   </div>
 </template>
 
 <script>
-import articleApi from '@/api/article'
+import Article from '@/api/article'
 
 export default {
   name: 'Article',
   data() {
     return {
-      data: [],
-      loading: false,
+      loading: true,
+
+      items: [],
+      offset: 0,
+      limit: 20,
+      busy: false,
+      total: 0,
+
+      pageHeight: document.body.clientHeight,
     }
   },
-  created() {
-    this.list()
+  computed: {
+    listHeight() {
+      return this.pageHeight + 'px'
+    }
+  },
+  async created() {
+    await this.index()
+    setTimeout(() => {
+      this.loading = false
+    }, 300)
+    const that = this
+    window.onresize = () => {
+      return (() => {
+        that.pageHeight = document.body.clientHeight
+      })()
+    }
   },
   methods: {
-    list() {
-      this.loading = true
-      articleApi.docs().then(
-        response => {
-          setTimeout(() => {
-            this.loading = false
-          }, 200)
-          if (response.data.code === 0) {
-            this.data = response.data.data.items
-          }
+    async index() {
+      const { offset, limit } = this
+      const res = await Article.index({ offset, limit })
+      if (res.data.code === 0) {
+        const { hasMore, items, totalCount } = res.data.data
+        this.total = totalCount
+        this.busy = hasMore
+        if (items.length > 0) {
+          this.items = this._.concat(this.items, items)
         }
-      )
+      }
     },
+    loadMore() {
+      this.offset += this.limit
+      this.index()
+    }
   }
 }
 </script>
@@ -70,41 +93,25 @@ export default {
 <style scoped lang="less">
 @import "~@/style/variables";
 
-@{deep} .ant-list-vertical .ant-list-item-content {
-  margin: 0;
-  padding: 10px 8px;
-}
-
-.list-container {
-  height: calc(100vh - 1px);
-}
-
-.article-l-item {
-  cursor: pointer;
-
-  .article-l-title {
-    font-size: 14px;
+.list-content {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
   }
-
-  .article-l-time {
-    font-size: 12px;
-    text-align: left;
-  }
-}
-
-.article-l-item:hover {
-  .article-l-title {
-    color: @red;
-  }
-}
-
-.dark-theme {
-  .article-l-item {
-    color: @dark-theme-color;
-  }
-
-  .list-container .ant-list-item {
-    border-bottom-color: @dark-theme-border;
+  .list-item {
+    padding: 16px;
+    &:hover {
+      cursor: pointer;
+      background-color: @grey-20;
+      .title {
+        color: @red;
+      }
+    }
+    .info {
+      text-align: left;
+      font-size: 12px;
+      padding: 8px 0 0 0;
+    }
   }
 }
 </style>
