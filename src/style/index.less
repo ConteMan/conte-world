@@ -14,8 +14,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: none;
+  
+  color: @font-color-grey;
   a, a:hover {
     text-decoration: none;
+  }
+  a {
+    color: @font-color-grey;
+  }
+  a:hover {
+    color: @red;
   }
 }
 
@@ -170,6 +178,7 @@ body::-webkit-scrollbar {
 .spin-loading-container {
   .ant-spin {
     background-color: white;
+    max-height: none !important;
   }
 }
 .spin-loading {

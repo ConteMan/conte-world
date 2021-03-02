@@ -4,16 +4,15 @@ export default {
   meta: {
     title: '影视'
   },
-  redirect: { name: 'Movie' },
   component: () => import('@/layout/BaseLayout'),
   children: [
     {
-      path: 'index',
+      path: '',
       name: 'Movie',
       meta: {
         title: '影视',
       },
-      component: () => import('@/views/movie/index')
+      component: () => import('@/views/movie/new')
     },
   ]
 }
