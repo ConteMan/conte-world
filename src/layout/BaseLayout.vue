@@ -41,36 +41,36 @@ export default {
     Sidebar,
     FloatActions,
   },
+  mixins: [mixin],
   data() {
     return {
-      fullWidth: document.body.clientWidth,
+      fullWidth: window.innerWidth,
       timer: false,
       drawerVisible: false,
     }
   },
-  mixins: [mixin],
   computed: {
     isDrawer: function() {
       return this.fullWidth <= 768
     },
   },
-  mounted() {
-    window.onresize = () => {
+  created() {
+    window.addEventListener('resize', () => {
       if (!this.timer) {
         this.timer = true
         setTimeout(
           () => {
-            this.fullWidth = document.body.clientWidth
+            this.fullWidth = window.innerWidth
             this.timer = false
           }, 400)
       }
-    }
+    }, false)
   },
   methods: {
     drawerClose() {
       this.menuAction(false)
     },
-    ...mapMutations({
+    ...mapMutations('app', {
       menuAction: MT.MENU_STATUS,
     })
   },

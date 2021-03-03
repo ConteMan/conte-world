@@ -13,8 +13,8 @@ const app = {
     [MT.LOADING]: (state, type) => {
       state.loading = Boolean(type)
     },
-    [MT.DARK_MODE]: (state) => {
-      state.darkMode = !state.darkMode
+    [MT.DARK_MODE]: (state, type = 'default') => {
+      state.darkMode = type === 'default' ? !state.darkMode : Boolean(type)
       state.darkMode ? document.getElementsByTagName('body')[0].className = 'dark-theme' : document.body.removeAttribute('class')
     },
     [MT.MENU_STATUS]: (state, type = 'default') => {

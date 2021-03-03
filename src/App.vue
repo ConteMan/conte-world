@@ -5,15 +5,16 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 import { mixin } from '@/utils/mixin'
+import * as MT from '@/store/mutation-types'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'App',
   mixins: [mixin],
   methods: {
     ...mapMutations('app', {
-      darkAction: 'DARKMODE',
+      darkAction: MT.DARK_MODE,
     }),
   },
   mounted() {
