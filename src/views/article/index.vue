@@ -36,9 +36,13 @@
 
 <script>
 import Article from '@/api/article'
+import infiniteScroll from 'vue-infinite-scroll'
 
 export default {
   name: 'Article',
+  directives: {
+    infiniteScroll,
+  },
   data() {
     return {
       loading: true,

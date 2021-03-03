@@ -2,7 +2,6 @@ import {
   LOADING,
   DARKMODE
 } from '@/store/mutation-types'
-import { isBoolean } from 'xe-utils'
 
 const app = {
   namespaced: true,
@@ -15,7 +14,7 @@ const app = {
       state.loading = Boolean(type)
     },
     [DARKMODE]: (state, type) => {
-      state.darkMode = isBoolean(type) ? type : !state.darkMode
+      state.darkMode = type || !state.darkMode
     }
   },
   actions: {}

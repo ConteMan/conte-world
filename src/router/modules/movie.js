@@ -1,6 +1,5 @@
 export default {
   path: '/movie',
-  name: 'MovieBase',
   meta: {
     title: '影视'
   },

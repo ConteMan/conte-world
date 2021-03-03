@@ -2,7 +2,7 @@
   <div class="nav-container">
     <div
       class="nav-item"
-      :class="{ active: (item.active || item.name == $route.matched[0].name) }"
+      :class="{ active: (item.active || item.path == $route.matched[0].path) }"
       v-for="item in routes"
       :key="item.name"
       @click="$router.push({path: item.path})"

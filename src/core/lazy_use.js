@@ -15,12 +15,7 @@ import VueAnalytics from 'vue-analytics' // 谷歌统计
 import dayjs from 'dayjs' // 时间
 import _ from 'lodash' // 工具
 
-import 'xe-utils' // vxe 表格
-import VXETable from 'vxe-table'
-import 'vxe-table/lib/index.css'
-
 Vue.use(VueStorage, defaultSetting.storageOptions)
-Vue.use(VXETable)
 
 if (process.env.NODE_ENV === 'production') {
   Vue.use(VueAnalytics, {

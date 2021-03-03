@@ -11,7 +11,7 @@
         v-infinite-scroll="loadMore"
         infinite-scroll-delay="1000"
         :infinite-scroll-disabled="busy"
-        infinite-scroll-distance="200"
+        infinite-scroll-distance="220"
         infinite-scroll-immediate-check="true"
         :style="{ 'height': listHeight }"
       >

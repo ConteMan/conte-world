@@ -30,7 +30,7 @@ router.beforeEach(async(to, from, next) => {
   // 登录状态判断
   let refresh = false
   if (hasToken) {
-    if (to.name == 'Login') {
+    if (to.name === 'Login') {
       next({ name: 'Mine' })
       return
     } else {
@@ -48,14 +48,14 @@ router.beforeEach(async(to, from, next) => {
   let isMatched = false // 用于判断是否访问不存在路由，即没有权限
   routes.forEach((item, index) => {
     item.active = false
-    if (item.name == toName) {
+    if (item.name === toName) {
       item.active = true
       isMatched = true
       return
     } else {
       if (item.children) {
         item.children.forEach((cItem, cIndex) => {
-          if (cItem.name == toName) {
+          if (cItem.name === toName) {
             item.active = true
             isMatched = true
           }
@@ -76,8 +76,9 @@ router.beforeEach(async(to, from, next) => {
     // 确保路由添加完毕
     next({ ...to, replace: true })
   } else {
-    if (to.path) {
-      window._hmt.push(['_trackPageview', '/#' + to.fullPath]) // 百度统计
+    // 生产环境，百度统计
+    if (to.path && process.env.NODE_ENV === 'production') {
+      window._hmt.push(['_trackPageview', '/#' + to.fullPath])
     }
     next()
   }

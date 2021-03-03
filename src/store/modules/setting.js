@@ -6,7 +6,6 @@ import {
   MENU_ACTION,
   MENU_STATUS,
 } from '@/store/mutation-types'
-import { isBoolean } from 'xe-utils'
 
 const setting = {
   state: {
@@ -24,7 +23,7 @@ const setting = {
       Vue.ls.set(WIDTH_TYPE, type)
     },
     [MENU_ACTION]: (state, status) => {
-      state.menuStatus = isBoolean(status) ? status : !state.menuStatus
+      state.menuStatus = status || !state.menuStatus
       Vue.ls.set(MENU_STATUS, state.menuStatus)
     },
   },

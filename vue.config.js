@@ -40,11 +40,9 @@ module.exports = {
   css: {
     loaderOptions: {
       less: {
-        modifyVars: {
-          'layout-header-background': '#FFFFFF',
-          'layout-body-background': '#FFFFFF',
-        },
-        javascriptEnabled: true
+        lessOptions: { // important extra layer for less-loader^6.0.0
+          javascriptEnabled: true
+        }
       }
     }
   }
