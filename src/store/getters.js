@@ -1,7 +1,7 @@
 const getters = {
   loading: state => state.app.loading,
   darkMode: state => state.app.darkMode,
-  accessToken: state => state.user.accessToken,
+  menuStatus: state => state.app.menuStatus,
   routes: state => state.permission.routes,
 }
 

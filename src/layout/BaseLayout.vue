@@ -17,7 +17,7 @@
       </a-drawer>
       <div
         class="content-container"
-        :class="{ 'full-width': widthType > 1 , 'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer}"
+        :class="{'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer}"
       >
         <transition name="fade">
           <router-view/>
@@ -33,6 +33,7 @@ import FloatActions from '@/layout/components/FloatActions'
 
 import { mixin } from '@/utils/mixin'
 import { mapMutations } from 'vuex'
+import * as MT from '@/store/mutation-types'
 
 export default {
   name: 'BaseLayout',
@@ -70,7 +71,7 @@ export default {
       this.menuAction(false)
     },
     ...mapMutations({
-      menuAction: 'MENU_ACTION',
+      menuAction: MT.MENU_STATUS,
     })
   },
   beforeRouteLeave(to, from, next) {

@@ -1,12 +1,12 @@
 <template>
   <div class="main-container">
     <div v-if="showMenu" class="item">
-      <a-button ghost @click="menuAction" title="打开菜单">
+      <a-button ghost @click="menuAction()" title="打开菜单">
         <a-icon type="appstore" :theme="menuIconTheme"/>
       </a-button>
     </div>
     <div class="item">
-      <a-button ghost @click="darkAction" title="暗黑模式">
+      <a-button ghost @click="darkAction()" title="暗黑模式">
         <a-icon type="bulb" :theme="darkModeIconTheme"/>
       </a-button>
     </div>
@@ -15,6 +15,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import * as MT from '@/store/mutation-types'
 import { mixin } from '@/utils/mixin'
 
 export default {
@@ -35,11 +36,9 @@ export default {
   },
   mixins: [mixin],
   methods: {
-    ...mapMutations({
-      menuAction: 'MENU_ACTION',
-    }),
     ...mapMutations('app', {
-      darkAction: 'DARKMODE',
+      menuAction: MT.MENU_STATUS,
+      darkAction: MT.DARK_MODE,
     }),
   }
 }

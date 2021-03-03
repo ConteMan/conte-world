@@ -1,21 +1,19 @@
 import Vue from 'vue'
 import router from '@/router'
 import VueStorage from 'vue-ls'
-import defaultSetting from '@/config/defaultSetting'
 
 // components
-import '@/core/lazy_lib/components' // ant design 组件
+import '@/core/lazy_lib/components'
 
-// config
-import config from '@/config/defaultSetting' // 全局配置
-import api from '@/api'
+// setting
+import setting from '@/config/setting' // 全局配置
 
 // extend
-import VueAnalytics from 'vue-analytics' // 谷歌统计
-import dayjs from 'dayjs' // 时间
-import _ from 'lodash' // 工具
+import VueAnalytics from 'vue-analytics'
+import dayjs from 'dayjs'
+import _ from 'lodash'
 
-Vue.use(VueStorage, defaultSetting.storageOptions)
+Vue.use(VueStorage, setting.storageOptions)
 
 if (process.env.NODE_ENV === 'production') {
   Vue.use(VueAnalytics, {
@@ -28,7 +26,6 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-Vue.prototype.$config = config
-Vue.prototype.$api = api
+Vue.prototype.$config = setting
 Vue.prototype.$dayjs = dayjs
 Vue.prototype._ = _

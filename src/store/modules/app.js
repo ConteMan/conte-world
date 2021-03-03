@@ -1,20 +1,25 @@
-import {
-  LOADING,
-  DARKMODE
-} from '@/store/mutation-types'
+import Vue from 'vue'
+import * as MT from '@/store/mutation-types'
+import setting from '@/config/setting'
 
 const app = {
   namespaced: true,
   state: {
     loading: false,
     darkMode: false,
+    menuStatus: setting.menuStatus,
   },
   mutations: {
-    [LOADING]: (state, type) => {
+    [MT.LOADING]: (state, type) => {
       state.loading = Boolean(type)
     },
-    [DARKMODE]: (state, type) => {
-      state.darkMode = type || !state.darkMode
+    [MT.DARK_MODE]: (state) => {
+      state.darkMode = !state.darkMode
+      state.darkMode ? document.getElementsByTagName('body')[0].className = 'dark-theme' : document.body.removeAttribute('class')
+    },
+    [MT.MENU_STATUS]: (state, type = 'default') => {
+      state.menuStatus = type === 'default' ? !state.menuStatus : Boolean(type)
+      Vue.ls.set(setting.storageKeys.menuStatus, state.menuStatus)
     }
   },
   actions: {}

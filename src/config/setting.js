@@ -8,12 +8,6 @@ export default {
   siteCreateTime: '2019',
   GA: 'UA-108159539-1',
 
-  // modules
-  oneTitle: '一个就够了',
-  articleListTitle: '和这个世界谈谈',
-  filmTitle: '看过一千部电影，世界上就没有稀奇的事情',
-  changelogTitle: '每一次更新都是一次进步',
-
   // setting
   storageOptions: {
     namespace: 'isconte__', // key prefix
@@ -23,7 +17,10 @@ export default {
   defaultRouteName: 'One',
 
   // local setting
-  layoutVersion: 'v2', // 前端布局版本
-  widthType: 1, // 1 居中，2 宽屏
   menuStatus: true, // 展示菜单
+
+  storageKeys: {
+    menuStatus: 'menu_status',
+    routes: 'routes',
+  }
 }

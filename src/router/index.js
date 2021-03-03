@@ -7,27 +7,19 @@ import movie from '@/router/modules/movie'
 
 Vue.use(Router)
 
-// 通用路由
 export const routes = [
   landpage,
   article,
   movie,
-]
-
-// 未定义路由
-export const noneRoute = [
   {
     path: '*',
     name: '404',
     meta: {
       title: '404'
     },
-    redirect: { name: 'Landpage' },
+    redirect: { path: '/' },
   }
 ]
-
-// 登录可见路由
-export const authRoutes = []
 
 const routerPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -42,12 +34,11 @@ const createRouter = function() {
   })
 }
 
-const router = createRouter()
-
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
 }
 
+const router = createRouter()
 export default router

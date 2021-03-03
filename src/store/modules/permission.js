@@ -1,22 +1,24 @@
 import Vue from 'vue'
 import { routes } from '@/router'
-import {
-  ROUTES,
-} from '@/store/mutation-types'
+import * as MT from '@/store/mutation-types'
+import setting from '@/config/setting'
+
+// remove 404 route
+routes.pop()
 
 const permission = {
   namespaced: true,
   state: {
-    routes: routes,
+    routes,
   },
   mutations: {
-    [ROUTES]: (state, data) => {
+    [MT.ROUTES]: (state, data) => {
       state.routes = data
-      Vue.ls.set(ROUTES, data)
+      Vue.ls.set(setting.storageKeys.routes, data)
     },
     RESET_ROUTES: (state) => {
       state.routes = routes
-      Vue.ls.set(ROUTES, routes)
+      Vue.ls.set(setting.storageKeys.routes, routes)
     }
   },
   actions: {}
