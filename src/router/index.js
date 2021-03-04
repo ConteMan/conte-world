@@ -4,11 +4,13 @@ import Router from 'vue-router'
 import landpage from '@/router/modules/landpage'
 import article from '@/router/modules/article'
 import movie from '@/router/modules/movie'
+import talk from '@/router/modules/talk'
 
 Vue.use(Router)
 
 export const routes = [
   landpage,
+  talk,
   article,
   movie,
   {
