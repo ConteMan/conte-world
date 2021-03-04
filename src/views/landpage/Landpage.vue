@@ -3,15 +3,11 @@
     <float-actions :show-menu="false"/>
     <div class="content" :class="{ 'container': darkMode}">
       <a-row type="flex" justify="center" align="middle">
-        <a-col :xs="22" :sm="22" :md="20" :lg="16" :xl="10">
+        <a-col :xs="22" :sm="22" :md="20" :lg="18" :xl="16" :xxl="14">
           <a-spin :spinning="loading" wrapperClassName="spin-loading-container" tip="Hello, ConteMan">
             <a-icon slot="indicator" class="spin-loading" type="loading" spin />
             <div class="col-container">
               <template v-if="!loading">
-                <div class="bg-logo">
-                  <img alt="conteman" v-if="darkMode" src="@/assets/img/conteman_circle_deal_dark_1000x1000.png"/>
-                  <img alt="conteman" v-else src="@/assets/img/conteman_circle_1000x1000.png"/>
-                </div>
                 <div class="title">
                   <span>{{ title }}</span>
                 </div>
@@ -19,28 +15,46 @@
                   {{ slogan }}
                 </div>
                 <div class="color-row bg-light-grey nav">
-                  <a-space :size="spaceSize">
-                    <span v-for="item in nav.items" :key="item.id" @click="$router.push({ path: item.value })">
-                      {{ item.code }}
-                    </span>
-                  </a-space>
+                  <span v-for="item in nav.items" :key="item.id" @click="$router.push({ path: item.value })">
+                    {{ item.code }}
+                  </span>
                 </div>
                 <div class="color-row bg-grey site">
-                  <a-space :size="spaceSize">
-                    <span v-for="item in site.items" :key="item.id" @click="turnUrl(item.value)">
-                      {{ item.code }}
-                    </span>
-                  </a-space>
+                  <span v-for="item in site.items" :key="item.id" @click="turnUrl(item.value)">
+                    {{ item.code }}
+                  </span>
                 </div>
                 <div class="color-row bg-light-grey social">
-                  <a-space :size="spaceSize">
-                    <a v-for="item in social.items" :key="item.id" :href="item.value">
-                      {{ item.code }}
-                    </a>
-                  </a-space>
+                  <span v-for="item in social.items" :key="item.id" @click="turnUrl(item.value)">
+                    {{ item.code }}
+                  </span>
                 </div>
-                <div class="year">
-                  ©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }}
+                <div class="info">
+                  <div class="beian">
+                    <svg width="88" height="9.14" @click="turnUrl('https://beian.miit.gov.cn/')">
+                      <text
+                        dominant-baseline="baseline"
+                        font-size="8"
+                        y="7.14"
+                        style="line-height: 1; vertical-align: middle;"
+                      >
+                        {{ $config.beian}}
+                      </text>
+                    </svg>
+                  </div>
+                  <div class="beian">
+                    <svg width="120" height="9.14" @click="turnUrl('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum)">
+                      <text
+                        dominant-baseline="baseline"
+                        font-size="8"
+                        y="7.14"
+                        style="line-height: 1; vertical-align: middle;"
+                      >
+                        {{ $config.policeBeian}}
+                      </text>
+                    </svg>
+                  </div>
+                  <div class="run-time">©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }}</div>
                 </div>
               </template>
             </div>
@@ -124,12 +138,29 @@ export default {
     display: grid;
     .col-container {
       width: 100%;
-      margin-top: -70px;
+      position: relative;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 200px;
+        width: 200px;
+        background: center / contain no-repeat url("~@/assets/img/conteman_circle_1000x1000.png");
+        z-index: -1;
+        opacity: 0.5;
+        -webkit-animation: myRotate 30s linear infinite;
+        animation: myRotate 30s linear infinite;
+      }
       .color-row {
         width: 100%;
-        height: 50px;
-        line-height: 50px;
-        padding: 0 20px;
+        min-height: 50px;
+        padding: 16px 20px;
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: space-between;
       }
 
       .bg-grey {
@@ -151,13 +182,16 @@ export default {
         margin-top: 20px;
         color: @font-color-white;
       }
-      .nav,.site {
+      .nav,.site,.social {
+        padding: 12px 20px;
+        position: relative;
         span {
           cursor: pointer;
           color: @font-color;
+          margin: 4px 12px 4px 0;
           &:hover {
             color: @hover-color;
-            border-bottom: 1px solid @hover-color;
+            box-shadow: 0 -1px 0 0 @hover-color inset;
           }
         }
       }
@@ -166,33 +200,19 @@ export default {
           color: @font-color-white;
         }
       }
-      .social {
-        a {
-          color: @font-color;
-          &:hover {
-            color: @hover-color;
-            border-bottom: 1px solid @hover-color;
-          }
-        }
-      }
-      .year {
+      .info {
         height: 50px;
         margin-top: 10px;
         text-align: right;
         font-size: 12px;
-        line-height: 50px;
-        opacity: 0.5;
-      }
-
-      .bg-logo {
-        position: absolute;
-        width: 220px;
-        top: 60px;
-        right: 20px;
-        -webkit-animation: myRotate 30s linear infinite;
-        animation: myRotate 30s linear infinite;
-        img {
-          width: 100%;
+        .beian {
+          cursor: pointer;
+          svg {
+            fill: @bg-color-grey
+          }
+        }
+        .run-time {
+          color: @bg-color-grey;
         }
       }
 
@@ -230,6 +250,11 @@ export default {
   }
   .bg-logo {
     transition: all 300ms;
+  }
+  .col-container {
+    &::after {
+      background: center / contain no-repeat url("~@/assets/img/conteman_circle_deal_dark_1000x1000.png") !important;
+    }
   }
 }
 </style>
