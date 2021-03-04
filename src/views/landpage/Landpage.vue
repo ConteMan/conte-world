@@ -31,24 +31,26 @@
                 </div>
                 <div class="info">
                   <div class="beian">
-                    <svg width="88" height="9.14" @click="turnUrl('https://beian.miit.gov.cn/')">
+                    <svg width="200" height="11.52" @click="turnUrl('https://beian.miit.gov.cn/')">
                       <text
                         dominant-baseline="baseline"
-                        font-size="8"
-                        y="7.14"
-                        style="line-height: 1; vertical-align: middle;"
+                        font-size="10"
+                        y="9.52"
+                        x="200"
+                        text-anchor="end"
                       >
                         {{ $config.beian}}
                       </text>
                     </svg>
                   </div>
                   <div class="beian">
-                    <svg width="120" height="9.14" @click="turnUrl('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum)">
+                    <svg width="200" height="11.52" @click="turnUrl('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum)">
                       <text
                         dominant-baseline="baseline"
-                        font-size="8"
-                        y="7.14"
-                        style="line-height: 1; vertical-align: middle;"
+                        font-size="10"
+                        y="9.52"
+                        x="200"
+                        text-anchor="end"
                       >
                         {{ $config.policeBeian}}
                       </text>
@@ -135,7 +137,7 @@ export default {
 .page-container {
   .content {
     min-height: 100vh;
-    display: grid;
+    padding: 100px 0 0 0;
     .col-container {
       width: 100%;
       position: relative;
@@ -202,13 +204,17 @@ export default {
       }
       .info {
         height: 50px;
-        margin-top: 10px;
+        margin-top: 30px;
         text-align: right;
         font-size: 12px;
         .beian {
           cursor: pointer;
           svg {
-            fill: @bg-color-grey
+            fill: @bg-color-grey;
+            text {
+              line-height: 1;
+              vertical-align: middle;
+            }
           }
         }
         .run-time {
