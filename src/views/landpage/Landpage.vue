@@ -141,7 +141,7 @@ export default {
     .col-container {
       width: 100%;
       position: relative;
-      &::after {
+      &::before {
         content: '';
         display: block;
         position: absolute;
@@ -150,7 +150,6 @@ export default {
         height: 200px;
         width: 200px;
         background: center / contain no-repeat url("~@/assets/img/conteman_circle_1000x1000.png");
-        z-index: -1;
         opacity: 0.5;
         -webkit-animation: myRotate 30s linear infinite;
         animation: myRotate 30s linear infinite;

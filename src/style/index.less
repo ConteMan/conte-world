@@ -25,6 +25,9 @@ body {
   a:hover {
     color: @red;
   }
+  #app {
+    background-color: white;
+  }
 }
 
 body::-webkit-scrollbar {
@@ -188,12 +191,25 @@ body::-webkit-scrollbar {
   color: @red;
 }
 
+.list-item {
+  .info {
+    color: @font-color-grey2;
+  }
+}
+
 // 暗黑模式
 .dark-theme {
-  background: @dark-theme-bg;
+  background-color: @dark-theme-bg;
   color: @dark-theme-color;
   transition: all 300ms;
   opacity: 0.99;
+  a,
+  h1, h2, h3, h4, h5, h6 {
+    color: @dark-theme-color;
+  }
+  #app {
+    background-color: @dark-theme-bg;
+  }
   .list-header {
     background: @dark-theme-bg;
     color: @dark-theme-color;
@@ -305,6 +321,16 @@ body::-webkit-scrollbar {
   .spin-loading-container {
     .ant-spin {
       background-color: @dark-theme-bg;
+    }
+  }
+
+  .content-container {
+    .list-item {
+      color: @dark-theme-color;
+      border-bottom-color: @dark-theme-border !important;
+      .info {
+        color: @grey-30;
+      }
     }
   }
 }

@@ -22,7 +22,7 @@
               <div class="card" v-if="['yuque_note'].includes(item.platform_type)" v-html="yuqueNoteFormat(item.content)" />
               <div class="info">
                 <span class="time">
-                  {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+                  {{ $dayjs(item.info_at).format("YYYY-MM-DD HH:mm:ss") }}
                 </span>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default {
     display: none;
   }
   .list-item {
-    padding: 16px;
+    padding: 16px 16px 8px 16px;
     border-bottom: 1px solid @border-color;
     &:hover {
       background-color: @grey-20;

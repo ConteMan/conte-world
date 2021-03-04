@@ -5,6 +5,12 @@
         <a-icon type="appstore" :theme="menuIconTheme"/>
       </a-button>
     </div>
+    <div v-if="enableFullscreen" class="item">
+      <a-button ghost @click="fullScreen()" title="全屏">
+        <a-icon v-if="isFullscreen" type="fullscreen-exit"/>
+        <a-icon v-else type="fullscreen"/>
+      </a-button>
+    </div>
     <div class="item">
       <a-button ghost @click="darkAction()" title="暗黑模式">
         <a-icon type="bulb" :theme="darkModeIconTheme"/>
@@ -14,6 +20,7 @@
 </template>
 
 <script>
+import fscreen from 'fscreen'
 import { mapMutations } from 'vuex'
 import * as MT from '@/store/mutation-types'
 import { mixin } from '@/utils/mixin'
@@ -26,6 +33,13 @@ export default {
       default: true,
     },
   },
+  mixins: [mixin],
+  data() {
+    return {
+      enableFullscreen: true,
+      isFullscreen: false,
+    }
+  },
   computed: {
     menuIconTheme: function() {
       return 'outlined'
@@ -34,12 +48,30 @@ export default {
       return this.darkMode ? 'filled' : 'outlined'
     }
   },
-  mixins: [mixin],
+  created() {
+    this.enableFullscreen = fscreen.fullscreenEnabled
+    fscreen.addEventListener('fullscreenchange', this.fullscreenChange, false)
+  },
   methods: {
     ...mapMutations('app', {
       menuAction: MT.MENU_STATUS,
       darkAction: MT.DARK_MODE,
     }),
+    fullScreen() {
+      const element = document.body
+      if (fscreen.fullscreenElement === null) {
+        fscreen.requestFullscreen(element)
+      } else {
+        fscreen.exitFullscreen()
+      }
+    },
+    fullscreenChange() {
+      if (fscreen.fullscreenElement !== null) {
+        this.isFullscreen = true
+      } else {
+        this.isFullscreen = false
+      }
+    }
   }
 }
 </script>
