@@ -71,9 +71,13 @@ export default {
 @import "~@/style/variables";
 
 .markdown-container {
-  max-width: 800px;
   margin: auto;
   padding: 71px 16px 16px;
+  max-height: 100vh;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .dark-theme {

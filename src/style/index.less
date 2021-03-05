@@ -63,14 +63,14 @@ body::-webkit-scrollbar {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  border-bottom: 1px solid @grey;
+  border-bottom: 1px solid @border-color;
   position: fixed;
   background: white;
   z-index: 999;
   .back-btn {
     display: inline-block;
     width: 40px;
-    border-right: 1px solid @grey;
+    border-right: 1px solid @border-color;
   }
   .back-btn:hover {
     color: @red-60;
@@ -192,8 +192,17 @@ body::-webkit-scrollbar {
 }
 
 .list-item {
+  padding: 16px 16px 8px 16px;
+  border-bottom: 1px solid @border-color;
+  &:hover {
+    background-color: @border-color;
+  }
   .info {
+    padding: 8px 0 0 0;
+    text-align: left;
     color: @font-color-grey2;
+    font-size: 12px;
+    font-style: italic;
   }
 }
 

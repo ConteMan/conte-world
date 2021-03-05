@@ -103,18 +103,11 @@ export default {
     display: none;
   }
   .list-item {
-    padding: 16px;
     &:hover {
       cursor: pointer;
-      background-color: @grey-20;
       .title {
         color: @red;
       }
-    }
-    .info {
-      text-align: left;
-      font-size: 12px;
-      padding: 8px 0 0 0;
     }
   }
 }

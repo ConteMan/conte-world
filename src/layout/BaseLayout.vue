@@ -2,8 +2,22 @@
   <div>
     <float-actions/>
     <div class="base-container">
-      <div v-if="menuStatus && !isDrawer" class="side-container">
+
+      <div
+        v-if="sideShow"
+        class="side-container"
+        ref="sideDom"
+        :style="{ 'width': sideWidth + 'px', 'min-width': sideMinWidth + 'px' }"
+      >
         <sidebar/>
+      </div>
+      <div
+        v-if="sideShow"
+        class="touch-div"
+        ref="moveDom"
+      >
+        <span></span>
+        <span></span>
       </div>
       <a-drawer
         placement="left"
@@ -15,14 +29,14 @@
       >
         <sidebar/>
       </a-drawer>
+
       <div
         class="content-container"
         :class="{'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer}"
       >
-        <transition name="fade">
-          <router-view/>
-        </transition>
+        <router-view/>
       </div>
+
     </div>
   </div>
 </template>
@@ -47,12 +61,22 @@ export default {
       fullWidth: window.innerWidth,
       timer: false,
       drawerVisible: false,
+
+      sideWidth: 200,
+      sideMaxWidth: 500,
+      sideMinWidth: 100,
+      clientStartX: 0,
+      leftDom: null,
     }
   },
   computed: {
     isDrawer: function() {
       return this.fullWidth <= 768
     },
+    sideShow: function() {
+      const show = this.fullWidth > 768 && this.menuStatus
+      return show
+    }
   },
   created() {
     window.addEventListener('resize', () => {
@@ -66,13 +90,58 @@ export default {
       }
     }, false)
   },
+  mounted() {
+    if (this.sideShow) {
+      this.dragControllerDeal()
+    }
+  },
+  watch: {
+    sideShow(target) {
+      if (target) {
+        // sure the side dom exist
+        this.$nextTick(() => {
+          this.dragControllerDeal()
+        })
+      }
+    }
+  },
   methods: {
+    ...mapMutations('app', {
+      menuAction: MT.MENU_STATUS,
+    }),
     drawerClose() {
       this.menuAction(false)
     },
-    ...mapMutations('app', {
-      menuAction: MT.MENU_STATUS,
-    })
+    dragControllerDeal() {
+      const moveDom = this.$refs.moveDom
+      this.leftDom = this.$refs.sideDom
+      moveDom.onmousedown = e => {
+        this.clientStartX = e.clientX
+        e.preventDefault()
+        document.onmousemove = e => {
+          this.moveHandle(e.clientX, this.leftDom)
+        }
+
+        document.onmouseup = e => {
+          document.onmouseup = null
+          document.onmousemove = null
+        }
+      }
+    },
+    moveHandle(nowClientX) {
+      const computedX = nowClientX - this.clientStartX
+      let changeWidth = this.sideWidth + computedX
+
+      if (changeWidth < this.sideMinWidth) {
+        changeWidth = this.sideMinWidth
+      }
+
+      if (changeWidth > this.sideMaxWidth) {
+        changeWidth = this.sideMaxWidth
+      }
+      this.sideWidth = changeWidth
+      this.clientStartX = nowClientX
+    }
   },
   beforeRouteLeave(to, from, next) {
     if (this.isDrawer) {
@@ -84,40 +153,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "~@/style/variables";
-
-.base-container {
-  height: 100%;
-
-  .side-container {
-    position: fixed;
-    height: 100%;
-    width: 100px;
-    margin: 0;
-    border-right: 1px solid @border-color;
-    text-align: center;
-  }
-
-  .content-container {
-    position: relative;
-    margin: 0 0 0 100px;
-
-    div:first-child {
-      min-height: 100vh;
-      // padding: 0 0 16px 0;
-    }
-  }
-
-  .content-container.no-menu {
-    margin: 0;
-  }
-}
-
-.dark-theme {
-  .base-container {
-    .side-container {
-      border-right: 1px solid @dark-theme-border;
-    }
-  }
-}
+@import './index.less';
 </style>

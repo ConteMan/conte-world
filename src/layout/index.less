@@ -1,0 +1,67 @@
+@import "~@/style/variables";
+
+.base-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  .side-container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    // position: fixed;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    // border-right: 1px solid @border-color;
+  }
+
+  .touch-div {
+    flex-grow: 0;
+    flex-shrink: 0;
+    top: 0;
+    height: 100vh;
+    left: 100%;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: col-resize;
+    background-color: @border-color;
+    span {
+      width: 2px;
+      background-color: @grey;
+      margin: 0 2px;
+      height: 12px;
+    }
+    &:hover,&:active {
+      span {
+        height: 15px;
+      }
+    }
+  }
+
+  .content-container {
+    flex-grow: 1;
+    // position: relative;
+    // margin: 0 0 0 100px;
+
+    div:first-child {
+      min-height: 100vh;
+      // padding: 0 0 16px 0;
+    }
+  }
+
+  .content-container.no-menu {
+    margin: 0;
+  }
+}
+
+.dark-theme {
+  .base-container {
+    .side-container {
+      border-right: 1px solid @dark-theme-border;
+    }
+  }
+}

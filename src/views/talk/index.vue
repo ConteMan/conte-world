@@ -105,17 +105,5 @@ export default {
   &::-webkit-scrollbar {
     display: none;
   }
-  .list-item {
-    padding: 16px 16px 8px 16px;
-    border-bottom: 1px solid @border-color;
-    &:hover {
-      background-color: @grey-20;
-    }
-    .info {
-      text-align: left;
-      font-size: 12px;
-      padding: 8px 0 0 0;
-    }
-  }
 }
 </style>
