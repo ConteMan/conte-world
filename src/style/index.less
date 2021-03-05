@@ -206,6 +206,12 @@ body::-webkit-scrollbar {
   }
 }
 
+.markdown-body {
+  img {
+    max-width: 800px;
+  }
+}
+
 // 暗黑模式
 .dark-theme {
   background-color: @dark-theme-bg;
@@ -333,13 +339,14 @@ body::-webkit-scrollbar {
     }
   }
 
-  .content-container {
-    .list-item {
-      color: @dark-theme-color;
-      border-bottom-color: @dark-theme-border !important;
-      .info {
-        color: @grey-30;
-      }
+  .list-item {
+    color: @dark-theme-color;
+    border-bottom-color: @dark-theme-border !important;
+    &:hover {
+      background-color: @dark-theme-bg-hover !important;
+    }
+    .info {
+      color: @grey-30;
     }
   }
 }
