@@ -14,7 +14,6 @@ export default {
     name: 'ls', // name variable Vue.[ls] or this.[$ls],
     storage: 'local' // storage name session, local, memory
   },
-  defaultRouteName: 'One',
 
   // local setting
   menuStatus: true, // 展示菜单
@@ -22,5 +21,8 @@ export default {
   storageKeys: {
     menuStatus: 'menu_status',
     routes: 'routes',
-  }
+  },
+
+  // header height
+  headerHeight: 55,
 }

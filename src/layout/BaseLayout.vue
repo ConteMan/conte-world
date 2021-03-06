@@ -1,24 +1,22 @@
 <template>
   <div>
-    <float-actions/>
     <div class="base-container">
-
-      <div
-        v-if="sideShow"
-        class="side-container"
-        ref="sideDom"
-        :style="{ 'width': sideWidth + 'px', 'min-width': sideMinWidth + 'px' }"
-      >
-        <sidebar/>
-      </div>
-      <div
-        v-if="sideShow"
-        class="touch-div"
-        ref="moveDom"
-      >
-        <span></span>
-        <span></span>
-      </div>
+      <template v-if="sideShow">
+        <div
+          class="side-container"
+          ref="sideDom"
+          :style="{ 'width': sideWidth + 'px' }"
+        >
+          <sidebar/>
+        </div>
+        <div
+          class="touch-div"
+          ref="moveDom"
+        >
+          <span></span>
+          <span></span>
+        </div>
+      </template>
       <a-drawer
         placement="left"
         wrapClassName="sidebar-drawer"
@@ -32,8 +30,11 @@
 
       <div
         class="content-container"
-        :class="{'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer}"
       >
+        <content-header
+          class="content-header"
+          :style="{ 'height': $config.headerHeight + 'px' }"
+        />
         <router-view/>
       </div>
 
@@ -42,8 +43,8 @@
 </template>
 
 <script>
+import ContentHeader from '@/layout/components/ContentHeader'
 import Sidebar from '@/components/header/Sidebar'
-import FloatActions from '@/layout/components/FloatActions'
 
 import { mixin } from '@/utils/mixin'
 import { mapMutations } from 'vuex'
@@ -52,30 +53,28 @@ import * as MT from '@/store/mutation-types'
 export default {
   name: 'BaseLayout',
   components: {
+    ContentHeader,
     Sidebar,
-    FloatActions,
   },
   mixins: [mixin],
   data() {
     return {
-      fullWidth: window.innerWidth,
       timer: false,
       drawerVisible: false,
 
-      sideWidth: 200,
+      sideWidth: 270,
       sideMaxWidth: 500,
-      sideMinWidth: 100,
+      sideMinWidth: 160,
       clientStartX: 0,
       leftDom: null,
     }
   },
   computed: {
     isDrawer: function() {
-      return this.fullWidth <= 768
+      return this.isMobile
     },
     sideShow: function() {
-      const show = this.fullWidth > 768 && this.menuStatus
-      return show
+      return !this.isMobile && this.menuStatus
     }
   },
   created() {
@@ -84,7 +83,7 @@ export default {
         this.timer = true
         setTimeout(
           () => {
-            this.fullWidth = window.innerWidth
+            this.setContentHeight()
             this.timer = false
           }, 400)
       }
@@ -94,6 +93,7 @@ export default {
     if (this.sideShow) {
       this.dragControllerDeal()
     }
+    this.setContentHeight()
   },
   watch: {
     sideShow(target) {
@@ -108,6 +108,7 @@ export default {
   methods: {
     ...mapMutations('app', {
       menuAction: MT.MENU_STATUS,
+      contentHeightAction: MT.CONTENT_HEIGHT,
     }),
     drawerClose() {
       this.menuAction(false)
@@ -141,6 +142,11 @@ export default {
       }
       this.sideWidth = changeWidth
       this.clientStartX = nowClientX
+    },
+    setContentHeight() {
+      const contentDom = document.querySelector('.content-container')
+      const height = window.getComputedStyle(contentDom).getPropertyValue('height')
+      this.contentHeightAction(parseInt(height))
     }
   },
   beforeRouteLeave(to, from, next) {

@@ -8,7 +8,7 @@
             <a-icon slot="indicator" class="spin-loading" type="loading" spin />
             <div class="col-container">
               <template v-if="!loading">
-                <div class="title">
+                <div class="title logo">
                   <span>{{ title }}</span>
                 </div>
                 <div class="color-row bg-grey slogan">
@@ -250,9 +250,6 @@ export default {
 
 // dark mode
 .dark-theme {
-  .title {
-    color: @font-color-grey2;
-  }
   .bg-logo {
     transition: all 300ms;
   }

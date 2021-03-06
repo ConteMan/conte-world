@@ -9,6 +9,8 @@ import {
   Spin,
   Drawer,
   Modal,
+  Popover,
+  ConfigProvider,
   // Avatar,
   // Switch,
   // Collapse,
@@ -24,6 +26,8 @@ Vue.component(Col.name, Col)
 Vue.component(Spin.name, Spin)
 Vue.component(Drawer.name, Drawer)
 Vue.component(Modal.name, Modal)
+Vue.component(Popover.name, Popover)
+Vue.component(ConfigProvider.name, ConfigProvider)
 // Vue.component(Collapse.name, Collapse)
 // Vue.component(Collapse.Panel.name, Collapse.Panel)
 // Vue.component(Switch.name, Switch)

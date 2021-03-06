@@ -8,6 +8,8 @@ const app = {
     loading: false,
     darkMode: false,
     menuStatus: setting.menuStatus,
+    isMobile: window.innerWidth <= 768,
+    contentHeight: 0,
   },
   mutations: {
     [MT.LOADING]: (state, type) => {
@@ -20,6 +22,12 @@ const app = {
     [MT.MENU_STATUS]: (state, type = 'default') => {
       state.menuStatus = type === 'default' ? !state.menuStatus : Boolean(type)
       Vue.ls.set(setting.storageKeys.menuStatus, state.menuStatus)
+    },
+    [MT.IS_MOBILE]: (state, type) => {
+      state.isMobile = Boolean(type)
+    },
+    [MT.CONTENT_HEIGHT]: (state, height) => {
+      state.contentHeight = height
     }
   },
   actions: {}

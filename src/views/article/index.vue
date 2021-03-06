@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ 'height': listHeight }">
+  <div :style="{ 'height': listHeight + 'px'}">
     <a-spin
       :spinning="loading"
       wrapperClassName="spin-loading-container"
@@ -13,7 +13,7 @@
         :infinite-scroll-disabled="busy"
         infinite-scroll-distance="200"
         infinite-scroll-immediate-check="true"
-        :style="{ 'height': listHeight }"
+        :style="{ 'height': listHeight + 'px'  }"
       >
         <template v-if="items.length">
           <template v-for="item in items">
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { mixin } from '@/utils/mixin'
 import Article from '@/api/article'
 import infiniteScroll from 'vue-infinite-scroll'
 
@@ -43,6 +44,7 @@ export default {
   directives: {
     infiniteScroll,
   },
+  mixins: [mixin],
   data() {
     return {
       loading: true,
@@ -52,13 +54,11 @@ export default {
       limit: 20,
       busy: false,
       total: 0,
-
-      pageHeight: document.body.clientHeight,
     }
   },
   computed: {
     listHeight() {
-      return this.pageHeight + 'px'
+      return this.contentHeight - this.$config.headerHeight
     }
   },
   async created() {
@@ -66,12 +66,6 @@ export default {
     setTimeout(() => {
       this.loading = false
     }, 300)
-    const that = this
-    window.onresize = () => {
-      return (() => {
-        that.pageHeight = document.body.clientHeight
-      })()
-    }
   },
   methods: {
     async index() {

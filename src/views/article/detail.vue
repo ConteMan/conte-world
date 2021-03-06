@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="back-header">
-      <div class="back-btn" @click="$router.push({ path: '/article' })">
-        <a-icon class="back-btn-icon" type="left"/>
-      </div>
-      <div class="title">
+    <div class="title">
+      <span class="name">
         {{ title }}
-      </div>
+      </span>
+      <span class="date">
+        {{ $dayjs(fullData.updated_at).format( 'YYYY-MM-DD') }}
+      </span>
     </div>
     <template v-if="platform === 'YUQUE'">
       <iframe
@@ -32,6 +32,7 @@ export default {
       data: '',
       title: '',
       platform: 'ORI',
+      fullData: '',
     }
   },
   computed: {
@@ -59,6 +60,7 @@ export default {
               this.data = data.yuque_content.body_html
             }
             this.title = data.title
+            this.fullData = data
           }
         }
       )
@@ -70,9 +72,24 @@ export default {
 <style scoped lang="less">
 @import "~@/style/variables";
 
+.title {
+  padding: @base-padding;
+  text-align: left;
+  .name {
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .date {
+    padding: @base-padding/2;
+    font-size: 14px;
+    color: @font-color-grey;
+    font-style: italic;
+  }
+}
+
 .markdown-container {
   margin: auto;
-  padding: 71px 16px 16px;
+  padding: @base-padding;
   max-height: 100vh;
   overflow-y: scroll;
   &::-webkit-scrollbar {

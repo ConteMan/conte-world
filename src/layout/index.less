@@ -1,5 +1,16 @@
 @import "~@/style/variables";
 
+.content-header {
+  // position: fixed;
+  width: 100%;
+  height: 50px;
+  // z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid @border-color;
+}
+
 .base-container {
   height: 100%;
   display: flex;
@@ -44,13 +55,15 @@
 
   .content-container {
     flex-grow: 1;
+    height: 100vh;
+    overflow: hidden;
     // position: relative;
     // margin: 0 0 0 100px;
 
-    div:first-child {
-      min-height: 100vh;
-      // padding: 0 0 16px 0;
-    }
+    // div:first-child {
+    //   min-height: 100vh;
+    //   // padding: 0 0 16px 0;
+    // }
   }
 
   .content-container.no-menu {
@@ -68,6 +81,9 @@
       span {
         background-color: @grey-20;
       }
+    }
+    .content-header{
+      border-bottom: 1px solid @dark-theme-border;
     }
   }
 }

@@ -10,9 +10,9 @@ Vue.use(Router)
 
 export const routes = [
   landpage,
-  talk,
   article,
   movie,
+  talk,
   {
     path: '*',
     name: '404',
