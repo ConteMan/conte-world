@@ -1,6 +1,5 @@
 <template>
   <div class="nav-container">
-    <div id="top-bar"/>
     <div class="title logo" @click="$router.push({ path: '/' })">
       {{ $config.siteName }}
     </div>
@@ -26,7 +25,6 @@
 </template>
 
 <script>
-import Wave from '@/utils/wave.es.min'
 import fscreen from 'fscreen'
 import { mixin } from '@/utils/mixin'
 import { mapGetters } from 'vuex'
@@ -55,21 +53,6 @@ export default {
     fscreen.addEventListener('fullscreenchange', this.fullscreenChange, false)
   },
   mounted() {
-    this.wave = new Wave('#top-bar', {
-      number: 3,
-      smooth: 50,
-      velocity: 1,
-      height: 20,
-      colors: ['rgb(240, 28, 0, 0.2)'],
-      opacity: 0.3,
-      position: 'bottom',
-      border: {
-        show: false,
-        width: 2,
-        color: [],
-      },
-    })
-    this.wave.animate()
   },
   methods: {
     turnUrl(url) {
