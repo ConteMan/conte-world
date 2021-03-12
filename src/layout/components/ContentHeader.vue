@@ -3,8 +3,20 @@
     <div class="trigger" @click="menuAction()">
       <a-icon type="menu" class="trigger-icon"/>
     </div>
-    <div v-if="isArticleDetail" class="trigger" @click="$router.push({ path: '/article'})">
+    <div
+      v-if="isArticleDetail"
+      class="trigger"
+      @click="$router.push({ path: '/article'})"
+    >
       <a-icon type="left" class="trigger-icon"/>
+    </div>
+    <div
+      v-if="isArticle"
+      class="trigger end"
+      title="RSS Feed of Article"
+      @click="turnUrl('https://isconte.com/feed/article.rss')"
+    >
+      <c-icon type="icon-rss" class="trigger-icon"/>
     </div>
   </div>
 </template>
@@ -16,6 +28,7 @@ export default {
   name: 'ContentHeader',
   data() {
     return {
+      isArticle: false,
       isArticleDetail: false,
     }
   },
@@ -31,12 +44,13 @@ export default {
       darkAction: MT.DARK_MODE,
     }),
     deal() {
-      if (this.$route.name === 'ArticleDetail') {
-        this.isArticleDetail = true
-      } else {
-        this.isArticleDetail = false
-      }
-    }
+      this.isArticleDetail = this.$route.name === 'ArticleDetail'
+      this.isArticle = ['Article', 'ArticleDetail'].includes(this.$route.name)
+    },
+    turnUrl(url) {
+      window.location.href = url
+      return true
+    },
   },
 }
 </script>
@@ -59,6 +73,10 @@ export default {
     }
     &:hover, &:focus, &:active, &:target {
       opacity: 1;
+    }
+    &.end {
+      position: absolute;
+      right: 20px;
     }
   }
   .trigger.ant-popover-open {

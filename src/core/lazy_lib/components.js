@@ -38,3 +38,8 @@ Vue.component(ConfigProvider.name, ConfigProvider)
 // see https://github.com/vueComponent/ant-design-vue/issues/2261#issuecomment-762270176
 Drawer.install(Vue)
 Modal.install(Vue)
+
+const CIcon = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_2204869_u1x27dbfzof.js',
+})
+Vue.component('c-icon', CIcon)
