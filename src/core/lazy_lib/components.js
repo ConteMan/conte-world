@@ -40,6 +40,6 @@ Drawer.install(Vue)
 Modal.install(Vue)
 
 const CIcon = Icon.createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2204869_u1x27dbfzof.js',
+  scriptUrl: '//at.alicdn.com/t/font_2204869_cc6k4eg6uv.js',
 })
 Vue.component('c-icon', CIcon)

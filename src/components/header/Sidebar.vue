@@ -14,7 +14,7 @@
     </div>
     <div class="nav-bottom">
         <span class="bottom-item" @click="darkAction()" title="暗黑模式">
-          <a-icon type="bulb" class="bottom-icon"/>
+          <c-icon type="icon-dark" class="bottom-icon"/>
         </span>
         <span v-if="enableFullscreen" class="bottom-item" @click="fullScreen()" title="全屏">
           <a-icon v-if="isFullscreen" type="fullscreen-exit" class="bottom-icon"/>

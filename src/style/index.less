@@ -9,7 +9,7 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-  font-family: "更纱黑体 SC", "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Cousine", "更纱黑体 SC", "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -39,10 +39,6 @@ body::-webkit-scrollbar {
   font-size: 24px;
   font-weight: 800;
   color: @font-color-grey;
-  text-shadow: 1px 1px @font-color-grey2,
-  2px 2px @font-color-grey2,
-  3px 3px @font-color-grey2,
-  4px 4px @font-color-grey2;
 }
 
 .list-header {
@@ -198,13 +194,11 @@ body::-webkit-scrollbar {
   .ant-spin {
     background-color: white;
     max-height: none !important;
+    height: 100%;
   }
 }
-.spin-loading {
-  color: @red;
-}
-.ant-spin-text {
-  color: @red;
+.spin-loading, .ant-spin-text {
+  color: @font-color-grey;
 }
 
 .list-item {
@@ -248,7 +242,7 @@ body::-webkit-scrollbar {
     transition: all 300ms;
   }
   .logo {
-    color: #585858;
+    color: @grey;
   }
 
   .markdown-body {
@@ -343,6 +337,9 @@ body::-webkit-scrollbar {
     .ant-spin {
       background-color: @dark-theme-bg;
     }
+  }
+  .ant-spin-nested-loading > div > .ant-spin .ant-spin-text {
+    text-shadow: none;
   }
 
   .list-item {

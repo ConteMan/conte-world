@@ -1,6 +1,5 @@
 <template>
   <div class="page-container" :class="{ 'container': darkMode}">
-    <float-actions :show-menu="false"/>
     <div class="content" :class="{ 'container': darkMode}">
       <a-row type="flex" justify="center" align="middle">
         <a-col :xs="22" :sm="22" :md="20" :lg="18" :xl="16" :xxl="14">
@@ -10,6 +9,9 @@
               <template v-if="!loading">
                 <div class="title logo">
                   <span>{{ title }}</span>
+                  <span class="dark" @click="darkAction()">
+                    <c-icon type="icon-dark"/>
+                  </span>
                 </div>
                 <div class="color-row bg-grey slogan">
                   {{ slogan }}
@@ -25,8 +27,8 @@
                   </span>
                 </div>
                 <div class="color-row bg-light-grey social">
-                  <span v-for="item in social.items" :key="item.id" @click="turnUrl(item.value)">
-                    {{ item.code }}
+                  <span v-for="item in social.items" :key="item.id" title="item.code" @click="turnUrl(item.value)">
+                    <c-icon :type="'icon-' + item.extend.icon"/>
                   </span>
                 </div>
                 <div class="info">
@@ -69,14 +71,12 @@
 
 <script>
 import { mixin } from '@/utils/mixin'
-import FloatActions from '@/layout/components/FloatActions'
+import { mapMutations } from 'vuex'
+import * as MT from '@/store/mutation-types'
 import commonApi from '@/api/common'
 
 export default {
   name: 'Landpage',
-  components: {
-    FloatActions,
-  },
   mixins: [mixin],
   data() {
     return {
@@ -95,6 +95,9 @@ export default {
     this.getBase()
   },
   methods: {
+    ...mapMutations('app', {
+      darkAction: MT.DARK_MODE,
+    }),
     turnUrl(url) {
       window.location.href = url
       return true
@@ -179,6 +182,14 @@ export default {
         line-height: 50px;
         opacity: 0.99;
       }
+      .dark {
+        margin-left: 40px;
+        opacity: 0.2;
+        &:hover {
+          cursor: pointer;
+          opacity: 1;
+        }
+      }
       .slogan {
         margin-top: 20px;
         color: @font-color-white;
@@ -191,6 +202,7 @@ export default {
           color: @font-color;
           margin: 4px 12px 4px 0;
           &:hover {
+            font-weight: 800;
             color: @hover-color;
             box-shadow: 0 -1px 0 0 @hover-color inset;
           }
@@ -199,6 +211,15 @@ export default {
       .site {
         span {
           color: @font-color-white;
+        }
+      }
+      .social {
+        font-size: 16px;
+        span {
+          margin: 4px 16px 4px 0;
+          &:hover {
+            box-shadow: none;
+          }
         }
       }
       .info {
@@ -254,8 +275,22 @@ export default {
     transition: all 300ms;
   }
   .col-container {
-    &::after {
+    &::before {
       background: center / contain no-repeat url("~@/assets/img/conteman_circle_deal_dark_1000x1000.png") !important;
+      opacity: 0.1 !important;
+    }
+    .bg-grey {
+      background: @dark-theme-border !important;
+      color: @grey !important;
+    }
+    .bg-light-grey {
+      background: @dark-theme-bg !important;
+      color: @border-color !important;
+    }
+    .nav,.site,.social {
+      span {
+        color: @border-color !important;
+      }
     }
   }
 }
