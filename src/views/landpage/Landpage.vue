@@ -1,68 +1,75 @@
 <template>
-  <div class="page-container" :class="{ 'container': darkMode}">
-    <div class="content" :class="{ 'container': darkMode}">
+  <div v-if="ready" class="page-container">
+    <div class="content">
       <a-row type="flex" justify="center" align="middle">
         <a-col :xs="22" :sm="22" :md="20" :lg="18" :xl="16" :xxl="14">
-          <a-spin :spinning="loading" wrapperClassName="spin-loading-container" tip="Hello, ConteMan">
-            <a-icon slot="indicator" class="spin-loading" type="loading" spin />
-            <div class="col-container">
-              <template v-if="!loading">
-                <div class="title logo">
-                  <span>{{ title }}</span>
-                  <span class="dark" @click="darkAction()">
-                    <c-icon type="icon-dark"/>
-                  </span>
-                </div>
-                <div class="color-row bg-grey slogan">
-                  {{ slogan }}
-                </div>
-                <div class="color-row bg-light-grey nav">
-                  <span v-for="item in nav.items" :key="item.id" @click="$router.push({ path: item.value })">
-                    {{ item.code }}
-                  </span>
-                </div>
-                <div class="color-row bg-grey site">
-                  <span v-for="item in site.items" :key="item.id" @click="turnUrl(item.value)">
-                    {{ item.code }}
-                  </span>
-                </div>
-                <div class="color-row bg-light-grey social">
-                  <span v-for="item in social.items" :key="item.id" title="item.code" @click="turnUrl(item.value)">
-                    <c-icon :type="'icon-' + item.extend.icon"/>
-                  </span>
-                </div>
-                <div class="info">
-                  <div class="beian">
-                    <svg width="200" height="11.52" @click="turnUrl('https://beian.miit.gov.cn/')">
-                      <text
-                        dominant-baseline="baseline"
-                        font-size="10"
-                        y="9.52"
-                        x="200"
-                        text-anchor="end"
-                      >
-                        {{ $config.beian}}
-                      </text>
-                    </svg>
-                  </div>
-                  <div class="beian">
-                    <svg width="200" height="11.52" @click="turnUrl('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum)">
-                      <text
-                        dominant-baseline="baseline"
-                        font-size="10"
-                        y="9.52"
-                        x="200"
-                        text-anchor="end"
-                      >
-                        {{ $config.policeBeian}}
-                      </text>
-                    </svg>
-                  </div>
-                  <div class="run-time">©{{ $config.siteCreateTime }} - {{ $dayjs().format('YYYY') }}</div>
-                </div>
-              </template>
+          <div class="col-container">
+            <div class="title logo">
+              <span>{{ info.title }}</span>
+              <span class="dark" @click="darkAction()">
+                <c-icon type="icon-dark"/>
+              </span>
             </div>
-          </a-spin>
+            <div class="color-row bg-grey slogan">
+              {{ info.slogan }}
+            </div>
+            <div class="color-row bg-light-grey nav">
+              <span v-for="item in info.nav.items" :key="item.id" @click="$router.push({ path: item.value })">
+                {{ item.extend ? item.extend.name : item.code }}
+              </span>
+            </div>
+            <div class="color-row bg-grey site">
+              <span v-for="item in info.site.items" :key="item.id" @click="turnUrl(item.value)">
+                {{ item.extend ? item.extend.name : item.code }}
+              </span>
+            </div>
+            <div class="color-row bg-light-grey social">
+              <span v-for="item in info.social.items" :key="item.id" title="item.code" @click="turnUrl(item.value)">
+                <c-icon :type="'icon-' + item.extend.icon"/>
+              </span>
+            </div>
+            <div class="info">
+              <div class="beian">
+                <svg width="200" height="11.52" @click="turnUrl('https://beian.miit.gov.cn/')">
+                  <text
+                    dominant-baseline="baseline"
+                    font-size="10"
+                    y="9.52"
+                    x="200"
+                    text-anchor="end"
+                  >
+                    {{ $config.beian}}
+                  </text>
+                </svg>
+              </div>
+              <div class="beian">
+                <svg width="200" height="11.52" @click="turnUrl('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum)">
+                  <text
+                    dominant-baseline="baseline"
+                    font-size="10"
+                    y="9.52"
+                    x="200"
+                    text-anchor="end"
+                  >
+                    {{ $config.policeBeian}}
+                  </text>
+                </svg>
+              </div>
+              <div class="run-time">
+                <svg width="300" height="11.52">
+                  <text
+                    dominant-baseline="baseline"
+                    font-size="10"
+                    y="9.52"
+                    x="300"
+                    text-anchor="end"
+                  >
+                    CODE && DESIGN BY CONTEMAN ©{{ $config.siteCreateTime }}-{{ $dayjs().format('YYYY') }}
+                  </text>
+                </svg>
+              </div>
+            </div>
+          </div>
         </a-col>
       </a-row>
     </div>
@@ -73,7 +80,6 @@
 import { mixin } from '@/utils/mixin'
 import { mapMutations } from 'vuex'
 import * as MT from '@/store/mutation-types'
-import commonApi from '@/api/common'
 
 export default {
   name: 'Landpage',
@@ -86,13 +92,26 @@ export default {
       site: [],
       social: [],
 
-      loading: true,
-      loadingTime: 500,
       spaceSize: 20,
     }
   },
-  created() {
-    this.getBase()
+  computed: {
+    ready() {
+      return Object.keys(this.info).length > 0
+    }
+  },
+  watch: {
+    info(target) {
+      const ready = Object.keys(target).length > 0
+      if (ready) {
+        const { title, slogan, nav, site, social } = this.info
+        this.title = title
+        this.slogan = slogan
+        this.nav = nav
+        this.site = site
+        this.social = social
+      }
+    }
   },
   methods: {
     ...mapMutations('app', {
@@ -102,28 +121,6 @@ export default {
       window.location.href = url
       return true
     },
-    async getBase() {
-      const start = this.$dayjs().millisecond()
-      const res = await commonApi.base()
-      if (res.data.code === 0) {
-        const base = res.data.data
-        this.title = base.title
-        this.slogan = base.slogan
-        this.nav = base.nav
-        this.site = base.site
-        this.social = base.social
-
-        const end = this.$dayjs().millisecond()
-        const time = end - start
-        if (time < this.loadingTime) {
-          setTimeout(() => {
-            this.loading = false
-          }, this.loadingTime - time)
-        } else {
-          this.loading = false
-        }
-      }
-    }
   }
 }
 </script>
@@ -227,7 +224,7 @@ export default {
         margin-top: 30px;
         text-align: right;
         font-size: 12px;
-        .beian {
+        .beian,.run-time {
           cursor: pointer;
           svg {
             fill: @bg-color-grey;
@@ -236,9 +233,6 @@ export default {
               vertical-align: middle;
             }
           }
-        }
-        .run-time {
-          color: @bg-color-grey;
         }
       }
 

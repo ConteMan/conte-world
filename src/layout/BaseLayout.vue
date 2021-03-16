@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout-container">
     <div class="base-container">
       <template v-if="sideShow">
         <div

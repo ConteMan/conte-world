@@ -1,23 +1,37 @@
 <template>
-  <div id="app">
-    <a-config-provider
-      :getPopupContainer="getPopupContainer"
-    >
-      <router-view/>
-    </a-config-provider>
-  </div>
+  <a-spin
+    :spinning="loading"
+    wrapperClassName="spin-loading-container"
+    tip="Hello, ConteMan"
+    :class="{'z-index-0': !loading}"
+  >
+    <a-icon slot="indicator" class="spin-loading" type="loading" spin />
+    <div id="app">
+      <transition
+        name="custom-classes-transition"
+        :enter-active-class="`animated ${enterAnimate} page-toggle-enter-active`"
+        :leave-active-class="`animated ${leaveAnimate} page-toggle-leave-active`"
+      >
+        <a-config-provider
+          :getPopupContainer="getPopupContainer"
+        >
+          <router-view/>
+        </a-config-provider>
+      </transition>
+    </div>
+  </a-spin>
 </template>
 
 <script>
-import { mixin } from '@/utils/mixin'
-import * as MT from '@/store/mutation-types'
-import { mapMutations } from 'vuex'
+import { appMixin } from '@/utils/mixin'
 
 export default {
   name: 'App',
-  mixins: [mixin],
+  mixins: [appMixin],
   data() {
     return {
+      enterAnimate: 'fadeIn',
+      leaveAnimate: 'fadeOut',
       timer: false,
     }
   },
@@ -43,11 +57,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('app', {
-      darkAction: MT.DARK_MODE,
-      isMobileAction: MT.IS_MOBILE,
-      contentHeightAction: MT.CONTENT_HEIGHT,
-    }),
     getPopupContainer(el) {
       if (el) {
         return el.parentNode
@@ -61,6 +70,17 @@ export default {
 
 <style scoped lang="less">
 #app {
-  min-height: 100vh;
+  // min-height: 100vh;
+  .page-toggle-enter-active {
+    position: absolute !important;
+    animation-duration: 0.8s !important;
+    width: calc(100%) !important;
+  }
+
+  .page-toggle-leave-active {
+    position: absolute !important;
+    animation-duration: 0.8s !important;
+    width: calc(100%) !important;
+  }
 }
 </style>

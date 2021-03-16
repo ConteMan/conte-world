@@ -89,20 +89,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "~@/style/variables";
-
-.list-content {
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  .list-item {
-    &:hover {
-      cursor: pointer;
-      .title {
-        color: @red;
-      }
-    }
-  }
-}
+@import "./index.less";
 </style>

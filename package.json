@@ -10,6 +10,7 @@
     "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "ant-design-vue": "^1.7.3",
     "axios": "^0.21.1",
     "core-js": "^3.6.4",

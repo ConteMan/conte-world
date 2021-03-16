@@ -10,7 +10,9 @@
       :key="item.name"
       @click="$router.push({path: item.path})"
     >
-      <div class="des">{{ item.meta.title }}</div>
+      <div class="des">
+        {{ item.extend ? item.extend.extend.name : item.meta.title }}
+      </div>
     </div>
     <div class="nav-bottom">
         <span class="bottom-item" @click="darkAction()" title="暗黑模式">
@@ -27,7 +29,6 @@
 <script>
 import fscreen from 'fscreen'
 import { mixin } from '@/utils/mixin'
-import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import * as MT from '@/store/mutation-types'
 
@@ -40,13 +41,6 @@ export default {
       isFullscreen: false,
       wave: null,
     }
-  },
-  computed: {
-    ...mapGetters(
-      {
-        routes: 'routes'
-      }
-    ),
   },
   created() {
     this.enableFullscreen = fscreen.fullscreenEnabled

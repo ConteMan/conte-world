@@ -3,6 +3,7 @@ const DARK_MODE = 'DARK_MODE'
 const MENU_STATUS = 'MENU_STATUS'
 const IS_MOBILE = 'IS_MOBILE'
 const CONTENT_HEIGHT = 'CONTENT_HEIGHT'
+const INFO = 'INFO'
 
 const ROUTES = 'ROUTES'
 
@@ -12,6 +13,7 @@ export {
   MENU_STATUS,
   IS_MOBILE,
   CONTENT_HEIGHT,
+  INFO,
 
   ROUTES,
 }

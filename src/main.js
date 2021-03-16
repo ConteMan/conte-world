@@ -10,6 +10,7 @@ import '@/permission'
 import 'normalize.css/normalize.css'
 import '@/style/markdown.css'
 import '@/style/index.less'
+import 'animate.css/source/animate.css'
 
 Vue.config.productionTip = false
 

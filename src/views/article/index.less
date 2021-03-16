@@ -1,0 +1,13 @@
+@import "~@/style/variables";
+
+.list-content {
+  overflow-y: auto;
+  .list-item {
+    &:hover {
+      cursor: pointer;
+      .title {
+        color: @red;
+      }
+    }
+  }
+}
