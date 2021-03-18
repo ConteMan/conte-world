@@ -35,7 +35,7 @@
     <div
       class="touch-div"
       ref="moveDom"
-      :class="{ 'hidden': !showDetail }"
+      :class="{ 'hidden': showDetail && !showList }"
     >
       <span></span>
     </div>
