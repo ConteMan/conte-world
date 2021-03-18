@@ -41,7 +41,9 @@ export default {
         this.timer = true
         setTimeout(
           () => {
-            const isMobileTmp = window.innerWidth <= 768
+            const clientWidth = window.innerWidth
+            this.clientWithAction(clientWidth)
+            const isMobileTmp = clientWidth <= 768
             if (isMobileTmp !== this.isMobile) {
               this.isMobileAction(isMobileTmp)
             }

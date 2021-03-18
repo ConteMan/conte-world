@@ -6,20 +6,12 @@ export default {
   component: () => import('@/layout/BaseLayout'),
   children: [
     {
-      path: '',
+      path: ':id?',
       name: 'Article',
       meta: {
         title: '文章',
       },
       component: () => import('@/views/article')
-    },
-    {
-      path: ':id',
-      name: 'ArticleDetail',
-      meta: {
-        title: '文章',
-      },
-      component: () => import('@/views/article/detail')
     },
   ]
 }

@@ -1,13 +1,87 @@
 @import "~@/style/variables";
 
+.content-detail-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .list-content {
   overflow-y: auto;
+  flex-grow: 1;
+  &.only-list {
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
   .list-item {
-    &:hover {
+    &:hover, &.active {
       cursor: pointer;
       .title {
         color: @red;
       }
     }
+  }
+}
+
+.touch-div {
+  flex-grow: 0;
+  flex-shrink: 0;
+  top: 0;
+  height: 100vh;
+  left: 100%;
+  width: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: col-resize;
+  background-color: @border-color;
+  span {
+    width: 2px;
+    background-color: @grey;
+    height: 12px;
+  }
+  &:hover,&:active {
+    span {
+      height: 16px;
+    }
+  }
+}
+
+.detail-content {
+  flex-grow: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  .title {
+    padding: @base-padding;
+    text-align: left;
+    .name {
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .date {
+      padding: @base-padding/2;
+      font-size: 12px;
+      color: @font-color-grey;
+      font-style: italic;
+    }
+  }
+  
+  .markdown-container {
+    margin: auto;
+    padding: @base-padding;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 100px;
+  }
+}
+
+.dark-theme {
+  .touch-div {
+    background-color: @dark-theme-border;
+    span {
+      background-color: @grey-20;
+    }
+  }
+  .markdown-container {
+    color: @dark-theme-color;
   }
 }

@@ -1,27 +1,38 @@
 <template>
   <div class="nav-container">
-    <div class="title logo" @click="$router.push({ path: '/' })">
-      {{ $config.siteName }}
-    </div>
     <div
-      class="nav-item"
-      :class="{ active: (item.active || item.path == $route.matched[0].path) }"
-      v-for="item in routes"
-      :key="item.name"
-      @click="$router.push({path: item.path})"
+      class="title logo"
+      @click="$router.push({ path: '/' })"
+      :data-cn-title="cnTitle"
     >
-      <div class="des">
-        {{ item.extend ? item.extend.extend.name : item.meta.title }}
+      <span class="en-title">{{ enTitle }}</span>
+    </div>
+    <div class="slogan">
+      <span>{{ getSlogan('start') }}</span>
+      <br>
+      <span>{{ getSlogan() }}</span>
+    </div>
+    <div class="nav-content">
+      <div
+        class="nav-item"
+        :class="{ active: (item.active || item.path == $route.matched[0].path) }"
+        v-for="item in routes"
+        :key="item.name"
+        @click="$router.push({path: item.path})"
+      >
+        <div class="des">
+          {{ item.extend ? item.extend.extend.name : item.meta.title }}
+        </div>
       </div>
     </div>
     <div class="nav-bottom">
-        <span class="bottom-item" @click="darkAction()" title="暗黑模式">
-          <c-icon type="icon-dark" class="bottom-icon"/>
-        </span>
-        <span v-if="enableFullscreen" class="bottom-item" @click="fullScreen()" title="全屏">
-          <a-icon v-if="isFullscreen" type="fullscreen-exit" class="bottom-icon"/>
-          <a-icon v-else type="fullscreen" class="bottom-icon"/>
-        </span>
+      <span class="bottom-item" @click="darkAction()" title="Dark Mode">
+        <c-icon type="icon-dark" class="bottom-icon"/>
+      </span>
+      <span v-if="enableFullscreen" class="bottom-item" @click="fullScreen()" title="Full Screen">
+        <a-icon v-if="isFullscreen" type="fullscreen-exit" class="bottom-icon"/>
+        <a-icon v-else type="fullscreen" class="bottom-icon"/>
+      </span>
     </div>
   </div>
 </template>
@@ -39,14 +50,19 @@ export default {
     return {
       enableFullscreen: true,
       isFullscreen: false,
-      wave: null,
     }
+  },
+  computed: {
+    cnTitle() {
+      return this.info.title ? String(this.info.title).split('/')[1] : ''
+    },
+    enTitle() {
+      return this.info.title ? String(this.info.title).split('/')[0] : ''
+    },
   },
   created() {
     this.enableFullscreen = fscreen.fullscreenEnabled
     fscreen.addEventListener('fullscreenchange', this.fullscreenChange, false)
-  },
-  mounted() {
   },
   methods: {
     turnUrl(url) {
@@ -71,6 +87,15 @@ export default {
       } else {
         this.isFullscreen = false
       }
+    },
+    getSlogan(type) {
+      if (!this.info.slogan) {
+        return ''
+      }
+      if (type === 'start') {
+        return String(this.info.slogan).split(',')[0].toLowerCase()
+      }
+      return String(this.info.slogan).split(',')[1].slice(0, -1)
     }
   }
 }

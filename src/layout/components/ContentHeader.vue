@@ -44,8 +44,8 @@ export default {
       darkAction: MT.DARK_MODE,
     }),
     deal() {
-      this.isArticleDetail = this.$route.name === 'ArticleDetail'
-      this.isArticle = ['Article', 'ArticleDetail'].includes(this.$route.name)
+      this.isArticleDetail = this.$route.name === 'Article' && this.$route.params.id
+      this.isArticle = ['Article'].includes(this.$route.name)
     },
     turnUrl(url) {
       window.location.href = url

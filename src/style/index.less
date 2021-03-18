@@ -112,9 +112,6 @@ body {
 }
 
 .sidebar-drawer {
-  &.ant-drawer {
-    // height: 100%;
-  }
   .ant-drawer-content-wrapper {
     min-width: 270px;
   }
@@ -159,45 +156,6 @@ body {
   padding: 71px 16px 0 16px;
 }
 
-// vue 表格
-.vxe-grid--pager-wrapper {
-  margin-top: 16px;
-  position: relative;
-}
-.vxe-grid--pager-wrapper:before {
-  content: ' ';
-  border-top: 1px solid @border-color;
-  width: calc(100% + 32px);
-  height: 1px;
-  position: absolute;
-  top: -1px;
-  left: -16px;
-}
-.vxe-pager .vxe-pager--jump .vxe-pager--goto {
-  margin: 0 5px;
-  border-radius: unset;
-  border: none;
-  border-bottom: 1px solid @border-color;
-}
-.vxe-pager .vxe-pager--jump .vxe-pager--goto:focus {
-  color: @red;
-  border-color: unset !important;
-  border-bottom-color: @red;
-}
-.vxe-pager .vxe-pager--jump .vxe-pager--goto, .vxe-pager .vxe-pager--sizes > .vxe-input {
-  height: auto;
-}
-.vxe-pager .vxe-pager--jump-next:not(.is--disabled).is--active, .vxe-pager .vxe-pager--jump-next:not(.is--disabled):focus,
-.vxe-pager .vxe-pager--jump-prev:not(.is--disabled).is--active, .vxe-pager .vxe-pager--jump-prev:not(.is--disabled):focus,
-.vxe-pager .vxe-pager--next-btn:not(.is--disabled).is--active, .vxe-pager .vxe-pager--next-btn:not(.is--disabled):focus,
-.vxe-pager .vxe-pager--num-btn:not(.is--disabled).is--active, .vxe-pager .vxe-pager--num-btn:not(.is--disabled):focus,
-.vxe-pager .vxe-pager--prev-btn:not(.is--disabled).is--active, .vxe-pager .vxe-pager--prev-btn:not(.is--disabled):focus,
-.vxe-pager .vxe-pager--jump-next:not(.is--disabled):hover, .vxe-pager .vxe-pager--jump-prev:not(.is--disabled):hover,
-.vxe-pager .vxe-pager--next-btn:not(.is--disabled):hover, .vxe-pager .vxe-pager--num-btn:not(.is--disabled):hover,
-.vxe-pager .vxe-pager--prev-btn:not(.is--disabled):hover {
-  color: @red;
-}
-
 // Spin 样式
 .spin-loading-container {
   width: 100%;
@@ -216,7 +174,7 @@ body {
 .list-item {
   padding: @base-padding @base-padding @base-padding/2 @base-padding;
   border-bottom: 1px solid @border-color;
-  &:hover {
+  &:hover, &.active {
     background-color: @border-color;
   }
   .info {
@@ -278,58 +236,6 @@ body {
     }
   }
 
-  .vxe-table.border--inner .vxe-table--header-wrapper, .vxe-table.border--none .vxe-table--header-wrapper,
-  .vxe-table .vxe-table--body-wrapper, .vxe-table .vxe-table--footer-wrapper {
-    background: @dark-theme-bg;
-  }
-  .vxe-table {
-    color: @dark-theme-color;
-    background: @dark-theme-bg;
-    .row--hover {
-      background: @grey-20;
-    }
-    .vxe-body--expanded-column {
-      background: @grey-20;
-      border-bottom-color: @dark-theme-border;
-    }
-    .ant-divider-horizontal.ant-divider-with-text-center::before, .ant-divider-horizontal.ant-divider-with-text-left::before,
-    .ant-divider-horizontal.ant-divider-with-text-right::before, .ant-divider-horizontal.ant-divider-with-text-center::after,
-    .ant-divider-horizontal.ant-divider-with-text-left::after, .ant-divider-horizontal.ant-divider-with-text-right::after {
-      border-top-color: @dark-theme-border;
-    }
-  }
-  .vxe-grid--pager-wrapper {
-    border-top-color: @dark-theme-border;
-    .vxe-pager {
-      color: @dark-theme-color;
-      background: @dark-theme-bg;
-    }
-    .vxe-pager .vxe-pager--jump-next, .vxe-pager .vxe-pager--jump-prev, .vxe-pager .vxe-pager--next-btn,
-    .vxe-pager .vxe-pager--num-btn, .vxe-pager .vxe-pager--prev-btn {
-      color: @dark-theme-color;
-      background: @dark-theme-bg;
-    }
-    .vxe-pager .vxe-pager--jump-next:not(.is--disabled).is--active, .vxe-pager .vxe-pager--jump-next:not(.is--disabled):focus,
-    .vxe-pager .vxe-pager--jump-prev:not(.is--disabled).is--active, .vxe-pager .vxe-pager--jump-prev:not(.is--disabled):focus,
-    .vxe-pager .vxe-pager--next-btn:not(.is--disabled).is--active, .vxe-pager .vxe-pager--next-btn:not(.is--disabled):focus,
-    .vxe-pager .vxe-pager--num-btn:not(.is--disabled).is--active, .vxe-pager .vxe-pager--num-btn:not(.is--disabled):focus,
-    .vxe-pager .vxe-pager--prev-btn:not(.is--disabled).is--active, .vxe-pager .vxe-pager--prev-btn:not(.is--disabled):focus,
-    .vxe-pager .vxe-pager--jump-next:not(.is--disabled):hover, .vxe-pager .vxe-pager--jump-prev:not(.is--disabled):hover,
-    .vxe-pager .vxe-pager--next-btn:not(.is--disabled):hover, .vxe-pager .vxe-pager--num-btn:not(.is--disabled):hover,
-    .vxe-pager .vxe-pager--prev-btn:not(.is--disabled):hover {
-      color: @red;
-    }
-    .vxe-pager--goto {
-      color: @dark-theme-color;
-      background-color: @dark-theme-bg;
-      border-bottom: 1px solid;
-    }
-  }
-  .vxe-grid--pager-wrapper:before {
-    color: @dark-theme-color;
-    border-top-color: @dark-theme-border;
-  }
-
   .sidebar-drawer {
     .ant-drawer-mask {
       opacity: 0.6;
@@ -357,7 +263,7 @@ body {
   .list-item {
     color: @dark-theme-color;
     border-bottom-color: @dark-theme-border !important;
-    &:hover {
+    &:hover, &.active {
       background-color: @dark-theme-bg-hover !important;
     }
     .info {

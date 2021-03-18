@@ -12,8 +12,12 @@ const app = {
     darkMode: false,
     menuStatus: setting.menuStatus,
     isMobile: window.innerWidth <= 768,
+    clientWidth: window.innerWidth,
     contentHeight: 0,
-    info: {}, // 基础信息
+    info: {
+      title: '',
+      slogan: '',
+    }, // 基础信息
   },
   mutations: {
     [MT.LOADING]: (state, type) => {
@@ -29,6 +33,9 @@ const app = {
     },
     [MT.IS_MOBILE]: (state, type) => {
       state.isMobile = Boolean(type)
+    },
+    [MT.CLIENT_WIDTH]: (state, width) => {
+      state.clientWidth = width
     },
     [MT.CONTENT_HEIGHT]: (state, height) => {
       state.contentHeight = height

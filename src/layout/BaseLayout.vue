@@ -14,7 +14,6 @@
           ref="moveDom"
         >
           <span></span>
-          <span></span>
         </div>
       </template>
       <a-drawer
@@ -62,11 +61,10 @@ export default {
       timer: false,
       drawerVisible: false,
 
-      sideWidth: 270,
+      sideWidth: 300,
       sideMaxWidth: 500,
-      sideMinWidth: 160,
+      sideMinWidth: 220,
       clientStartX: 0,
-      leftDom: null,
     }
   },
   computed: {
@@ -115,12 +113,11 @@ export default {
     },
     dragControllerDeal() {
       const moveDom = this.$refs.moveDom
-      this.leftDom = this.$refs.sideDom
       moveDom.onmousedown = e => {
         this.clientStartX = e.clientX
         e.preventDefault()
         document.onmousemove = e => {
-          this.moveHandle(e.clientX, this.leftDom)
+          this.moveHandle(e.clientX)
         }
 
         document.onmouseup = e => {
