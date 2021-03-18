@@ -2,7 +2,6 @@
   <div class="nav-container">
     <div
       class="title logo"
-      @click="$router.push({ path: '/' })"
       :data-cn-title="cnTitle"
     >
       <span class="en-title">{{ enTitle }}</span>

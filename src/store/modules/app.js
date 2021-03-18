@@ -14,10 +14,7 @@ const app = {
     isMobile: window.innerWidth <= 768,
     clientWidth: window.innerWidth,
     contentHeight: 0,
-    info: {
-      title: '',
-      slogan: '',
-    }, // 基础信息
+    info: {}, // 基础信息
   },
   mutations: {
     [MT.LOADING]: (state, type) => {
@@ -49,7 +46,6 @@ const app = {
       const res = await CommonApi.base()
       if (res.data.code === 0) {
         const info = res.data.data
-        commit(MT.INFO, info)
 
         // 更新导航路由
         const nav = info.nav.items
@@ -65,6 +61,11 @@ const app = {
           }
         }
         commit('permission/' + [MT.ROUTES], navRoutes, { root: true })
+
+        info.nav.items = nav.filter(item => {
+          return item.value !== '/'
+        })
+        commit(MT.INFO, info)
 
         commit(MT.LOADING, false)
       }

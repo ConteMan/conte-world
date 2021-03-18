@@ -86,32 +86,13 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      title: '',
-      slogan: '',
-      nav: [],
-      site: [],
-      social: [],
-
       spaceSize: 20,
     }
   },
   computed: {
     ready() {
       return Object.keys(this.info).length > 0
-    }
-  },
-  watch: {
-    info(target) {
-      const ready = Object.keys(target).length > 0
-      if (ready) {
-        const { title, slogan, nav, site, social } = this.info
-        this.title = title
-        this.slogan = slogan
-        this.nav = nav
-        this.site = site
-        this.social = social
-      }
-    }
+    },
   },
   methods: {
     ...mapMutations('app', {
