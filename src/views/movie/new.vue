@@ -23,7 +23,7 @@
         class="list-content"
         v-infinite-scroll="loadMore"
         infinite-scroll-delay="1000"
-        :infinite-scroll-disabled="busy"
+        infinite-scroll-disabled="busy"
         infinite-scroll-distance="220"
         infinite-scroll-immediate-check="true"
         :style="{ 'height': listContentHeight + 'px' }"
@@ -102,7 +102,7 @@ export default {
       if (res.data.code === 0) {
         const { hasMore, items, totalCount } = res.data.data
         this.total = totalCount
-        this.busy = hasMore
+        this.busy = !hasMore
         if (items.length > 0) {
           this.items = this._.concat(this.items, items)
         }
