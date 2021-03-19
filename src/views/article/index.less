@@ -3,6 +3,7 @@
 .content-detail-container {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 .list-content {
@@ -26,24 +27,13 @@
   flex-grow: 0;
   flex-shrink: 0;
   top: 0;
-  height: 100vh;
   left: 100%;
-  width: 8px;
+  width: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: col-resize;
   background-color: @border-color;
-  span {
-    width: 2px;
-    background-color: @grey;
-    height: 12px;
-  }
-  &:hover,&:active {
-    span {
-      height: 16px;
-    }
-  }
 }
 
 .detail-content {

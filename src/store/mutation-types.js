@@ -8,6 +8,8 @@ const INFO = 'INFO'
 
 const ROUTES = 'ROUTES'
 
+const ARTICLE_SHOW_LIST = 'ARTICLE_SHOW_LIST'
+
 export {
   LOADING,
   DARK_MODE,
@@ -18,4 +20,6 @@ export {
   INFO,
 
   ROUTES,
+
+  ARTICLE_SHOW_LIST,
 }

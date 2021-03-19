@@ -11,6 +11,13 @@
       <a-icon type="left" class="trigger-icon"/>
     </div>
     <div
+      v-if="showListIcon"
+      class="trigger"
+      @click="showListAction(!showList)"
+    >
+      <c-icon type="icon-mulu" class="trigger-icon"/>
+    </div>
+    <div
       v-if="isArticle"
       class="trigger end"
       title="RSS Feed of Article"
@@ -24,8 +31,11 @@
 <script>
 import { mapMutations } from 'vuex'
 import * as MT from '@/store/mutation-types'
+import { contentHeaderMixin } from '@/utils/mixin'
+
 export default {
   name: 'ContentHeader',
+  mixins: [contentHeaderMixin],
   data() {
     return {
       isArticle: false,
@@ -34,6 +44,11 @@ export default {
   },
   created() {
     this.deal()
+  },
+  computed: {
+    showListIcon() {
+      return this.isArticleDetail && this.clientWidth > this.$config.articleShowListWidth
+    }
   },
   watch: {
     '$route': 'deal'

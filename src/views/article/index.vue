@@ -61,14 +61,14 @@
         ></iframe>
       </template>
       <template v-else>
-        <div class="markdown-container markdown-body" v-html="data"></div>
+        <div class="markdown-container markdown-body" v-html="picture403filter(data)"></div>
       </template>
     </div>
   </div>
 </template>
 
 <script>
-import { mixin } from '@/utils/mixin'
+import { articleMixin } from '@/utils/mixin'
 import Article from '@/api/article'
 import infiniteScroll from 'vue-infinite-scroll'
 
@@ -77,7 +77,7 @@ export default {
   directives: {
     infiniteScroll,
   },
-  mixins: [mixin],
+  mixins: [articleMixin],
   data() {
     return {
       loading: true,
@@ -97,8 +97,6 @@ export default {
       sideMaxWidth: 500,
       sideMinWidth: 220,
       clientStartX: 0,
-
-      showList: false,
     }
   },
   computed: {
@@ -117,7 +115,7 @@ export default {
     id: function(target, old) {
       this.detail()
       this.active(target, old)
-      this.showList = this.showListDeal()
+      this.showListAction(this.showListDeal())
       if (!target) {
         this.data = ''
       }
@@ -128,13 +126,12 @@ export default {
       }
     },
     clientWidth: function(target) {
-      console.log(target)
-      this.showList = this.showListDeal()
+      this.showListAction(this.showListDeal())
     }
   },
   async created() {
     await this.index()
-    this.showList = this.showListDeal()
+    this.showListAction(this.showListDeal())
     if (this.id) {
       await this.detail()
       await this.active(this.id, 0)
@@ -222,11 +219,18 @@ export default {
       if (!this.id) {
         return true
       } else {
-        if (this.clientWidth < 700) {
+        if (this.clientWidth < this.$config.articleShowListWidth) {
           return false
         } else {
           return true
         }
+      }
+    },
+    picture403filter(val) {
+      try {
+        return val.replace('<img', "<img referrerpolicy='no-referrer'")
+      } catch (err) {
+        return val
       }
     }
   }

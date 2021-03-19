@@ -32,4 +32,32 @@ const appMixin = {
   }
 }
 
-export { mixin, appMixin }
+const articleMixin = {
+  computed: {
+    ...mapState({
+      clientWidth: state => state.app.clientWidth,
+      showList: state => state.article.showList,
+    })
+  },
+  methods: {
+    ...mapMutations('article', {
+      showListAction: MT.ARTICLE_SHOW_LIST,
+    }),
+  }
+}
+
+const contentHeaderMixin = {
+  computed: {
+    ...mapState({
+      clientWidth: state => state.app.clientWidth,
+      showList: state => state.article.showList,
+    })
+  },
+  methods: {
+    ...mapMutations('article', {
+      showListAction: MT.ARTICLE_SHOW_LIST,
+    }),
+  }
+}
+
+export { mixin, appMixin, articleMixin, contentHeaderMixin }
