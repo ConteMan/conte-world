@@ -1,29 +1,45 @@
 <template>
-  <div class="header">
-    <div class="trigger" @click="menuAction()">
-      <a-icon type="menu" class="trigger-icon"/>
-    </div>
+  <div
+    class="header-container"
+  >
     <div
-      v-if="isArticleDetail"
-      class="trigger"
-      @click="$router.push({ path: '/article'})"
+      class="header"
+      :style="{ 'height': headerHeight + 'px' }"
     >
-      <a-icon type="left" class="trigger-icon"/>
-    </div>
-    <div
-      v-if="showListIcon"
-      class="trigger"
-      @click="showListAction(!showList)"
-    >
-      <c-icon type="icon-mulu" class="trigger-icon"/>
-    </div>
-    <div
-      v-if="isArticle"
-      class="trigger end"
-      title="RSS Feed of Article"
-      @click="turnUrl('https://isconte.com/feed/article.rss')"
-    >
-      <c-icon type="icon-rss" class="trigger-icon"/>
+      <template v-if="showHeader">
+        <div class="trigger" @click="menuAction()">
+          <a-icon type="menu" class="trigger-icon"/>
+        </div>
+        <div
+          v-if="isArticleDetail"
+          class="trigger"
+          @click="$router.push({ path: '/article'})"
+        >
+          <a-icon type="left" class="trigger-icon"/>
+        </div>
+        <div
+          v-if="showListIcon"
+          class="trigger"
+          @click="showListAction(!showList)"
+        >
+          <c-icon type="icon-mulu" class="trigger-icon"/>
+        </div>
+        <div
+          class="trigger end"
+          title="Pin Header"
+          @click="headerPinAction()"
+        >
+          <a-icon type="pushpin" :rotate="pinIconRotate" class="trigger-icon"/>
+        </div>
+        <div
+          v-if="isArticle"
+          class="trigger end-2"
+          title="RSS Feed of Article"
+          @click="turnUrl('https://isconte.com/feed/article.rss')"
+        >
+          <c-icon type="icon-rss" class="trigger-icon"/>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -40,6 +56,9 @@ export default {
     return {
       isArticle: false,
       isArticleDetail: false,
+
+      enterAnimate: 'fadeIn',
+      leaveAnimate: 'fadeOut',
     }
   },
   created() {
@@ -48,6 +67,12 @@ export default {
   computed: {
     showListIcon() {
       return this.isArticleDetail && this.clientWidth > this.$config.articleShowListWidth
+    },
+    showHeader() {
+      return this.headerHeight > this.$config.headerHideHeight
+    },
+    pinIconRotate() {
+      return this.headerPin ? 0 : -45
     }
   },
   watch: {
@@ -74,7 +99,12 @@ export default {
 @import "~@/style/variables.less";
 
 .header {
+  width: 100%;
   padding: 0 10px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  transition: all 0.2s linear;
   .trigger {
     display: flex;
     align-items: center;
@@ -92,6 +122,10 @@ export default {
     &.end {
       position: absolute;
       right: 20px;
+    }
+    &.end-2 {
+      position: absolute;
+      right: 60px;
     }
   }
   .trigger.ant-popover-open {

@@ -32,7 +32,6 @@
       >
         <content-header
           class="content-header"
-          :style="{ 'height': $config.headerHeight + 'px' }"
         />
         <router-view/>
       </div>

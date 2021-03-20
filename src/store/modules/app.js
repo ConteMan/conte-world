@@ -13,6 +13,8 @@ const app = {
     menuStatus: setting.menuStatus,
     isMobile: window.innerWidth <= 768,
     clientWidth: window.innerWidth,
+    headerHeight: setting.headerHeight,
+    headerPin: true, // true 固定
     contentHeight: 0,
     info: {}, // 基础信息
   },
@@ -33,6 +35,14 @@ const app = {
     },
     [MT.CLIENT_WIDTH]: (state, width) => {
       state.clientWidth = width
+    },
+    [MT.HEADER_HEIGHT]: (state, height) => {
+      if (!state.headerPin) {
+        state.headerHeight = height
+      }
+    },
+    [MT.HEADER_PIN]: (state) => {
+      state.headerPin = !state.headerPin
     },
     [MT.CONTENT_HEIGHT]: (state, height) => {
       state.contentHeight = height

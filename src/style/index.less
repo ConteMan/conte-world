@@ -48,6 +48,18 @@ body {
   z-index: 0 !important;
 }
 
+.page-toggle-enter-active {
+  position: absolute !important;
+  animation-duration: 0.8s !important;
+  width: calc(100%) !important;
+}
+
+.page-toggle-leave-active {
+  position: absolute !important;
+  animation-duration: 0.8s !important;
+  width: calc(100%) !important;
+}
+
 .logo {
   font-size: 24px;
   font-weight: 800;
@@ -154,6 +166,10 @@ body {
     height: 8px;
     background: @grey;
   }
+}
+
+.list-content {
+  transition: all 0.3s linear;
 }
 
 .fixed-header-container {

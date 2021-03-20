@@ -8,6 +8,7 @@ const mixin = {
       menuStatus: state => state.app.menuStatus,
       isMobile: state => state.app.isMobile,
       clientWidth: state => state.app.clientWidth,
+      headerHeight: state => state.app.headerHeight,
       contentHeight: state => state.app.contentHeight,
       routes: state => state.permission.routes,
       info: state => state.app.info,
@@ -51,11 +52,17 @@ const contentHeaderMixin = {
     ...mapState({
       clientWidth: state => state.app.clientWidth,
       showList: state => state.article.showList,
+      headerHeight: state => state.app.headerHeight,
+      headerPin: state => state.app.headerPin
     })
   },
   methods: {
     ...mapMutations('article', {
       showListAction: MT.ARTICLE_SHOW_LIST,
+    }),
+    ...mapMutations('app', {
+      headerHeightAction: MT.HEADER_HEIGHT,
+      headerPinAction: MT.HEADER_PIN,
     }),
   }
 }

@@ -25,5 +25,6 @@ export default {
 
   // header height
   headerHeight: 55,
+  headerHideHeight: 0,
   articleShowListWidth: 700,
 }

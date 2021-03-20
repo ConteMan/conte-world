@@ -72,7 +72,6 @@ export default {
 
 <style scoped lang="less">
 #app {
-  // min-height: 100vh;
   .page-toggle-enter-active {
     position: absolute !important;
     animation-duration: 0.8s !important;

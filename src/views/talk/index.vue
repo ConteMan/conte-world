@@ -8,6 +8,7 @@
       <a-icon slot="indicator" class="spin-loading" type="loading" spin />
       <div
         class="list-content"
+        id="scroll-list"
         v-infinite-scroll="loadMore"
         infinite-scroll-delay="1000"
         infinite-scroll-disabled="busy"
@@ -36,6 +37,8 @@
 <script>
 import infiniteScroll from 'vue-infinite-scroll'
 import { mixin } from '@/utils/mixin'
+import { mapMutations } from 'vuex'
+import * as MT from '@/store/mutation-types'
 import Talk from '@/api/talk'
 
 export default {
@@ -47,6 +50,7 @@ export default {
   data() {
     return {
       loading: true,
+      timer: false,
 
       items: [],
       offset: 0,
@@ -54,11 +58,13 @@ export default {
       limit: 20,
       busy: false,
       total: 0,
+
+      scrollTop: 0,
     }
   },
   computed: {
     listHeight() {
-      return this.contentHeight - this.$config.headerHeight
+      return this.contentHeight - this.headerHeight
     }
   },
   async created() {
@@ -67,7 +73,13 @@ export default {
       this.loading = false
     }, 300)
   },
+  async mounted() {
+    this.scrollDeal()
+  },
   methods: {
+    ...mapMutations('app', {
+      headerHeightAction: MT.HEADER_HEIGHT,
+    }),
     async index() {
       const { offset, limit, type } = this
       const res = await Talk.index({ offset, limit, type })
@@ -86,6 +98,38 @@ export default {
     },
     yuqueNoteFormat(data) {
       return data.replaceAll(/\<\!doctype\s\S*\>|\<meta[\s\S]*\/\>|data-lake\S{0,10}=\"\S{0,100}\"/g, '')
+    },
+    scrollDeal() {
+      const scrollList = document.querySelector('#scroll-list')
+      this.scrollTop = scrollList.scrollTop
+      if (scrollList) {
+        scrollList.addEventListener('scroll', this.throttle(this.scrollHandle, 300), false)
+      }
+    },
+    scrollHandle(event) {
+      const headerHeight = this.$config.headerHeight
+      const headerHideHeight = this.$config.headerHideHeight
+      const diff = headerHeight - headerHideHeight
+      const currentScrollTop = event.target.scrollTop
+      if (this.headerHeight > headerHideHeight && currentScrollTop > this.scrollTop + diff) {
+        this.headerHeightAction(headerHideHeight)
+      } else {
+        if (this.headerHeight <= headerHideHeight && currentScrollTop < this.scrollTop - diff) {
+          this.headerHeightAction(headerHeight)
+        }
+      }
+      this.scrollTop = currentScrollTop
+    },
+    throttle(fn, interval = 300) {
+      let canRun = true
+      return function() {
+        if (!canRun) return
+        canRun = false
+        setTimeout(() => {
+          fn.apply(this, arguments)
+          canRun = true
+        }, interval)
+      }
     }
   },
 }
