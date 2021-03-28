@@ -2,4 +2,9 @@
 
 .list-content {
   overflow-y: auto;
+  .list-item {
+    @{deep} img {
+      max-width: 100%;
+    }
+  }
 }
