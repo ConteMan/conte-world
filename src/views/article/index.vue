@@ -61,7 +61,7 @@
         ></iframe>
       </template>
       <template v-else>
-        <div class="markdown-container markdown-body" v-html="picture403filter(data)"></div>
+        <div class="markdown-container markdown-body" v-html="data"></div>
       </template>
     </div>
   </div>
@@ -226,13 +226,6 @@ export default {
         }
       }
     },
-    picture403filter(val) {
-      try {
-        return val.replace('<img', "<img referrerpolicy='no-referrer'")
-      } catch (err) {
-        return val
-      }
-    }
   }
 }
 </script>

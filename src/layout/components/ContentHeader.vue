@@ -25,6 +25,7 @@
           <c-icon type="icon-mulu" class="trigger-icon"/>
         </div>
         <div
+          v-if="isTalk"
           class="trigger end"
           title="Pin Header"
           @click="headerPinAction()"
@@ -56,6 +57,7 @@ export default {
     return {
       isArticle: false,
       isArticleDetail: false,
+      isTalk: false,
 
       enterAnimate: 'fadeIn',
       leaveAnimate: 'fadeOut',
@@ -86,6 +88,7 @@ export default {
     deal() {
       this.isArticleDetail = this.$route.name === 'Article' && this.$route.params.id
       this.isArticle = ['Article'].includes(this.$route.name)
+      this.isTalk = ['/talk'].includes(this.$route.path)
     },
     turnUrl(url) {
       window.location.href = url
