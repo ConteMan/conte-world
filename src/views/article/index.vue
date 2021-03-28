@@ -182,7 +182,7 @@ export default {
       if (newDom) {
         newDom.classList.add('active')
       }
-      if (oldId > 0 && oldDom) {
+      if (oldDom) {
         oldDom.classList.remove('active')
       }
     },
