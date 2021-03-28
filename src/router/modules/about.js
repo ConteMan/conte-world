@@ -1,14 +1,12 @@
 export default {
   path: '/about',
-  name: 'AboutBase',
   meta: {
     title: '关于'
   },
   component: () => import('@/layout/BaseLayout'),
-  redirect: { name: 'About' },
   children: [
     {
-      path: 'index',
+      path: '',
       name: 'About',
       meta: {
         title: '关于',
