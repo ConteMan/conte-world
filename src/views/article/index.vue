@@ -68,9 +68,9 @@
 </template>
 
 <script>
-import { articleMixin } from '@/utils/mixin'
-import Article from '@/api/article'
-import infiniteScroll from 'vue-infinite-scroll'
+import { articleMixin } from '@/utils/mixin';
+import Article from '@/api/article';
+import infiniteScroll from 'vue-infinite-scroll';
 
 export default {
   name: 'Article',
@@ -97,137 +97,137 @@ export default {
       sideMaxWidth: 500,
       sideMinWidth: 220,
       clientStartX: 0,
-    }
+    };
   },
   computed: {
     listHeight() {
-      return this.contentHeight - this.$config.headerHeight
+      return this.contentHeight - this.$config.headerHeight;
     },
     id() {
-      const id = this.$route.params.id ? this.$route.params.id : 0
-      return id
+      const id = this.$route.params.id ? this.$route.params.id : 0;
+      return id;
     },
     showDetail() {
-      return this.id && this.data
+      return this.id && this.data;
     },
   },
   watch: {
     id: function(target, old) {
-      this.detail()
-      this.active(target, old)
-      this.showListAction(this.showListDeal())
+      this.detail();
+      this.active(target, old);
+      this.showListAction(this.showListDeal());
       if (!target) {
-        this.data = ''
+        this.data = '';
       }
       if (!old) {
         this.$nextTick(() => {
-          this.dragControllerDeal()
-        })
+          this.dragControllerDeal();
+        });
       }
     },
     clientWidth: function(target) {
-      this.showListAction(this.showListDeal())
+      this.showListAction(this.showListDeal());
     }
   },
   async created() {
-    await this.index()
-    this.showListAction(this.showListDeal())
+    await this.index();
+    this.showListAction(this.showListDeal());
     if (this.id) {
-      await this.detail()
-      await this.active(this.id, 0)
-      this.dragControllerDeal()
+      await this.detail();
+      await this.active(this.id, 0);
+      this.dragControllerDeal();
     }
     setTimeout(() => {
-      this.loading = false
-    }, 300)
+      this.loading = false;
+    }, 300);
   },
   methods: {
     async index() {
-      const { offset, limit } = this
-      const res = await Article.index({ offset, limit })
+      const { offset, limit } = this;
+      const res = await Article.index({ offset, limit });
       if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data
-        this.total = totalCount
-        this.busy = !hasMore
+        const { hasMore, items, totalCount } = res.data.data;
+        this.total = totalCount;
+        this.busy = !hasMore;
         if (items.length > 0) {
-          this.items = this._.concat(this.items, items)
+          this.items = this._.concat(this.items, items);
         }
       }
     },
     loadMore() {
-      this.offset += this.limit
-      this.index()
+      this.offset += this.limit;
+      this.index();
     },
     detail() {
       Article.docDetail(this.id).then(
         response => {
           if (response.data.code === 0) {
-            const data = response.data.data.res
-            const platform = data.platform
+            const data = response.data.data.res;
+            const platform = data.platform;
             if (platform === 'ORI') {
-              this.data = data.content_html
+              this.data = data.content_html;
             }
             if (platform === 'YUQUE') {
-              this.data = data.yuque_content.body_html
+              this.data = data.yuque_content.body_html;
             }
-            this.title = data.title
-            this.fullData = data
+            this.title = data.title;
+            this.fullData = data;
           }
         }
-      )
+      );
     },
     active(id, oldId) {
-      const newDom = document.querySelector('#nav-item-' + id)
-      const oldDom = document.querySelector('#nav-item-' + oldId)
+      const newDom = document.querySelector('#nav-item-' + id);
+      const oldDom = document.querySelector('#nav-item-' + oldId);
       if (newDom) {
-        newDom.classList.add('active')
+        newDom.classList.add('active');
       }
       if (oldDom) {
-        oldDom.classList.remove('active')
+        oldDom.classList.remove('active');
       }
     },
     dragControllerDeal() {
-      const moveDom = this.$refs.moveDom
+      const moveDom = this.$refs.moveDom;
       moveDom.onmousedown = e => {
-        this.clientStartX = e.clientX
-        e.preventDefault()
+        this.clientStartX = e.clientX;
+        e.preventDefault();
         document.onmousemove = e => {
-          this.moveHandle(e.clientX)
-        }
+          this.moveHandle(e.clientX);
+        };
 
         document.onmouseup = e => {
-          document.onmouseup = null
-          document.onmousemove = null
-        }
-      }
+          document.onmouseup = null;
+          document.onmousemove = null;
+        };
+      };
     },
     moveHandle(nowClientX) {
-      const computedX = nowClientX - this.clientStartX
-      let changeWidth = this.sideWidth + computedX
+      const computedX = nowClientX - this.clientStartX;
+      let changeWidth = this.sideWidth + computedX;
 
       if (changeWidth < this.sideMinWidth) {
-        changeWidth = this.sideMinWidth
+        changeWidth = this.sideMinWidth;
       }
 
       if (changeWidth > this.sideMaxWidth) {
-        changeWidth = this.sideMaxWidth
+        changeWidth = this.sideMaxWidth;
       }
-      this.sideWidth = changeWidth
-      this.clientStartX = nowClientX
+      this.sideWidth = changeWidth;
+      this.clientStartX = nowClientX;
     },
     showListDeal() {
       if (!this.id) {
-        return true
+        return true;
       } else {
         if (this.clientWidth < this.$config.articleShowListWidth) {
-          return false
+          return false;
         } else {
-          return true
+          return true;
         }
       }
     },
   }
-}
+};
 </script>
 
 <style scoped lang="less">

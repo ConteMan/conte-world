@@ -1,5 +1,5 @@
-import request from '@/request/http'
-import base from '@/api/base'
+import request from '@/request/http';
+import base from '@/api/base';
 
 const article = {
   baseUrl: base.e_isconte + '/api/articles',
@@ -12,7 +12,7 @@ const article = {
    * - @param {Number} limit - 限制
    */
   index(params) {
-    const { offset, limit } = params
+    const { offset, limit } = params;
     return request({
       url: this.baseUrl,
       method: 'get',
@@ -20,7 +20,7 @@ const article = {
         offset,
         limit,
       }
-    })
+    });
   },
 
   /**
@@ -32,8 +32,8 @@ const article = {
     return request({
       url: this.baseUrl + '/' + id,
       method: 'get',
-    })
+    });
   }
-}
+};
 
-export default article
+export default article;

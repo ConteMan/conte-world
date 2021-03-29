@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import oneApi from '@/api/one'
-import TabHeader from './components/TabHeader'
+import oneApi from '@/api/one';
+import TabHeader from './components/TabHeader';
 
 export default {
   name: 'One',
@@ -28,23 +28,23 @@ export default {
   data() {
     return {
       active: this.$route.name
-    }
+    };
   },
   methods: {
     update() {
-      this.$refs['update-btn'].sLoading = true
+      this.$refs['update-btn'].sLoading = true;
       oneApi.update({}).then(
         response => {
-          const res = response.data.data
-          this.$refs['update-btn'].sLoading = false
-          this.$message.success('成功更新' + res.add_num + '条！')
+          const res = response.data.data;
+          this.$refs['update-btn'].sLoading = false;
+          this.$message.success('成功更新' + res.add_num + '条！');
         }
-      )
+      );
     },
   },
   created() {
   }
-}
+};
 </script>
 
 <style scoped lang="less">

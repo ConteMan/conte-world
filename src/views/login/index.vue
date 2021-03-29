@@ -40,40 +40,40 @@
 </template>
 
 <script>
-import userApi from '@/api/user'
-import { setToken } from '@/utils/auth'
+import userApi from '@/api/user';
+import { setToken } from '@/utils/auth';
 
 export default {
   name: 'Index',
   data() {
-    return {}
+    return {};
   },
   beforeCreate() {
-    this.form = this.$form.createForm(this, { name: 'login' })
+    this.form = this.$form.createForm(this, { name: 'login' });
   },
   methods: {
     handleSubmit(e) {
-      e.preventDefault()
+      e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
           const data = {
             username: values.username,
             password: values.password,
-          }
+          };
           userApi.login(data).then(
             response => {
               if (response.data.status === 200) {
-                const data = response.data.data
-                setToken(data.token)
-                this.$router.push({ path: '/' })
+                const data = response.data.data;
+                setToken(data.token);
+                this.$router.push({ path: '/' });
               }
             }
-          )
+          );
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped lang="less">

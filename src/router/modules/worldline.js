@@ -16,4 +16,4 @@ export default {
       component: () => import('@/views/worldline/Worldline')
     },
   ]
-}
+};

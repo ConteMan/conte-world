@@ -1,5 +1,5 @@
-import request from '@/request/http'
-import base from '@/api/base'
+import request from '@/request/http';
+import base from '@/api/base';
 
 export default {
   baseUrl: base.e_isconte + '/api/talks',
@@ -12,7 +12,7 @@ export default {
    * - @param {Number} limit - 限制
    */
   index(params) {
-    const { offset, limit } = params
+    const { offset, limit } = params;
     return request({
       url: this.baseUrl,
       method: 'get',
@@ -20,6 +20,6 @@ export default {
         offset,
         limit,
       }
-    })
+    });
   },
-}
+};

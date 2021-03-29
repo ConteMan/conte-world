@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { appMixin } from '@/utils/mixin'
+import { appMixin } from '@/utils/mixin';
 
 export default {
   name: 'App',
@@ -33,41 +33,41 @@ export default {
       enterAnimate: 'fadeIn',
       leaveAnimate: 'fadeOut',
       timer: false,
-    }
+    };
   },
   created() {
     window.addEventListener('resize', () => {
       if (!this.timer) {
-        this.timer = true
+        this.timer = true;
         setTimeout(
           () => {
-            const clientWidth = window.innerWidth
-            this.clientWithAction(clientWidth)
-            const isMobileTmp = clientWidth <= 768
+            const clientWidth = window.innerWidth;
+            this.clientWithAction(clientWidth);
+            const isMobileTmp = clientWidth <= 768;
             if (isMobileTmp !== this.isMobile) {
-              this.isMobileAction(isMobileTmp)
+              this.isMobileAction(isMobileTmp);
             }
-            this.timer = false
-          }, 400)
+            this.timer = false;
+          }, 400);
       }
-    }, false)
+    }, false);
   },
   mounted() {
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (prefersDarkMode) {
-      this.darkAction(true)
+      this.darkAction(true);
     }
   },
   methods: {
     getPopupContainer(el) {
       if (el) {
-        return el.parentNode
+        return el.parentNode;
       } else {
-        return document.body
+        return document.body;
       }
     },
   },
-}
+};
 </script>
 
 <style scoped lang="less">

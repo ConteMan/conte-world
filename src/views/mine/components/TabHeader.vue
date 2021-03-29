@@ -11,14 +11,14 @@ v-for="item in tabs"
 </template>
 
 <script>
-import mine from '@/router/modules/mine'
+import mine from '@/router/modules/mine';
 
 export default {
   name: 'TabHeader',
   data() {
     return {
       tabs: mine.children,
-    }
+    };
   },
   props: {
     active: {
@@ -26,7 +26,7 @@ export default {
       default: '',
     }
   }
-}
+};
 </script>
 
 <style scoped lang="less">

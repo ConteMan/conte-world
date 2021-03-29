@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import Sidebar from '@/components/header/Sidebar'
-import FloatActions from '@/layout/components/FloatActions'
+import Sidebar from '@/components/header/Sidebar';
+import FloatActions from '@/layout/components/FloatActions';
 
-import { mixin } from '@/utils/mixin'
-import { mapMutations } from 'vuex'
-import * as MT from '@/store/mutation-types'
+import { mixin } from '@/utils/mixin';
+import { mapMutations } from 'vuex';
+import * as MT from '@/store/mutation-types';
 
 export default {
   name: 'BaseLayout',
@@ -46,29 +46,29 @@ export default {
       fullWidth: document.body.clientWidth,
       timer: false,
       drawerVisible: false,
-    }
+    };
   },
   mixins: [mixin],
   computed: {
     isDrawer: function() {
-      return this.fullWidth <= 768
+      return this.fullWidth <= 768;
     },
   },
   mounted() {
     window.onresize = () => {
       if (!this.timer) {
-        this.timer = true
+        this.timer = true;
         setTimeout(
           () => {
-            this.fullWidth = document.body.clientWidth
-            this.timer = false
-          }, 400)
+            this.fullWidth = document.body.clientWidth;
+            this.timer = false;
+          }, 400);
       }
-    }
+    };
   },
   methods: {
     drawerClose() {
-      this.menuAction(false)
+      this.menuAction(false);
     },
     ...mapMutations('app', {
       menuAction: MT.MENU_STATUS,
@@ -76,11 +76,11 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
     if (this.isDrawer) {
-      this.menuAction(false)
+      this.menuAction(false);
     }
-    next()
+    next();
   },
-}
+};
 </script>
 
 <style scoped lang="less">

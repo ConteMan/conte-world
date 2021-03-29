@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import userApi from '@/api/user'
-import TabHeader from './components/TabHeader'
+import userApi from '@/api/user';
+import TabHeader from './components/TabHeader';
 
 export default {
   name: 'Setting',
@@ -71,61 +71,61 @@ export default {
           sm: { span: 24 },
         },
       },
-    }
+    };
   },
   methods: {
     info() {
       userApi.setting().then(
         response => {
-          const resSetting = response.data.data
-          const fields = {}
+          const resSetting = response.data.data;
+          const fields = {};
           this.setting.forEach((item, index) => {
             if (resSetting[item.name]) {
               item.fields.forEach((sItem, sIndex) => {
                 if (resSetting[item.name][sItem.code]) {
-                  fields[sItem.code] = resSetting[item.name][sItem.code]
+                  fields[sItem.code] = resSetting[item.name][sItem.code];
                 }
-              })
+              });
             }
-          })
+          });
           this.$nextTick(() => {
-            this.form.setFieldsValue(fields)
-          })
+            this.form.setFieldsValue(fields);
+          });
         }
-      )
+      );
     },
     submit(e) {
-      e.preventDefault()
+      e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          const data = {}
+          const data = {};
           this.setting.forEach((item, index) => {
-            const temp = {}
+            const temp = {};
             item.fields.forEach((sItem, sIndex) => {
               if (values[sItem.code]) {
-                temp[sItem.code] = values[sItem.code]
+                temp[sItem.code] = values[sItem.code];
               }
-            })
-            data[item.name] = temp
-          })
+            });
+            data[item.name] = temp;
+          });
           userApi.updateSetting(data).then(
             response => {
               if (response.data.status === 200) {
-                this.$message.success('更新成功！')
+                this.$message.success('更新成功！');
               }
             }
-          )
+          );
         }
-      })
+      });
     }
   },
   beforeCreate() {
-    this.form = this.$form.createForm(this, { name: 'settingForm' })
+    this.form = this.$form.createForm(this, { name: 'settingForm' });
   },
   async mounted() {
-    await this.info()
+    await this.info();
   }
-}
+};
 </script>
 
 <style scoped lang="less">

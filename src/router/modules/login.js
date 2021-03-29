@@ -17,4 +17,4 @@ export default {
       component: () => import('@/views/login')
     },
   ]
-}
+};

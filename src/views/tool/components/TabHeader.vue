@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import mine from '@/router/modules/tool'
+import mine from '@/router/modules/tool';
 
 export default {
   name: 'TabHeader',
   data() {
     return {
       tabs: mine.children,
-    }
+    };
   },
   props: {
     active: {
@@ -28,7 +28,7 @@ export default {
       default: '',
     }
   }
-}
+};
 </script>
 
 <style scoped lang="less">

@@ -5,34 +5,34 @@
 </template>
 
 <script>
-import About from '@/api/about/index.js'
+import About from '@/api/about/index.js';
 
 export default {
   name: 'About',
   data() {
     return {
       page: {},
-    }
+    };
   },
   created() {
-    this.getPageInfo()
+    this.getPageInfo();
   },
   methods: {
     async getPageInfo() {
-      const res = await About.page()
+      const res = await About.page();
       if (res.data.code === 0) {
-        this.page = res.data.data
+        this.page = res.data.data;
       }
     },
     picture403filter(val) {
       try {
-        return val.replace('<img', "<img referrerpolicy='no-referrer'")
+        return val.replace('<img', "<img referrerpolicy='no-referrer'");
       } catch (err) {
-        return val
+        return val;
       }
     }
   },
-}
+};
 </script>
 
 <style scoped lang="less">

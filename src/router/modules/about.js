@@ -14,4 +14,4 @@ export default {
       component: () => import('@/views/about')
     },
   ]
-}
+};

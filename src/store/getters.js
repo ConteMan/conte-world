@@ -5,6 +5,6 @@ const getters = {
   isMobile: state => state.app.isMobile,
   contentHeight: state => state.app.contentHeight,
   info: state => state.app.info,
-}
+};
 
-export default getters
+export default getters;

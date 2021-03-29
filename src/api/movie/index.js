@@ -1,5 +1,5 @@
-import request from '@/request/http'
-import base from '@/api/base'
+import request from '@/request/http';
+import base from '@/api/base';
 
 const movie = {
   baseUrl: base.e_isconte + '/api/movies',
@@ -13,7 +13,7 @@ const movie = {
    * - @param {Number} limit - 限制
    */
   index(params) {
-    const { type, offset, limit } = params
+    const { type, offset, limit } = params;
     return request({
       url: this.baseUrl,
       method: 'get',
@@ -22,7 +22,7 @@ const movie = {
         offset,
         limit,
       }
-    })
+    });
   },
 
   /**
@@ -32,8 +32,8 @@ const movie = {
     return request({
       url: this.baseUrl + '/types',
       method: 'get',
-    })
+    });
   },
-}
+};
 
-export default movie
+export default movie;

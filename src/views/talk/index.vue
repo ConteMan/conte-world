@@ -35,11 +35,11 @@
 </template>
 
 <script>
-import infiniteScroll from 'vue-infinite-scroll'
-import { mixin } from '@/utils/mixin'
-import { mapMutations } from 'vuex'
-import * as MT from '@/store/mutation-types'
-import Talk from '@/api/talk'
+import infiniteScroll from 'vue-infinite-scroll';
+import { mixin } from '@/utils/mixin';
+import { mapMutations } from 'vuex';
+import * as MT from '@/store/mutation-types';
+import Talk from '@/api/talk';
 
 export default {
   name: 'Talk',
@@ -60,79 +60,79 @@ export default {
       total: 0,
 
       scrollTop: 0,
-    }
+    };
   },
   computed: {
     listHeight() {
-      return this.contentHeight - this.headerHeight
+      return this.contentHeight - this.headerHeight;
     }
   },
   async created() {
-    await this.index()
+    await this.index();
     setTimeout(() => {
-      this.loading = false
-    }, 300)
+      this.loading = false;
+    }, 300);
   },
   async mounted() {
-    this.scrollDeal()
+    this.scrollDeal();
   },
   methods: {
     ...mapMutations('app', {
       headerHeightAction: MT.HEADER_HEIGHT,
     }),
     async index() {
-      const { offset, limit, type } = this
-      const res = await Talk.index({ offset, limit, type })
+      const { offset, limit, type } = this;
+      const res = await Talk.index({ offset, limit, type });
       if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data
-        this.total = totalCount
-        this.busy = !hasMore
+        const { hasMore, items, totalCount } = res.data.data;
+        this.total = totalCount;
+        this.busy = !hasMore;
         if (items.length > 0) {
-          this.items = this._.concat(this.items, items)
+          this.items = this._.concat(this.items, items);
         }
       }
     },
     loadMore() {
-      this.offset += this.limit
-      this.index()
+      this.offset += this.limit;
+      this.index();
     },
     yuqueNoteFormat(data) {
-      return data.replaceAll(/\<\!doctype\s\S*\>|\<meta[\s\S]*\/\>|data-lake\S{0,10}=\"\S{0,100}\"/g, '')
+      return data.replaceAll(/\<\!doctype\s\S*\>|\<meta[\s\S]*\/\>|data-lake\S{0,10}=\"\S{0,100}\"/g, '');
     },
     scrollDeal() {
-      const scrollList = document.querySelector('#scroll-list')
-      this.scrollTop = scrollList.scrollTop
+      const scrollList = document.querySelector('#scroll-list');
+      this.scrollTop = scrollList.scrollTop;
       if (scrollList) {
-        scrollList.addEventListener('scroll', this.throttle(this.scrollHandle, 300), false)
+        scrollList.addEventListener('scroll', this.throttle(this.scrollHandle, 300), false);
       }
     },
     scrollHandle(event) {
-      const headerHeight = this.$config.headerHeight
-      const headerHideHeight = this.$config.headerHideHeight
-      const diff = headerHeight - headerHideHeight
-      const currentScrollTop = event.target.scrollTop
+      const headerHeight = this.$config.headerHeight;
+      const headerHideHeight = this.$config.headerHideHeight;
+      const diff = headerHeight - headerHideHeight;
+      const currentScrollTop = event.target.scrollTop;
       if (this.headerHeight > headerHideHeight && currentScrollTop > this.scrollTop + diff) {
-        this.headerHeightAction(headerHideHeight)
+        this.headerHeightAction(headerHideHeight);
       } else {
         if (this.headerHeight <= headerHideHeight && currentScrollTop < this.scrollTop - diff) {
-          this.headerHeightAction(headerHeight)
+          this.headerHeightAction(headerHeight);
         }
       }
-      this.scrollTop = currentScrollTop
+      this.scrollTop = currentScrollTop;
     },
     throttle(fn, interval = 300) {
-      let canRun = true
+      let canRun = true;
       return function() {
-        if (!canRun) return
-        canRun = false
+        if (!canRun) return;
+        canRun = false;
         setTimeout(() => {
-          fn.apply(this, arguments)
-          canRun = true
-        }, interval)
-      }
+          fn.apply(this, arguments);
+          canRun = true;
+        }, interval);
+      };
     }
   },
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -32,4 +32,4 @@ export default {
       component: () => import('@/views/mine/one')
     }
   ]
-}
+};

@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import infiniteScroll from 'vue-infinite-scroll'
-import WorldlineApi from '@/api/worldline'
+import infiniteScroll from 'vue-infinite-scroll';
+import WorldlineApi from '@/api/worldline';
 
 export default {
   name: 'Worldline',
@@ -55,45 +55,45 @@ export default {
           value: '全部',
         }
       ],
-    }
+    };
   },
   created() {
-    this.index()
-    this.getPlatformTypes()
+    this.index();
+    this.getPlatformTypes();
   },
   methods: {
     init() {
-      this.items = []
-      this.offset = 0
-      this.busy = false
+      this.items = [];
+      this.offset = 0;
+      this.busy = false;
     },
     async index() {
-      const { offset, limit, platformType } = this
-      const res = await WorldlineApi.index({ offset, limit, platformType })
-      const { items, totalCount } = res.data.data
-      this.total = totalCount
+      const { offset, limit, platformType } = this;
+      const res = await WorldlineApi.index({ offset, limit, platformType });
+      const { items, totalCount } = res.data.data;
+      this.total = totalCount;
       if (items.length > 0) {
-        this.items = [...this.items, ...items]
-        this.busy = false
+        this.items = [...this.items, ...items];
+        this.busy = false;
       } else {
-        this.busy = true
+        this.busy = true;
       }
     },
     loadMore() {
-      this.offset += this.limit
-      this.index()
+      this.offset += this.limit;
+      this.index();
     },
     async getPlatformTypes() {
-      const res = await WorldlineApi.platformTypes()
-      this.platformTypes = [...this.platformTypes, ...res.data.data.items]
+      const res = await WorldlineApi.platformTypes();
+      this.platformTypes = [...this.platformTypes, ...res.data.data.items];
     },
     changePlatformType(platformType) {
-      this.platformType = platformType
-      this.init()
-      this.index()
+      this.platformType = platformType;
+      this.init();
+      this.index();
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

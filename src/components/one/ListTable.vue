@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import oneApi from '@/api/one/index'
+import oneApi from '@/api/one/index';
 
 export default {
   name: 'Index',
@@ -46,22 +46,22 @@ export default {
         zoom: true,
         custom: true
       },
-    }
+    };
   },
   created() {
     const params = {
       type: 'one',
       id: 0,
-    }
-    this.loading = true
+    };
+    this.loading = true;
     oneApi.ajaxList(params).then(
       responese => {
-        this.loading = false
-        this.tableData = responese.data.data
+        this.loading = false;
+        this.tableData = responese.data.data;
       }
-    )
+    );
   }
-}
+};
 </script>
 
 <style scoped>

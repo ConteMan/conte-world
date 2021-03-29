@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import JSONEditor from 'jsoneditor/dist/jsoneditor.min'
-import 'jsoneditor/dist/jsoneditor.min.css'
-import TabHeader from '@/views/tool/components/TabHeader'
+import JSONEditor from 'jsoneditor/dist/jsoneditor.min';
+import 'jsoneditor/dist/jsoneditor.min.css';
+import TabHeader from '@/views/tool/components/TabHeader';
 
 const modes = [
   'tree',
@@ -18,7 +18,7 @@ const modes = [
   'form',
   'code',
   'text',
-]
+];
 
 export default {
   name: 'VJsoneditor',
@@ -29,12 +29,12 @@ export default {
     options: {
       type: Object,
       default() {
-        return {}
+        return {};
       },
     },
     value: {
       default() {
-        return {}
+        return {};
       },
     },
   },
@@ -42,11 +42,11 @@ export default {
     return {
       jsoneditor: null,
       active: this.$route.name
-    }
+    };
   },
   watch: {
     value(value) {
-      this.jsoneditor.set(value)
+      this.jsoneditor.set(value);
     },
   },
   methods: {
@@ -61,44 +61,44 @@ export default {
         search: true,
         statusBar: true,
         sortObjectKeys: false,
-      }
+      };
 
       return Object.assign({}, defaults, this.options, {
         onChange: this.onChange,
         onError: this.onError,
-      })
+      });
     },
     onChange() {
       try {
-        const value = this.jsoneditor.get()
-        this.$emit('input', value)
+        const value = this.jsoneditor.get();
+        this.$emit('input', value);
         // eslint-disable-next-line
       } catch (e) {
       }
     },
     onError(error) {
-      this.$emit('error', error)
+      this.$emit('error', error);
     },
   },
   render(h) {
     return h('div', {
       ref: 'jsoneditor',
-    })
+    });
   },
   mounted() {
     this.jsoneditor = new JSONEditor(
       this.$refs.jsoneditor,
       this.getOptions(),
       this.value,
-    )
+    );
 
-    this.onChange()
+    this.onChange();
   },
   beforeDestroy() {
-    this.jsoneditor.destroy()
-    this.jsoneditor = null
+    this.jsoneditor.destroy();
+    this.jsoneditor = null;
   },
-}
+};
 </script>
 
 <style scoped lang="less">

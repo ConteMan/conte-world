@@ -18,4 +18,4 @@ export default {
       redirect: { name: 'One' },
     },
   ]
-}
+};

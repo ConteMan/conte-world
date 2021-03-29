@@ -5,4 +5,4 @@ export default {
     title: '泊世录'
   },
   component: () => import('@/views/landpage'),
-}
+};

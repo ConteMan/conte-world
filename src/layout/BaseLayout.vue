@@ -41,12 +41,12 @@
 </template>
 
 <script>
-import ContentHeader from '@/layout/components/ContentHeader'
-import Sidebar from '@/components/header/Sidebar'
+import ContentHeader from '@/layout/components/ContentHeader';
+import Sidebar from '@/components/header/Sidebar';
 
-import { mixin } from '@/utils/mixin'
-import { mapMutations } from 'vuex'
-import * as MT from '@/store/mutation-types'
+import { mixin } from '@/utils/mixin';
+import { mapMutations } from 'vuex';
+import * as MT from '@/store/mutation-types';
 
 export default {
   name: 'BaseLayout',
@@ -64,41 +64,41 @@ export default {
       sideMaxWidth: 500,
       sideMinWidth: 220,
       clientStartX: 0,
-    }
+    };
   },
   computed: {
     isDrawer: function() {
-      return this.isMobile
+      return this.isMobile;
     },
     sideShow: function() {
-      return !this.isMobile && this.menuStatus
+      return !this.isMobile && this.menuStatus;
     }
   },
   created() {
     window.addEventListener('resize', () => {
       if (!this.timer) {
-        this.timer = true
+        this.timer = true;
         setTimeout(
           () => {
-            this.setContentHeight()
-            this.timer = false
-          }, 400)
+            this.setContentHeight();
+            this.timer = false;
+          }, 400);
       }
-    }, false)
+    }, false);
   },
   mounted() {
     if (this.sideShow) {
-      this.dragControllerDeal()
+      this.dragControllerDeal();
     }
-    this.setContentHeight()
+    this.setContentHeight();
   },
   watch: {
     sideShow(target) {
       if (target) {
         // sure the side dom exist
         this.$nextTick(() => {
-          this.dragControllerDeal()
-        })
+          this.dragControllerDeal();
+        });
       }
     }
   },
@@ -108,50 +108,50 @@ export default {
       contentHeightAction: MT.CONTENT_HEIGHT,
     }),
     drawerClose() {
-      this.menuAction(false)
+      this.menuAction(false);
     },
     dragControllerDeal() {
-      const moveDom = this.$refs.moveDom
+      const moveDom = this.$refs.moveDom;
       moveDom.onmousedown = e => {
-        this.clientStartX = e.clientX
-        e.preventDefault()
+        this.clientStartX = e.clientX;
+        e.preventDefault();
         document.onmousemove = e => {
-          this.moveHandle(e.clientX)
-        }
+          this.moveHandle(e.clientX);
+        };
 
         document.onmouseup = e => {
-          document.onmouseup = null
-          document.onmousemove = null
-        }
-      }
+          document.onmouseup = null;
+          document.onmousemove = null;
+        };
+      };
     },
     moveHandle(nowClientX) {
-      const computedX = nowClientX - this.clientStartX
-      let changeWidth = this.sideWidth + computedX
+      const computedX = nowClientX - this.clientStartX;
+      let changeWidth = this.sideWidth + computedX;
 
       if (changeWidth < this.sideMinWidth) {
-        changeWidth = this.sideMinWidth
+        changeWidth = this.sideMinWidth;
       }
 
       if (changeWidth > this.sideMaxWidth) {
-        changeWidth = this.sideMaxWidth
+        changeWidth = this.sideMaxWidth;
       }
-      this.sideWidth = changeWidth
-      this.clientStartX = nowClientX
+      this.sideWidth = changeWidth;
+      this.clientStartX = nowClientX;
     },
     setContentHeight() {
-      const contentDom = document.querySelector('.content-container')
-      const height = window.getComputedStyle(contentDom).getPropertyValue('height')
-      this.contentHeightAction(parseInt(height))
+      const contentDom = document.querySelector('.content-container');
+      const height = window.getComputedStyle(contentDom).getPropertyValue('height');
+      this.contentHeightAction(parseInt(height));
     }
   },
   beforeRouteLeave(to, from, next) {
     if (this.isDrawer) {
-      this.menuAction(false)
+      this.menuAction(false);
     }
-    next()
+    next();
   },
-}
+};
 </script>
 
 <style scoped lang="less">

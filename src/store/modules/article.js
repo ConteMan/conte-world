@@ -1,4 +1,4 @@
-import * as MT from '@/store/mutation-types'
+import * as MT from '@/store/mutation-types';
 
 const article = {
   namespaced: true,
@@ -7,9 +7,9 @@ const article = {
   },
   mutations: {
     [MT.ARTICLE_SHOW_LIST]: (state, type) => {
-      state.showList = Boolean(type)
+      state.showList = Boolean(type);
     },
   }
-}
+};
 
-export default article
+export default article;

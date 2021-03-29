@@ -13,28 +13,28 @@ frameborder="0"
 </template>
 
 <script>
-import systemApi from '@/api/system'
+import systemApi from '@/api/system';
 
 export default {
   name: 'Index',
   data() {
     return {
       data: ''
-    }
+    };
   },
   created() {
-    this.detail()
+    this.detail();
   },
   methods: {
     detail() {
       systemApi.changelog().then(
         response => {
-          this.data = response.data.data.body_html
+          this.data = response.data.data.body_html;
         }
-      )
+      );
     },
   }
-}
+};
 </script>
 
 <style scoped lang="less">

@@ -5,4 +5,4 @@ export default {
   meta: {
     title: ''
   },
-}
+};

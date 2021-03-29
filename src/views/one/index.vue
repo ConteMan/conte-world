@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Card from '@/components/one/Card'
+import Card from '@/components/one/Card';
 
 export default {
   name: 'Index',
@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
   }
-}
+};
 </script>
 
 <style scoped lang="less">

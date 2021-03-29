@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { mixin } from '@/utils/mixin'
+import { mixin } from '@/utils/mixin';
 
 export default {
   name: 'Footer',
   mixins: [mixin],
-}
+};
 </script>
 
 <style scoped lang="less">

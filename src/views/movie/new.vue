@@ -48,9 +48,9 @@
 </template>
 
 <script>
-import { mixin } from '@/utils/mixin'
-import infiniteScroll from 'vue-infinite-scroll'
-import Movie from '@/api/movie'
+import { mixin } from '@/utils/mixin';
+import infiniteScroll from 'vue-infinite-scroll';
+import Movie from '@/api/movie';
 
 export default {
   name: 'Movie',
@@ -70,67 +70,67 @@ export default {
       total: 0,
 
       types: []
-    }
+    };
   },
   computed: {
     listHeight() {
-      return this.contentHeight - this.$config.headerHeight
+      return this.contentHeight - this.$config.headerHeight;
     },
     listContentHeight() {
-      return this.contentHeight - this.$config.headerHeight - 40
+      return this.contentHeight - this.$config.headerHeight - 40;
     }
   },
   async created() {
-    await this.getTypes()
-    await this.index()
+    await this.getTypes();
+    await this.index();
     setTimeout(() => {
-      this.loading = false
-    }, 300)
+      this.loading = false;
+    }, 300);
   },
   methods: {
     init() {
-      this.loading = true
+      this.loading = true;
 
-      this.items = []
-      this.offset = 0
-      this.busy = false
-      this.total = 0
+      this.items = [];
+      this.offset = 0;
+      this.busy = false;
+      this.total = 0;
     },
     async index() {
-      const { offset, limit, type } = this
-      const res = await Movie.index({ offset, limit, type })
+      const { offset, limit, type } = this;
+      const res = await Movie.index({ offset, limit, type });
       if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data
-        this.total = totalCount
-        this.busy = !hasMore
+        const { hasMore, items, totalCount } = res.data.data;
+        this.total = totalCount;
+        this.busy = !hasMore;
         if (items.length > 0) {
-          this.items = this._.concat(this.items, items)
+          this.items = this._.concat(this.items, items);
         }
       }
     },
     loadMore() {
-      this.offset += this.limit
-      this.index()
+      this.offset += this.limit;
+      this.index();
     },
     async getTypes() {
-      const res = await Movie.types()
+      const res = await Movie.types();
       if (res.data.code === 0) {
-        const { items } = res.data.data
-        this.types = items
-        this.type = items[0].type
+        const { items } = res.data.data;
+        this.types = items;
+        this.type = items[0].type;
       }
     },
     async changeType(type) {
       if (this.type === type) {
-        return false
+        return false;
       }
-      this.type = type
-      this.init()
-      await this.index()
-      this.loading = false
+      this.type = type;
+      this.init();
+      await this.index();
+      this.loading = false;
     }
   },
-}
+};
 </script>
 
 <style lang="less" scoped>

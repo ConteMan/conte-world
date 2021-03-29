@@ -1,5 +1,5 @@
-import { mapState, mapMutations } from 'vuex'
-import * as MT from '@/store/mutation-types'
+import { mapState, mapMutations } from 'vuex';
+import * as MT from '@/store/mutation-types';
 
 const mixin = {
   computed: {
@@ -15,7 +15,7 @@ const mixin = {
     })
   },
   methods: {},
-}
+};
 
 const appMixin = {
   computed: {
@@ -31,7 +31,7 @@ const appMixin = {
       contentHeightAction: MT.CONTENT_HEIGHT,
     }),
   }
-}
+};
 
 const articleMixin = {
   computed: {
@@ -45,7 +45,7 @@ const articleMixin = {
       showListAction: MT.ARTICLE_SHOW_LIST,
     }),
   }
-}
+};
 
 const contentHeaderMixin = {
   computed: {
@@ -65,6 +65,6 @@ const contentHeaderMixin = {
       headerPinAction: MT.HEADER_PIN,
     }),
   }
-}
+};
 
-export { mixin, appMixin, articleMixin, contentHeaderMixin }
+export { mixin, appMixin, articleMixin, contentHeaderMixin };

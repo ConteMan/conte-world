@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import userApi from '@/api/user'
-import TabHeader from './components/TabHeader'
+import userApi from '@/api/user';
+import TabHeader from './components/TabHeader';
 
 export default {
   name: 'Index',
@@ -36,21 +36,21 @@ export default {
     return {
       data: {},
       active: this.$route.name
-    }
+    };
   },
   methods: {
     info() {
       userApi.info().then(
         response => {
-          this.data = response.data.data
+          this.data = response.data.data;
         }
-      )
+      );
     },
   },
   created() {
-    this.info()
+    this.info();
   }
-}
+};
 </script>
 
 <style scoped lang="less">

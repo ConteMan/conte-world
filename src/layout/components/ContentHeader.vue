@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import * as MT from '@/store/mutation-types'
-import { contentHeaderMixin } from '@/utils/mixin'
+import { mapMutations } from 'vuex';
+import * as MT from '@/store/mutation-types';
+import { contentHeaderMixin } from '@/utils/mixin';
 
 export default {
   name: 'ContentHeader',
@@ -61,20 +61,20 @@ export default {
 
       enterAnimate: 'fadeIn',
       leaveAnimate: 'fadeOut',
-    }
+    };
   },
   created() {
-    this.deal()
+    this.deal();
   },
   computed: {
     showListIcon() {
-      return this.isArticleDetail && this.clientWidth > this.$config.articleShowListWidth
+      return this.isArticleDetail && this.clientWidth > this.$config.articleShowListWidth;
     },
     showHeader() {
-      return this.headerHeight > this.$config.headerHideHeight
+      return this.headerHeight > this.$config.headerHideHeight;
     },
     pinIconRotate() {
-      return this.headerPin ? 0 : -45
+      return this.headerPin ? 0 : -45;
     }
   },
   watch: {
@@ -86,16 +86,16 @@ export default {
       darkAction: MT.DARK_MODE,
     }),
     deal() {
-      this.isArticleDetail = this.$route.name === 'Article' && this.$route.params.id
-      this.isArticle = ['Article'].includes(this.$route.name)
-      this.isTalk = ['/talk'].includes(this.$route.path)
+      this.isArticleDetail = this.$route.name === 'Article' && this.$route.params.id;
+      this.isArticle = ['Article'].includes(this.$route.name);
+      this.isTalk = ['/talk'].includes(this.$route.path);
     },
     turnUrl(url) {
-      window.location.href = url
-      return true
+      window.location.href = url;
+      return true;
     },
   },
-}
+};
 </script>
 
 <style scoped lang="less">

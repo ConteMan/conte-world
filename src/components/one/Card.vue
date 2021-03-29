@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import oneApi from '@/api/one'
+import oneApi from '@/api/one';
 
 export default {
   name: 'Card',
@@ -32,30 +32,30 @@ export default {
       one: {},
       loading: false,
       imageLoading: false,
-    }
+    };
   },
   methods: {
     ones() {
-      this.loading = true
-      this.imageLoading = false
+      this.loading = true;
+      this.imageLoading = false;
       oneApi.ones().then(
         (response) => {
-          this.one = response.data.data
-          this.loading = false
+          this.one = response.data.data;
+          this.loading = false;
         }
-      )
+      );
     },
     showLoad() {
       setTimeout(() => {
-        this.imageLoading = false
-        this.loading = false
-      }, 800)
+        this.imageLoading = false;
+        this.loading = false;
+      }, 800);
     }
   },
   created() {
-    this.ones()
+    this.ones();
   },
-}
+};
 </script>
 
 <style scoped lang="less">

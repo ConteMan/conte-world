@@ -77,9 +77,9 @@
 </template>
 
 <script>
-import { mixin } from '@/utils/mixin'
-import { mapMutations } from 'vuex'
-import * as MT from '@/store/mutation-types'
+import { mixin } from '@/utils/mixin';
+import { mapMutations } from 'vuex';
+import * as MT from '@/store/mutation-types';
 
 export default {
   name: 'Landpage',
@@ -87,11 +87,11 @@ export default {
   data() {
     return {
       spaceSize: 20,
-    }
+    };
   },
   computed: {
     ready() {
-      return Object.keys(this.info).length > 0
+      return Object.keys(this.info).length > 0;
     },
   },
   methods: {
@@ -99,11 +99,11 @@ export default {
       darkAction: MT.DARK_MODE,
     }),
     turnUrl(url) {
-      window.location.href = url
-      return true
+      window.location.href = url;
+      return true;
     },
   }
-}
+};
 </script>
 
 <style scoped lang="less">

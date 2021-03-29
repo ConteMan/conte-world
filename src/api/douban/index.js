@@ -1,5 +1,5 @@
-import request from '@/request/http'
-import base from '@/api/base'
+import request from '@/request/http';
+import base from '@/api/base';
 
 const douban = {
   movieCollect(params) {
@@ -10,13 +10,13 @@ const douban = {
       rating: params.rating || 'all',
       filter: params.filter || 'all',
       mode: params.mode || 'grid',
-    }
+    };
     return request({
       url: `${base.e_isconte}/api/douban/movie_collect`,
       method: 'get',
       params: requestData
-    })
+    });
   }
-}
+};
 
-export default douban
+export default douban;

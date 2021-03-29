@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import fscreen from 'fscreen'
-import { mixin } from '@/utils/mixin'
-import { mapMutations } from 'vuex'
-import * as MT from '@/store/mutation-types'
+import fscreen from 'fscreen';
+import { mixin } from '@/utils/mixin';
+import { mapMutations } from 'vuex';
+import * as MT from '@/store/mutation-types';
 
 export default {
   name: 'Sidebar',
@@ -49,55 +49,55 @@ export default {
     return {
       enableFullscreen: true,
       isFullscreen: false,
-    }
+    };
   },
   computed: {
     cnTitle() {
-      return this.info.title ? String(this.info.title).split('/')[1] : ''
+      return this.info.title ? String(this.info.title).split('/')[1] : '';
     },
     enTitle() {
-      return this.info.title ? String(this.info.title).split('/')[0] : ''
+      return this.info.title ? String(this.info.title).split('/')[0] : '';
     },
   },
   created() {
-    this.enableFullscreen = fscreen.fullscreenEnabled
-    fscreen.addEventListener('fullscreenchange', this.fullscreenChange, false)
+    this.enableFullscreen = fscreen.fullscreenEnabled;
+    fscreen.addEventListener('fullscreenchange', this.fullscreenChange, false);
   },
   methods: {
     turnUrl(url) {
-      window.location.href = url
-      return true
+      window.location.href = url;
+      return true;
     },
     ...mapMutations('app', {
       menuAction: MT.MENU_STATUS,
       darkAction: MT.DARK_MODE,
     }),
     fullScreen() {
-      const element = document.body
+      const element = document.body;
       if (fscreen.fullscreenElement === null) {
-        fscreen.requestFullscreen(element)
+        fscreen.requestFullscreen(element);
       } else {
-        fscreen.exitFullscreen()
+        fscreen.exitFullscreen();
       }
     },
     fullscreenChange() {
       if (fscreen.fullscreenElement !== null) {
-        this.isFullscreen = true
+        this.isFullscreen = true;
       } else {
-        this.isFullscreen = false
+        this.isFullscreen = false;
       }
     },
     getSlogan(type) {
       if (!this.info.slogan) {
-        return ''
+        return '';
       }
       if (type === 'start') {
-        return String(this.info.slogan).split(',')[0].toLowerCase()
+        return String(this.info.slogan).split(',')[0].toLowerCase();
       }
-      return String(this.info.slogan).split(',')[1].slice(0, -1)
+      return String(this.info.slogan).split(',')[1].slice(0, -1);
     }
   }
-}
+};
 </script>
 
 <style scoped lang="less">

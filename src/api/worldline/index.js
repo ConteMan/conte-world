@@ -1,5 +1,5 @@
-import request from '@/request/http'
-import base from '@/api/base'
+import request from '@/request/http';
+import base from '@/api/base';
 
 const worldline = {
   // BASE URL
@@ -11,7 +11,7 @@ const worldline = {
    * @param {Object} params - 参数
    */
   index(params) {
-    const { offset, limit, platformType } = params
+    const { offset, limit, platformType } = params;
     return request({
       url: this.baseUrl,
       method: 'get',
@@ -20,7 +20,7 @@ const worldline = {
         limit,
         platformType,
       }
-    })
+    });
   },
 
   /**
@@ -30,8 +30,8 @@ const worldline = {
     return request({
       url: this.baseUrl + '/platform_types',
       method: 'get',
-    })
+    });
   }
-}
+};
 
-export default worldline
+export default worldline;

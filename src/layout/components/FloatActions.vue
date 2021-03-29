@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import fscreen from 'fscreen'
-import { mapMutations } from 'vuex'
-import * as MT from '@/store/mutation-types'
-import { mixin } from '@/utils/mixin'
+import fscreen from 'fscreen';
+import { mapMutations } from 'vuex';
+import * as MT from '@/store/mutation-types';
+import { mixin } from '@/utils/mixin';
 
 export default {
   name: 'FloatActions',
@@ -38,19 +38,19 @@ export default {
     return {
       enableFullscreen: true,
       isFullscreen: false,
-    }
+    };
   },
   computed: {
     menuIconTheme: function() {
-      return 'outlined'
+      return 'outlined';
     },
     darkModeIconTheme: function() {
-      return this.darkMode ? 'filled' : 'outlined'
+      return this.darkMode ? 'filled' : 'outlined';
     }
   },
   created() {
-    this.enableFullscreen = fscreen.fullscreenEnabled
-    fscreen.addEventListener('fullscreenchange', this.fullscreenChange, false)
+    this.enableFullscreen = fscreen.fullscreenEnabled;
+    fscreen.addEventListener('fullscreenchange', this.fullscreenChange, false);
   },
   methods: {
     ...mapMutations('app', {
@@ -58,22 +58,22 @@ export default {
       darkAction: MT.DARK_MODE,
     }),
     fullScreen() {
-      const element = document.body
+      const element = document.body;
       if (fscreen.fullscreenElement === null) {
-        fscreen.requestFullscreen(element)
+        fscreen.requestFullscreen(element);
       } else {
-        fscreen.exitFullscreen()
+        fscreen.exitFullscreen();
       }
     },
     fullscreenChange() {
       if (fscreen.fullscreenElement !== null) {
-        this.isFullscreen = true
+        this.isFullscreen = true;
       } else {
-        this.isFullscreen = false
+        this.isFullscreen = false;
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="less">
