@@ -19,7 +19,7 @@
               </span>
             </div>
             <div class="color-row bg-grey site">
-              <span v-for="item in info.site.items" :key="item.id" @click="turnUrl(item.value)">
+              <span v-for="item in info.site.items" :key="item.id" @click="turnTo(item)">
                 {{ item.extend ? item.extend.name : item.code }}
               </span>
             </div>
@@ -98,8 +98,13 @@ export default {
     ...mapMutations('app', {
       darkAction: MT.DARK_MODE,
     }),
-    turnUrl(url) {
-      window.location.href = url;
+    turnTo(item) {
+      const extend = item.extend;
+      if (extend.type && extend.type === 'route') {
+        this.$router.push({ path: item.value });
+      } else {
+        window.location.href = item.value;
+      }
       return true;
     },
   }

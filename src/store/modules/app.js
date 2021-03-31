@@ -8,7 +8,8 @@ import CommonApi from '@/api/common';
 const app = {
   namespaced: true,
   state: {
-    loading: true,
+    loading: false,
+    loadingCount: 0,
     darkMode: false,
     menuStatus: setting.menuStatus,
     isMobile: window.innerWidth <= 768,
@@ -20,7 +21,15 @@ const app = {
   },
   mutations: {
     [MT.LOADING]: (state, type) => {
-      state.loading = Boolean(type);
+      if (type) {
+        state.loadingCount++;
+      } else {
+        state.loadingCount--;
+      }
+      if (state.loadingCount < 0) {
+        state.loadingCount = 0;
+      }
+      state.loading = state.loadingCount > 0;
     },
     [MT.DARK_MODE]: (state, type = 'default') => {
       state.darkMode = type === 'default' ? !state.darkMode : Boolean(type);

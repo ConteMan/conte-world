@@ -1,0 +1,74 @@
+@import "~@/style/variables";
+
+@black: black;
+
+.time-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .time-text {
+    color: black;
+  }
+  .setting {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 20px;
+    opacity: 0.1;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    opacity: 0.1;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .drawer-container {
+    .label {
+      padding: 16px 0 0;
+    }
+    .field {
+      @{deep} input {
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid @grey;
+        &:focus {
+          box-shadow: none;
+          border-bottom: 1px solid @black;
+        }
+      }
+      .select {
+        width: 100%;
+        @{deep} .ant-select-selection {
+          border-radius: 0;
+          border: none;
+          border-bottom: 1px solid @grey;
+          box-shadow: none !important;
+        }
+      }
+      @{deep} .ant-select-open .ant-select-selection {
+        border-bottom: 1px solid @black !important;
+      }
+    }
+    .action {
+      text-align: center;
+      margin-top: 50px;
+      @{deep} .ant-btn {
+        padding: 0;
+      }
+    }
+    @{deep} .ant-drawer-content-wrapper {
+      max-width: 90%;
+    }
+  }
+}
