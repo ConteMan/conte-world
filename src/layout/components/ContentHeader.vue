@@ -24,21 +24,23 @@
         >
           <c-icon type="icon-mulu" class="trigger-icon"/>
         </div>
-        <div
-          v-if="isTalk"
-          class="trigger end"
-          title="Pin Header"
-          @click="headerPinAction()"
-        >
-          <a-icon type="pushpin" :rotate="pinIconRotate" class="trigger-icon"/>
-        </div>
-        <div
-          v-if="isArticle"
-          class="trigger end-2"
-          title="RSS Feed of Article"
-          @click="turnUrl('https://isconte.com/feed/article.rss')"
-        >
-          <c-icon type="icon-rss" class="trigger-icon"/>
+        <div class="right">
+          <div
+            v-if="isTalk"
+            class="trigger end"
+            title="Pin Header"
+            @click="headerPinAction()"
+          >
+            <a-icon type="pushpin" :rotate="pinIconRotate" class="trigger-icon"/>
+          </div>
+          <div
+            v-if="isArticle"
+            class="trigger end-2"
+            title="RSS Feed of Article"
+            @click="turnUrl('https://isconte.com/feed/article.rss')"
+          >
+            <c-icon type="icon-rss" class="trigger-icon"/>
+          </div>
         </div>
       </template>
     </div>
@@ -122,14 +124,12 @@ export default {
     &:hover, &:focus, &:active, &:target {
       opacity: 1;
     }
-    &.end {
-      position: absolute;
-      right: 20px;
-    }
-    &.end-2 {
-      position: absolute;
-      right: 60px;
-    }
+  }
+  .right {
+    position: absolute;
+    padding-right: 20px;
+    height: 100%;
+    right: 0;
   }
   .trigger.ant-popover-open {
     opacity: 1;

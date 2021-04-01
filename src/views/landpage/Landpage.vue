@@ -24,7 +24,7 @@
               </span>
             </div>
             <div class="color-row bg-light-grey social">
-              <span v-for="item in info.social.items" :key="item.id" title="item.code" @click="turnUrl(item.value)">
+              <span v-for="item in info.social.items" :key="item.id" title="item.code" @click="turnTo(item)">
                 <c-icon :type="'icon-' + item.extend.icon"/>
               </span>
             </div>
