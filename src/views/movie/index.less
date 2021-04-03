@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   padding: 0 20px;
+  background: @bg;
   .nav-item {
     cursor: pointer;
     margin-right: 10px;
@@ -33,7 +34,10 @@
 }
 
 .dark-theme {
-  .nav-item {
-    color: @border-color !important;
+  .nav-bar {
+    background: @dark-theme-bg;
+    .nav-item {
+      color: @border-color !important;
+    }
   }
 }

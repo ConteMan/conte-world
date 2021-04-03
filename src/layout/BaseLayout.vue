@@ -33,7 +33,7 @@
         <content-header
           class="content-header"
         />
-        <router-view/>
+        <router-view class="router-container" :class="{ 'header-pin': headerPin }" />
       </div>
 
     </div>
@@ -64,6 +64,8 @@ export default {
       sideMaxWidth: 500,
       sideMinWidth: 220,
       clientStartX: 0,
+
+      scrollTop: 0,
     };
   },
   computed: {
@@ -85,6 +87,7 @@ export default {
           }, 400);
       }
     }, false);
+    window.addEventListener('scroll', this.throttle(this.scrollDeal, 200), true);
   },
   mounted() {
     if (this.sideShow) {
@@ -100,7 +103,8 @@ export default {
           this.dragControllerDeal();
         });
       }
-    }
+    },
+    '$route': 'deal'
   },
   methods: {
     ...mapMutations('app', {
@@ -143,7 +147,45 @@ export default {
       const contentDom = document.querySelector('.content-container');
       const height = window.getComputedStyle(contentDom).getPropertyValue('height');
       this.contentHeightAction(parseInt(height));
-    }
+    },
+    scrollDeal(event) {
+      const className = event.target.className;
+      const classes = className.split(' ');
+      if (classes.includes('infinite-list') && !this.headerPin) {
+        this.scrollHandle(event);
+      }
+    },
+    // 滚动处理
+    scrollHandle(event) {
+      const headerHeight = this.$config.headerHeight;
+      const headerHideHeight = this.$config.headerHideHeight;
+      const show = this.headerHeight === headerHeight;
+      const currentScrollTop = event.target.scrollTop;
+      if (!show) {
+        if (currentScrollTop - headerHeight <= 0 || currentScrollTop < this.scrollTop) {
+          this.headerHeightAction(headerHeight);
+        }
+      } else {
+        if (currentScrollTop > this.scrollTop && currentScrollTop - headerHeight > 0) {
+          this.headerHeightAction(headerHideHeight);
+        }
+      }
+      this.scrollTop = currentScrollTop;
+    },
+    throttle(fn, interval = 300) {
+      let canRun = true;
+      return function() {
+        if (!canRun) return;
+        canRun = false;
+        setTimeout(() => {
+          fn.apply(this, arguments);
+          canRun = true;
+        }, interval);
+      };
+    },
+    deal() {
+      this.scrollTop = 0;
+    },
   },
   beforeRouteLeave(to, from, next) {
     if (this.isDrawer) {

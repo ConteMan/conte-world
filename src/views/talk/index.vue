@@ -1,36 +1,29 @@
 <template>
   <div :style="{ 'height': listHeight + 'px' }">
-    <a-spin
-      :spinning="loading"
-      wrapperClassName="spin-loading-container"
-      tip="Hello, ConteMan"
+    <div
+      class="infinite-list list-content"
+      id="scroll-list"
+      v-infinite-scroll="loadMore"
+      infinite-scroll-delay="1000"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="220"
+      infinite-scroll-immediate-check="true"
+      :style="{ 'height': listHeight + 'px', 'padding-top': $config.headerHeight + 'px' }"
     >
-      <a-icon slot="indicator" class="spin-loading" type="loading" spin />
-      <div
-        class="list-content"
-        id="scroll-list"
-        v-infinite-scroll="loadMore"
-        infinite-scroll-delay="1000"
-        infinite-scroll-disabled="busy"
-        infinite-scroll-distance="220"
-        infinite-scroll-immediate-check="true"
-        :style="{ 'height': listHeight + 'px'}"
-      >
-        <template v-if="items.length">
-          <template v-for="item in items">
-            <div :key="item.id" class="list-item">
-              <div class="card" v-if="['conteworld_talk'].includes(item.platform_type)" v-html="item.content" />
-              <div class="card" v-if="['yuque_note'].includes(item.platform_type)" v-html="yuqueNoteFormat(item.content)" />
-              <div class="info">
-                <span class="time">
-                  {{ $dayjs(item.info_at).format("YYYY-MM-DD HH:mm:ss") }}
-                </span>
-              </div>
+      <template v-if="items.length">
+        <template v-for="item in items">
+          <div :key="item.id" class="list-item">
+            <div class="card" v-if="['conteworld_talk'].includes(item.platform_type)" v-html="item.content" />
+            <div class="card" v-if="['yuque_note'].includes(item.platform_type)" v-html="yuqueNoteFormat(item.content)" />
+            <div class="info">
+              <span class="time">
+                {{ $dayjs(item.info_at).format("YYYY-MM-DD HH:mm:ss") }}
+              </span>
             </div>
-          </template>
+          </div>
         </template>
-      </div>
-    </a-spin>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -64,17 +57,17 @@ export default {
   },
   computed: {
     listHeight() {
-      return this.contentHeight - this.headerHeight;
+      return this.contentHeight;
     }
   },
   async created() {
     await this.index();
-    setTimeout(() => {
-      this.loading = false;
-    }, 300);
+    // setTimeout(() => {
+    //   this.loading = false;
+    // }, 300);
   },
   async mounted() {
-    this.scrollDeal();
+    // this.scrollDeal();
   },
   methods: {
     ...mapMutations('app', {
@@ -111,11 +104,15 @@ export default {
       const headerHideHeight = this.$config.headerHideHeight;
       const diff = headerHeight - headerHideHeight;
       const currentScrollTop = event.target.scrollTop;
-      if (this.headerHeight > headerHideHeight && currentScrollTop > this.scrollTop + diff) {
-        this.headerHeightAction(headerHideHeight);
+      if (currentScrollTop - headerHeight <= 0) {
+        this.headerHeightAction(headerHeight);
       } else {
-        if (this.headerHeight <= headerHideHeight && currentScrollTop < this.scrollTop - diff) {
-          this.headerHeightAction(headerHeight);
+        if (this.headerHeight > headerHideHeight && currentScrollTop > this.scrollTop + diff) {
+          this.headerHeightAction(headerHideHeight);
+        } else {
+          if (this.headerHeight <= headerHideHeight && currentScrollTop < this.scrollTop - diff) {
+            this.headerHeightAction(headerHeight);
+          }
         }
       }
       this.scrollTop = currentScrollTop;

@@ -1,49 +1,45 @@
 <template>
-  <div :style="{ 'height': listHeight + 'px' }">
-    <a-spin
-      :spinning="loading"
-      wrapperClassName="spin-loading-container"
-      tip="Hello, ConteMan"
+  <div :style="{ 'height': listHeight + 'px'}">
+    <div
+      class="infinite-list list-content"
+      v-infinite-scroll="loadMore"
+      infinite-scroll-delay="1000"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="220"
+      infinite-scroll-immediate-check="true"
+      :style="{ 'height': listContentHeight + 'px', 'padding-top': $config.headerHeight + 'px' }"
+      ref="infinite-list"
     >
-      <a-icon slot="indicator" class="spin-loading" type="loading" spin />
-      <div class="nav-bar">
-        <a-space>
-          <span
-            v-for="item in types"
-            :key="item.type"
-            class="nav-item"
-            :class="{ 'active': type === item.type }"
-            @click="changeType(item.type)"
-          >
-            {{ item.value }} {{ item.total }}
-          </span>
-        </a-space>
-      </div>
-      <div
-        class="list-content"
-        v-infinite-scroll="loadMore"
-        infinite-scroll-delay="1000"
-        infinite-scroll-disabled="busy"
-        infinite-scroll-distance="220"
-        infinite-scroll-immediate-check="true"
-        :style="{ 'height': listContentHeight + 'px' }"
-      >
-        <template v-if="items.length">
-          <template v-for="item in items">
-            <div :key="item.id" class="list-item">
-              <div>
-                <a :href="item.content_origin.link" target="_blank">{{ item.content }}</a>
-              </div>
-              <div class="info">
-                <span class="time">
-                  {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
-                </span>
-              </div>
+      <a-affix class="affix" :offset-top="offsetTop" :target="() => this.$refs['infinite-list']">
+        <div class="nav-bar">
+          <a-space>
+            <span
+              v-for="item in types"
+              :key="item.type"
+              class="nav-item"
+              :class="{ 'active': type === item.type }"
+              @click="changeType(item.type)"
+            >
+              {{ item.value }} {{ item.total }}
+            </span>
+          </a-space>
+        </div>
+      </a-affix>
+      <template v-if="items.length">
+        <template v-for="item in items">
+          <div :key="item.id" class="list-item">
+            <div>
+              <a :href="item.content_origin.link" target="_blank">{{ item.content }}</a>
             </div>
-          </template>
+            <div class="info">
+              <span class="time">
+                {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+              </span>
+            </div>
+          </div>
         </template>
-      </div>
-    </a-spin>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -74,10 +70,13 @@ export default {
   },
   computed: {
     listHeight() {
-      return this.contentHeight - this.$config.headerHeight;
+      return this.contentHeight;
     },
     listContentHeight() {
-      return this.contentHeight - this.$config.headerHeight - 40;
+      return this.contentHeight;
+    },
+    offsetTop() {
+      return this.headerHeight + 1;
     }
   },
   async created() {

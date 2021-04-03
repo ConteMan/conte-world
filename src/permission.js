@@ -14,5 +14,8 @@ router.beforeEach(async(to, from, next) => {
   if (to.path === '/time') {
     store.commit('app/' + MT.LOADING, true);
   }
+  // 内容头部复位
+  store.commit('app/' + MT.HEADER_HEIGHT, setting.headerHeight);
+
   next();
 });

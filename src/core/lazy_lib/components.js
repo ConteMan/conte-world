@@ -17,6 +17,7 @@ import {
   // Switch,
   // Collapse,
   // Tooltip,
+  Affix,
 } from 'ant-design-vue';
 
 Vue.component(Button.name, Button);
@@ -31,6 +32,7 @@ Vue.component(Popover.name, Popover);
 Vue.component(ConfigProvider.name, ConfigProvider);
 Vue.component(Input.name, Input);
 Vue.component(Select.name, Select);
+Vue.component(Affix.name, Affix);
 // Vue.component(Collapse.name, Collapse)
 // Vue.component(Collapse.Panel.name, Collapse.Panel)
 // Vue.component(Switch.name, Switch)

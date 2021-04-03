@@ -1,6 +1,7 @@
 @import "~@/style/variables";
 
 .content-header {
+  position: absolute;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -48,6 +49,10 @@
     flex-grow: 1;
     height: 100vh;
     overflow: hidden;
+    position: relative;
+    .router-container {
+      position: relative;
+    }
   }
 
   .content-container.no-menu {

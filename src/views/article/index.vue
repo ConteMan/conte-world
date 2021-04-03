@@ -2,14 +2,14 @@
   <div class="content-detail-container" :style="{ 'height': listHeight + 'px'}">
     <div
       v-show="showList"
-      class="list-content"
+      class="infinite-list list-content"
       :class="{ 'only-list': !showDetail }"
       v-infinite-scroll="loadMore"
       infinite-scroll-delay="1000"
       infinite-scroll-disabled="busy"
       infinite-scroll-distance="200"
       infinite-scroll-immediate-check="true"
-      :style="{ 'height': listHeight + 'px', 'min-width': sideWidth + 'px', 'max-width': sideWidth + 'px' }"
+      :style="{ 'height': listHeight + 'px', 'min-width': sideWidth + 'px', 'max-width': sideWidth + 'px', 'padding-top': $config.headerHeight + 'px' }"
     >
       <template v-if="items.length">
         <template v-for="item in items">
@@ -43,6 +43,7 @@
     <div
       v-if="showDetail"
       class="detail-content"
+      :style="{ 'padding-top': $config.headerHeight + 'px' }"
     >
       <div class="title">
         <span class="name">
@@ -101,7 +102,7 @@ export default {
   },
   computed: {
     listHeight() {
-      return this.contentHeight - this.$config.headerHeight;
+      return this.contentHeight;
     },
     id() {
       const id = this.$route.params.id ? this.$route.params.id : 0;

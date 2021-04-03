@@ -12,9 +12,15 @@ const mixin = {
       contentHeight: state => state.app.contentHeight,
       routes: state => state.permission.routes,
       info: state => state.app.info,
+      headerPin: state => state.app.headerPin,
     })
   },
-  methods: {},
+  methods: {
+    ...mapMutations('app', {
+      headerHeightAction: MT.HEADER_HEIGHT,
+      headerPinAction: MT.HEADER_PIN,
+    }),
+  },
 };
 
 const appMixin = {

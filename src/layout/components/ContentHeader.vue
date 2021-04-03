@@ -5,8 +5,8 @@
     <div
       class="header"
       :style="{ 'height': headerHeight + 'px' }"
+      :class="{ 'hide-icon': !showHeader }"
     >
-      <template v-if="showHeader">
         <div class="trigger" @click="menuAction()">
           <a-icon type="menu" class="trigger-icon"/>
         </div>
@@ -26,23 +26,21 @@
         </div>
         <div class="right">
           <div
-            v-if="isTalk"
-            class="trigger end"
-            title="Pin Header"
-            @click="headerPinAction()"
-          >
-            <a-icon type="pushpin" :rotate="pinIconRotate" class="trigger-icon"/>
-          </div>
-          <div
             v-if="isArticle"
-            class="trigger end-2"
+            class="trigger"
             title="RSS Feed of Article"
             @click="turnUrl('https://isconte.com/feed/article.rss')"
           >
             <c-icon type="icon-rss" class="trigger-icon"/>
           </div>
+          <div
+            class="trigger"
+            title="Pin Header"
+            @click="headerPinAction()"
+          >
+            <a-icon type="pushpin" :rotate="pinIconRotate" class="trigger-icon"/>
+          </div>
         </div>
-      </template>
     </div>
   </div>
 </template>
@@ -103,36 +101,52 @@ export default {
 <style scoped lang="less">
 @import "~@/style/variables.less";
 
-.header {
-  width: 100%;
-  padding: 0 10px;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  transition: all 0.2s linear;
-  .trigger {
+.header-container {
+  z-index: 2;
+  background: @bg;
+  .header {
+    width: 100%;
+    padding: 0 10px;
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 @base-padding/2;
-    height: 100%;
-    cursor: pointer;
-    opacity: 0.3;
-    .trigger-icon {
-      font-size: 18px;
+    flex-direction: row;
+    // transition: height 0.3s;
+    .trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 @base-padding/2;
+      height: 100%;
+      cursor: pointer;
+      opacity: 0.3;
+      .trigger-icon {
+        font-size: 18px;
+      }
+      &:hover, &:focus, &:active, &:target {
+        opacity: 1;
+      }
     }
-    &:hover, &:focus, &:active, &:target {
+    .right {
+      display: flex;
+      position: absolute;
+      padding-right: 20px;
+      height: 100%;
+      right: 0;
+    }
+    .trigger.ant-popover-open {
       opacity: 1;
     }
   }
-  .right {
-    position: absolute;
-    padding-right: 20px;
-    height: 100%;
-    right: 0;
+  .hide-icon {
+    .trigger {
+      display: none;
+      transform: height 0.3s;
+    }
   }
-  .trigger.ant-popover-open {
-    opacity: 1;
+}
+.dark-theme {
+  .header-container {
+    background: @dark-theme-bg;
   }
 }
 </style>
