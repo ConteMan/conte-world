@@ -28,8 +28,14 @@
       <template v-if="items.length">
         <template v-for="item in items">
           <div :key="item.id" class="list-item">
-            <div>
+            <div class="title">
               <a :href="item.content_origin.link" target="_blank">{{ item.content }}</a>
+            </div>
+            <div class="rate">
+              <a-rate v-if="item.content_origin.rate" v-model="item.content_origin.rate" disabled />
+            </div>
+            <div v-if="item.content_origin.comment" class="comment">
+              {{ item.content_origin.comment }}
             </div>
             <div class="info">
               <span class="time">

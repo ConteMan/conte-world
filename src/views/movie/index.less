@@ -31,6 +31,25 @@
 
 .list-content {
   overflow-y: auto;
+  .list-item {
+    .title {
+      padding: 12px 0;
+    }
+    .rate,.comment {
+      padding: 0 0 10px 0;
+      @{deep} .ant-rate-star-zero {
+        display: none;
+      }
+    }
+    .comment {
+      color: @font-color-grey2;
+      font-size: 12px;
+      font-style: italic;
+    }
+    .info {
+      padding: 0;
+    }
+  }
 }
 
 .dark-theme {
