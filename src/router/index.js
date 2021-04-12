@@ -5,8 +5,9 @@ import landpage from '@/router/modules/landpage.js';
 import article from '@/router/modules/article.js';
 import movie from '@/router/modules/movie.js';
 import talk from '@/router/modules/talk.js';
-import about from '@/router/modules/about';
+import about from '@/router/modules/about.js';
 import time from '@/router/modules/time.js';
+import book from '@/router/modules/book.js';
 
 Vue.use(Router);
 
@@ -17,6 +18,7 @@ export const routes = [
   talk,
   about,
   time,
+  book,
   {
     path: '*',
     name: '404',

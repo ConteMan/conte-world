@@ -34,6 +34,9 @@
             <div class="title">
               <a :href="item.content_origin.link" target="_blank">{{ item.content }}</a>
             </div>
+            <div class="intro">
+              {{ `${item.content_origin.author} / ${item.content_origin.publisher} / ${item.content_origin.publishDate}` }}
+            </div>
             <div class="rate">
               <a-rate v-if="item.content_origin.rate" v-model="item.content_origin.rate" disabled />
             </div>
@@ -55,10 +58,10 @@
 <script>
 import { mixin } from '@/utils/mixin';
 import infiniteScroll from 'vue-infinite-scroll';
-import Movie from '@/api/movie';
+import Base from '@/api/book';
 
 export default {
-  name: 'Movie',
+  name: 'Book',
   directives: {
     infiniteScroll,
   },
@@ -106,7 +109,7 @@ export default {
     },
     async index() {
       const { offset, limit, type } = this;
-      const res = await Movie.index({ offset, limit, type });
+      const res = await Base.index({ offset, limit, type });
       if (res.data.code === 0) {
         const { hasMore, items, totalCount } = res.data.data;
         this.total = totalCount;
@@ -121,7 +124,7 @@ export default {
       this.index();
     },
     async getTypes() {
-      const res = await Movie.types();
+      const res = await Base.types();
       if (res.data.code === 0) {
         const { items } = res.data.data;
         this.types = items;
