@@ -1,0 +1,97 @@
+@import "~@/style/variables";
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: @padding * 2 0 0 0;
+
+  .content-container {
+    position: relative;
+    overflow: hidden;
+
+    width: 100%;
+    max-width: 1048px;
+    padding: 0 @padding;
+
+    .color-row {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 0 @padding;
+
+      width: 100%;
+      min-height: 50px;
+    }
+    .bg-gray {
+      color: @font-color-white;
+      background: @bg-gray;
+    }
+    .bg-gray-light {
+      color: @font-color;
+      background: @bg-gray-light;
+    }
+    .title {
+      font-size: 24px;
+    }
+    .dark-btn {
+      margin-left: @margin;
+      opacity: 0.2;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    .slogan {
+      margin-top: @margin;
+      color: @font-color-white;
+    }
+    .nav,.site,.social {
+      position: relative;
+      span {
+        margin: 0 @margin-2 0 0;
+        cursor: pointer;
+        &:hover {
+          font-weight: bold;
+          color: @hover-color;
+          box-shadow: 0 -1px 0 0 @hover-color inset;
+        }
+      }
+    }
+    .social {
+      font-size: 16px;
+      span {
+        &:hover {
+          box-shadow: none;
+        }
+      }
+    }
+    .info {
+      margin-top: @margin;
+      text-align: right;
+      .beian,.run-time {
+        svg {
+          fill: @gray-7;
+          text {
+            line-height: 1;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+}
+
+// dark mode
+.dark-theme {
+  .content-container {
+    .bg-gray {
+      background:  @dark-bg-light;
+      color: @dark-font-color;
+    }
+    .bg-gray-light {
+      background: @dark-bg;
+      color: @dark-font-color;
+    }
+  }
+}

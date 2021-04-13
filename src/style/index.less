@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "~ant-design-vue/dist/antd.less";
+@import "~ant-design-vue/dist/antd.less"; // 具体变量 https://github.com/vueComponent/ant-design-vue/blob/master/components/style/themes/default.less
 @import "variables"; // 变量
 
 html, body {
@@ -42,6 +42,10 @@ body {
 
 .hidden {
   opacity: 0;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .z-index-0 {
@@ -100,7 +104,7 @@ body {
   .back-btn {
     display: inline-block;
     width: 40px;
-    padding: 0 0 0 @base-padding;
+    padding: 0 0 0 @padding;
     .back-btn-icon {
       font-size: 18px;
     }
@@ -192,7 +196,7 @@ body {
 }
 
 .list-item {
-  padding: @base-padding @base-padding @base-padding/2 @base-padding;
+  padding: @padding @padding @padding-2 @padding;
   border-bottom: 1px solid @border-color;
   word-break: break-all;
   &:hover, &.active {
@@ -217,8 +221,8 @@ body {
 .dark-theme {
   background-color: @dark-theme-bg;
   color: @dark-theme-color;
-  transition: all 300ms;
-  opacity: 0.99;
+  // transition: all 300ms;
+  // opacity: 0.99;
   a,
   h1, h2, h3, h4, h5, h6 {
     color: @dark-theme-color;
