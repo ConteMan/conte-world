@@ -32,7 +32,7 @@
 
         <div class="info">
           <div class="beian pointer">
-            <svg width="200" height="11.52" @click="turnUrl('https://beian.miit.gov.cn/')">
+            <svg width="200" height="11.52" @click="turnTo({ extend: {}, value: 'https://beian.miit.gov.cn/' })">
               <text
                 dominant-baseline="baseline"
                 font-size="10"
@@ -48,7 +48,7 @@
             <svg
               width="200"
               height="11.52"
-              @click="turnUrl('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum)"
+              @click="turnTo({ extend: {}, value: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum })"
             >
               <text
                 dominant-baseline="baseline"
