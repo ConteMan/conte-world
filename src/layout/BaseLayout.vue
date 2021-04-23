@@ -1,6 +1,6 @@
 <template>
   <div class="layout-container">
-    <div class="base-container" :style="{ 'max-width': layoutWidth }">
+    <div class="base-container" :style="{ 'max-width': layoutWidth, 'width': layoutWidth }">
       <template v-if="sideShow">
         <div
           class="side-container"
