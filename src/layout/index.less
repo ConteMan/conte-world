@@ -1,7 +1,12 @@
 @import "~@/style/variables";
 
+.layout-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .content-header {
-  position: absolute;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -10,15 +15,19 @@
 }
 
 .base-container {
-  height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 
+  height: 100%;
+
   .side-container {
+    position: relative;
     flex-grow: 0;
     flex-shrink: 0;
     margin: 0;
+    overflow-y: auto;
+    height: 100vh;
   }
 
   .touch-div {

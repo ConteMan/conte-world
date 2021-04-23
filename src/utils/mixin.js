@@ -13,12 +13,14 @@ const mixin = {
       routes: state => state.permission.routes,
       info: state => state.app.info,
       headerPin: state => state.app.headerPin,
+      layoutMode: state => state.app.layoutMode,
     })
   },
   methods: {
     ...mapMutations('app', {
       headerHeightAction: MT.HEADER_HEIGHT,
       headerPinAction: MT.HEADER_PIN,
+      layoutModeAction: MT.LAYOUT_MODE,
     }),
   },
 };

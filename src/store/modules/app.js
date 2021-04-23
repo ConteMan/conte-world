@@ -18,6 +18,7 @@ const app = {
     headerPin: true, // true 固定
     contentHeight: 0,
     info: {}, // 基础信息
+    layoutMode: setting.layoutMode,
   },
   mutations: {
     [MT.LOADING]: (state, type) => {
@@ -58,7 +59,15 @@ const app = {
     },
     [MT.INFO]: (state, payload) => {
       state.info = payload;
-    }
+    },
+    [MT.LAYOUT_MODE]: (state, mode = '') => {
+      if (['static', 'fit'].includes(mode)) {
+        state.layoutMode = mode;
+      } else {
+        state.layoutMode = state.layoutMode === 'static' ? 'fit' : 'static';
+      }
+      Vue.ls.set(setting.storageKeys.layoutMode, state.layoutMode);
+    },
   },
   actions: {
     async init({ commit }) {

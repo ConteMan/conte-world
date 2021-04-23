@@ -7,10 +7,10 @@
       infinite-scroll-disabled="busy"
       infinite-scroll-distance="220"
       infinite-scroll-immediate-check="true"
-      :style="{ 'height': listContentHeight + 'px', 'padding-top': $config.headerHeight + 'px' }"
+      :style="{ 'height': listContentHeight + 'px' }"
       ref="infinite-list"
     >
-      <a-affix class="affix" :offset-top="offsetTop" :target="() => this.$refs['infinite-list']">
+      <a-affix class="affix" :offset-top="0" :target="() => this.$refs['infinite-list']">
         <div class="nav-bar">
           <a-space>
             <span
@@ -84,9 +84,6 @@ export default {
     listContentHeight() {
       return this.contentHeight;
     },
-    offsetTop() {
-      return this.headerHeight + 1;
-    }
   },
   async created() {
     await this.getTypes();

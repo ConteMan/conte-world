@@ -47,6 +47,6 @@ Modal.install(Vue);
 Select.install(Vue);
 
 const CIcon = Icon.createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2204869_zurj6qqazyg.js',
+  scriptUrl: '//at.alicdn.com/t/font_2204869_x1o1qtv95in.js',
 });
 Vue.component('c-icon', CIcon);

@@ -1,6 +1,6 @@
 <template>
   <div class="layout-container">
-    <div class="base-container">
+    <div class="base-container" :style="{ 'max-width': layoutWidth }">
       <template v-if="sideShow">
         <div
           class="side-container"
@@ -20,20 +20,22 @@
       <a-drawer
         placement="left"
         wrapClassName="sidebar-drawer"
+        width="40%"
         :closable="false"
         :visible="menuStatus && isDrawer"
-        width="40%"
         @close="drawerClose"
       >
         <sidebar/>
       </a-drawer>
 
-      <div
-        class="content-container"
-      >
-        <content-header
-          class="content-header"
-        />
+      <div class="content-container" ref="content-container">
+        <a-affix
+          class="affix"
+          :offset-top="0"
+          :target="() => this.$refs['content-container']"
+        >
+          <content-header class="content-header" />
+        </a-affix>
         <router-view class="router-container" :class="{ 'header-pin': headerPin }" />
       </div>
 
@@ -75,7 +77,10 @@ export default {
     },
     sideShow: function() {
       return !this.isMobile && this.menuStatus;
-    }
+    },
+    layoutWidth: function() {
+      return this.layoutMode === 'static' ? this.$config.staticWidth + 'px' : '100%';
+    },
   },
   created() {
     window.addEventListener('resize', () => {
@@ -151,7 +156,7 @@ export default {
     },
     scrollDeal(event) {
       const className = event.target.className;
-      const classes = className.split(' ');
+      const classes = className ? className.split(' ') : [];
       if (classes.includes('infinite-list') && !this.headerPin) {
         this.scrollHandle(event);
       }

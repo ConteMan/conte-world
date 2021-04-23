@@ -7,6 +7,7 @@ const HEADER_HEIGHT = 'HEADER_HEIGHT';
 const HEADER_PIN = 'HEADER_PIN';
 const CONTENT_HEIGHT = 'CONTENT_HEIGHT';
 const INFO = 'INFO';
+const LAYOUT_MODE = 'LAYOUT_MODE';
 
 const ROUTES = 'ROUTES';
 
@@ -22,6 +23,7 @@ export {
   HEADER_PIN,
   CONTENT_HEIGHT,
   INFO,
+  LAYOUT_MODE,
 
   ROUTES,
 

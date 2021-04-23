@@ -1,28 +1,30 @@
 <template>
-  <div :style="{ 'height': listHeight + 'px' }">
-    <div
-      class="infinite-list list-content"
-      id="scroll-list"
-      v-infinite-scroll="loadMore"
-      infinite-scroll-delay="1000"
-      infinite-scroll-disabled="busy"
-      infinite-scroll-distance="220"
-      infinite-scroll-immediate-check="true"
-      :style="{ 'height': listHeight + 'px', 'padding-top': $config.headerHeight + 'px' }"
-    >
-      <template v-if="items.length">
-        <template v-for="item in items">
-          <div :key="item.id" class="list-item">
-            <div class="card" v-if="['conteworld_talk'].includes(item.platform_type)" v-html="item.content" />
-            <div class="card" v-if="['yuque_note'].includes(item.platform_type)" v-html="yuqueNoteFormat(item.content)" />
-            <div class="info">
-              <span class="time">
-                {{ $dayjs(item.info_at).format("YYYY-MM-DD HH:mm:ss") }}
-              </span>
+  <div>
+    <div :style="{ 'height': listHeight + 'px' }">
+      <div
+        class="infinite-list list-content"
+        id="scroll-list"
+        v-infinite-scroll="loadMore"
+        infinite-scroll-delay="1000"
+        infinite-scroll-disabled="busy"
+        infinite-scroll-distance="220"
+        infinite-scroll-immediate-check="true"
+        :style="{ 'height': listHeight + 'px' }"
+      >
+        <template v-if="items.length">
+          <template v-for="item in items">
+            <div :key="item.id" class="list-item">
+              <div class="card" v-if="['conteworld_talk'].includes(item.platform_type)" v-html="item.content" />
+              <div class="card" v-if="['yuque_note'].includes(item.platform_type)" v-html="yuqueNoteFormat(item.content)" />
+              <div class="info">
+                <span class="time">
+                  {{ $dayjs(item.info_at).format("YYYY-MM-DD HH:mm:ss") }}
+                </span>
+              </div>
             </div>
-          </div>
+          </template>
         </template>
-      </template>
+      </div>
     </div>
   </div>
 </template>
@@ -62,12 +64,6 @@ export default {
   },
   async created() {
     await this.index();
-    // setTimeout(() => {
-    //   this.loading = false;
-    // }, 300);
-  },
-  async mounted() {
-    // this.scrollDeal();
   },
   methods: {
     ...mapMutations('app', {
@@ -92,42 +88,6 @@ export default {
     yuqueNoteFormat(data) {
       return data.replaceAll(/\<\!doctype\s\S*\>|\<meta[\s\S]*\/\>|data-lake\S{0,10}=\"\S{0,100}\"/g, '');
     },
-    scrollDeal() {
-      const scrollList = document.querySelector('#scroll-list');
-      this.scrollTop = scrollList.scrollTop;
-      if (scrollList) {
-        scrollList.addEventListener('scroll', this.throttle(this.scrollHandle, 300), false);
-      }
-    },
-    scrollHandle(event) {
-      const headerHeight = this.$config.headerHeight;
-      const headerHideHeight = this.$config.headerHideHeight;
-      const diff = headerHeight - headerHideHeight;
-      const currentScrollTop = event.target.scrollTop;
-      if (currentScrollTop - headerHeight <= 0) {
-        this.headerHeightAction(headerHeight);
-      } else {
-        if (this.headerHeight > headerHideHeight && currentScrollTop > this.scrollTop + diff) {
-          this.headerHeightAction(headerHideHeight);
-        } else {
-          if (this.headerHeight <= headerHideHeight && currentScrollTop < this.scrollTop - diff) {
-            this.headerHeightAction(headerHeight);
-          }
-        }
-      }
-      this.scrollTop = currentScrollTop;
-    },
-    throttle(fn, interval = 300) {
-      let canRun = true;
-      return function() {
-        if (!canRun) return;
-        canRun = false;
-        setTimeout(() => {
-          fn.apply(this, arguments);
-          canRun = true;
-        }, interval);
-      };
-    }
   },
 };
 </script>

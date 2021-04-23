@@ -12,9 +12,7 @@
         :enter-active-class="`animated ${enterAnimate} page-toggle-enter-active`"
         :leave-active-class="`animated ${leaveAnimate} page-toggle-leave-active`"
       >
-        <a-config-provider
-          :getPopupContainer="getPopupContainer"
-        >
+        <a-config-provider :getPopupContainer="getPopupContainer">
           <router-view/>
         </a-config-provider>
       </transition>

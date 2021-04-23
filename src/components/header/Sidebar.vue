@@ -3,6 +3,7 @@
     <div
       class="title logo"
       :data-cn-title="cnTitle"
+      @click="$router.push({ path: '/' })"
     >
       <span class="en-title">{{ enTitle }}</span>
     </div>
@@ -24,13 +25,23 @@
         </div>
       </div>
     </div>
-    <div class="nav-bottom">
+
+    <div class="nav-bottom" v-if="showSetting">
       <span class="bottom-item" @click="darkAction()" title="Dark Mode">
         <c-icon type="icon-dark" class="bottom-icon"/>
       </span>
       <span v-if="enableFullscreen" class="bottom-item" @click="fullScreen()" title="Full Screen">
         <a-icon v-if="isFullscreen" type="fullscreen-exit" class="bottom-icon"/>
         <a-icon v-else type="fullscreen" class="bottom-icon"/>
+      </span>
+      <span v-if="!isMobile" class="bottom-item" @click="layoutModeAction()" title="Layout Mode">
+        <c-icon v-if="layoutMode === 'static'" type="icon-fit-width" class="bottom-icon"/>
+        <c-icon v-if="layoutMode === 'fit'" type="icon-static-width" class="bottom-icon"/>
+      </span>
+    </div>
+    <div class="nav-action" :style="{ 'flex-grow': showSetting ? 0 : 1 }">
+      <span class="bottom-item" @click="() => this.showSetting = !this.showSetting">
+        <c-icon type="icon-setting" class="bottom-icon"/>
       </span>
     </div>
   </div>
@@ -49,6 +60,7 @@ export default {
     return {
       enableFullscreen: true,
       isFullscreen: false,
+      showSetting: false,
     };
   },
   computed: {
@@ -94,7 +106,7 @@ export default {
       if (type === 'start') {
         return String(this.info.slogan).split(',')[0].toLowerCase();
       }
-      return String(this.info.slogan).split(',')[1].slice(0, -1);
+      return String(this.info.slogan).split(',')[1];
     }
   }
 };

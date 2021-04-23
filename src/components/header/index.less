@@ -13,15 +13,6 @@
     padding: 30px 0 8px 0;
     cursor: pointer;
     width: 100%;
-    &:hover {
-      &::after {
-        content: attr(data-cn-title);
-        position: relative;
-      }
-      .en-title {
-        display: none;
-      }
-    }
   }
   .slogan {
     font-size: 12px;
@@ -57,7 +48,7 @@
       color: @red;
     }
   }
-  .nav-bottom {
+  .nav-bottom,.nav-action {
     flex-grow: 1;
     width: 100%;
     display: flex;
@@ -68,7 +59,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: @padding @padding/2;
+      padding: @padding/2;
       cursor: pointer;
       opacity: 0.3;
       z-index: 1;
@@ -76,7 +67,16 @@
         opacity: 1;
       }
       .bottom-icon {
-        font-size: 15px;
+        font-size: 16px;
+      }
+    }
+  }
+  .nav-action {
+    flex-grow: 0;
+    .bottom-item{
+      padding: @padding/2 0 @padding 0;
+      .bottom-icon {
+        font-size: 20px;
       }
     }
   }
@@ -89,6 +89,11 @@
     }
     .nav-item:hover {
       color: white;
+    }
+    .nav-bottom, .nav-action {
+      .bottom-icon {
+        color: white;
+      }
     }
   }
 }

@@ -33,13 +33,13 @@
           >
             <c-icon type="icon-rss" class="trigger-icon"/>
           </div>
-          <div
+          <!-- <div
             class="trigger"
             title="Pin Header"
             @click="headerPinAction()"
           >
             <a-icon type="pushpin" :rotate="pinIconRotate" class="trigger-icon"/>
-          </div>
+          </div> -->
         </div>
     </div>
   </div>

@@ -9,7 +9,7 @@
       infinite-scroll-disabled="busy"
       infinite-scroll-distance="200"
       infinite-scroll-immediate-check="true"
-      :style="{ 'height': listHeight + 'px', 'min-width': sideWidth + 'px', 'max-width': sideWidth + 'px', 'padding-top': $config.headerHeight + 'px' }"
+      :style="{ 'height': listHeight + 'px', 'min-width': sideWidth + 'px', 'max-width': sideWidth + 'px'}"
     >
       <template v-if="items.length">
         <template v-for="item in items">
@@ -43,7 +43,6 @@
     <div
       v-if="showDetail"
       class="detail-content"
-      :style="{ 'padding-top': $config.headerHeight + 'px' }"
     >
       <div class="title">
         <span class="name">

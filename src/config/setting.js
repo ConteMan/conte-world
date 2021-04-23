@@ -16,15 +16,18 @@ export default {
   },
 
   // local setting
+  layoutMode: 'static', // static 定宽， fit 适应
+  staticWidth: 1024, // 定宽模式宽度
   menuStatus: true, // 展示菜单
 
   storageKeys: {
     menuStatus: 'menu_status',
     routes: 'routes',
+    layoutMode: 'layout_mode',
   },
 
   // header height
-  headerHeight: 55,
+  headerHeight: 48,
   headerHideHeight: 0,
   articleShowListWidth: 700,
 };
