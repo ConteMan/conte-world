@@ -5,6 +5,8 @@ import setting from '@/config/setting';
 import { routes } from '@/router';
 import CommonApi from '@/api/common';
 
+const layoutMode = window.innerWidth <= setting.staticWidth ? 'fit' : setting.layoutMode;
+
 const app = {
   namespaced: true,
   state: {
@@ -18,7 +20,7 @@ const app = {
     headerPin: true, // true 固定
     contentHeight: 0,
     info: {}, // 基础信息
-    layoutMode: setting.layoutMode,
+    layoutMode,
   },
   mutations: {
     [MT.LOADING]: (state, type) => {
