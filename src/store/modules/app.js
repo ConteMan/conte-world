@@ -43,6 +43,9 @@ const app = {
       Vue.ls.set(setting.storageKeys.menuStatus, state.menuStatus);
     },
     [MT.IS_MOBILE]: (state, type) => {
+      if (type) {
+        state.layoutMode = 'fit';
+      }
       state.isMobile = Boolean(type);
     },
     [MT.CLIENT_WIDTH]: (state, width) => {
