@@ -1,27 +1,30 @@
 <template>
   <div class="layout-container">
 
-    <div class="content-container" ref="content-container">
-      <router-view class="router-container" />
+    <div class="sidebar-container">
+      <sidebar/>
     </div>
 
-    <content-header class="content-header" />
+    <router-view class="router-container" />
+
+    <content-header-bottom class="content-header" />
 
     <a-drawer
       placement="left"
       wrapClassName="sidebar-drawer"
       width="40%"
       :closable="false"
-      :visible="menuStatus && isDrawer"
+      :visible="isDrawer && menuStatus"
       @close="drawerClose"
     >
       <sidebar/>
     </a-drawer>
+
   </div>
 </template>
 
 <script>
-import ContentHeader from '@/layout/components/ContentHeader';
+import ContentHeaderBottom from '@/layout/components/ContentHeaderBottom.vue';
 import Sidebar from '@/components/header/Sidebar';
 
 import { mixin } from '@/utils/mixin';
@@ -31,21 +34,13 @@ import * as MT from '@/store/mutation-types';
 export default {
   name: 'BaseLayoutV2',
   components: {
-    ContentHeader,
-    Sidebar,
+    ContentHeaderBottom,
+    Sidebar
   },
   mixins: [mixin],
   data() {
     return {
-      timer: false,
       drawerVisible: false,
-
-      sideWidth: 300,
-      sideMaxWidth: 500,
-      sideMinWidth: 220,
-      clientStartX: 0,
-
-      scrollTop: 0,
     };
   },
 
@@ -61,44 +56,15 @@ export default {
     },
   },
 
-  created() {
-    window.addEventListener('resize', () => {
-      if (!this.timer) {
-        this.timer = true;
-        setTimeout(
-          () => {
-            this.setContentHeight();
-            this.timer = false;
-          }, 400);
-      }
-    }, false);
-  },
-
-  mounted() {
-    this.setContentHeight();
-  },
-
-  watch: {
-    '$route': 'deal'
-  },
-
   methods: {
     ...mapMutations('app', {
       menuAction: MT.MENU_STATUS,
-      contentHeightAction: MT.CONTENT_HEIGHT,
     }),
     drawerClose() {
       this.menuAction(false);
     },
-    setContentHeight() {
-      const contentDom = document.querySelector('.content-container');
-      const height = window.getComputedStyle(contentDom).getPropertyValue('height');
-      this.contentHeightAction(parseInt(height));
-    },
-    deal() {
-      this.scrollTop = 0;
-    },
   },
+
   beforeRouteLeave(to, from, next) {
     if (this.isDrawer) {
       this.menuAction(false);

@@ -8721,6 +8721,11 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha1-UylVzB6yCKPZkLOp+acFdGV+CPI=
 
+vue-infinite-loading@^2.4.5:
+  version "2.4.5"
+  resolved "https://registry.nlark.com/vue-infinite-loading/download/vue-infinite-loading-2.4.5.tgz#cc20fd40af7f20188006443c99b60470cf1de1b3"
+  integrity sha1-zCD9QK9/IBiABkQ8mbYEcM8d4bM=
+
 vue-infinite-scroll@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npm.taobao.org/vue-infinite-scroll/download/vue-infinite-scroll-2.0.2.tgz#ca37a91fe92ee0ad3b74acf8682c00917144b711"

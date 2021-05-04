@@ -1,10 +1,17 @@
 @import "~@/style/variables";
 
-.list-content {
-  overflow-y: auto;
-  .list-item {
-    @{deep} img {
-      max-width: 100%;
+.talk-list {
+  display: flex;
+  justify-content: flex-start;
+  .item-container {
+    max-width: 1000px;
+    .list-item {
+      @{deep} img {
+        max-width: 100%;
+      }
+    }
+    @{deep} .infinite-loading-container {
+      margin-bottom: 48px;
     }
   }
 }
