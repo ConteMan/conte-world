@@ -3,7 +3,7 @@ export default {
   meta: {
     title: '文章'
   },
-  component: () => import('@/layout/BaseLayout'),
+  component: () => import('@/layout/v2/BaseLayout.vue'),
   children: [
     {
       path: ':id?',

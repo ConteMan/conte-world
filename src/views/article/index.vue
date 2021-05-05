@@ -1,50 +1,48 @@
 <template>
-  <div class="content-detail-container" :style="{ 'height': listHeight + 'px'}">
+  <div class="content-detail-container">
     <div
       v-show="showList"
-      class="infinite-list list-content"
+      class="title-content"
       :class="{ 'only-list': !showDetail }"
-      v-infinite-scroll="loadMore"
-      infinite-scroll-delay="1000"
-      infinite-scroll-disabled="busy"
-      infinite-scroll-distance="200"
-      infinite-scroll-immediate-check="true"
-      :style="{ 'height': listHeight + 'px', 'min-width': sideWidth + 'px', 'max-width': sideWidth + 'px'}"
+      :style="{ 'min-width': sideWidth + 'px', 'max-width': sideWidth + 'px'}"
     >
-      <template v-if="items.length">
-        <template v-for="item in items">
-          <div
-            class="list-item"
-            :key="item.id"
-            :id="'nav-item-' + item.id"
-            @click="$router.push({params: {id: item.id}})"
-          >
-            <div class="title">
-              {{ item.title }}
-            </div>
-            <div class="info">
-              <span class="time">
-                {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
-              </span>
-            </div>
+      <div
+        class="title-list-container"
+        :style="{ 'width': sideWidth > 0 ? sideWidth + 'px' : $config.staticWidth }"
+      >
+        <div
+          class="title-item"
+          v-for="item in items"
+          :key="item.id"
+          :id="'nav-item-' + item.id"
+          @click="$router.push({ params: { id: item.id } })"
+        >
+          <div class="title">
+            {{ item.title }}
           </div>
-        </template>
-      </template>
+          <div class="info">
+            <span class="time">
+              {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div
       class="touch-div"
       ref="moveDom"
-      :class="{ 'hidden': showDetail && !showList }"
+      :class="{ 'hidden': (showDetail && !showList) || (!showDetail && showList) }"
+      :style="{ 'height': detailHeight ? detailHeight + 'px' : '100%' }"
     >
-      <span></span>
     </div>
 
     <div
       v-if="showDetail"
       class="detail-content"
+      :style="{ 'width':  ($config.staticWidth - 4 - sideWidth) + 'px' }"
     >
-      <div class="title">
+      <div id="article-detail-title" class="title">
         <span class="name">
           {{ title }}
         </span>
@@ -61,7 +59,7 @@
         ></iframe>
       </template>
       <template v-else>
-        <div class="markdown-container markdown-body" v-html="data"></div>
+        <div id="article-detail-body" class="markdown-container markdown-body" v-html="data"></div>
       </template>
     </div>
   </div>
@@ -93,10 +91,13 @@ export default {
       platform: 'ORI',
       fullData: '',
 
-      sideWidth: 300,
+      sideWidthDefault: 300,
+      sideWidth: 0,
       sideMaxWidth: 500,
       sideMinWidth: 220,
       clientStartX: 0,
+
+      detailHeight: 0,
     };
   },
   computed: {
@@ -118,6 +119,9 @@ export default {
       this.showListAction(this.showListDeal());
       if (!target) {
         this.data = '';
+        this.sideWidth = 0;
+      } else {
+        this.sideWidth = this.sideWidthDefault;
       }
       if (!old) {
         this.$nextTick(() => {
@@ -133,6 +137,7 @@ export default {
     await this.index();
     this.showListAction(this.showListDeal());
     if (this.id) {
+      this.sideWidth = this.sideWidthDefault;
       await this.detail();
       await this.active(this.id, 0);
       this.dragControllerDeal();
@@ -172,6 +177,9 @@ export default {
             }
             this.title = data.title;
             this.fullData = data;
+            this.$nextTick(() => {
+              this.setDragHeight();
+            });
           }
         }
       );
@@ -198,6 +206,7 @@ export default {
         document.onmouseup = e => {
           document.onmouseup = null;
           document.onmousemove = null;
+          this.setDragHeight();
         };
       };
     },
@@ -226,6 +235,17 @@ export default {
         }
       }
     },
+    setDragHeight() {
+      if (this.id) {
+        const titleDom = document.querySelector('#article-detail-title');
+        const titleHeight = window.getComputedStyle(titleDom).getPropertyValue('height');
+        const bodyDom = document.querySelector('#article-detail-body');
+        const bodyHeight = window.getComputedStyle(bodyDom).getPropertyValue('height');
+        const windowHeight = window.innerHeight;
+        const detailHeight = parseFloat(titleHeight.slice(0, -2)) + parseFloat(bodyHeight.slice(0, -2));
+        this.detailHeight = detailHeight > windowHeight ? detailHeight : windowHeight;
+      }
+    }
   }
 };
 </script>

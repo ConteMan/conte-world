@@ -4,21 +4,42 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  position: relative;
 }
 
-.list-content {
-  overflow-y: auto;
+.title-content {
   flex-grow: 1;
-  padding-bottom: 56px;
   &.only-list {
     min-width: 100% !important;
     max-width: 100% !important;
   }
-  .list-item {
-    &:hover, &.active {
-      cursor: pointer;
+  .title-list-container {
+    position: fixed;
+    height: 100%;
+    display: flex ;
+    overflow-x: hidden;
+    flex-direction: column;
+    &::-webkit-scrollbar {
+      width: 0 !important;
+    }
+    .title-item {
+      padding: @padding @padding;
+      width: 100%;
+      &:hover, &.active {
+        cursor: pointer;
+        .title {
+          font-weight: bold;
+          color: @red;
+        }
+      }
       .title {
-        color: @red;
+        font-size: 14px;
+      }
+      .info {
+        padding: @padding/2 0 0 0;
+        .time {
+          font-style: italic;
+        }
       }
     }
   }
@@ -30,6 +51,7 @@
   top: 0;
   left: 100%;
   width: 4px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,8 +61,8 @@
 
 .detail-content {
   flex-grow: 1;
-  overflow-x: auto;
-  overflow-y: auto;
+  // overflow-x: auto;
+  height: 100%;
   .title {
     padding: @padding;
     text-align: left;
