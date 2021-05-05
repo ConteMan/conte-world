@@ -82,7 +82,7 @@ export default {
 
       items: [],
       offset: 0,
-      limit: 20,
+      limit: 100,
       busy: false,
       total: 0,
 

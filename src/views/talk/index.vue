@@ -41,11 +41,6 @@ export default {
       hasMore: true,
     };
   },
-  computed: {
-    listHeight() {
-      return this.contentHeight;
-    }
-  },
   async created() {
     await this.index();
   },
