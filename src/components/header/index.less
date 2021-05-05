@@ -1,5 +1,8 @@
 @import "~@/style/variables";
 
+@align: right;
+@padding-right: 24px;
+
 .nav-container {
   height: 100%;
   padding: 0;
@@ -9,76 +12,86 @@
   align-items: center;
   justify-content: flex-start;
   .title {
-    text-align: center;
-    padding: 30px 0 8px 0;
+    text-align: @align;
+    padding: 40px @padding-right 8px 0;
     cursor: pointer;
     width: 100%;
   }
   .slogan {
     font-size: 12px;
-    padding: 0 20px 20px 20px;
-    text-align: center;
+    padding: 0 @padding-right 20px 20px;
+    text-align: @align;
     line-height: 1.2;
     opacity: 0.3;
-  }
-  .nav-item {
     width: 100%;
-    padding: 24px 0 0 0;
-    cursor: pointer;
-    .des {
-      text-align: center;
-      margin: auto;
-      line-height: 1.2;
-      font-size: 14px;
+  }
+  .nav-content {
+    width: 100%;
+    .nav-item {
+      width: 100%;
+      padding: 24px @padding-right 0 0;
+      cursor: pointer;
+      .des {
+        text-align: right;
+        margin: auto;
+        line-height: 1.2;
+        font-size: 14px;
+      }
+      .en {
+        writing-mode: vertical-rl;
+        letter-spacing: 2px;
+      }
     }
-    .en {
-      writing-mode: vertical-rl;
-      letter-spacing: 2px;
+    .nav-item, .nav-item:focus {
+      color: @font-color-grey;
+    }
+    .nav-item:hover {
+      color: @red-60;
+    }
+    .nav-item.active {
+      .des {
+        font-weight: @font-bold;
+        color: @red;
+      }
     }
   }
-  .nav-item, .nav-item:focus {
-    color: @font-color-grey;
-  }
-  .nav-item:hover {
-    color: @red-60;
-  }
-  .nav-item.active {
-    .des {
-      font-weight: @font-bold;
-      color: @red;
-    }
-  }
-  .nav-bottom,.nav-action {
-    flex-grow: 1;
+  .nav-setting,.nav-action {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    .bottom-item{
+    .setting-item{
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: @padding/2;
+      margin: @padding/2 @padding-right 0 0;
       cursor: pointer;
       opacity: 0.3;
       z-index: 1;
       &:hover, &:focus, &:active, &:target {
         opacity: 1;
       }
-      .bottom-icon {
+      .setting-icon {
         font-size: 16px;
       }
     }
   }
-  .nav-action {
-    flex-grow: 0;
-    .bottom-item{
-      padding: @padding/2 0 @padding 0;
-      .bottom-icon {
-        font-size: 20px;
-      }
+
+  .setting-action {
+    width: 100%;
+    text-align: right;
+    padding: 24px 0;
+  }
+  .setting-item{
+    margin: @padding @padding-right;
+    opacity: 0.5;
+    &:hover, &:focus, &:active, &:target {
+      opacity: 1;
     }
+  }
+  .nav-icon {
+    font-size: 20px;
   }
 }
 

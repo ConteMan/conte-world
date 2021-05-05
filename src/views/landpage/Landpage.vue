@@ -105,7 +105,15 @@ export default {
       }
       return true;
     },
-  }
+  },
+  beforeRouteEnter(to, from, next) {
+    document.querySelector('body').classList.add('overflow-y-hidden');
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    document.querySelector('body').classList.remove('overflow-y-hidden');
+    next();
+  },
 };
 </script>
 

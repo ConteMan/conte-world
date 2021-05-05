@@ -7,6 +7,7 @@ html, body {
 }
 
 body {
+  overflow-y: scroll;
   margin: 0;
   padding: 0;
   font-family: "Cousine", "更纱黑体 SC", "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
@@ -26,20 +27,35 @@ body {
   a:hover {
     color: @red;
   }
+
   #app {
     background-color: white;
     width: 100%;
-    overflow-x: hidden;
+    // margin-right: calc(100% - 100vw);
+    .page-toggle-enter-active {
+      // position: unset !important;
+      animation-duration: 0.8s;
+      // width: calc(100%);
+    }
+  
+    .page-toggle-leave-active {
+      // position: unset !important;
+      animation-duration: 0.8s;
+      // width: calc(100%);
+    }
   }
 }
-::-webkit-scrollbar {
-  width: 6px!important;
-  height: 5px!important;
-}
-::-webkit-scrollbar-thumb {
-  background-color: @gray-6 !important;
-}
+// ::-webkit-scrollbar {
+//   width: 10!important;
+//   height: 5px!important;
+// }
+// ::-webkit-scrollbar-thumb {
+//   background-color: @gray-6 !important;
+// }
 
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
 .hidden {
   opacity: 0;
 }
@@ -228,9 +244,9 @@ body {
   #app {
     background-color: @dark-theme-bg;
   }
-  ::-webkit-scrollbar-thumb {
-    background-color: @dark-theme-border !important;
-  }
+  // ::-webkit-scrollbar-thumb {
+  //   background-color: @dark-theme-border !important;
+  // }
   .list-header {
     background: @dark-theme-bg;
     color: @dark-theme-color;

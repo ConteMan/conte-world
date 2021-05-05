@@ -26,24 +26,38 @@
       </div>
     </div>
 
-    <div class="nav-bottom" v-if="showSetting">
-      <span class="bottom-item" @click="darkAction()" title="Dark Mode">
-        <c-icon type="icon-dark" class="bottom-icon"/>
+    <div class="setting-action" tabindex="0" @blur.capture="changeShowSetting($event)">
+
+      <span
+        class="setting-item"
+        :style="{ 'opacity': showSetting ? '1' : '' }"
+      >
+        <a-icon type="caret-left" class="nav-icon pointer" @click="() => this.showSetting = !this.showSetting"/>
       </span>
-      <span v-if="enableFullscreen" class="bottom-item" @click="fullScreen()" title="Full Screen">
-        <a-icon v-if="isFullscreen" type="fullscreen-exit" class="bottom-icon"/>
-        <a-icon v-else type="fullscreen" class="bottom-icon"/>
-      </span>
-      <span v-if="!isMobile" class="bottom-item" @click="layoutModeAction()" title="Layout Mode">
-        <c-icon v-if="layoutMode === 'static'" type="icon-fit-width" class="bottom-icon"/>
-        <c-icon v-if="layoutMode === 'fit'" type="icon-static-width" class="bottom-icon"/>
-      </span>
+
+      <transition
+        :enter-active-class="`animated fadeIn page-toggle-enter-active`"
+        :leave-active-class="`animated fadeOut page-toggle-leave-active`"
+      >
+        <div class="nav-setting" v-if="showSetting">
+
+          <div class="setting-item" @click="darkAction()" title="Dark Mode">
+            <c-icon type="icon-dark" class="setting-icon"/>
+          </div>
+
+          <div v-if="enableFullscreen" class="setting-item" @click="fullScreen()" title="Full Screen">
+            <a-icon v-if="isFullscreen" type="fullscreen-exit" class="setting-icon"/>
+            <a-icon v-else type="fullscreen" class="setting-icon"/>
+          </div>
+
+          <div v-if="!isMobile" class="setting-item" @click="layoutModeAction()" title="Layout Mode">
+            <c-icon v-if="layoutMode === 'static'" type="icon-fit-width" class="setting-icon"/>
+            <c-icon v-if="layoutMode === 'fit'" type="icon-static-width" class="setting-icon"/>
+          </div>
+        </div>
+      </transition>
     </div>
-    <div class="nav-action" :style="{ 'flex-grow': showSetting ? 0 : 1 }">
-      <span class="bottom-item" @click="() => this.showSetting = !this.showSetting">
-        <c-icon type="icon-setting" class="bottom-icon"/>
-      </span>
-    </div>
+
   </div>
 </template>
 
@@ -107,6 +121,11 @@ export default {
         return String(this.info.slogan).split(',')[0].toLowerCase();
       }
       return String(this.info.slogan).split(',')[1];
+    },
+    changeShowSetting($event) {
+      if (!$event.relatedTarget) {
+        this.showSetting = !this.showSetting;
+      }
     }
   }
 };

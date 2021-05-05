@@ -1,13 +1,28 @@
 <template>
   <div class="layout-container">
 
-    <div class="sidebar-container">
-      <sidebar/>
+    <div
+      class="sidebar-container"
+      :style="{ 'width': sideShow ? '200px' : '2px' }"
+    >
+      <transition
+        name="custom-classes-transition"
+        :enter-active-class="`animated ${enterAnimate} page-toggle-enter-active`"
+        :leave-active-class="`animated ${leaveAnimate} page-toggle-leave-active`"
+      >
+        <sidebar v-if="sideShow" />
+        <div v-else class="space-container"></div>
+      </transition>
     </div>
 
-    <router-view class="router-container" />
+    <div
+      class="content-container"
+      :style="{ 'width': contentWidth }"
+    >
+      <router-view class="router-container" />
 
-    <content-header-bottom class="content-header" />
+      <content-header-bottom class="content-header" />
+    </div>
 
     <a-drawer
       placement="left"
@@ -40,7 +55,8 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      drawerVisible: false,
+      enterAnimate: 'fadeIn',
+      leaveAnimate: 'fadeOut',
     };
   },
 
@@ -51,8 +67,8 @@ export default {
     sideShow: function() {
       return !this.isMobile && this.menuStatus;
     },
-    layoutWidth: function() {
-      return this.layoutMode === 'static' ? this.$config.staticWidth + 'px' : '100%';
+    contentWidth: function() {
+      return (this.layoutMode === 'fit' || this.clientWidth < 1224) ? '100%' : this.$config.staticWidth + 'px';
     },
   },
 

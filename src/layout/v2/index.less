@@ -6,15 +6,25 @@
   justify-content: center;
   width: 100%;
   .sidebar-container {
-    flex-grow: 1;
+    flex-shrink: 0;
     display: flex;
     justify-content: flex-end;
+    width: 200px;
+    height: 100%;
+    animation-duration: 0.8s;
+    transition: all 0.8s;
     @{deep} .nav-container {
+      width: 200px;
+      position: fixed;
+    }
+    .space-container {
+      width: 2px;
       position: fixed;
     }
   }
-  .router-container {
-    flex-grow: 1;
+  .content-container {
+    // flex-grow: 1;
+    flex-shrink: 1;
   }
 }
 
