@@ -35,7 +35,10 @@
         </div>
       </div>
 
-      <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler"></infinite-loading>
+      <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler">
+        <template slot="no-more">No more.</template>
+        <template slot="no-results">No more.</template>
+      </infinite-loading>
     </div>
   </div>
 </template>
@@ -72,8 +75,6 @@ export default {
 
   methods: {
     init() {
-      this.loading = true;
-
       this.items = [];
       this.offset = 0;
       this.total = 0;
@@ -101,7 +102,12 @@ export default {
     },
     async infiniteHandler($state) {
       if (!this.types.length) {
+        $state.loaded();
         return false;
+      }
+      if (!this.hasMore) {
+        $state.complete();
+        return true;
       }
       const res = await this.index();
       if (res > 0) {
@@ -121,7 +127,7 @@ export default {
         });
       }
     },
-    async changeType(type) {
+    changeType(type) {
       if (this.type === type) {
         return false;
       }

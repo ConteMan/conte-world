@@ -1,108 +1,88 @@
 <template>
-  <div :style="{ 'height': listHeight + 'px'}">
-    <div
-      class="infinite-list list-content"
-      v-infinite-scroll="loadMore"
-      infinite-scroll-delay="1000"
-      infinite-scroll-disabled="busy"
-      infinite-scroll-distance="220"
-      infinite-scroll-immediate-check="true"
-      :style="{ 'height': listContentHeight + 'px' }"
-      ref="infinite-list"
-    >
-      <a-affix class="affix" :target="() => this.$refs['infinite-list']">
-        <div class="nav-bar">
-          <a-space>
-            <span
-              v-for="item in types"
-              :key="item.type"
-              class="nav-item"
-              :class="{ 'active': type === item.type }"
-              @click="changeType(item.type)"
-            >
-              {{ item.value }} {{ item.total }}
-            </span>
-          </a-space>
+  <div class="book-list">
+    <div class="nav-bar">
+      <a-space>
+        <span
+          v-for="item in types"
+          :key="item.type"
+          class="nav-item"
+          :class="{ 'active': type === item.type }"
+          @click="changeType(item.type)"
+        >
+          {{ item.value }} {{ item.total }}
+        </span>
+      </a-space>
+    </div>
+
+    <div class="item-container">
+      <div v-for="item in items" :key="item.id" class="book-item">
+        <div class="pic">
+          <img referrerpolicy='no-referrer' :src="item.content_origin.pic" />
         </div>
-      </a-affix>
-      <template v-if="items.length">
-        <template v-for="item in items">
-          <div :key="item.id" class="list-item">
-            <div class="pic">
-              <img referrerpolicy='no-referrer' :src="item.content_origin.pic" />
-            </div>
-            <div class="title">
-              <a :href="item.content_origin.link" target="_blank">{{ item.content }}</a>
-            </div>
-            <div class="intro">
-              {{ `${item.content_origin.author} / ${item.content_origin.publisher} / ${item.content_origin.publishDate}` }}
-            </div>
-            <div class="rate">
-              <a-rate v-if="item.content_origin.rate" v-model="item.content_origin.rate" disabled />
-            </div>
-            <div v-if="item.content_origin.comment" class="comment">
-              {{ item.content_origin.comment }}
-            </div>
-            <div class="info">
-              <span class="time">
-                {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
-              </span>
-            </div>
-          </div>
-        </template>
-      </template>
+        <div class="title">
+          <a :href="item.content_origin.link" target="_blank">{{ item.content }}</a>
+        </div>
+        <div class="intro">
+          {{ `${item.content_origin.author} / ${item.content_origin.publisher} / ${item.content_origin.publishDate}` }}
+        </div>
+        <div class="rate">
+          <a-rate v-if="item.content_origin.rate" v-model="item.content_origin.rate" disabled />
+        </div>
+        <div v-if="item.content_origin.comment" class="comment">
+          {{ item.content_origin.comment }}
+        </div>
+        <div class="info">
+          <span class="time">
+            {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+          </span>
+        </div>
+      </div>
+
+      <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler">
+        <template slot="no-more">No more.</template>
+        <template slot="no-results">No more.</template>
+      </infinite-loading>
     </div>
   </div>
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
 import { mixin } from '@/utils/mixin';
-import infiniteScroll from 'vue-infinite-scroll';
 import Base from '@/api/book';
 
 export default {
   name: 'Book',
-  directives: {
-    infiniteScroll,
+  components: {
+    InfiniteLoading,
   },
   mixins: [mixin],
   data() {
     return {
-      loading: true,
-
       items: [],
       offset: 0,
       type: '',
       limit: 20,
-      busy: false,
       total: 0,
 
-      types: []
+      hasMore: true,
+
+      types: [],
+      infiniteId: +new Date(),
     };
   },
-  computed: {
-    listHeight() {
-      return this.contentHeight;
-    },
-    listContentHeight() {
-      return this.contentHeight;
-    },
-  },
+
   async created() {
     await this.getTypes();
-    await this.index();
-    setTimeout(() => {
-      this.loading = false;
-    }, 300);
   },
+
   methods: {
     init() {
-      this.loading = true;
-
       this.items = [];
       this.offset = 0;
       this.busy = false;
       this.total = 0;
+      this.hasMore = true;
     },
     async index() {
       const { offset, limit, type } = this;
@@ -110,15 +90,35 @@ export default {
       if (res.data.code === 0) {
         const { hasMore, items, totalCount } = res.data.data;
         this.total = totalCount;
-        this.busy = !hasMore;
+        this.hasMore = hasMore;
         if (items.length > 0) {
           this.items = this._.concat(this.items, items);
         }
+        if (hasMore) {
+          this.offset += this.limit;
+          return 1;
+        } else {
+          return 0;
+        }
+      } else {
+        return -1;
       }
     },
-    loadMore() {
-      this.offset += this.limit;
-      this.index();
+    async infiniteHandler($state) {
+      if (!this.types.length) {
+        $state.loaded();
+        return false;
+      }
+      if (!this.hasMore) {
+        $state.complete();
+        return true;
+      }
+      const res = await this.index();
+      if (res > 0) {
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
     },
     async getTypes() {
       const res = await Base.types();
@@ -126,16 +126,20 @@ export default {
         const { items } = res.data.data;
         this.types = items;
         this.type = items[0].type;
+        this.$nextTick(() => {
+          this.index();
+        });
       }
     },
-    async changeType(type) {
+    changeType(type) {
       if (this.type === type) {
         return false;
       }
       this.type = type;
+
       this.init();
-      await this.index();
-      this.loading = false;
+      this.infiniteId += 1;
+      this.index();
     }
   },
 };

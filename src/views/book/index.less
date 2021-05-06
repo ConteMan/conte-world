@@ -7,11 +7,15 @@
 @bg-color-light-grey: #E0E0E0;
 
 .nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 @padding;
   background: @bg;
+  z-index: 1;
   .nav-item {
     cursor: pointer;
     margin-right: 10px;
@@ -29,27 +33,38 @@
   }
 }
 
-.list-content {
-  overflow-y: auto;
-  .list-item {
-    .title {
-      padding: 12px 0;
-      font-size: 14px;
-      font-weight: bold;
-    }
-    .intro,.rate,.comment {
-      padding: 0 0 10px 0;
-      @{deep} .ant-rate-star-zero {
-        display: none;
+.book-list {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 1000px;
+  padding: 40px 0 40px 0;
+  .item-container {
+    max-width: 100%;
+    .book-item{
+      padding: @padding @padding @padding 0;
+      margin: 0 0 0 @padding;
+      .title {
+        padding: 8px 0;
+        font-size: 14px;
+        font-weight: bold;
       }
-    }
-    .comment {
-      color: @font-color-grey2;
-      font-size: 12px;
-      font-style: italic;
-    }
-    .info {
-      padding: 0;
+      .intro,.rate,.comment {
+        padding: 0 0 8px 0;
+        @{deep} .ant-rate-star-zero {
+          display: none;
+        }
+      }
+      .comment {
+        color: @font-color-grey2;
+        font-size: 12px;
+        font-style: italic;
+      }
+      .info {
+        padding: 0;
+        .time {
+          font-style: italic;
+        }
+      }
     }
   }
 }
@@ -59,6 +74,13 @@
     background: @dark-theme-bg;
     .nav-item {
       color: @border-color !important;
+    }
+  }
+  .book-list {
+    .item-container {
+      .book-item {
+        border-bottom: 1px solid @dark-bg-light;
+      }
     }
   }
 }
