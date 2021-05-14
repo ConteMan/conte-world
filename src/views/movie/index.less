@@ -1,10 +1,10 @@
 @import "~@/style/variables";
 
-@hover-color: #EB5757;
+@hover-color: #eb5757;
 @font-color: #333333;
-@font-color-white: #FFFFFF;
-@bg-color-grey: #BDBDBD;
-@bg-color-light-grey: #E0E0E0;
+@font-color-white: #ffffff;
+@bg-color-grey: #bdbdbd;
+@bg-color-light-grey: #e0e0e0;
 
 .nav-bar {
   position: fixed;
@@ -15,6 +15,7 @@
   align-items: center;
   padding: 0 @padding;
   background: @bg;
+  z-index: 1;
   .nav-item {
     cursor: pointer;
     margin-right: 10px;
@@ -47,7 +48,8 @@
         font-size: 14px;
         font-weight: bold;
       }
-      .rate,.comment {
+      .rate,
+      .comment {
         padding: 0 0 8px 0;
         @{deep} .ant-rate-star-zero {
           display: none;
