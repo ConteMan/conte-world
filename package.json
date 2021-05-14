@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "dev-build": "vue-cli-service build --mode development",
     "lint": "vue-cli-service lint",
-    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/"
+    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/",
+    "analysis": "use_analyzer=true vue-cli-service build"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
@@ -24,7 +25,6 @@
     "vue": "^2.6.10",
     "vue-analytics": "^5.22.1",
     "vue-infinite-loading": "^2.4.5",
-    "vue-infinite-scroll": "^2.0.2",
     "vue-ls": "^3.2.1",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
@@ -41,6 +41,7 @@
     "eslint-plugin-vue": "^7.3.0",
     "less": "^3.12.2",
     "less-loader": "^7.0.1",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "webpack-bundle-analyzer": "^4.4.1"
   }
 }

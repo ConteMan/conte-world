@@ -4,11 +4,13 @@
       v-show="showList"
       class="title-content"
       :class="{ 'only-list': !showDetail }"
-      :style="{ 'min-width': sideWidth + 'px', 'max-width': sideWidth + 'px'}"
+      :style="{ 'min-width': sideWidth + 'px', 'max-width': sideWidth + 'px' }"
     >
       <div
         class="title-list-container"
-        :style="{ 'width': sideWidth > 0 ? sideWidth + 'px' : $config.staticWidth }"
+        :style="{
+          width: sideWidth > 0 ? sideWidth + 'px' : $config.staticWidth,
+        }"
       >
         <div
           class="title-item"
@@ -32,34 +34,39 @@
     <div
       class="touch-div"
       ref="moveDom"
-      :class="{ 'hidden': (showDetail && !showList) || (!showDetail && showList) }"
-      :style="{ 'height': detailHeight ? detailHeight + 'px' : '100%' }"
-    >
-    </div>
+      :class="{
+        hidden: (showDetail && !showList) || (!showDetail && showList),
+      }"
+      :style="{ height: detailHeight ? detailHeight + 'px' : '100%' }"
+    ></div>
 
     <div
       v-if="showDetail"
       class="detail-content"
-      :style="{ 'width':  ($config.staticWidth - 4 - sideWidth) + 'px' }"
+      :style="{ width: $config.staticWidth - 4 - sideWidth + 'px' }"
     >
       <div id="article-detail-title" class="title">
         <span class="name">
           {{ title }}
         </span>
         <span class="date">
-          {{ $dayjs(fullData.updated_at).format( 'YYYY-MM-DD') }}
+          {{ $dayjs(fullData.updated_at).format("YYYY-MM-DD") }}
         </span>
       </div>
       <template v-if="platform === 'YUQUE'">
         <iframe
           :srcdoc="data"
-          style="width:100%; height:calc(100vh - 4px); border:none;"
+          style="width: 100%; height: calc(100vh - 4px); border: none"
           frameborder="0"
           scrolling="auto"
         ></iframe>
       </template>
       <template v-else>
-        <div id="article-detail-body" class="markdown-container markdown-body" v-html="data"></div>
+        <div
+          id="article-detail-body"
+          class="markdown-container markdown-body"
+          v-html="data"
+        ></div>
       </template>
     </div>
   </div>
@@ -68,13 +75,9 @@
 <script>
 import { articleMixin } from '@/utils/mixin';
 import Article from '@/api/article';
-import infiniteScroll from 'vue-infinite-scroll';
 
 export default {
   name: 'Article',
-  directives: {
-    infiniteScroll,
-  },
   mixins: [articleMixin],
   data() {
     return {
