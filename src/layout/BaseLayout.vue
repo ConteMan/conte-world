@@ -1,18 +1,11 @@
 <template>
   <div class="layout-container">
-    <div class="base-container" :style="{ 'max-width': layoutWidth, 'width': layoutWidth }">
+    <div class="base-container" :style="{ 'max-width': layoutWidth, width: layoutWidth }">
       <template v-if="sideShow">
-        <div
-          class="side-container"
-          ref="sideDom"
-          :style="{ 'width': sideWidth + 'px' }"
-        >
-          <sidebar/>
+        <div ref="sideDom" class="side-container" :style="{ width: sideWidth + 'px' }">
+          <sidebar />
         </div>
-        <div
-          class="touch-div"
-          ref="moveDom"
-        >
+        <div ref="moveDom" class="touch-div">
           <span></span>
         </div>
       </template>
@@ -25,20 +18,15 @@
         :visible="menuStatus && isDrawer"
         @close="drawerClose"
       >
-        <sidebar/>
+        <sidebar />
       </a-drawer>
 
-      <div class="content-container" ref="content-container">
-        <a-affix
-          class="affix"
-          :offset-top="0"
-          :target="() => this.$refs['content-container']"
-        >
+      <div ref="content-container" class="content-container">
+        <a-affix class="affix" :offset-top="0" :target="contentContainerRef">
           <content-header class="content-header" />
         </a-affix>
         <router-view class="router-container" :class="{ 'header-pin': headerPin }" />
       </div>
-
     </div>
   </div>
 </template>
@@ -58,6 +46,12 @@ export default {
     Sidebar,
   },
   mixins: [mixin],
+  beforeRouteLeave(to, from, next) {
+    if (this.isDrawer) {
+      this.menuAction(false);
+    }
+    next();
+  },
   data() {
     return {
       timer: false,
@@ -71,6 +65,7 @@ export default {
       scrollTop: 0,
     };
   },
+  
   computed: {
     isDrawer: function() {
       return this.isMobile;
@@ -81,6 +76,20 @@ export default {
     layoutWidth: function() {
       return this.layoutMode === 'static' ? this.$config.staticWidth + 'px' : '100%';
     },
+    contentContainerRef: function() {
+      return this.$refs['content-container'];
+    }
+  },
+  watch: {
+    sideShow(target) {
+      if (target) {
+        // sure the side dom exist
+        this.$nextTick(() => {
+          this.dragControllerDeal();
+        });
+      }
+    },
+    '$route': 'deal'
   },
   created() {
     window.addEventListener('resize', () => {
@@ -100,17 +109,6 @@ export default {
       this.dragControllerDeal();
     }
     this.setContentHeight();
-  },
-  watch: {
-    sideShow(target) {
-      if (target) {
-        // sure the side dom exist
-        this.$nextTick(() => {
-          this.dragControllerDeal();
-        });
-      }
-    },
-    '$route': 'deal'
   },
   methods: {
     ...mapMutations('app', {
@@ -152,7 +150,7 @@ export default {
     setContentHeight() {
       const contentDom = document.querySelector('.content-container');
       const height = window.getComputedStyle(contentDom).getPropertyValue('height');
-      this.contentHeightAction(parseInt(height));
+      this.contentHeightAction(parseInt(height, 10));
     },
     scrollDeal(event) {
       const className = event.target.className;
@@ -184,6 +182,7 @@ export default {
         if (!canRun) return;
         canRun = false;
         setTimeout(() => {
+          // eslint-disable-next-line no-invalid-this
           fn.apply(this, arguments);
           canRun = true;
         }, interval);
@@ -192,12 +191,6 @@ export default {
     deal() {
       this.scrollTop = 0;
     },
-  },
-  beforeRouteLeave(to, from, next) {
-    if (this.isDrawer) {
-      this.menuAction(false);
-    }
-    next();
   },
 };
 </script>

@@ -2,8 +2,8 @@
     <div class="talk-list">
       <div class="item-container">
         <div v-for="item in items" :key="item.id" class="list-item">
-          <div class="card" v-if="['conteworld_talk'].includes(item.platform_type)" v-html="item.content" />
-          <div class="card" v-if="['yuque_note'].includes(item.platform_type)" v-html="yuqueNoteFormat(item.content)" />
+          <div v-if="['conteworld_talk'].includes(item.platform_type)" class="card" v-html="item.content" />
+          <div v-if="['yuque_note'].includes(item.platform_type)" class="card" v-html="yuqueNoteFormat(item.content)" />
           <div class="info">
             <span class="time">
               {{ $dayjs(item.info_at).format("YYYY-MM-DD HH:mm:ss") }}

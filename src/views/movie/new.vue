@@ -36,8 +36,8 @@
       </div>
 
       <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler">
-        <template slot="no-more">No more.</template>
-        <template slot="no-results">No more.</template>
+        <template v-slot:no-more>No more.</template>
+        <template v-slot:no-results>No more.</template>
       </infinite-loading>
     </div>
   </div>

@@ -1,18 +1,15 @@
 <template>
   <div class="time-container">
-    <div
-      class="time-text"
-      :style="{ 'font-size': fontSize + 'px', 'font-family': fontFamily }"
-    >
+    <div class="time-text" :style="{ 'font-size': fontSize + 'px', 'font-family': fontFamily }">
       {{ current }}
     </div>
 
     <div class="back">
-      <a-icon type="left" @click="$router.push({ path: '/' })"/>
+      <a-icon type="left" @click="$router.push({ path: '/' })" />
     </div>
 
     <div class="setting">
-      <a-icon type="setting" @click="visible = true;"/>
+      <a-icon type="setting" @click="visible = true" />
     </div>
 
     <a-drawer
@@ -26,28 +23,20 @@
       @close="drawClose"
     >
       <a-row>
-        <a-col class="label" :span="24">
-          格式
-        </a-col>
+        <a-col class="label" :span="24"> 格式 </a-col>
         <a-col class="field" :span="24">
           <a-input v-model="format" />
         </a-col>
-        <a-col class="label" :span="24">
-          大小
-        </a-col>
+        <a-col class="label" :span="24"> 大小 </a-col>
         <a-col class="field" :span="24">
-          <a-input v-model="fontSize" suffix="px"/>
+          <a-input v-model="fontSize" suffix="px" />
         </a-col>
-        <a-col class="label" :span="24">
-          字体
-        </a-col>
+        <a-col class="label" :span="24"> 字体 </a-col>
         <a-col class="field" :span="24">
-          <a-select
-            class="select"
-            v-model="fontType"
-            @change="changeFontType"
-          >
-            <a-select-option v-for="item in fontTypes" :key="item.value" :value="item.value">{{ item.name }}</a-select-option>
+          <a-select v-model="fontType" class="select" @change="changeFontType">
+            <a-select-option v-for="item in fontTypes" :key="item.value" :value="item.value">{{
+              item.name
+            }}</a-select-option>
           </a-select>
         </a-col>
         <a-col class="action" :span="24">
@@ -64,7 +53,7 @@ import { mapMutations } from 'vuex';
 import * as MT from '@/store/mutation-types';
 
 export default {
-  name: 'Time',
+  name: 'CustomTime',
   data() {
     return {
       current: '',
@@ -108,13 +97,16 @@ export default {
       return this.fontFamilyTypes[this.fontType];
     }
   },
-  created() {
-    this.timer = window.setInterval(this.setTime, 1000);
-  },
   watch: {
     format(target) {
       console.log({ format: target });
     }
+  },
+  created() {
+    this.timer = window.setInterval(this.setTime, 1000);
+  },
+  beforeUnmount() {
+    window.clearInterval(this.timer);
   },
   methods: {
     ...mapMutations('app', {
@@ -147,9 +139,6 @@ export default {
     changeFontType(value) {
       this.fontType = value;
     },
-  },
-  beforeDestroy() {
-    window.clearInterval(this.timer);
   },
 };
 </script>

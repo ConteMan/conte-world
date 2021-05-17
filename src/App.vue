@@ -3,9 +3,11 @@
     :spinning="loading"
     wrapperClassName="spin-loading-container"
     tip="Hello, ConteMan"
-    :class="{'z-index-0': !loading}"
+    :class="{ 'z-index-0': !loading }"
   >
-    <a-icon slot="indicator" class="spin-loading" type="loading" spin />
+    <template v-slot:indicator>
+      <a-icon class="spin-loading" type="loading" spin />
+    </template>
     <div id="app">
       <transition
         name="custom-classes-transition"
@@ -13,7 +15,7 @@
         :leave-active-class="`animated ${leaveAnimate} page-toggle-leave-active`"
       >
         <a-config-provider :getPopupContainer="getPopupContainer">
-          <router-view/>
+          <router-view />
         </a-config-provider>
       </transition>
     </div>

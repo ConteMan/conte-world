@@ -3,7 +3,7 @@ import base from '@/api/base';
 
 const douban = {
   movieCollect(params) {
-    var requestData = {
+    let requestData = {
       id: params.id || 'bolu_zz',
       start: params.start || 1,
       sort: params.sort || 'time',

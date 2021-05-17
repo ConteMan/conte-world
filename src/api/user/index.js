@@ -4,7 +4,7 @@ import base from '@/api/base';
 
 const user = {
   login(data) {
-    var requestData = {
+    let requestData = {
       username: data.username,
       password: data.password,
     };

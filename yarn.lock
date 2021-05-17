@@ -964,10 +964,10 @@
   dependencies:
     chalk "^4.0.0"
 
-"@eslint/eslintrc@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.nlark.com/@eslint/eslintrc/download/@eslint/eslintrc-0.4.0.tgz#99cc0a0584d72f1df38b900fb062ba995f395547"
-  integrity sha1-mcwKBYTXLx3zi5APsGK6mV85VUc=
+"@eslint/eslintrc@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.nlark.com/@eslint/eslintrc/download/@eslint/eslintrc-0.4.1.tgz#442763b88cecbe3ee0ec7ca6d6dd6168550cbf14"
+  integrity sha1-RCdjuIzsvj7g7Hym1t1haFUMvxQ=
   dependencies:
     ajv "^6.12.4"
     debug "^4.1.1"
@@ -2048,9 +2048,9 @@ axios@^0.21.1:
   dependencies:
     follow-redirects "^1.10.0"
 
-babel-eslint@^10.0.1:
+babel-eslint@^10.1.0:
   version "10.1.0"
-  resolved "https://registry.npm.taobao.org/babel-eslint/download/babel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
+  resolved "https://registry.nlark.com/babel-eslint/download/babel-eslint-10.1.0.tgz?cache=0&sync_timestamp=1618846971799&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fbabel-eslint%2Fdownload%2Fbabel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
   integrity sha1-aWjlaKkQt4+zd5zdi2rC9HmUMjI=
   dependencies:
     "@babel/code-frame" "^7.0.0"
@@ -3822,6 +3822,11 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.nlark.com/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
+eslint-config-alloy@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.nlark.com/eslint-config-alloy/download/eslint-config-alloy-4.1.0.tgz#3d5df5d139fb27797943c36e91945be5b300886e"
+  integrity sha1-PV310Tn7J3l5Q8NukZRb5bMAiG4=
+
 eslint-loader@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npm.taobao.org/eslint-loader/download/eslint-loader-2.2.1.tgz?cache=0&sync_timestamp=1601214436656&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-loader%2Fdownload%2Feslint-loader-2.2.1.tgz#28b9c12da54057af0845e2a6112701a2f6bf8337"
@@ -3840,9 +3845,9 @@ eslint-plugin-html@^5.0.0:
   dependencies:
     htmlparser2 "^3.10.0"
 
-eslint-plugin-vue@^7.3.0:
+eslint-plugin-vue@^7.9.0:
   version "7.9.0"
-  resolved "https://registry.npm.taobao.org/eslint-plugin-vue/download/eslint-plugin-vue-7.9.0.tgz#f8e83a2a908f4c43fc8304f5401d4ff671f3d560"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-vue/download/eslint-plugin-vue-7.9.0.tgz?cache=0&sync_timestamp=1618213545245&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-vue%2Fdownload%2Feslint-plugin-vue-7.9.0.tgz#f8e83a2a908f4c43fc8304f5401d4ff671f3d560"
   integrity sha1-+Og6KpCPTEP8gwT1QB1P9nHz1WA=
   dependencies:
     eslint-utils "^2.1.0"
@@ -3883,13 +3888,13 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.nlark.com/eslint-visitor-keys/download/eslint-visitor-keys-2.0.0.tgz?cache=0&sync_timestamp=1618847021402&other_urls=https%3A%2F%2Fregistry.nlark.com%2Feslint-visitor-keys%2Fdownload%2Feslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha1-If3I+82ceVzAMh8FY3AglXUVEag=
 
-eslint@^7.15.0:
-  version "7.25.0"
-  resolved "https://registry.nlark.com/eslint/download/eslint-7.25.0.tgz#1309e4404d94e676e3e831b3a3ad2b050031eb67"
-  integrity sha1-EwnkQE2U5nbj6DGzo60rBQAx62c=
+eslint@^7.26.0:
+  version "7.26.0"
+  resolved "https://registry.nlark.com/eslint/download/eslint-7.26.0.tgz#d416fdcdcb3236cd8f282065312813f8c13982f6"
+  integrity sha1-1Bb9zcsyNs2PKCBlMSgT+ME5gvY=
   dependencies:
     "@babel/code-frame" "7.12.11"
-    "@eslint/eslintrc" "^0.4.0"
+    "@eslint/eslintrc" "^0.4.1"
     ajv "^6.10.0"
     chalk "^4.0.0"
     cross-spawn "^7.0.2"

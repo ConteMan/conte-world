@@ -13,10 +13,10 @@
         }"
       >
         <div
-          class="title-item"
           v-for="item in items"
-          :key="item.id"
           :id="'nav-item-' + item.id"
+          :key="item.id"
+          class="title-item"
           @click="$router.push({ params: { id: item.id } })"
         >
           <div class="title">
@@ -24,7 +24,7 @@
           </div>
           <div class="info">
             <span class="time">
-              {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+              {{ $dayjs(item.info_at).format('YYYY-MM-DD') }}
             </span>
           </div>
         </div>
@@ -32,25 +32,21 @@
     </div>
 
     <div
-      class="touch-div"
       ref="moveDom"
+      class="touch-div"
       :class="{
         hidden: (showDetail && !showList) || (!showDetail && showList),
       }"
       :style="{ height: detailHeight ? detailHeight + 'px' : '100%' }"
     ></div>
 
-    <div
-      v-if="showDetail"
-      class="detail-content"
-      :style="{ width: $config.staticWidth - 4 - sideWidth + 'px' }"
-    >
+    <div v-if="showDetail" class="detail-content" :style="{ width: $config.staticWidth - 4 - sideWidth + 'px' }">
       <div id="article-detail-title" class="title">
         <span class="name">
           {{ title }}
         </span>
         <span class="date">
-          {{ $dayjs(fullData.updated_at).format("YYYY-MM-DD") }}
+          {{ $dayjs(fullData.updated_at).format('YYYY-MM-DD') }}
         </span>
       </div>
       <template v-if="platform === 'YUQUE'">
@@ -62,11 +58,7 @@
         ></iframe>
       </template>
       <template v-else>
-        <div
-          id="article-detail-body"
-          class="markdown-container markdown-body"
-          v-html="data"
-        ></div>
+        <div id="article-detail-body" class="markdown-container markdown-body" v-html="data"></div>
       </template>
     </div>
   </div>
@@ -77,7 +69,7 @@ import { articleMixin } from '@/utils/mixin';
 import Article from '@/api/article';
 
 export default {
-  name: 'Article',
+  name: 'CustomArticle',
   mixins: [articleMixin],
   data() {
     return {
@@ -254,5 +246,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "./index.less";
+@import './index.less';
 </style>

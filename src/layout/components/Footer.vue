@@ -1,17 +1,16 @@
 <template>
   <div class="c-footer">
     <div class="year">
-      <a :href="$config.siteUrl">{{ $config.siteName }}</a> ©{{ $config.siteCreateTime }} - {{
-        $dayjs().format('YYYY')
-      }}
+      <a :href="$config.siteUrl">{{ $config.siteName }}</a> ©{{ $config.siteCreateTime }} -
+      {{ $dayjs().format('YYYY') }}
     </div>
     <div class="beian">
       <a href="http://www.beian.miit.gov.cn/">{{ $config.beian }}</a>
     </div>
     <div class="beian">
-      <a :href="'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode='+$config.policeBeianNum">{{
-          $config.policeBeian
-        }}</a>
+      <a :href="'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum">{{
+        $config.policeBeian
+      }}</a>
     </div>
   </div>
 </template>
@@ -20,13 +19,13 @@
 import { mixin } from '@/utils/mixin';
 
 export default {
-  name: 'Footer',
+  name: 'CustomFooter',
   mixins: [mixin],
 };
 </script>
 
 <style scoped lang="less">
-@import "~@/style/variables.less";
+@import '~@/style/variables.less';
 
 .c-footer {
   padding: 8px 16px;
@@ -40,7 +39,8 @@ export default {
   .year {
     color: @red-20;
 
-    a, a:visited {
+    a,
+    a:visited {
       color: @red-20;
     }
   }

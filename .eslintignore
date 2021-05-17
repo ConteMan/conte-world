@@ -1,1 +1,8 @@
+.DS_Store
+node_modules
+.github
+dist
+build
+public
+
 vue.config.js

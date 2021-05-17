@@ -1,10 +1,6 @@
 <template>
   <div class="layout-container">
-
-    <div
-      class="sidebar-container"
-      :style="{ 'width': sideShow ? '200px' : '2px' }"
-    >
+    <div class="sidebar-container" :style="{ width: sideShow ? '200px' : '2px' }">
       <transition
         name="custom-classes-transition"
         :enter-active-class="`animated ${enterAnimate} page-toggle-enter-active`"
@@ -15,10 +11,7 @@
       </transition>
     </div>
 
-    <div
-      class="content-container"
-      :style="{ 'width': contentWidth }"
-    >
+    <div class="content-container" :style="{ width: contentWidth }">
       <router-view class="router-container" />
 
       <content-header-bottom class="content-header" />
@@ -32,9 +25,8 @@
       :visible="isDrawer && menuStatus"
       @close="drawerClose"
     >
-      <sidebar/>
+      <sidebar />
     </a-drawer>
-
   </div>
 </template>
 
@@ -53,6 +45,12 @@ export default {
     Sidebar
   },
   mixins: [mixin],
+  beforeRouteLeave(to, from, next) {
+    if (this.isDrawer) {
+      this.menuAction(false);
+    }
+    next();
+  },
   data() {
     return {
       enterAnimate: 'fadeIn',
@@ -79,13 +77,6 @@ export default {
     drawerClose() {
       this.menuAction(false);
     },
-  },
-
-  beforeRouteLeave(to, from, next) {
-    if (this.isDrawer) {
-      this.menuAction(false);
-    }
-    next();
   },
 };
 </script>

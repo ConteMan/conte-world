@@ -1,18 +1,18 @@
 <template>
   <div class="main-container">
     <div v-if="showMenu" class="item">
-      <a-button ghost @click="menuAction()" title="打开菜单">
+      <a-button ghost title="打开菜单" @click="menuAction">
         <a-icon type="appstore" :theme="menuIconTheme"/>
       </a-button>
     </div>
     <div v-if="enableFullscreen" class="item">
-      <a-button ghost @click="fullScreen()" title="全屏">
+      <a-button ghost title="全屏" @click="fullScreen">
         <a-icon v-if="isFullscreen" type="fullscreen-exit"/>
         <a-icon v-else type="fullscreen"/>
       </a-button>
     </div>
     <div class="item">
-      <a-button ghost @click="darkAction()" title="暗黑模式">
+      <a-button ghost title="暗黑模式" @click="darkAction">
         <a-icon type="bulb" :theme="darkModeIconTheme"/>
       </a-button>
     </div>
@@ -27,13 +27,13 @@ import { mixin } from '@/utils/mixin';
 
 export default {
   name: 'FloatActions',
+  mixins: [mixin],
   props: {
     showMenu: {
       type: Boolean,
       default: true,
     },
   },
-  mixins: [mixin],
   data() {
     return {
       enableFullscreen: true,

@@ -7,7 +7,7 @@
       :style="{ 'height': headerHeight + 'px' }"
       :class="{ 'hide-icon': !showHeader }"
     >
-        <div class="trigger" @click="menuAction()">
+        <div class="trigger" @click="menuAction">
           <a-icon type="menu" class="trigger-icon"/>
         </div>
         <div
@@ -63,9 +63,6 @@ export default {
       leaveAnimate: 'fadeOut',
     };
   },
-  created() {
-    this.deal();
-  },
   computed: {
     showListIcon() {
       return this.isArticleDetail && this.clientWidth > this.$config.articleShowListWidth;
@@ -79,6 +76,9 @@ export default {
   },
   watch: {
     '$route': 'deal'
+  },
+  created() {
+    this.deal();
   },
   methods: {
     ...mapMutations('app', {

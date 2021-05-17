@@ -8,7 +8,7 @@
       active
       :paragraph="{rows: 6, width:['100%', '60%', '60%', '100%', '100%', '100%']}"
     />
-    <div class="card-container" v-show="!imageLoading">
+    <div v-show="!imageLoading" class="card-container">
       <div class="tool-bar" @click="ones">
         <a-icon class="tool-icon" type="reload" :spin="loading"/>
       </div>
@@ -34,6 +34,9 @@ export default {
       imageLoading: false,
     };
   },
+  created() {
+    this.ones();
+  },
   methods: {
     ones() {
       this.loading = true;
@@ -51,9 +54,6 @@ export default {
         this.loading = false;
       }, 800);
     }
-  },
-  created() {
-    this.ones();
   },
 };
 </script>

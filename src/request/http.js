@@ -23,8 +23,8 @@ const errorHandle = (status, other) => {
 };
 
 // 创建axios实例
-var instance = axios.create({
-  timeout: 1000 * 12
+let instance = axios.create({
+  timeout: 1000 * 12,
 });
 // 设置post请求头
 instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -35,19 +35,20 @@ instance.defaults.headers.get['Content-Type'] = 'application/json';
  * 每次请求前，如果存在token则在请求头中携带token
  */
 instance.interceptors.request.use(
-  config => {
+  (config) => {
     return config;
   },
-  error => Promise.error(error));
+  (error) => Promise.error(error),
+);
 
 // 响应拦截器
 instance.interceptors.response.use(
   // 请求成功
-  res => {
+  (res) => {
     return res.status === 200 ? Promise.resolve(res) : Promise.reject(res);
   },
   // 请求失败
-  error => {
+  (error) => {
     const { response } = error;
     if (response) {
       Message.error(response.data.message);
@@ -65,7 +66,7 @@ instance.interceptors.response.use(
         return Promise.reject(error);
       }
     }
-  });
+  },
+);
 
 export default instance;
-

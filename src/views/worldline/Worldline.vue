@@ -5,7 +5,14 @@
         <a-space>
           <template v-for="item in platformTypes">
             <template v-if="platformTypes.length > 0">
-              <a-button :key="item.key" class="platform-type-btn" :type="item.key === platformType ? 'primary' : ''" size="small" @click="changePlatformType(item.key)">{{ item.value }} <template v-if="item.key === platformType">/ {{ total }}</template></a-button>
+              <a-button
+                :key="item.key"
+                class="platform-type-btn"
+                :type="item.key === platformType ? 'primary' : ''"
+                size="small"
+                @click="changePlatformType(item.key)"
+                >{{ item.value }} <template v-if="item.key === platformType">/ {{ total }}</template></a-button
+              >
             </template>
           </template>
         </a-space>
@@ -20,11 +27,9 @@
         infinite-scroll-immediate-check="true"
       >
         <template v-if="items.length">
-          <template v-for="item in items">
-            <div :key="item.slug" class="list-item">
-              <div v-if="item.platform_type === 'yuque_note'" v-html="item.content" />
-            </div>
-          </template>
+          <div v-for="item in items" :key="item.slug" class="list-item">
+            <div v-if="item.platform_type === 'yuque_note'" v-html="item.content" />
+          </div>
         </template>
       </div>
     </div>
@@ -110,7 +115,7 @@ export default {
     padding: 24px;
     display: flex;
   }
-  .list-container{
+  .list-container {
     height: calc(100vh - 74px);
     overflow-y: auto;
     scroll-behavior: smooth;

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <float-actions/>
+    <float-actions />
     <div class="base-container">
       <div v-if="menuStatus && !isDrawer" class="side-container">
-        <sidebar/>
+        <sidebar />
       </div>
       <a-drawer
         placement="left"
@@ -13,14 +13,14 @@
         width="40%"
         @close="drawerClose"
       >
-        <sidebar/>
+        <sidebar />
       </a-drawer>
       <div
         class="content-container"
-        :class="{'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer}"
+        :class="{ 'no-menu': !menuStatus || isDrawer, 'exist-menu': menuStatus && !isDrawer }"
       >
         <transition name="fade">
-          <router-view/>
+          <router-view />
         </transition>
       </div>
     </div>
@@ -41,6 +41,13 @@ export default {
     Sidebar,
     FloatActions,
   },
+  mixins: [mixin],
+  beforeRouteLeave(to, from, next) {
+    if (this.isDrawer) {
+      this.menuAction(false);
+    }
+    next();
+  },
   data() {
     return {
       fullWidth: document.body.clientWidth,
@@ -48,7 +55,6 @@ export default {
       drawerVisible: false,
     };
   },
-  mixins: [mixin],
   computed: {
     isDrawer: function() {
       return this.fullWidth <= 768;
@@ -74,17 +80,11 @@ export default {
       menuAction: MT.MENU_STATUS,
     })
   },
-  beforeRouteLeave(to, from, next) {
-    if (this.isDrawer) {
-      this.menuAction(false);
-    }
-    next();
-  },
 };
 </script>
 
 <style scoped lang="less">
-@import "~@/style/variables";
+@import '~@/style/variables';
 
 .base-container {
   height: 100%;

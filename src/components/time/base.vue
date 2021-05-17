@@ -12,6 +12,9 @@ export default {
       timeStr: '...'
     };
   },
+  mounted() {
+    setInterval(this.getTimeStr, 1000);
+  },
   methods: {
     getTimeStr() {
       const d = new Date();
@@ -25,13 +28,6 @@ export default {
     format(time) {
       return time < 10 ? '0' + time : time;
     }
-  },
-  mounted() {
-    setInterval(this.getTimeStr, 1000);
   }
 };
 </script>
-
-<style scoped>
-
-</style>

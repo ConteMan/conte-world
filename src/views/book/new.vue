@@ -39,8 +39,8 @@
       </div>
 
       <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler">
-        <template slot="no-more">No more.</template>
-        <template slot="no-results">No more.</template>
+        <template v-slot:no-more>No more.</template>
+        <template v-slot:no-results>No more.</template>
       </infinite-loading>
     </div>
   </div>
@@ -68,7 +68,7 @@ export default {
       hasMore: true,
 
       types: [],
-      infiniteId: +new Date(),
+      infiniteId: Number(new Date()),
     };
   },
 

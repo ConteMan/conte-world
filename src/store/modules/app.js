@@ -36,7 +36,9 @@ const app = {
     },
     [MT.DARK_MODE]: (state, type = 'default') => {
       state.darkMode = type === 'default' ? !state.darkMode : Boolean(type);
-      state.darkMode ? document.querySelector('body').classList.add('dark-theme') : document.querySelector('body').classList.remove('dark-theme');
+      state.darkMode
+        ? document.querySelector('body').classList.add('dark-theme')
+        : document.querySelector('body').classList.remove('dark-theme');
     },
     [MT.MENU_STATUS]: (state, type = 'default') => {
       state.menuStatus = type === 'default' ? !state.menuStatus : Boolean(type);
@@ -95,15 +97,15 @@ const app = {
         }
         commit('permission/' + [MT.ROUTES], navRoutes, { root: true });
 
-        info.nav.items = nav.filter(item => {
+        info.nav.items = nav.filter((item) => {
           return item.value !== '/';
         });
         commit(MT.INFO, info);
 
         commit(MT.LOADING, false);
       }
-    }
-  }
+    },
+  },
 };
 
 export default app;

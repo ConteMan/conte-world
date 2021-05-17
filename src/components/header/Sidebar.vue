@@ -1,24 +1,20 @@
 <template>
   <div class="nav-container">
-    <div
-      class="title logo"
-      :data-cn-title="cnTitle"
-      @click="$router.push({ path: '/' })"
-    >
+    <div class="title logo" :data-cn-title="cnTitle" @click="$router.push({ path: '/' })">
       <span class="en-title">{{ enTitle }}</span>
     </div>
     <div class="slogan">
       <span>{{ getSlogan('start') }}</span>
-      <br>
+      <br />
       <span>{{ getSlogan() }}</span>
     </div>
     <div class="nav-content">
       <div
-        class="nav-item"
-        :class="{ active: (item.active || item.path == $route.matched[0].path) }"
         v-for="item in routes"
         :key="item.name"
-        @click="$router.push({path: item.path})"
+        class="nav-item"
+        :class="{ active: item.active || item.path === $route.matched[0].path }"
+        @click="$router.push({ path: item.path })"
       >
         <div class="des">
           {{ item.extend ? item.extend.extend.name : item.meta.title }}
@@ -27,37 +23,31 @@
     </div>
 
     <div class="setting-action" tabindex="0" @blur.capture="changeShowSetting($event)">
-
-      <span
-        class="setting-item"
-        :style="{ 'opacity': showSetting ? '1' : '' }"
-      >
-        <a-icon type="caret-left" class="nav-icon pointer" @click="() => this.showSetting = !this.showSetting"/>
+      <span class="setting-item" :style="{ opacity: showSetting ? '1' : '' }">
+        <a-icon type="caret-left" class="nav-icon pointer" @click="revertShowSetting" />
       </span>
 
       <transition
-        :enter-active-class="`animated fadeIn page-toggle-enter-active`"
-        :leave-active-class="`animated fadeOut page-toggle-leave-active`"
+        enter-active-class="animated fadeIn page-toggle-enter-active"
+        leave-active-class="animated fadeOut page-toggle-leave-active"
       >
-        <div class="nav-setting" v-if="showSetting">
-
-          <div class="setting-item" @click="darkAction()" title="Dark Mode">
-            <c-icon type="icon-dark" class="setting-icon"/>
+        <div v-if="showSetting" class="nav-setting">
+          <div class="setting-item" title="Dark Mode" @click="darkAction">
+            <c-icon type="icon-dark" class="setting-icon" />
           </div>
 
-          <div v-if="enableFullscreen" class="setting-item" @click="fullScreen()" title="Full Screen">
-            <a-icon v-if="isFullscreen" type="fullscreen-exit" class="setting-icon"/>
-            <a-icon v-else type="fullscreen" class="setting-icon"/>
+          <div v-if="enableFullscreen" class="setting-item" title="Full Screen" @click="fullScreen">
+            <a-icon v-if="isFullscreen" type="fullscreen-exit" class="setting-icon" />
+            <a-icon v-else type="fullscreen" class="setting-icon" />
           </div>
 
-          <div v-if="!isMobile" class="setting-item" @click="layoutModeAction()" title="Layout Mode">
-            <c-icon v-if="layoutMode === 'static'" type="icon-fit-width" class="setting-icon"/>
-            <c-icon v-if="layoutMode === 'fit'" type="icon-static-width" class="setting-icon"/>
+          <div v-if="!isMobile" class="setting-item" title="Layout Mode" @click="layoutModeAction">
+            <c-icon v-if="layoutMode === 'static'" type="icon-fit-width" class="setting-icon" />
+            <c-icon v-if="layoutMode === 'fit'" type="icon-static-width" class="setting-icon" />
           </div>
         </div>
       </transition>
     </div>
-
   </div>
 </template>
 
@@ -126,6 +116,9 @@ export default {
       if (!$event.relatedTarget) {
         this.showSetting = !this.showSetting;
       }
+    },
+    revertShowSetting() {
+      this.showSetting = !this.showSetting;
     }
   }
 };
