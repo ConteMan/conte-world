@@ -23,7 +23,7 @@
     "normalize.css": "^8.0.1",
     "qs": "^6.8.0",
     "vue": "^2.6.10",
-    "vue-analytics": "^5.22.1",
+    "vue-gtag": "^1.16.1",
     "vue-infinite-loading": "^2.4.5",
     "vue-ls": "^3.2.1",
     "vue-router": "^3.0.3",

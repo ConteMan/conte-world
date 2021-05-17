@@ -9,21 +9,25 @@ import '@/core/lazy_lib/components';
 import setting from '@/config/setting'; // 全局配置
 
 // extend
-import VueAnalytics from 'vue-analytics';
+import VueGtag from 'vue-gtag';
 import dayjs from 'dayjs';
 import _ from 'lodash';
 
 Vue.use(VueStorage, setting.storageOptions);
 
 if (process.env.NODE_ENV === 'production') {
-  Vue.use(VueAnalytics, {
-    id: process.env.VUE_APP_BASE_GA,
-    disableScriptLoader: false,
+  Vue.use(
+    VueGtag,
+    {
+      config: {
+        id: process.env.VUE_APP_BASE_GA,
+        params: {
+          send_page_view: false,
+        },
+      },
+    },
     router,
-    autoTracking: {
-      pageviewOnLoad: true
-    }
-  });
+  );
 }
 
 Vue.prototype.$config = setting;
