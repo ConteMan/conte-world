@@ -8,6 +8,7 @@ import talk from '@/router/modules/talk.js';
 import about from '@/router/modules/about.js';
 import time from '@/router/modules/time.js';
 import book from '@/router/modules/book.js';
+import software from '@/router/modules/software.js';
 
 Vue.use(Router);
 
@@ -19,26 +20,27 @@ export const routes = [
   about,
   time,
   book,
+  software,
   {
     path: '*',
     name: '404',
     meta: {
-      title: '404'
+      title: '404',
     },
     redirect: { path: '/' },
-  }
+  },
 ];
 
 const routerPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(error => error);
+  return routerPush.call(this, location).catch((error) => error);
 };
 
 const createRouter = function() {
   return new Router({
     mode: 'history', // require service support
     scrollBehavior: () => ({ y: 0 }),
-    routes: routes
+    routes: routes,
   });
 };
 
