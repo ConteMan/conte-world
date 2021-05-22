@@ -14,6 +14,9 @@
         <div v-if="isArticle" class="trigger" title="RSS Feed of Article" @click="turnUrl('/feed/article.rss')">
           <c-icon type="icon-rss" class="trigger-icon" />
         </div>
+        <div class="trigger" title="Scroll To Top" @click="scrollTop">
+          <a-icon type="up" class="trigger-icon" />
+        </div>
       </div>
     </div>
   </div>
@@ -32,9 +35,6 @@ export default {
       isArticle: false,
       isArticleDetail: false,
       isTalk: false,
-
-      enterAnimate: 'fadeIn',
-      leaveAnimate: 'fadeOut',
     };
   },
   computed: {
@@ -67,6 +67,10 @@ export default {
     turnUrl(url) {
       window.location.href = url;
       return true;
+    },
+    scrollTop() {
+      const scrollElement = document.querySelector('html');
+      scrollElement.scrollTop = 0;
     },
   },
 };
