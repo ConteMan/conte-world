@@ -32,7 +32,7 @@
         leave-active-class="animated fadeOut page-toggle-leave-active"
       >
         <div v-if="showSetting" class="nav-setting">
-          <div class="setting-item" title="Dark Mode" @click="darkAction">
+          <div class="setting-item" title="Dark Mode" @click="darkAction('default')">
             <c-icon type="icon-dark" class="setting-icon" />
           </div>
 

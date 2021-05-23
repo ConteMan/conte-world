@@ -25,7 +25,7 @@
         <span v-for="item in info.social.items" :key="item.id" :title="item.code" @click="turnTo(item)">
           <c-icon :type="'icon-' + item.extend.icon" />
         </span>
-        <span title="Dark Mode" @click="darkAction">
+        <span title="Dark Mode" @click="darkAction('default')">
           <c-icon type="icon-dark" />
         </span>
       </div>
