@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { useThrottleFn } from '@vueuse/core'
 import { appMixin } from '@/utils/mixin';
 
 export default {
@@ -32,27 +33,17 @@ export default {
     return {
       enterAnimate: 'fadeIn',
       leaveAnimate: 'fadeOut',
-      timer: false,
     };
   },
-  created() {
-    window.addEventListener('resize', () => {
-      if (!this.timer) {
-        this.timer = true;
-        setTimeout(
-          () => {
-            const clientWidth = window.innerWidth;
-            this.clientWithAction(clientWidth);
-            const isMobileTmp = clientWidth <= 768;
-            if (isMobileTmp !== this.isMobile) {
-              this.isMobileAction(isMobileTmp);
-            }
-            this.timer = false;
-          }, 400);
-      }
-    }, false);
-  },
   mounted() {
+    window.addEventListener('resize', useThrottleFn(() => {
+        const clientWidth = window.innerWidth;
+        this.clientWithAction(clientWidth);
+        const isMobileTmp = clientWidth <= 768;
+        if (isMobileTmp !== this.isMobile) {
+          this.isMobileAction(isMobileTmp);
+        }
+      }, 400), false);
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (prefersDarkMode) {
       this.darkAction(true);

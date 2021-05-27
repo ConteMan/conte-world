@@ -13,7 +13,7 @@
             <a :href="item.site_url">{{ item.site_url }}</a>
           </p>
           <p v-if="item.version && Object.keys(item.version).length">
-            <span v-for="(vItem, name, index) in item.version" :key="vItem">
+            <span v-for="(vItem, name, index) in item.version" :key="vItem.name">
               <template v-if="index !== 0"> | </template>
               <span v-if="name !== 'default'">{{ vItem.name }}: </span>
               <span>{{ vItem.version }}</span>

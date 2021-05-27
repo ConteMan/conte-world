@@ -14,15 +14,19 @@
         <div v-if="isArticle" class="trigger" title="RSS Feed of Article" @click="turnUrl('/feed/article.rss')">
           <c-icon type="icon-rss" class="trigger-icon" />
         </div>
-        <div class="trigger" title="Scroll To Top" @click="scrollTop">
-          <a-icon type="up" class="trigger-icon" />
-        </div>
+        <div v-if="scrollPer" class="scroll-percent">{{ scrollPer }} %</div>
+        <transition enter-active-class="animated swing">
+          <div v-if="showScrollTop" class="trigger" title="Scroll To Top" @click="scrollTop">
+            <a-icon type="up" class="trigger-icon" />
+          </div>
+        </transition>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { useThrottleFn } from '@vueuse/core';
 import { mapMutations } from 'vuex';
 import * as MT from '@/store/mutation-types';
 import { contentHeaderMixin } from '@/utils/mixin';
@@ -35,6 +39,8 @@ export default {
       isArticle: false,
       isArticleDetail: false,
       isTalk: false,
+      showScrollTop: false,
+      scrollPer: 0,
     };
   },
   computed: {
@@ -50,6 +56,16 @@ export default {
   },
   watch: {
     '$route': 'deal'
+  },
+  mounted() {
+    const scrollElement = document.querySelector('html');
+    document.addEventListener('scroll', useThrottleFn(() => {
+      const scrollHeight = scrollElement.scrollHeight;
+      const clientHeight = window.innerHeight;
+      const scrollTop =  scrollElement.scrollTop;
+      this.scrollPer = Math.floor(scrollTop/(scrollHeight-clientHeight)*100);
+      this.showScrollTop = scrollTop > 100;
+    }, 200), false);
   },
   created() {
     this.deal();
@@ -120,6 +136,10 @@ export default {
       padding-right: 20px;
       height: 100%;
       right: 0;
+      .scroll-percent {
+        line-height: 48px;
+        opacity: 0.3;
+      }
     }
     .trigger.ant-popover-open {
       opacity: 1;
