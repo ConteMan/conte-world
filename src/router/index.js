@@ -2,25 +2,27 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import landpage from '@/router/modules/landpage.js';
+import talk from '@/router/modules/talk.js';
 import article from '@/router/modules/article.js';
 import movie from '@/router/modules/movie.js';
-import talk from '@/router/modules/talk.js';
-import about from '@/router/modules/about.js';
-import time from '@/router/modules/time.js';
 import book from '@/router/modules/book.js';
 import software from '@/router/modules/software.js';
+import about from '@/router/modules/about.js';
+import time from '@/router/modules/time.js';
+import share from '@/router/modules/share.js';
 
 Vue.use(Router);
 
 export const routes = [
   landpage,
+  talk,
   article,
   movie,
-  talk,
-  about,
-  time,
   book,
   software,
+  about,
+  time,
+  share,
   {
     path: '*',
     name: '404',

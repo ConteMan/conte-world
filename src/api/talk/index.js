@@ -19,7 +19,19 @@ export default {
       params: {
         offset,
         limit,
-      }
+      },
+    });
+  },
+
+  /**
+   * 说说详情
+   *
+   * @param {String}} slug - 标志
+   */
+  show(slug) {
+    return request({
+      url: this.baseUrl + '/' + slug,
+      method: 'get',
     });
   },
 };

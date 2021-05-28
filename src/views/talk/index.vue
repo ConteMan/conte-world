@@ -1,18 +1,23 @@
 <template>
-    <div class="talk-list">
-      <div class="item-container">
-        <div v-for="item in items" :key="item.id" class="list-item">
-          <div v-if="['conteworld_talk'].includes(item.platform_type)" class="card" v-html="item.content" />
-          <div v-if="['yuque_note'].includes(item.platform_type)" class="card" v-html="yuqueNoteFormat(item.content)" />
-          <div class="info">
-            <span class="time">
-              {{ $dayjs(item.info_at).format("YYYY-MM-DD HH:mm:ss") }}
-            </span>
-          </div>
+  <div class="talk-list">
+    <div class="item-container">
+      <div
+        v-for="item in items"
+        :key="item.id"
+        class="list-item pointer"
+        @click.stop="$router.push({ path: '/share', query: { type: 'talk', slug: item.slug } })"
+      >
+        <div v-if="['conteworld_talk'].includes(item.platform_type)" class="card" v-html="item.content" />
+        <div v-if="['yuque_note'].includes(item.platform_type)" class="card" v-html="yuqueNoteFormat(item.content)" />
+        <div class="info">
+          <span class="time">
+            {{ $dayjs(item.info_at).format('YYYY-MM-DD HH:mm:ss') }}
+          </span>
         </div>
-        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
       </div>
+      <infinite-loading @infinite="infiniteHandler"></infinite-loading>
     </div>
+  </div>
 </template>
 
 <script>
@@ -84,5 +89,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "./index.less";
+@import './index.less';
 </style>
