@@ -10,10 +10,10 @@
       <div v-if="showListIcon" class="trigger" @click="showListAction(!showList)">
         <c-icon type="icon-mulu" class="trigger-icon" />
       </div>
+      <div v-if="isArticle" class="trigger" title="RSS Feed of Article" @click="turnUrl('/feed/article.rss')">
+        <c-icon type="icon-rss" class="trigger-icon" />
+      </div>
       <div class="right">
-        <div v-if="isArticle" class="trigger" title="RSS Feed of Article" @click="turnUrl('/feed/article.rss')">
-          <c-icon type="icon-rss" class="trigger-icon" />
-        </div>
         <div v-if="scrollPer" class="scroll-percent">{{ scrollPer }} %</div>
         <transition enter-active-class="animated swing">
           <div v-if="showScrollTop" class="trigger" title="Scroll To Top" @click="scrollTop">
