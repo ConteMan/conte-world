@@ -10,6 +10,7 @@ import software from '@/router/modules/software.js';
 import about from '@/router/modules/about.js';
 import time from '@/router/modules/time.js';
 import share from '@/router/modules/share.js';
+import project from '@/router/modules/project.js';
 
 Vue.use(Router);
 
@@ -23,6 +24,7 @@ export const routes = [
   about,
   time,
   share,
+  project,
   {
     path: '*',
     name: '404',
