@@ -12,7 +12,7 @@ export default {
         title: 'Share',
       },
       props: (route) => ({
-        type: route.query.type || 'talk',
+        type: route.query.type || '',
         slug: route.query.slug || '',
       }),
       component: () => import('@/views/share'),
