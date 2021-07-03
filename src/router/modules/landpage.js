@@ -2,7 +2,7 @@ export default {
   path: '/',
   name: 'Landpage',
   meta: {
-    title: '泊世录'
+    title: '',
   },
   component: () => import('@/views/landpage'),
 };
