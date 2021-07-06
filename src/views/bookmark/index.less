@@ -1,0 +1,36 @@
+@import '~@/style/variables';
+
+.share-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  .back {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 20px;
+    opacity: 0.8;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .content {
+    max-width: 100%;
+    padding: 80px 40px;
+    color: black;
+    padding: @padding;
+    .file-name {
+      padding: 16px 0;
+    }
+    .json {
+      margin: 0;
+      .json-pre {
+        border-left: 2px solid grey;
+        padding: 0 8px;
+      }
+    }
+  }
+}

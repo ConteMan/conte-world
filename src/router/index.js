@@ -12,6 +12,7 @@ import time from '@/router/modules/time.js';
 import share from '@/router/modules/share.js';
 import project from '@/router/modules/project.js';
 import date from '@/router/modules/date.js';
+import bookmark from '@/router/modules/bookmark.js';
 
 Vue.use(Router);
 
@@ -27,6 +28,7 @@ export const routes = [
   share,
   project,
   date,
+  bookmark,
   {
     path: '*',
     name: '404',
