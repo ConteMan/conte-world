@@ -75,11 +75,11 @@ export default {
   name: 'Landpage',
   mixins: [mixin],
   beforeRouteEnter(to, from, next) {
-    document.querySelector('body').classList.add('overflow-y-hidden');
+    document.querySelector('body').classList.add('no-scrollbar');
     next();
   },
   beforeRouteLeave(to, from, next) {
-    document.querySelector('body').classList.remove('overflow-y-hidden');
+    document.querySelector('body').classList.remove('no-scrollbar');
     next();
   },
   computed: {
