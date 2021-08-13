@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const movie = {
-  baseUrl: base.e_isconte + '/api/movies',
+  baseUrl: base.api + '/api/movies',
 
   /**
    * 列表
@@ -21,7 +21,7 @@ const movie = {
         type,
         offset,
         limit,
-      }
+      },
     });
   },
 

@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 export default {
-  baseUrl: base.e_isconte + '/api/talks',
+  baseUrl: base.api + '/api/talks',
 
   /**
    * 列表

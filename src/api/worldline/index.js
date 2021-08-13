@@ -3,7 +3,7 @@ import base from '@/api/base';
 
 const worldline = {
   // BASE URL
-  baseUrl: base.e_isconte + '/api/worldlines',
+  baseUrl: base.api + '/api/worldlines',
 
   /**
    * 列表
@@ -19,7 +19,7 @@ const worldline = {
         offset,
         limit,
         platformType,
-      }
+      },
     });
   },
 
@@ -31,7 +31,7 @@ const worldline = {
       url: this.baseUrl + '/platform_types',
       method: 'get',
     });
-  }
+  },
 };
 
 export default worldline;

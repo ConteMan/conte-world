@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const project = {
-  baseUrl: base.e_isconte + '/api/notion',
+  baseUrl: base.api + '/api/notion',
 
   /**
    * notion 请求

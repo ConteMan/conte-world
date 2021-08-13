@@ -3,7 +3,7 @@ import base from '@/api/base';
 
 const one = {
   ones() {
-    return request.get(`${base.e_isconte}/api/ones/random`);
+    return request.get(`${base.api}/api/ones/random`);
   },
 };
 

@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const article = {
-  baseUrl: base.e_isconte + '/api/articles',
+  baseUrl: base.api + '/api/articles',
 
   /**
    * 列表
@@ -19,7 +19,7 @@ const article = {
       params: {
         offset,
         limit,
-      }
+      },
     });
   },
 
@@ -33,7 +33,7 @@ const article = {
       url: this.baseUrl + '/' + id,
       method: 'get',
     });
-  }
+  },
 };
 
 export default article;

@@ -12,11 +12,11 @@ const douban = {
       mode: params.mode || 'grid',
     };
     return request({
-      url: `${base.e_isconte}/api/douban/movie_collect`,
+      url: `${base.api}/api/douban/movie_collect`,
       method: 'get',
-      params: requestData
+      params: requestData,
     });
-  }
+  },
 };
 
 export default douban;

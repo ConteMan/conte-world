@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const about = {
-  baseUrl: base.e_isconte + '/api/about',
+  baseUrl: base.api + '/api/about',
 
   /**
    * 详情
@@ -12,7 +12,7 @@ const about = {
       url: this.baseUrl,
       method: 'get',
     });
-  }
+  },
 };
 
 export default about;

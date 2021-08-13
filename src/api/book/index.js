@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const book = {
-  baseUrl: base.e_isconte + '/api/books',
+  baseUrl: base.api + '/api/books',
 
   /**
    * 列表
@@ -21,7 +21,7 @@ const book = {
         type,
         offset,
         limit,
-      }
+      },
     });
   },
 

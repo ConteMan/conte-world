@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const about = {
-  baseUrl: base.e_isconte + '/api/softwares',
+  baseUrl: base.api + '/api/softwares',
 
   /**
    * 列表
