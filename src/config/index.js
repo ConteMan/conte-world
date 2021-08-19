@@ -6,13 +6,7 @@ export default {
   policeBeian: '粤公网安备44030702002732号',
   policeBeianNum: '44030702002732',
   siteCreateTime: '2019',
-
-  // setting
-  storageOptions: {
-    namespace: 'isconte__', // key prefix
-    name: 'ls', // name variable Vue.[ls] or this.[$ls],
-    storage: 'local', // storage name session, local, memory
-  },
+  siteSign: 'conte-world-f',
 
   // local setting
   layoutMode: 'static', // static 定宽， fit 适应

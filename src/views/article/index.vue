@@ -66,7 +66,7 @@
 
 <script>
 import { articleMixin } from '@/utils/mixin';
-import Article from '@/api/article';
+import Base from '@/api/article.js';
 
 export default {
   name: 'CustomArticle',
@@ -144,7 +144,7 @@ export default {
   methods: {
     async index() {
       const { offset, limit } = this;
-      const res = await Article.index({ offset, limit });
+      const res = await Base.index({ offset, limit });
       if (res.data.code === 0) {
         const { hasMore, items, totalCount } = res.data.data;
         this.total = totalCount;
@@ -159,7 +159,7 @@ export default {
       this.index();
     },
     detail() {
-      Article.docDetail(this.id).then(
+      Base.docDetail(this.id).then(
         response => {
           if (response.data.code === 0) {
             const data = response.data.data.res;

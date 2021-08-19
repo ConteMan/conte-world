@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import About from '@/api/about/index.js';
+import Base from '@/api/about.js';
 
 export default {
   name: 'About',
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     async getPageInfo() {
-      const res = await About.page();
+      const res = await Base.page();
       if (res.data.code === 0) {
         this.page = res.data.data;
       }
@@ -36,6 +36,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "./index.less";
+@import './index.less';
 </style>
 

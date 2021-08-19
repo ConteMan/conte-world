@@ -1,11 +1,11 @@
 import _ from 'lodash';
-import Vue from 'vue';
+import { useStorage } from '@vueuse/core';
 import * as MT from '@/store/mutation-types';
-import setting from '@/config/setting';
+import config from '@/config';
 import { routes } from '@/router';
-import CommonApi from '@/api/common';
+import CommonApi from '@/api/common.js';
 
-const layoutMode = window.innerWidth <= setting.staticWidth ? 'fit' : setting.layoutMode;
+const layoutMode = window.innerWidth <= config.staticWidth ? 'fit' : config.layoutMode;
 
 const app = {
   namespaced: true,
@@ -13,10 +13,10 @@ const app = {
     loading: false,
     loadingCount: 0,
     darkMode: false,
-    menuStatus: setting.menuStatus,
+    menuStatus: config.menuStatus,
     isMobile: window.innerWidth <= 768,
     clientWidth: window.innerWidth,
-    headerHeight: setting.headerHeight,
+    headerHeight: config.headerHeight,
     headerPin: true, // true 固定
     contentHeight: 0,
     info: {}, // 基础信息
@@ -42,7 +42,7 @@ const app = {
     },
     [MT.MENU_STATUS]: (state, type = 'default') => {
       state.menuStatus = type === 'default' ? !state.menuStatus : Boolean(type);
-      Vue.ls.set(setting.storageKeys.menuStatus, state.menuStatus);
+      useStorage(config.storageKeys.menuStatus, state.menuStatus);
     },
     [MT.IS_MOBILE]: (state, type) => {
       if (type) {
@@ -73,7 +73,7 @@ const app = {
       } else {
         state.layoutMode = state.layoutMode === 'static' ? 'fit' : 'static';
       }
-      Vue.ls.set(setting.storageKeys.layoutMode, state.layoutMode);
+      useStorage(config.storageKeys.layoutMode, state.layoutMode);
     },
   },
   actions: {

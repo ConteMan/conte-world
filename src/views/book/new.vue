@@ -6,7 +6,7 @@
           v-for="item in types"
           :key="item.type"
           class="nav-item"
-          :class="{ 'active': type === item.type }"
+          :class="{ active: type === item.type }"
           @click="changeType(item.type)"
         >
           {{ item.value }} {{ item.total }}
@@ -17,7 +17,7 @@
     <div class="item-container">
       <div v-for="item in items" :key="item.id" class="book-item">
         <div class="pic">
-          <img referrerpolicy='no-referrer' :src="item.content_origin.pic" />
+          <img referrerpolicy="no-referrer" :src="item.content_origin.pic" />
         </div>
         <div class="title">
           <a :href="item.content_origin.link" target="_blank">{{ item.content }}</a>
@@ -33,7 +33,7 @@
         </div>
         <div class="info">
           <span class="time">
-            {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+            {{ $dayjs(item.info_at).format('YYYY-MM-DD') }}
           </span>
         </div>
       </div>
@@ -49,7 +49,7 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
 import { mixin } from '@/utils/mixin';
-import Base from '@/api/book';
+import Base from '@/api/book.js';
 
 export default {
   name: 'Book',
@@ -146,5 +146,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "./index";
+@import './index';
 </style>

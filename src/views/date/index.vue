@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Base from '@/api/notion';
+import Base from '@/api/notion.js';
 
 export default {
   name: 'Date',

@@ -26,7 +26,7 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
-import Base from '@/api/project';
+import Base from '@/api/project.js';
 
 export default {
   name: 'Project',

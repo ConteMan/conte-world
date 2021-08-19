@@ -1,23 +1,23 @@
 <template>
   <div class="movie-list">
-      <div class="nav-bar">
-        <a-space>
-          <span
-            v-for="item in types"
-            :key="item.type"
-            class="nav-item"
-            :class="{ 'active': type === item.type }"
-            @click="changeType(item.type)"
-          >
-            {{ item.value }} {{ item.total }}
-          </span>
-        </a-space>
-      </div>
+    <div class="nav-bar">
+      <a-space>
+        <span
+          v-for="item in types"
+          :key="item.type"
+          class="nav-item"
+          :class="{ active: type === item.type }"
+          @click="changeType(item.type)"
+        >
+          {{ item.value }} {{ item.total }}
+        </span>
+      </a-space>
+    </div>
 
     <div class="item-container">
       <div v-for="item in items" :key="item.id" class="movie-item">
         <div class="pic">
-          <img referrerpolicy='no-referrer' :src="item.content_origin.pic" />
+          <img referrerpolicy="no-referrer" :src="item.content_origin.pic" />
         </div>
         <div class="title">
           <a :href="item.content_origin.link" target="_blank">{{ item.content }}</a>
@@ -30,7 +30,7 @@
         </div>
         <div class="info">
           <span class="time">
-            {{ $dayjs(item.info_at).format("YYYY-MM-DD") }}
+            {{ $dayjs(item.info_at).format('YYYY-MM-DD') }}
           </span>
         </div>
       </div>
@@ -46,7 +46,7 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
 import { mixin } from '@/utils/mixin';
-import Movie from '@/api/movie';
+import Base from '@/api/movie.js';
 
 export default {
   name: 'Movie',
@@ -82,7 +82,7 @@ export default {
     },
     async index() {
       const { offset, limit, type } = this;
-      const res = await Movie.index({ offset, limit, type });
+      const res = await Base.index({ offset, limit, type });
       if (res.data.code === 0) {
         const { hasMore, items, totalCount } = res.data.data;
         this.total = totalCount;
@@ -117,7 +117,7 @@ export default {
       }
     },
     async getTypes() {
-      const res = await Movie.types();
+      const res = await Base.types();
       if (res.data.code === 0) {
         const { items } = res.data.data;
         this.types = items;
@@ -142,5 +142,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "./index";
+@import './index';
 </style>

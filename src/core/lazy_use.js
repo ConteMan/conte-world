@@ -1,18 +1,15 @@
 import Vue from 'vue';
-import VueStorage from 'vue-ls';
 
 // components
 import '@/core/lazy_lib/components';
 
-// setting
-import setting from '@/config/setting'; // 全局配置
+// config 全局配置
+import config from '@/config';
 
 // extend
 import dayjs from 'dayjs';
 import _ from 'lodash';
 
-Vue.use(VueStorage, setting.storageOptions);
-
-Vue.prototype.$config = setting;
+Vue.prototype.$config = config;
 Vue.prototype.$dayjs = dayjs;
 Vue.prototype._ = _;

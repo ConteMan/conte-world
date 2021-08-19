@@ -32,6 +32,9 @@ export default {
     return request({
       url: this.baseUrl + '/' + slug,
       method: 'get',
+      params: {
+        format: 'json',
+      },
     });
   },
 };

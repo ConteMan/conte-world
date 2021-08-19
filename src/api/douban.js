@@ -4,7 +4,7 @@ import base from '@/api/base';
 const douban = {
   movieCollect(params) {
     let requestData = {
-      id: params.id || 'bolu_zz',
+      id: params.id || '',
       start: params.start || 1,
       sort: params.sort || 'time',
       rating: params.rating || 'all',

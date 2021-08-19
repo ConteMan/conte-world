@@ -5,7 +5,7 @@ import store from '@/store';
 
 import bootstrap from '@/core/bootstrap';
 import '@/core/lazy_use';
-import '@/permission';
+import '@/utils/permission.js';
 
 import 'normalize.css/normalize.css';
 import '@/style/markdown.css';
@@ -20,5 +20,5 @@ new Vue({
   created() {
     bootstrap();
   },
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#app');

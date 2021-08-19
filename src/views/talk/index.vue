@@ -25,7 +25,7 @@ import InfiniteLoading from 'vue-infinite-loading';
 import { mixin } from '@/utils/mixin';
 import { mapMutations } from 'vuex';
 import * as MT from '@/store/mutation-types';
-import Talk from '@/api/talk';
+import Talk from '@/api/talk.js';
 
 export default {
   name: 'Talk',

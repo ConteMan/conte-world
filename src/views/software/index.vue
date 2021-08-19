@@ -36,7 +36,7 @@ import InfiniteLoading from 'vue-infinite-loading';
 import { mixin } from '@/utils/mixin';
 import { mapMutations } from 'vuex';
 import * as MT from '@/store/mutation-types';
-import Base from '@/api/software';
+import Base from '@/api/software.js';
 
 export default {
   name: 'Software',

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import CONFIG from '@/config';
 import Message from 'ant-design-vue/lib/message';
 
 /**
@@ -26,9 +27,11 @@ const errorHandle = (status, other) => {
 let instance = axios.create({
   timeout: 1000 * 12,
 });
-// 设置post请求头
+
+// 设置默认请求头
 instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 instance.defaults.headers.get['Content-Type'] = 'application/json';
+instance.defaults.headers.get['Accept'] = 'application/json;';
 
 /**
  * 请求拦截器
@@ -36,6 +39,7 @@ instance.defaults.headers.get['Content-Type'] = 'application/json';
  */
 instance.interceptors.request.use(
   (config) => {
+    config.headers['X-User-Agent'] = CONFIG.siteSign;
     return config;
   },
   (error) => Promise.error(error),
