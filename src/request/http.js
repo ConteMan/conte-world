@@ -39,7 +39,7 @@ instance.defaults.headers.get['Accept'] = 'application/json;';
  */
 instance.interceptors.request.use(
   (config) => {
-    config.headers['X-User-Agent'] = CONFIG.siteSign;
+    config.headers['X-User-Agent'] = CONFIG.siteUserAgent;
     return config;
   },
   (error) => Promise.error(error),

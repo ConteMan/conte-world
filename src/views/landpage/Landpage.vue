@@ -1,8 +1,10 @@
 <template>
   <div v-if="ready" class="page-container">
     <div class="content-container">
-      <div class="title logo">
-        <span>{{ info.title }}</span>
+      <div class="title">
+        <div class="text-magic" :data-word="info.title">
+          {{ info.title }}
+        </div>
       </div>
 
       <div class="color-row slogan">
@@ -31,28 +33,32 @@
       </div>
 
       <div class="info">
-        <div class="beian pointer">
-          <svg width="200" height="11.52" @click="turnTo({ extend: {}, value: 'https://beian.miit.gov.cn/' })">
-            <text dominant-baseline="baseline" font-size="10" y="9.52" x="200" text-anchor="end">
-              {{ $config.beian }}
-            </text>
-          </svg>
+        <div class="beian">
+          <span class="pointer">
+            <svg width="200" height="11.52" @click="turnTo({ extend: {}, value: 'https://beian.miit.gov.cn/' })">
+              <text dominant-baseline="baseline" font-size="10" y="9.52" x="200" text-anchor="end">
+                {{ $config.beian }}
+              </text>
+            </svg>
+          </span>
         </div>
-        <div class="beian pointer">
-          <svg
-            width="200"
-            height="11.52"
-            @click="
-              turnTo({
-                extend: {},
-                value: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum,
-              })
-            "
-          >
-            <text dominant-baseline="baseline" font-size="10" y="9.52" x="200" text-anchor="end">
-              {{ $config.policeBeian }}
-            </text>
-          </svg>
+        <div class="beian">
+          <span class="pointer">
+            <svg
+              width="200"
+              height="11.52"
+              @click="
+                turnTo({
+                  extend: {},
+                  value: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + $config.policeBeianNum,
+                })
+              "
+            >
+              <text dominant-baseline="baseline" font-size="10" y="9.52" x="200" text-anchor="end">
+                {{ $config.policeBeian }}
+              </text>
+            </svg>
+          </span>
         </div>
         <div class="run-time">
           <svg width="300" height="11.52">

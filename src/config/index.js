@@ -6,11 +6,11 @@ export default {
   policeBeian: '粤公网安备44030702002732号',
   policeBeianNum: '44030702002732',
   siteCreateTime: '2019',
-  siteSign: 'conte-world-f',
+  siteUserAgent: 'conte-world-f',
 
   // local setting
   layoutMode: 'static', // static 定宽， fit 适应
-  staticWidth: 1024, // 定宽模式宽度
+  staticWidth: 1200, // 定宽模式宽度
   menuStatus: true, // 展示菜单
 
   storageKeys: {

@@ -20,6 +20,7 @@ const app = {
     headerPin: true, // true 固定
     contentHeight: 0,
     info: {}, // 基础信息
+
     layoutMode,
   },
   mutations: {
@@ -41,8 +42,10 @@ const app = {
         : document.querySelector('body').classList.remove('dark-theme');
     },
     [MT.MENU_STATUS]: (state, type = 'default') => {
-      state.menuStatus = type === 'default' ? !state.menuStatus : Boolean(type);
-      useStorage(config.storageKeys.menuStatus, state.menuStatus);
+      const menuStatus = type === 'default' ? !state.menuStatus : Boolean(type);
+      state.menuStatus = menuStatus;
+      const menuStatusStorage = useStorage(config.storageKeys.menuStatus);
+      menuStatusStorage.value = menuStatus;
     },
     [MT.IS_MOBILE]: (state, type) => {
       if (type) {
@@ -68,12 +71,15 @@ const app = {
       state.info = payload;
     },
     [MT.LAYOUT_MODE]: (state, mode = '') => {
+      let modeCurrent = mode;
       if (['static', 'fit'].includes(mode)) {
         state.layoutMode = mode;
       } else {
-        state.layoutMode = state.layoutMode === 'static' ? 'fit' : 'static';
+        modeCurrent = state.layoutMode === 'static' ? 'fit' : 'static';
+        state.layoutMode = modeCurrent;
       }
-      useStorage(config.storageKeys.layoutMode, state.layoutMode);
+      const layoutMode = useStorage(config.storageKeys.layoutMode);
+      layoutMode.value = modeCurrent;
     },
   },
   actions: {

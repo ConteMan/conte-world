@@ -1,4 +1,4 @@
-@import "~@/style/variables";
+@import '~@/style/variables.less';
 
 @{deep} body {
   overflow-y: auto !important;
@@ -9,14 +9,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: @padding * 2 0 0 0;
+  padding: @padding*2 0 0 0;
 
   .content-container {
     position: relative;
     overflow: hidden;
 
     width: 100%;
-    max-width: 1024px;
+    max-width: 1200px;
     padding: 0 @padding;
 
     .color-row {
@@ -28,14 +28,17 @@
       min-height: 50px;
     }
     .title {
-      font-size: 24px;
+      font-size: 32px;
+      font-weight: 800;
     }
     .slogan {
       justify-content: flex-end;
       color: @gray-7;
       font-style: italic;
     }
-    .nav,.site,.social {
+    .nav,
+    .site,
+    .social {
       position: relative;
       span {
         margin: 0 @margin-2 0 0;
@@ -58,7 +61,8 @@
     .info {
       margin-top: @margin;
       text-align: right;
-      .beian,.run-time {
+      .beian,
+      .run-time {
         svg {
           fill: @gray-7;
           text {
@@ -75,7 +79,7 @@
 .dark-theme {
   .content-container {
     .bg-gray {
-      background:  @dark-bg-light;
+      background: @dark-bg-light;
       color: @dark-font-color;
     }
     .bg-gray-light {

@@ -1,7 +1,7 @@
 import request from '@/request/http';
 import base from '@/api/base';
 
-const url = base.api + '/api';
+const url = base.api;
 
 const common = {
   base() {

@@ -1,9 +1,10 @@
 <template>
   <a-spin
     :spinning="loading"
+    :delay="500"
+    :class="{ 'z-index-0': !loading }"
     wrapperClassName="spin-loading-container"
     tip="Hello, ConteMan"
-    :class="{ 'z-index-0': !loading }"
   >
     <template v-slot:indicator>
       <a-icon class="spin-loading" type="loading" spin />
