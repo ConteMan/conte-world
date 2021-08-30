@@ -13,5 +13,6 @@ module.exports = {
         allowCoexistStyle: true,
       },
     ],
+    'vue/component-tags-order': ['error', { order: ['template', 'script', 'style'] }],
   },
 };
