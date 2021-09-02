@@ -145,11 +145,12 @@ export default {
     async index() {
       const { offset, limit } = this;
       const res = await Base.index({ offset, limit });
-      if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data;
-        this.total = totalCount;
+      if (res.status === 200) {
+        const { data: items } = res.data;
+        const { has_more: hasMore, count } = res.data.meta;
+        this.total = count;
         this.busy = !hasMore;
-        if (items.length > 0) {
+        if (items) {
           this.items = this._.concat(this.items, items);
         }
       }
@@ -160,9 +161,9 @@ export default {
     },
     detail() {
       Base.docDetail(this.id).then(
-        response => {
-          if (response.data.code === 0) {
-            const data = response.data.data.res;
+        res => {
+          if (res.status === 200) {
+            const data = res.data;
             const platform = data.platform;
             if (platform === 'ORI') {
               this.data = data.content_html;

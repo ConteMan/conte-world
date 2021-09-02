@@ -49,16 +49,19 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   // 请求成功
   (res) => {
-    return res.status === 200 ? Promise.resolve(res) : Promise.reject(res);
+    return Promise.resolve(res);
   },
   // 请求失败
   (error) => {
     const { response } = error;
+    console.log('http error response:', response);
     if (response) {
-      Message.error(response.data.message);
+      if (response.data.msg) {
+        Message.error(response.data.msg);
+      }
       // 请求已发出，但是不在2xx的范围
-      errorHandle(response.status, response.data.message);
-      return Promise.reject(response);
+      errorHandle(response.status, response.data.msg);
+      return Promise.resolve(response);
     } else {
       // 处理断网的情况
       // eg:请求超时或断网时，更新state的network状态

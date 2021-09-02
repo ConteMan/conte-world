@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const article = {
-  baseUrl: base.api + '/api/articles',
+  baseUrl: base.api + '/articles',
 
   /**
    * 列表

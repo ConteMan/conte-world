@@ -8,7 +8,6 @@
         @click.stop="$router.push({ path: '/share', query: { type: 'talk', slug: item.slug } })"
       >
         <div v-if="['conteworld_talk'].includes(item.platform_type)" class="card" v-html="item.content" />
-        <div v-if="['yuque_note'].includes(item.platform_type)" class="card" v-html="yuqueNoteFormat(item.content)" />
         <div class="info">
           <span class="time">
             {{ $dayjs(item.info_at).format('YYYY-MM-DD HH:mm:ss') }}
@@ -23,9 +22,7 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
 import { mixin } from '@/utils/mixin';
-import { mapMutations } from 'vuex';
-import * as MT from '@/store/mutation-types';
-import Talk from '@/api/talk.js';
+import Base from '@/api/talk.js';
 
 export default {
   name: 'Talk',
@@ -50,20 +47,17 @@ export default {
     await this.index();
   },
   methods: {
-    ...mapMutations('app', {
-      headerHeightAction: MT.HEADER_HEIGHT,
-    }),
     async index() {
-      const { offset, limit, type } = this;
-      const res = await Talk.index({ offset, limit, type });
-      if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data;
-        this.total = totalCount;
-        this.hasMore = hasMore;
-        if (items.length > 0) {
-          this.items = this._.concat(this.items, items);
+      const { offset, limit } = this;
+      const res = await Base.index({ offset, limit });
+      if (res.status === 200) {
+        const { data, meta } = res.data;
+        this.total = meta.count;
+        this.hasMore = meta.has_more;
+        if (data.length > 0) {
+          this.items = this._.concat(this.items, data);
         }
-        if (hasMore) {
+        if (meta.has_more) {
           return 1;
         } else {
           return 0;
@@ -80,9 +74,6 @@ export default {
       } else {
         $state.complete();
       }
-    },
-    yuqueNoteFormat(data) {
-      return data.replaceAll(/\<\!doctype\s\S*\>|\<meta[\s\S]*\/\>|data-lake\S{0,10}=\"\S{0,100}\"/g, '');
     },
   },
 };
