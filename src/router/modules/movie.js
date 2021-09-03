@@ -1,7 +1,7 @@
 export default {
   path: '/movie',
   meta: {
-    title: '影视'
+    title: '影视',
   },
   component: () => import('@/layout/v2/BaseLayout.vue'),
   children: [
@@ -11,7 +11,7 @@ export default {
       meta: {
         title: '影视',
       },
-      component: () => import('@/views/movie/new')
+      component: () => import('@/views/movie/index.vue'),
     },
-  ]
+  ],
 };

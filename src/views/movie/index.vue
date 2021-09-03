@@ -45,7 +45,6 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
-import { mixin } from '@/utils/mixin';
 import Base from '@/api/movie.js';
 
 export default {
@@ -53,7 +52,6 @@ export default {
   components: {
     InfiniteLoading,
   },
-  mixins: [mixin],
   data() {
     return {
       items: [],
@@ -83,9 +81,10 @@ export default {
     async index() {
       const { offset, limit, type } = this;
       const res = await Base.index({ offset, limit, type });
-      if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data;
-        this.total = totalCount;
+      if (res.status === 200) {
+        const { data: items } = res.data;
+        const { count, has_more: hasMore } = res.data.meta;
+        this.total = count;
         this.hasMore = hasMore;
         if (items.length > 0) {
           this.items = this._.concat(this.items, items);
@@ -118,8 +117,8 @@ export default {
     },
     async getTypes() {
       const res = await Base.types();
-      if (res.data.code === 0) {
-        const { items } = res.data.data;
+      if (res.status === 200) {
+        const { data: items } = res.data;
         this.types = items;
         this.type = items[0].type;
         this.$nextTick(() => {

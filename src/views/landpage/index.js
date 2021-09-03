@@ -1,3 +1,3 @@
-import Landpage from '@/views/landpage/Landpage';
+import Landpage from '@/views/landpage/index.vue';
 
 export default Landpage;

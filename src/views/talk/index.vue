@@ -21,7 +21,6 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
-import { mixin } from '@/utils/mixin';
 import Base from '@/api/talk.js';
 
 export default {
@@ -29,7 +28,6 @@ export default {
   components: {
     InfiniteLoading,
   },
-  mixins: [mixin],
   data() {
     return {
       loading: true,
@@ -51,13 +49,14 @@ export default {
       const { offset, limit } = this;
       const res = await Base.index({ offset, limit });
       if (res.status === 200) {
-        const { data, meta } = res.data;
-        this.total = meta.count;
-        this.hasMore = meta.has_more;
+        const { data } = res.data;
+        const { has_more: hasMore, count } = res.data.meta;
+        this.total = count;
+        this.hasMore = hasMore;
         if (data.length > 0) {
           this.items = this._.concat(this.items, data);
         }
-        if (meta.has_more) {
+        if (hasMore) {
           return 1;
         } else {
           return 0;
