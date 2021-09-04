@@ -2,7 +2,7 @@
   <div class="talk-list">
     <div class="item-container">
       <div
-        v-for="item in items"
+        v-for="item in data"
         :key="item.id"
         class="list-item pointer"
         @click.stop="$router.push({ path: '/share', query: { type: 'talk', slug: item.slug } })"
@@ -32,12 +32,10 @@ export default {
     return {
       loading: true,
 
-      items: [],
+      data: [],
       offset: 0,
-      type: '',
       limit: 20,
       total: 0,
-
       hasMore: true,
     };
   },
@@ -50,11 +48,11 @@ export default {
       const res = await Base.index({ offset, limit });
       if (res.status === 200) {
         const { data } = res.data;
-        const { has_more: hasMore, count } = res.data.meta;
-        this.total = count;
+        const { has_more: hasMore, total } = res.data.meta;
+        this.total = total;
         this.hasMore = hasMore;
         if (data.length > 0) {
-          this.items = this._.concat(this.items, data);
+          this.data = this._.concat(this.data, data);
         }
         if (hasMore) {
           return 1;

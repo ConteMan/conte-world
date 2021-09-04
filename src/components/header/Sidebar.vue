@@ -1,25 +1,18 @@
 <template>
   <div class="nav-container">
-    <div class="title logo" :data-cn-title="cnTitle" @click="$router.push({ path: '/' })">
-      <span class="en-title">{{ enTitle }}</span>
-    </div>
-    <div class="slogan">
-      <span>{{ getSlogan('start') }}</span>
-      <br />
-      <span>{{ getSlogan() }}</span>
+    <div class="title logo" @click="$router.push({ path: '/' })">
+      <img src="@/assets/img/favicon.png" />
     </div>
     <div class="nav-content">
-      <div
+      <span
         v-for="item in routes"
         :key="item.name"
         class="nav-item"
         :class="{ active: item.active || item.path === $route.matched[0].path }"
         @click="$router.push({ path: item.path })"
       >
-        <div class="des">
-          {{ item.extend ? item.extend.extend.name : item.meta.title }}
-        </div>
-      </div>
+        {{ item.extend ? item.extend.extend.name : item.meta.title }}
+      </span>
     </div>
 
     <div class="setting-action" tabindex="0" @blur.capture="changeShowSetting($event)">
@@ -39,11 +32,6 @@
           <div v-if="enableFullscreen" class="setting-item" title="Full Screen" @click="fullScreen">
             <a-icon v-if="isFullscreen" type="fullscreen-exit" class="setting-icon" />
             <a-icon v-else type="fullscreen" class="setting-icon" />
-          </div>
-
-          <div v-if="!isMobile" class="setting-item" title="Layout Mode" @click="layoutModeAction">
-            <c-icon v-if="layoutMode === 'static'" type="icon-fit-width" class="setting-icon" />
-            <c-icon v-if="layoutMode === 'fit'" type="icon-static-width" class="setting-icon" />
           </div>
         </div>
       </transition>
@@ -67,23 +55,11 @@ export default {
       showSetting: false,
     };
   },
-  computed: {
-    cnTitle() {
-      return this.info.title ? String(this.info.title).split('/')[1] : '';
-    },
-    enTitle() {
-      return this.info.title ? String(this.info.title).split('/')[0] : '';
-    },
-  },
   created() {
     this.enableFullscreen = fscreen.fullscreenEnabled;
     fscreen.addEventListener('fullscreenchange', this.fullscreenChange, false);
   },
   methods: {
-    turnUrl(url) {
-      window.location.href = url;
-      return true;
-    },
     ...mapMutations('app', {
       menuAction: MT.MENU_STATUS,
       darkAction: MT.DARK_MODE,
@@ -103,18 +79,9 @@ export default {
         this.isFullscreen = false;
       }
     },
-    getSlogan(type) {
-      if (!this.info.slogan) {
-        return '';
-      }
-      if (type === 'start') {
-        return String(this.info.slogan).split(',')[0].toLowerCase();
-      }
-      return String(this.info.slogan).split(',')[1];
-    },
     changeShowSetting($event) {
-      if (!$event.relatedTarget) {
-        this.showSetting = !this.showSetting;
+      if (!$event.relatedTarget && this.showSetting) {
+        this.showSetting = false;
       }
     },
     revertShowSetting() {

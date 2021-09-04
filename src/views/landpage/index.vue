@@ -7,7 +7,7 @@
         </div>
       </div>
 
-      <div class="color-row slogan">
+      <div class="color-row slogan text-shadow">
         {{ info.slogan }}
       </div>
 

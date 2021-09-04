@@ -102,7 +102,7 @@ export default {
   flex-direction: row;
   align-items: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   border-bottom: 1px solid @border-color;
   z-index: 2;
   background: @bg;

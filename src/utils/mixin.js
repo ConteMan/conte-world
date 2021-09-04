@@ -20,7 +20,6 @@ const mixin = {
     ...mapMutations('app', {
       headerHeightAction: MT.HEADER_HEIGHT,
       headerPinAction: MT.HEADER_PIN,
-      layoutModeAction: MT.LAYOUT_MODE,
     }),
   },
 };

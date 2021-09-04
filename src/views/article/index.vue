@@ -13,7 +13,7 @@
         }"
       >
         <div
-          v-for="item in items"
+          v-for="item in data"
           :id="'nav-item-' + item.id"
           :key="item.id"
           class="title-item"
@@ -40,13 +40,13 @@
       :style="{ height: detailHeight ? detailHeight + 'px' : '100%' }"
     ></div>
 
-    <div v-if="showDetail" class="detail-content" :style="{ width: $config.staticWidth - 4 - sideWidth + 'px' }">
+    <div v-if="showDetail" class="detail-content" :style="{ 'max-width': $config.staticWidth - 4 - sideWidth + 'px' }">
       <div id="article-detail-title" class="title">
         <span class="name">
           {{ title }}
         </span>
         <span class="date">
-          {{ $dayjs(fullData.updated_at).format('YYYY-MM-DD') }}
+          {{ $dayjs(fullData.info_at).format('YYYY-MM-DD') }}
         </span>
       </div>
       <template v-if="platform === 'YUQUE'">
@@ -58,7 +58,7 @@
         ></iframe>
       </template>
       <template v-else>
-        <div id="article-detail-body" class="markdown-container markdown-body" v-html="data"></div>
+        <div id="article-detail-body" class="markdown-container markdown-body" v-html="detailData"></div>
       </template>
     </div>
   </div>
@@ -75,13 +75,12 @@ export default {
     return {
       loading: true,
 
-      items: [],
+      data: [],
       offset: 0,
       limit: 100,
-      busy: false,
       total: 0,
 
-      data: '',
+      detailData: '',
       title: '',
       platform: 'ORI',
       fullData: '',
@@ -137,21 +136,17 @@ export default {
       await this.active(this.id, 0);
       this.dragControllerDeal();
     }
-    setTimeout(() => {
-      this.loading = false;
-    }, 300);
   },
   methods: {
     async index() {
       const { offset, limit } = this;
       const res = await Base.index({ offset, limit });
       if (res.status === 200) {
-        const { data: items } = res.data;
-        const { has_more: hasMore, count } = res.data.meta;
-        this.total = count;
-        this.busy = !hasMore;
-        if (items) {
-          this.items = this._.concat(this.items, items);
+        const { data } = res.data;
+        const { total } = res.data.meta;
+        this.total = total;
+        if (data.length) {
+          this.data = this._.concat(this.data, data);
         }
       }
     },
@@ -163,16 +158,17 @@ export default {
       Base.docDetail(this.id).then(
         res => {
           if (res.status === 200) {
-            const data = res.data;
-            const platform = data.platform;
+            const { platform, title } = res.data;
             if (platform === 'ORI') {
-              this.data = data.content_html;
+              const { content_html } = res.data;
+              this.detailData = content_html;
             }
             if (platform === 'YUQUE') {
-              this.data = data.yuque_content.body_html;
+              const { body_html } = res.data.yuque_content;
+              this.detailData = body_html;
             }
-            this.title = data.title;
-            this.fullData = data;
+            this.title = title;
+            this.fullData = res.data;
             this.$nextTick(() => {
               this.setDragHeight();
             });

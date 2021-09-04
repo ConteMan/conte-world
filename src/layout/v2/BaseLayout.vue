@@ -1,6 +1,6 @@
 <template>
   <div class="layout-container">
-    <div class="sidebar-container" :style="{ width: sideShow ? '200px' : '2px' }">
+    <div class="sidebar-container" :style="{ width: sideShow ? '100px' : '2px' }">
       <transition
         name="custom-classes-transition"
         :enter-active-class="`animated ${enterAnimate} page-toggle-enter-active`"

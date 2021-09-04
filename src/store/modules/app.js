@@ -5,8 +5,6 @@ import config from '@/config';
 import { routes } from '@/router';
 import CommonApi from '@/api/common.js';
 
-const layoutMode = window.innerWidth <= config.staticWidth ? 'fit' : config.layoutMode;
-
 const app = {
   namespaced: true,
   state: {
@@ -20,8 +18,6 @@ const app = {
     headerPin: true, // true 固定
     contentHeight: 0,
     info: {}, // 基础信息
-
-    layoutMode,
   },
   mutations: {
     [MT.LOADING]: (state, type) => {
@@ -69,17 +65,6 @@ const app = {
     },
     [MT.INFO]: (state, payload) => {
       state.info = payload;
-    },
-    [MT.LAYOUT_MODE]: (state, mode = '') => {
-      let modeCurrent = mode;
-      if (['static', 'fit'].includes(mode)) {
-        state.layoutMode = mode;
-      } else {
-        modeCurrent = state.layoutMode === 'static' ? 'fit' : 'static';
-        state.layoutMode = modeCurrent;
-      }
-      const layoutMode = useStorage(config.storageKeys.layoutMode);
-      layoutMode.value = modeCurrent;
     },
   },
   actions: {
