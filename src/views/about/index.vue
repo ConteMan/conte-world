@@ -1,6 +1,6 @@
 <template>
   <div class="about-container">
-    <div class="markdown-container markdown-body" v-html="picture403filter(page.content_html)" />
+    <div class="markdown-container markdown-body" v-html="data.content_html" />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: 'About',
   data() {
     return {
-      page: {},
+      data: {},
     };
   },
   created() {
@@ -20,17 +20,10 @@ export default {
   methods: {
     async getPageInfo() {
       const res = await Base.page();
-      if (res.data.code === 0) {
-        this.page = res.data.data;
+      if (res.status === 200) {
+        this.data = res.data.data;
       }
     },
-    picture403filter(val) {
-      try {
-        return val.replace('<img', "<img referrerpolicy='no-referrer'");
-      } catch (err) {
-        return val;
-      }
-    }
   },
 };
 </script>

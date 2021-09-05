@@ -1,6 +1,6 @@
 <template>
-  <div class="talk-list">
-    <div class="item-container">
+  <div class="project-list">
+    <div v-if="filterItems.length" class="item-container">
       <div v-for="item in filterItems" :key="item.id" class="list-item">
         <div class="card">
           <p>
@@ -19,7 +19,7 @@
           </span>
         </div>
       </div>
-      <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+      <infinite-loading spinner="waveDots" @infinite="infiniteHandler"></infinite-loading>
     </div>
   </div>
 </template>
@@ -35,11 +35,9 @@ export default {
   },
   data() {
     return {
-      loading: true,
-
       data: [],
       offset: 0,
-      limit: 100,
+      limit: 20,
       total: 0,
 
       hasMore: true,

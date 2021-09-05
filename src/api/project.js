@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const project = {
-  baseUrl: base.api + '/api/projects',
+  baseUrl: base.api + '/projects',
 
   /**
    * 列表

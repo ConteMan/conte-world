@@ -1,7 +1,7 @@
 <template>
   <div class="talk-list">
     <div class="item-container">
-      <div v-for="item in items" :key="item.id" class="list-item">
+      <div v-for="item in data" :key="item.id" class="list-item">
         <div class="card">
           <p>
             {{ item.name }}
@@ -22,7 +22,7 @@
         </div>
         <div class="info">
           <span class="time">
-            {{ $dayjs(item.updated_at).format('YYYY-MM-DD HH:mm:ss') }}
+            {{ $dayjs(item.updated_at).format('YYYY-MM-DD HH:mm') }}
           </span>
         </div>
       </div>
@@ -33,9 +33,6 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
-import { mixin } from '@/utils/mixin';
-import { mapMutations } from 'vuex';
-import * as MT from '@/store/mutation-types';
 import Base from '@/api/software.js';
 
 export default {
@@ -43,14 +40,10 @@ export default {
   components: {
     InfiniteLoading,
   },
-  mixins: [mixin],
   data() {
     return {
-      loading: true,
-
-      items: [],
+      data: [],
       offset: 0,
-      type: '',
       limit: 100,
       total: 0,
 
@@ -61,18 +54,16 @@ export default {
     await this.index();
   },
   methods: {
-    ...mapMutations('app', {
-      headerHeightAction: MT.HEADER_HEIGHT,
-    }),
     async index() {
-      const { offset, limit, type } = this;
-      const res = await Base.index({ offset, limit, type });
-      if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data;
-        this.total = totalCount;
+      const { offset, limit } = this;
+      const res = await Base.index({ offset, limit });
+      if (res.status === 200) {
+        const { data } = res.data;
+        const { total, has_more: hasMore } = res.data.meta;
+        this.total = total;
         this.hasMore = hasMore;
-        if (items.length > 0) {
-          this.items = this._.concat(this.items, items);
+        if (data.length) {
+          this.data = this._.concat(this.data, data);
         }
         if (hasMore) {
           return 1;
@@ -91,9 +82,6 @@ export default {
       } else {
         $state.complete();
       }
-    },
-    yuqueNoteFormat(data) {
-      return data.replaceAll(/\<\!doctype\s\S*\>|\<meta[\s\S]*\/\>|data-lake\S{0,10}=\"\S{0,100}\"/g, '');
     },
   },
 };

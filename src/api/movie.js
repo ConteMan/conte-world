@@ -2,7 +2,7 @@ import request from '@/request/http';
 import base from '@/api/base';
 
 const movie = {
-  baseUrl: base.api + '/api/movies',
+  baseUrl: base.api + '/movies',
 
   /**
    * 列表

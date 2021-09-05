@@ -63,8 +63,8 @@ export default {
       queryBase.params.page_size = pageSize;
 
       const res = await Base.index(queryBase);
-      if (res.data.code === 0) {
-        const { results, has_more, next_cursor } = res.data.data;
+      if (res.status === 200) {
+        const { results, has_more, next_cursor } = res.data;
         this.hasMore = has_more;
         this.startCursor = next_cursor;
         if (results.length > 0) {
