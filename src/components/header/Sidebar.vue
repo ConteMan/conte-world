@@ -1,7 +1,8 @@
 <template>
   <div class="nav-container">
     <div class="title logo" @click="$router.push({ path: '/' })">
-      <img src="@/assets/img/favicon.png" />
+      <img v-if="darkMode" src="@/assets/img/favicon_dark.png" />
+      <img v-else src="@/assets/img/favicon.png" />
     </div>
     <div class="nav-content">
       <span
