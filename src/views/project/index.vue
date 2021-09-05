@@ -37,7 +37,7 @@ export default {
     return {
       loading: true,
 
-      items: [],
+      data: [],
       offset: 0,
       limit: 100,
       total: 0,
@@ -47,13 +47,13 @@ export default {
   },
   computed: {
     filterItems() {
-      const newItems = [];
-      this.items.forEach(element => {
+      const items = [];
+      this.data.forEach(element => {
         if (!element.content_origin.fork) {
-          newItems.push(element);
+          items.push(element);
         }
       });
-      return newItems;
+      return items;
     }
   },
   async created() {
@@ -63,12 +63,13 @@ export default {
     async index() {
       const { offset, limit } = this;
       const res = await Base.index({ offset, limit });
-      if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data;
-        this.total = totalCount;
+      if (res.status === 200) {
+        const { data } = res.data;
+        const { total, has_more: hasMore } = res.data.meta;
+        this.total = total;
         this.hasMore = hasMore;
-        if (items.length > 0) {
-          this.items = this._.concat(this.items, items);
+        if (data.length) {
+          this.data = this._.concat(this.data, data);
         }
         if (hasMore) {
           return 1;
