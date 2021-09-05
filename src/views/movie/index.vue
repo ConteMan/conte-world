@@ -5,8 +5,8 @@
         <span
           v-for="item in types"
           :key="item.type"
-          class="nav-item"
           :class="{ active: type === item.type }"
+          class="nav-item"
           @click="changeType(item.type)"
         >
           {{ item.value }} {{ item.total }}
@@ -63,7 +63,7 @@ export default {
       hasMore: true,
 
       types: [],
-      infiniteId: 0,
+      infiniteId: Number(new Date()),
     };
   },
 

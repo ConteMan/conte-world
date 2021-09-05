@@ -15,7 +15,7 @@
     </div>
 
     <div class="item-container">
-      <div v-for="item in items" :key="item.id" class="book-item">
+      <div v-for="item in data" :key="item.id" class="book-item">
         <div class="pic">
           <img referrerpolicy="no-referrer" :src="item.content_origin.pic" />
         </div>
@@ -48,7 +48,6 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
-import { mixin } from '@/utils/mixin';
 import Base from '@/api/book.js';
 
 export default {
@@ -56,14 +55,13 @@ export default {
   components: {
     InfiniteLoading,
   },
-  mixins: [mixin],
   data() {
     return {
-      items: [],
+      data: [],
       offset: 0,
-      type: '',
       limit: 20,
       total: 0,
+      type: '',
 
       hasMore: true,
 
@@ -78,7 +76,7 @@ export default {
 
   methods: {
     init() {
-      this.items = [];
+      this.data = [];
       this.offset = 0;
       this.busy = false;
       this.total = 0;
@@ -87,12 +85,13 @@ export default {
     async index() {
       const { offset, limit, type } = this;
       const res = await Base.index({ offset, limit, type });
-      if (res.data.code === 0) {
-        const { hasMore, items, totalCount } = res.data.data;
-        this.total = totalCount;
+      if (res.status === 200) {
+        const { data } = res.data;
+        const { total, has_more: hasMore } = res.data.meta;
+        this.total = total;
         this.hasMore = hasMore;
-        if (items.length > 0) {
-          this.items = this._.concat(this.items, items);
+        if (data.length) {
+          this.data = this._.concat(this.data, data);
         }
         if (hasMore) {
           this.offset += this.limit;
@@ -122,10 +121,10 @@ export default {
     },
     async getTypes() {
       const res = await Base.types();
-      if (res.data.code === 0) {
-        const { items } = res.data.data;
-        this.types = items;
-        this.type = items[0].type;
+      if (res.status === 200) {
+        const { data } = res.data;
+        this.types = data;
+        this.type = data[0].type;
         this.$nextTick(() => {
           this.index();
         });
