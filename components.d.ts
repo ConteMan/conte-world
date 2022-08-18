@@ -9,8 +9,6 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BxlTelegram: typeof import('~icons/bxl/telegram')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    IMdiAccountBox: typeof import('~icons/mdi/account-box')['default']
-    MdiAccountBox: typeof import('~icons/mdi/account-box')['default']
     MdiAt: typeof import('~icons/mdi/at')['default']
     MdiGithub: typeof import('~icons/mdi/github')['default']
     MdiRss: typeof import('~icons/mdi/rss')['default']

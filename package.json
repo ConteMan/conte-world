@@ -13,6 +13,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@unocss/reset": "^0.45.8",
     "vue": "^3.2.37"
   },
   "devDependencies": {
