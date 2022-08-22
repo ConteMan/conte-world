@@ -77,12 +77,12 @@ const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInf
     min-h="screen"
     w-full max-w="[800px]"
     flex="~ col" justify-center
-    text="[15px]"
+    text="[14px]"
   >
     <div
       class="content"
-      h="[540px]" h-full
-      w="[800px]" w-full
+      h-full
+      w-full
       flex="~ col"
       py="[40px]" px="[24px]"
     >
@@ -110,11 +110,13 @@ const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInf
       </div>
       <div
         h="[32px]"
-        flex items-center
+        flex="~ wrap" items-center
       >
         <span uppercase font-bold mr-2>{{ userName }}</span>
         <span>said</span>
-        <span uppercase ml-2 mr-1 font-italic>"{{ slogan }}"</span>.
+        <div uppercase ml-2 mr-1 font-italic>
+          "{{ slogan }}"
+        </div>.
       </div>
 
       <div
