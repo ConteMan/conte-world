@@ -1,12 +1,19 @@
 import {
   defineConfig,
+  presetAttributify,
+  presetIcons,
+  presetUno,
 } from 'unocss'
-import presetUno from '@unocss/preset-uno'
-import presetAttributify from '@unocss/preset-attributify'
 
 export default defineConfig({
   presets: [
-    presetUno(),
+    presetUno({
+      dark: 'class',
+    }),
     presetAttributify(),
+    presetIcons({
+      scale: 1.2,
+      warn: true,
+    }),
   ],
 })

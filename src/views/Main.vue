@@ -63,13 +63,16 @@ const data = reactive<Data>({
     },
   ],
   recordInfo: {
-    num: '粤ICP备17015159号',
+    num: '粤ICP备 17015159 号',
     policeNum: '44030702002732',
-    policeText: '粤公网安备44030702002732号',
+    policeText: '粤公网安备 44030702002732 号',
   },
 })
 
 const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInfo } = toRefs(data)
+
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 </script>
 
 <template>
@@ -99,12 +102,13 @@ const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInf
         mt="[24px]"
         flex items-center
       >
-        <span>Hey, welcome to</span>
-        <span uppercase font-bold ml-2> {{ siteName }}</span>.
+        <span>Welcome to</span>
+        <span uppercase font-bold ml-1> {{ siteName }}</span>
       </div>
       <div
         h="[32px]"
         flex items-center
+        text="[13px]"
       >
         {{ tag }}
       </div>
@@ -112,16 +116,17 @@ const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInf
         h="[32px]"
         flex="~ wrap" items-center
       >
-        <span uppercase font-bold mr-2>{{ userName }}</span>
+        <span uppercase font-bold mr-1>{{ userName }}</span>
         <span>said</span>
-        <div uppercase ml-2 mr-1 font-italic>
+        <div uppercase ml-1 mr-1 font-italic>
           "{{ slogan }}"
-        </div>.
+        </div>
       </div>
 
       <div
         v-if="nav?.length"
         class="nav-container"
+        h="[32px]"
         mt="[16px]"
         flex justify-start items-center
         space="x-[16px]"
@@ -142,7 +147,7 @@ const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInf
       <div
         v-if="social?.length"
         class="social-container"
-        mt="[16px]"
+        h="[32px]"
         flex justify-start items-center
         space="x-[16px]"
       >
@@ -154,62 +159,69 @@ const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInf
         >
           <a :href="socialItem.link" :target="socialItem.target">
             <mdi-github v-if="socialItem.icon === 'mdi-github'" />
-            <mdi-twitter v-if="socialItem.icon === 'mdi-twitter'" />
-            <bxl-telegram v-if="socialItem.icon === 'bxl-telegram'" />
-            <mdi-at v-if="socialItem.icon === 'mdi-at'" />
-            <mdi-rss v-if="socialItem.icon === 'mdi-rss'" />
+            <mdi-twitter v-else-if="socialItem.icon === 'mdi-twitter'" />
+            <bxl-telegram v-else-if="socialItem.icon === 'bxl-telegram'" />
+            <mdi-at v-else-if="socialItem.icon === 'mdi-at'" />
+            <mdi-rss v-else-if="socialItem.icon === 'mdi-rss'" />
           </a>
         </div>
-      </div>
-
-      <div
-        class="copyright"
-        mt="[48px]"
-        leading="[12px]"
-      >
-        <svg width="300" height="12">
-          <text dominant-baseline="baseline" font-size="12" y="10" x="0" text-anchor="start">
-            CODE && DESIGN BY {{ userName.toUpperCase() }} © {{ createdAt }} - 2022
-          </text>
-        </svg>
-      </div>
-
-      <div
-        v-if="recordInfo?.num || recordInfo?.policeNum"
-        class="record"
-        mt="[8px]"
-      >
-        <div leading-0>
-          <a
-            href="https://beian.miit.gov.cn/"
-            target="_blank"
-            inline-block
-          >
-            <svg width="140" height="12">
-              <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-                {{ recordInfo?.num }}
-              </text>
-            </svg>
-          </a>
-        </div>
-        <div
-          leading-0
-          mt="[2px]"
+        <div />
+        <button
+          text="[18px] gray-400" dark:text=" gray-500" hover:text="red-600"
+          @click="toggleDark()"
         >
-          <a
-            :href="`http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${recordInfo?.policeNum}`"
-            target="_blank"
-            inline-block
-          >
-            <svg
-              width="200"
-              height="12"
+          <div i-mdi-theme-light-dark />
+        </button>
+      </div>
+      <div mt="[24px]">
+        <div
+          class="copyright"
+          leading="[12px]"
+        >
+          <svg width="300" height="12">
+            <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
+              CODE && DESIGN BY {{ userName.toUpperCase() }} © {{ createdAt }} - 2022
+            </text>
+          </svg>
+        </div>
+
+        <div
+          v-if="recordInfo?.num || recordInfo?.policeNum"
+          class="record"
+          mt="[4px]"
+        >
+          <div leading-0>
+            <a
+              href="https://beian.miit.gov.cn/"
+              target="_blank"
+              inline-block
             >
-              <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-                {{ recordInfo?.policeText }}
-              </text>
-            </svg>
-          </a>
+              <svg width="140" height="12">
+                <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
+                  {{ recordInfo?.num }}
+                </text>
+              </svg>
+            </a>
+          </div>
+          <div
+            leading-0
+            mt="[2px]"
+          >
+            <a
+              :href="`http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${recordInfo?.policeNum}`"
+              target="_blank"
+              inline-block
+            >
+              <svg
+                width="200"
+                height="12"
+              >
+                <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
+                  {{ recordInfo?.policeText }}
+                </text>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -217,7 +229,7 @@ const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInf
 </template>
 
 <style scoped>
-.record svg {
+.copyright svg,.record svg {
   fill: #8c8c8c;
 }
 </style>

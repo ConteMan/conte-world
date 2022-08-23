@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@unocss/reset": "^0.45.8",
+    "@vueuse/core": "^9.1.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
@@ -22,6 +23,7 @@
     "@iconify-json/mdi": "^1.1.30",
     "@types/node": "^18.7.8",
     "@unocss/preset-attributify": "^0.45.8",
+    "@unocss/preset-icons": "^0.45.12",
     "@unocss/preset-uno": "^0.45.8",
     "@vitejs/plugin-vue": "^3.0.3",
     "eslint": "^8.22.0",
