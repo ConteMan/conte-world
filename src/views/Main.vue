@@ -77,151 +77,149 @@ const toggleDark = useToggle(isDark)
 
 <template>
   <div
-    min-h="screen"
     w-full max-w="[800px]"
-    flex="~ col" justify-center
+    h="screen"
+    pb="[24px]"
+    flex="~ col"
     text="[14px]"
   >
     <div
-      class="content"
-      h-full
-      w-full
-      flex="~ col"
-      py="[40px]" px="[24px]"
+      max-h="[200px]"
+      min-h="[24px]"
+      flex="grow-1 shrink-1"
+    />
+    <div
+      w="[80px]"
+      h="[80px]"
+      flex justify-center items-center
+    >
+      <img :src="logo" w="[80px]" h="[80px]">
+    </div>
+
+    <div
+      h="[32px]"
+      mt="[24px]"
+      flex="~ grow-0 shrink-0" items-center
+    >
+      <span>Welcome to</span>
+      <span uppercase font-bold ml-1> {{ siteName }}</span>
+    </div>
+    <div
+      h="[32px]"
+      flex="~ grow-0 shrink-0" items-center
+      text="[13px]"
+    >
+      {{ tag }}
+    </div>
+    <div
+      h="[32px]"
+      flex="~ grow-0 shrink-0 wrap" items-center
+    >
+      <span uppercase font-bold mr-1>{{ userName }}</span>
+      <span>said</span>
+      <div uppercase ml-1 mr-1 font-italic>
+        "{{ slogan }}"
+      </div>
+    </div>
+
+    <div
+      v-if="nav?.length"
+      class="nav-container"
+      h="[32px]"
+      mt="[16px]"
+      flex="~ grow-0 shrink-0 wrap" justify-start items-center
+      space="x-[16px]"
+      underline decoration="2 offset-4"
     >
       <div
-        w="[80px]"
-        h="[80px]"
-        flex justify-center items-center
+        v-for="navItem in nav" :key="navItem.name"
+        uppercase
+        hover:text="red-600"
+        hover:decoration="red-600"
       >
-        <img :src="logo" w="[80px]" h="[80px]">
+        <a :href="navItem.link" :target="navItem.target">
+          {{ navItem.name }}
+        </a>
       </div>
+    </div>
 
+    <div
+      v-if="social?.length"
+      class="social-container"
+      h="[32px]"
+      flex="~ grow-0 shrink-0 wrap" justify-start items-center
+      space="x-[16px]"
+    >
       <div
-        h="[32px]"
-        mt="[24px]"
+        v-for="socialItem in social" :key="socialItem.name"
         flex items-center
+        hover:text="red-600"
+        text="[18px]"
       >
-        <span>Welcome to</span>
-        <span uppercase font-bold ml-1> {{ siteName }}</span>
+        <a :href="socialItem.link" :target="socialItem.target">
+          <mdi-github v-if="socialItem.icon === 'mdi-github'" />
+          <mdi-twitter v-else-if="socialItem.icon === 'mdi-twitter'" />
+          <bxl-telegram v-else-if="socialItem.icon === 'bxl-telegram'" />
+          <mdi-at v-else-if="socialItem.icon === 'mdi-at'" />
+          <mdi-rss v-else-if="socialItem.icon === 'mdi-rss'" />
+        </a>
       </div>
-      <div
-        h="[32px]"
-        flex items-center
-        text="[13px]"
+      <div />
+      <button
+        text="[18px] gray-400" dark:text=" gray-500" hover:text="red-600"
+        @click="toggleDark()"
       >
-        {{ tag }}
-      </div>
+        <div i-mdi-theme-light-dark />
+      </button>
+    </div>
+    <div mt="[24px]" pb="[24px]">
       <div
-        h="[32px]"
-        flex="~ wrap" items-center
+        class="copyright"
+        leading="[12px]"
       >
-        <span uppercase font-bold mr-1>{{ userName }}</span>
-        <span>said</span>
-        <div uppercase ml-1 mr-1 font-italic>
-          "{{ slogan }}"
-        </div>
+        <svg width="300" height="12">
+          <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
+            CODE && DESIGN BY {{ userName.toUpperCase() }} © {{ createdAt }} - 2022
+          </text>
+        </svg>
       </div>
 
       <div
-        v-if="nav?.length"
-        class="nav-container"
-        h="[32px]"
-        mt="[16px]"
-        flex justify-start items-center
-        space="x-[16px]"
-        underline decoration="2 offset-4"
+        v-if="recordInfo?.num || recordInfo?.policeNum"
+        class="record"
+        mt="[4px]"
       >
-        <div
-          v-for="navItem in nav" :key="navItem.name"
-          uppercase
-          hover:text="red-600"
-          hover:decoration="red-600"
-        >
-          <a :href="navItem.link" :target="navItem.target">
-            {{ navItem.name }}
-          </a>
-        </div>
-      </div>
-
-      <div
-        v-if="social?.length"
-        class="social-container"
-        h="[32px]"
-        flex justify-start items-center
-        space="x-[16px]"
-      >
-        <div
-          v-for="socialItem in social" :key="socialItem.name"
-          flex items-center
-          hover:text="red-600"
-          text="[18px]"
-        >
-          <a :href="socialItem.link" :target="socialItem.target">
-            <mdi-github v-if="socialItem.icon === 'mdi-github'" />
-            <mdi-twitter v-else-if="socialItem.icon === 'mdi-twitter'" />
-            <bxl-telegram v-else-if="socialItem.icon === 'bxl-telegram'" />
-            <mdi-at v-else-if="socialItem.icon === 'mdi-at'" />
-            <mdi-rss v-else-if="socialItem.icon === 'mdi-rss'" />
-          </a>
-        </div>
-        <div />
-        <button
-          text="[18px] gray-400" dark:text=" gray-500" hover:text="red-600"
-          @click="toggleDark()"
-        >
-          <div i-mdi-theme-light-dark />
-        </button>
-      </div>
-      <div mt="[24px]">
-        <div
-          class="copyright"
-          leading="[12px]"
-        >
-          <svg width="300" height="12">
-            <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-              CODE && DESIGN BY {{ userName.toUpperCase() }} © {{ createdAt }} - 2022
-            </text>
-          </svg>
-        </div>
-
-        <div
-          v-if="recordInfo?.num || recordInfo?.policeNum"
-          class="record"
-          mt="[4px]"
-        >
-          <div leading-0>
-            <a
-              href="https://beian.miit.gov.cn/"
-              target="_blank"
-              inline-block
-            >
-              <svg width="140" height="12">
-                <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-                  {{ recordInfo?.num }}
-                </text>
-              </svg>
-            </a>
-          </div>
-          <div
-            leading-0
-            mt="[2px]"
+        <div leading-0>
+          <a
+            href="https://beian.miit.gov.cn/"
+            target="_blank"
+            inline-block
           >
-            <a
-              :href="`http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${recordInfo?.policeNum}`"
-              target="_blank"
-              inline-block
+            <svg width="140" height="12">
+              <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
+                {{ recordInfo?.num }}
+              </text>
+            </svg>
+          </a>
+        </div>
+        <div
+          leading-0
+          mt="[2px]"
+        >
+          <a
+            :href="`http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${recordInfo?.policeNum}`"
+            target="_blank"
+            inline-block
+          >
+            <svg
+              width="200"
+              height="12"
             >
-              <svg
-                width="200"
-                height="12"
-              >
-                <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-                  {{ recordInfo?.policeText }}
-                </text>
-              </svg>
-            </a>
-          </div>
+              <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
+                {{ recordInfo?.policeText }}
+              </text>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
