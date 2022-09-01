@@ -15,7 +15,7 @@
     "@vueuse/core": "^5.0.0",
     "animate.css": "^4.1.1",
     "ant-design-vue": "^1.7.8",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "core-js": "^3.16.4",
     "dayjs": "^1.10.4",
     "fscreen": "^1.2.0",
