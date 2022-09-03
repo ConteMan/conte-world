@@ -1,13 +1,15 @@
 {
   "name": "conte-world",
   "type": "module",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "author": "ConteMan <real.conteman@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "dev:miniyam": "vite --mode miniyam",
     "build": "vue-tsc --noEmit && vite build",
+    "build:miniyam": "vue-tsc --noEmit && vite build --mode miniyam",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

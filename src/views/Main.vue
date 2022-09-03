@@ -17,6 +17,8 @@ interface RecordInfo {
   policeNum: string
 }
 interface Data {
+  loading: boolean
+
   logo: string
   siteName: string
   userName: string
@@ -29,6 +31,8 @@ interface Data {
 }
 
 const data = reactive<Data>({
+  loading: true,
+
   logo: '/images/logo.gif',
   siteName: 'Conte World',
   userName: 'ConteMan',
@@ -69,7 +73,33 @@ const data = reactive<Data>({
   },
 })
 
-const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInfo } = toRefs(data)
+const { loading, logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInfo } = toRefs(data)
+
+const getConfig = async () => {
+  try {
+    const key = import.meta.env.VITE_CONFIG_KEY
+    const res = await fetch(`https://api.conteworld.workers.dev/kv?key=${key}`, {
+      mode: 'cors',
+      credentials: 'omit',
+    }).then(response => response.json())
+
+    // eslint-disable-next-line no-console
+    console.log(res)
+
+    data.slogan = res.slogan
+    data.nav = res.nav
+    data.social = res.social
+    data.createdAt = res.createdAt
+    data.recordInfo = res.recordInfo
+
+    data.loading = false
+  }
+  catch (e) {
+    // eslint-disable-next-line no-console
+    console.log('no data')
+  }
+}
+getConfig()
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
@@ -77,6 +107,7 @@ const toggleDark = useToggle(isDark)
 
 <template>
   <div
+    v-if="!loading"
     w-full max-w="[800px]"
     h="screen"
     pb="[24px]"

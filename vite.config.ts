@@ -8,36 +8,42 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  resolve: {
-    alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`,
+export default defineConfig(({ mode }) => {
+  return {
+    resolve: {
+      alias: {
+        '~/': `${path.resolve(__dirname, 'src')}/`,
+      },
     },
-  },
-  plugins: [
-    vue({
-      reactivityTransform: true,
-    }),
+    plugins: [
+      vue({
+        reactivityTransform: true,
+      }),
 
-    AutoImport({
-      imports: [
-        'vue',
-        '@vueuse/core',
-      ],
-      dts: 'src/auto-imports.d.ts',
-    }),
+      AutoImport({
+        imports: [
+          'vue',
+          '@vueuse/core',
+        ],
+        dts: 'src/auto-imports.d.ts',
+      }),
 
-    Components({
-      dirs: ['src/components'],
-      dts: true,
-      resolvers: [
-        IconsResolver({
-          prefix: false,
-        }),
-      ],
-    }),
+      Components({
+        dirs: ['src/components'],
+        dts: true,
+        resolvers: [
+          IconsResolver({
+            prefix: false,
+          }),
+        ],
+      }),
 
-    Unocss(),
-    Icons(),
-  ],
+      Unocss(),
+      Icons(),
+    ],
+    build: {
+      emptyOutDir: true,
+      outDir: `dist/${mode}`,
+    },
+  }
 })

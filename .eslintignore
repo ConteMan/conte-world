@@ -6,5 +6,6 @@ node_modules
 coverage
 !.vitepress
 test/core/src/self
+*.code-workspace
 
 index.html
