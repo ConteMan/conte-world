@@ -92,7 +92,7 @@ const getConfig = async () => {
       }
     }
 
-    const hasRecordSign = Boolean(import.meta.env.VITE_CONFIG_HAS_RECORD_SIGN)
+    const hasRecordSign = import.meta.env.VITE_CONFIG_HAS_RECORD_SIGN === 'true'
     if (!hasRecordSign)
       data.recordInfo = {}
 
@@ -105,7 +105,7 @@ const getConfig = async () => {
     data.nav = res.nav
     data.social = res.social
     data.createdAt = res.createdAt
-    data.recordInfo = res.recordInfo
+    // data.recordInfo = res.recordInfo
   }
   catch (e) {
     // eslint-disable-next-line no-console
