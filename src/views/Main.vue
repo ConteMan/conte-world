@@ -17,8 +17,6 @@ interface RecordInfo {
   policeNum: string
 }
 interface Data {
-  loading: boolean
-
   logo: string
   siteName: string
   userName: string
@@ -31,8 +29,6 @@ interface Data {
 }
 
 const data = reactive<Data>({
-  loading: true,
-
   logo: '/images/logo.gif',
   siteName: 'Conte World',
   userName: 'ConteMan',
@@ -41,8 +37,18 @@ const data = reactive<Data>({
   createdAt: '2019',
   nav: [
     {
-      name: 'Wiki',
+      name: 'Notion Site',
       link: 'https://conteworld.notion.site/',
+      target: '_blank',
+    },
+    {
+      name: 'Wiki',
+      link: 'https://conteworld.notion.site/WIKI-ffed1649be6843b1b04b5467ae04eaaf',
+      target: '_blank',
+    },
+    {
+      name: 'Said',
+      link: 'https://conteworld.notion.site/Said-e0cb5c4408fb4ea4941d7a954f4a7c96',
       target: '_blank',
     },
   ],
@@ -73,26 +79,28 @@ const data = reactive<Data>({
   },
 })
 
-const { loading, logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInfo } = toRefs(data)
+const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInfo } = toRefs(data)
 
 const getConfig = async () => {
   try {
     const key = import.meta.env.VITE_CONFIG_KEY
+    if (key === 'miniyam') {
+      data.recordInfo = {
+        num: '粤ICP备 17015159 号',
+        policeNum: '44030702002732',
+        policeText: '粤公网安备 44030702002733 号',
+      }
+    }
     const res = await fetch(`https://api.conteworld.workers.dev/kv?key=${key}`, {
       mode: 'cors',
       credentials: 'omit',
     }).then(response => response.json())
-
-    // eslint-disable-next-line no-console
-    console.log(res)
 
     data.slogan = res.slogan
     data.nav = res.nav
     data.social = res.social
     data.createdAt = res.createdAt
     data.recordInfo = res.recordInfo
-
-    data.loading = false
   }
   catch (e) {
     // eslint-disable-next-line no-console
@@ -107,7 +115,6 @@ const toggleDark = useToggle(isDark)
 
 <template>
   <div
-    v-if="!loading"
     w-full max-w="[800px]"
     h="screen"
     pb="[24px]"
