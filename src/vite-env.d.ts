@@ -8,6 +8,7 @@ declare module '*.vue' {
 
 interface ImportMetaEnv {
   readonly VITE_CONFIG_KEY: string
+  readonly VITE_CONFIG_HAS_RECORD_SIGN: boolean
 }
 
 interface ImportMeta {

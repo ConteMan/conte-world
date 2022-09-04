@@ -12,9 +12,9 @@ interface socialItem {
   icon?: string
 }
 interface RecordInfo {
-  num: string
-  policeText: string
-  policeNum: string
+  num?: string
+  policeText?: string
+  policeNum?: string
 }
 interface Data {
   logo: string
@@ -91,6 +91,11 @@ const getConfig = async () => {
         policeText: '粤公网安备 44030702002733 号',
       }
     }
+
+    const hasRecordSign = Boolean(import.meta.env.VITE_CONFIG_HAS_RECORD_SIGN)
+    if (!hasRecordSign)
+      data.recordInfo = {}
+
     const res = await fetch(`https://api.conteworld.workers.dev/kv?key=${key}`, {
       mode: 'cors',
       credentials: 'omit',

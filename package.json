@@ -8,8 +8,11 @@
   "scripts": {
     "dev": "vite",
     "dev:miniyam": "vite --mode miniyam",
+    "dev:real": "vite --mode real",
     "build": "vue-tsc --noEmit && vite build",
+    "build:all": "vue-tsc --noEmit && vite build && vite build --mode miniyam && vite build --mode real",
     "build:miniyam": "vue-tsc --noEmit && vite build --mode miniyam",
+    "build:real": "vue-tsc --noEmit && vite build --mode real",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
