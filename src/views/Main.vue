@@ -92,20 +92,25 @@ const getConfig = async () => {
       }
     }
 
+    const workerApiUrl = import.meta.env.VITE_WORKER_API ?? false
+    if (workerApiUrl) {
+      const res = await fetch(`${workerApiUrl}/kv?key=${key}`, {
+        mode: 'cors',
+        credentials: 'omit',
+      }).then(response => response.json())
+
+      if (res) {
+        data.slogan = res.slogan
+        data.nav = res.nav
+        data.social = res.social
+        data.createdAt = res.createdAt
+        data.recordInfo = res.recordInfo
+      }
+    }
+
     const hasRecordSign = import.meta.env.VITE_CONFIG_HAS_RECORD_SIGN === 'true'
     if (!hasRecordSign)
       data.recordInfo = {}
-
-    const res = await fetch(`https://api.conteworld.workers.dev/kv?key=${key}`, {
-      mode: 'cors',
-      credentials: 'omit',
-    }).then(response => response.json())
-
-    data.slogan = res.slogan
-    data.nav = res.nav
-    data.social = res.social
-    data.createdAt = res.createdAt
-    // data.recordInfo = res.recordInfo
   }
   catch (e) {
     // eslint-disable-next-line no-console
