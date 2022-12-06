@@ -7,7 +7,7 @@
             {{ item.properties.Name.title[0].plain_text }}
           </p>
           <p>
-            {{ item.properties.About.formula.string }}
+            {{ item.properties.Days.formula.string }}
           </p>
         </div>
         <div class="info">

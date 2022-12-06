@@ -4,9 +4,9 @@
       <div class="trigger" @click="menuAction('default')">
         <a-icon type="menu" class="trigger-icon" />
       </div>
-      <div v-if="isArticleDetail" class="trigger" @click="$router.push({ path: '/article' })">
+      <!-- <div v-if="isArticleDetail" class="trigger" @click="$router.push({ path: '/article' })">
         <a-icon type="left" class="trigger-icon" />
-      </div>
+      </div> -->
       <div v-if="showListIcon" class="trigger" @click="showListAction(!showList)">
         <c-icon type="icon-mulu" class="trigger-icon" />
       </div>
