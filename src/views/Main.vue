@@ -92,19 +92,20 @@ const getConfig = async () => {
       }
     }
 
-    const workerApiUrl = import.meta.env.VITE_WORKER_API ?? false
+    const workerApiUrl = import.meta.env.VITE_API ?? false
     if (workerApiUrl) {
-      const res = await fetch(`${workerApiUrl}/kv?key=${key}`, {
+      const res = await fetch(`${workerApiUrl}/profile?key=${key}`, {
         mode: 'cors',
         credentials: 'omit',
       }).then(response => response.json())
 
-      if (res) {
-        data.slogan = res.slogan
-        data.nav = res.nav
-        data.social = res.social
-        data.createdAt = res.createdAt
-        data.recordInfo = res.recordInfo
+      if (res.data) {
+        const { slogan, nav, social, createdAt, recordInfo } = res.data
+        data.slogan = slogan
+        data.nav = nav
+        data.social = social
+        data.createdAt = createdAt
+        data.recordInfo = recordInfo
       }
     }
 
