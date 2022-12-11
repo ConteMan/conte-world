@@ -12,6 +12,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
+* {
+  overflow: overlay;
+}
+
 body {
   margin: 0;
   display: flex;

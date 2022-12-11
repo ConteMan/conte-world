@@ -30,8 +30,10 @@ getArticle(id)
 
 <template>
   <div
-    flex="col"
+    flex="~ col"
+    w="[800px]"
     min-w="[800px]"
+    max-w="[800px]"
     min-h="[100vh]"
     p="y-[24px]"
   >
