@@ -172,10 +172,30 @@ const toggleDark = useToggle(isDark)
     </div>
 
     <div
-      v-if="nav?.length"
       class="nav-container"
       h="[32px]"
       mt="[16px]"
+      flex="~ grow-0 shrink-0 wrap" justify-start items-center
+      space="x-[16px]"
+      underline decoration="2 offset-4"
+    >
+      <div
+        uppercase
+        cursor-pointer
+        hover:text="red-600"
+        hover:decoration="red-600"
+      >
+        <span @click="$router.push('article')">
+          文章
+        </span>
+      </div>
+    </div>
+
+    <div
+      v-if="nav?.length"
+      class="nav-container"
+      h="[32px]"
+      mb="[16px]"
       flex="~ grow-0 shrink-0 wrap" justify-start items-center
       space="x-[16px]"
       underline decoration="2 offset-4"

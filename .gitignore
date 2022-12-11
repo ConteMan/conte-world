@@ -35,3 +35,8 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # Env
+.env.development
+
+# Type
+components.d.ts
+src/auto-imports.d.ts
