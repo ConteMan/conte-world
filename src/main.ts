@@ -7,9 +7,12 @@ import 'uno.css'
 
 import App from './App.vue'
 
-const app = createApp(App)
+async function setupApp() {
+  const app = createApp(App)
 
-// vue router
-await setupRouter(app)
+  // vue router
+  await setupRouter(app)
+  app.mount('#app')
+}
 
-app.mount('#app')
+setupApp()
