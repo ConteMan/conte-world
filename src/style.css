@@ -30,18 +30,48 @@ body {
   margin: 0 auto;
 }
 
+/* 全局 Markdown 样式 */
+.global-markdown a {
+  color: rgb(255 0 0);
+  box-shadow: 0 2px 0 rgb(255 0 0);
+}
 .global-markdown p {
+  overflow: auto;
   word-wrap: break-word;
+  padding:2px 0;
 }
 .global-markdown blockquote {
   margin: 1em 0 1em 0.5em;
   border-left: 0.5em solid gainsboro;
   padding-left: 1em;
 }
-.global-markdown ul {
-  margin: 1em;
+.global-markdown ul,ol {
+  margin: 2px 0 16px 12px;
 }
 .global-markdown li {
   list-style-type: disc;
   margin-left: 0.5em;
+}
+.global-markdown pre {
+  margin: 12px 0;
+  padding: 12px;
+  background-color: gainsboro;
+}
+.global-markdown code {
+  padding: 0 4px;
+  margin: 0 2px;
+  background-color: gainsboro;
+  white-space: pre-wrap;
+}
+.global-markdown h1 {
+  font-size: 1.8em;
+  padding: 12px 0 2px 0;
+}
+.global-markdown h2 {
+  font-size: 1.6em;
+  padding: 8px 0 2px 0;
+}
+.global-markdown h3 {
+  font-size: 1.4em;
+  padding: 4px 0 2px 0;
 }
