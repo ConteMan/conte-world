@@ -31,16 +31,16 @@ getArticle(id)
 <template>
   <div
     flex="~ col"
-    w="[800px]"
-    min-w="[800px]"
-    max-w="[800px]"
+    md:max-w="full"
+    lg:max-w="[800px]"
+    lg:w="[800px]"
     min-h="[100vh]"
-    p="y-[24px]"
+    p="[2em]"
   >
     <div pt-4 pb="[24px]">
       <mdi-arrow-left cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/article')" />
     </div>
-    <div v-html="content?.content_html" />
+    <div class="global-markdown" v-html="content?.content_html" />
   </div>
 </template>
 

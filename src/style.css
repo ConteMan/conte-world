@@ -12,8 +12,9 @@
   -webkit-text-size-adjust: 100%;
 }
 
-* {
+html,body {
   overflow: overlay;
+  font-family: "LXGW WenKai", sans-serif;
 }
 
 body {
@@ -27,4 +28,20 @@ body {
 #app {
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.global-markdown p {
+  word-wrap: break-word;
+}
+.global-markdown blockquote {
+  margin: 1em 0 1em 0.5em;
+  border-left: 0.5em solid gainsboro;
+  padding-left: 1em;
+}
+.global-markdown ul {
+  margin: 1em;
+}
+.global-markdown li {
+  list-style-type: disc;
+  margin-left: 0.5em;
 }

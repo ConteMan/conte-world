@@ -126,8 +126,12 @@ const toggleDark = useToggle(isDark)
 
 <template>
   <div
-    w-full max-w="[800px]"
+    w-full
+    md:max-w="full"
+    lg:max-w="[800px]"
+    lg:w="[800px]"
     h="screen"
+    p="[2em]"
     pb="[24px]"
     flex="~ col"
     text="[14px]"
