@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
 import { fetchArticleList } from '~/services'
 
 interface Data {
@@ -35,8 +34,9 @@ getArticleList()
     lg:w="[800px]"
     min-h="[100vh]"
   >
-    <div pt-4 pb="[24px]">
-      <mdi-arrow-left cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('root')" />
+    <div p="t-4 b-[24px] x-2" flex gap-2 text="[18px]">
+      <mdi-home cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/root')" />
+      <mdi-arrow-left cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/root')" />
     </div>
     <template v-if="list.length">
       <div flex="~ col" gap-4>
@@ -45,9 +45,14 @@ getArticleList()
           flex
           justify="start"
           gap-4
+          rounded-md
+          p="2"
+          hover="bg-light-800"
+          dark:hover="text-black bg-light-800"
+          cursor-pointer
+          @click="$router.push({ path: `/article/${item.id}` })"
         >
-          <span text-gray>{{ dayjs(item.info_at).format('YYYY-MM-DD') }}</span>
-          <span cursor-pointer @click="$router.push({ path: `/article/${item.id}` })">{{ item.title }}</span>
+          {{ item.title }}
         </div>
       </div>
     </template>

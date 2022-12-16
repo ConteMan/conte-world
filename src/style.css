@@ -1,9 +1,11 @@
 :root {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
 
   color-scheme: light dark;
+
+  background-color: #fdfdfd;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -56,12 +58,17 @@ body {
   margin: 12px 0;
   padding: 12px;
   background-color: gainsboro;
+  border-radius: 0.5rem;
 }
 .global-markdown code {
   padding: 0 4px;
   margin: 0 2px;
   background-color: gainsboro;
   white-space: pre-wrap;
+}
+.dark .global-markdown pre,
+.dark .global-markdown code {
+  background-color: rgb(106, 106, 106);
 }
 .global-markdown h1 {
   font-size: 1.8em;

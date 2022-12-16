@@ -37,10 +37,11 @@ getArticle(id)
     min-h="[100vh]"
     p="[2em]"
   >
-    <div pt-4 pb="[24px]">
+    <div p="t-4 b-[24px] x-2" flex gap-2 text="[18px]">
+      <mdi-home cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/root')" />
       <mdi-arrow-left cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/article')" />
     </div>
-    <div class="global-markdown" v-html="content?.content_html" />
+    <div class="global-markdown p-2" v-html="content?.content_html" />
   </div>
 </template>
 

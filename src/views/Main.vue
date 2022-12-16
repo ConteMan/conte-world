@@ -190,7 +190,7 @@ const toggleDark = useToggle(isDark)
         hover:decoration="red-600"
       >
         <span @click="$router.push('article')">
-          文章
+          Notes
         </span>
       </div>
     </div>
