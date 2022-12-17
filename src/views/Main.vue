@@ -229,12 +229,13 @@ const toggleDark = useToggle(isDark)
         hover:text="red-600"
         text="[18px]"
       >
-        <a :href="socialItem.link" :target="socialItem.target">
+        <a rel="me" :href="socialItem.link" :target="socialItem.target">
           <mdi-github v-if="socialItem.icon === 'mdi-github'" />
           <mdi-twitter v-else-if="socialItem.icon === 'mdi-twitter'" />
           <bxl-telegram v-else-if="socialItem.icon === 'bxl-telegram'" />
           <mdi-at v-else-if="socialItem.icon === 'mdi-at'" />
           <mdi-rss v-else-if="socialItem.icon === 'mdi-rss'" />
+          <mdi-mastodon v-else-if="socialItem.icon === 'mdi-mastodon'" />
         </a>
       </div>
       <div />
