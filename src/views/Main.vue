@@ -236,6 +236,7 @@ const toggleDark = useToggle(isDark)
           <mdi-at v-else-if="socialItem.icon === 'mdi-at'" />
           <mdi-rss v-else-if="socialItem.icon === 'mdi-rss'" />
           <mdi-mastodon v-else-if="socialItem.icon === 'mdi-mastodon'" />
+          <mdi-instagram v-else-if="socialItem.icon === 'mdi-instagram'" />
         </a>
       </div>
       <div />
