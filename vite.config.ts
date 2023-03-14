@@ -1,11 +1,12 @@
-import path from 'path'
+import path from 'node:path'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import Vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Unocss from 'unocss/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import VueMacros from 'unplugin-vue-macros/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -16,9 +17,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [
-      vue({
-        reactivityTransform: true,
-      }),
+      Vue(),
 
       AutoImport({
         imports: [
@@ -33,13 +32,17 @@ export default defineConfig(({ mode }) => {
         dts: true,
         resolvers: [
           IconsResolver({
-            prefix: false,
+            prefix: 'cw',
           }),
         ],
       }),
 
       Unocss(),
       Icons(),
+
+      VueMacros({
+        reactivityTransform: false,
+      }),
     ],
     build: {
       emptyOutDir: true,

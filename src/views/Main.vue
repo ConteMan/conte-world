@@ -194,13 +194,7 @@ const toggleDark = useToggle(isDark)
         text="[18px]"
       >
         <a rel="me" :href="socialItem.link" :target="socialItem.target">
-          <mdi-github v-if="socialItem.icon === 'mdi-github'" />
-          <mdi-twitter v-else-if="socialItem.icon === 'mdi-twitter'" />
-          <bxl-telegram v-else-if="socialItem.icon === 'bxl-telegram'" />
-          <mdi-at v-else-if="socialItem.icon === 'mdi-at'" />
-          <mdi-rss v-else-if="socialItem.icon === 'mdi-rss'" />
-          <mdi-mastodon v-else-if="socialItem.icon === 'mdi-mastodon'" />
-          <mdi-instagram v-else-if="socialItem.icon === 'mdi-instagram'" />
+          <SvgIcon :icon="socialItem.icon" height="1em" />
         </a>
       </div>
       <div />
