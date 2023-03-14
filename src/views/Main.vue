@@ -30,77 +30,36 @@ interface Data {
 
 const data = reactive<Data>({
   logo: '/images/logo.gif',
-  siteName: 'Conte World',
-  userName: 'ConteMan',
-  tag: '间歇性整理控 / 三只猫 / 喜欢晴天 / 爱吃花椒',
-  slogan: 'Slow down, not so much to seize',
-  createdAt: '2019',
-  nav: [
-    {
-      name: 'Notion Site',
-      link: 'https://conteworld.notion.site/',
-      target: '_blank',
-    },
-    {
-      name: 'Wiki',
-      link: 'https://conteworld.notion.site/WIKI-ffed1649be6843b1b04b5467ae04eaaf',
-      target: '_blank',
-    },
-    {
-      name: 'Said',
-      link: 'https://conteworld.notion.site/Said-e0cb5c4408fb4ea4941d7a954f4a7c96',
-      target: '_blank',
-    },
-  ],
-  social: [
-    {
-      name: 'GitHub',
-      link: 'https://github.com/ConteMan',
-      target: '_self',
-      icon: 'mdi-github',
-    },
-    {
-      name: 'Twitter',
-      link: 'https://twitter.com/RealConteMan',
-      target: '_self',
-      icon: 'mdi-twitter',
-    },
-    {
-      name: 'Mail',
-      link: 'mailto:real.conteman@gmail.com',
-      target: '_self',
-      icon: 'mdi-at',
-    },
-  ],
+  siteName: '',
+  userName: '',
+  tag: '',
+  slogan: '',
+  createdAt: '',
+  nav: [],
+  social: [],
   recordInfo: {
-    num: '粤ICP备 17015159 号',
-    policeNum: '44030702002732',
-    policeText: '粤公网安备 44030702002732 号',
+    num: '',
+    policeNum: '',
+    policeText: '',
   },
 })
-
 const { logo, siteName, userName, tag, slogan, nav, social, createdAt, recordInfo } = toRefs(data)
+
+const loading = ref(true)
 
 const getConfig = async () => {
   try {
     const key = import.meta.env.VITE_CONFIG_KEY
-    if (key === 'miniyam') {
-      data.recordInfo = {
-        num: '粤ICP备 17015159 号',
-        policeNum: '44030702002732',
-        policeText: '粤公网安备 44030702002733 号',
-      }
-    }
 
     const workerApiUrl = import.meta.env.VITE_API ?? false
     if (workerApiUrl) {
-      const res = await fetch(`${workerApiUrl}/profile?key=${key}`, {
-        mode: 'cors',
-        credentials: 'omit',
-      }).then(response => response.json())
+      const res = await fetch(`${workerApiUrl}/profile?key=${key}`).then(response => response.json())
 
       if (res.data) {
-        const { slogan, nav, social, createdAt, recordInfo } = res.data
+        const { siteName, userName, tag, slogan, nav, social, createdAt, recordInfo } = res.data as Data
+        data.siteName = siteName
+        data.userName = userName
+        data.tag = tag
         data.slogan = slogan
         data.nav = nav
         data.social = social
@@ -112,8 +71,12 @@ const getConfig = async () => {
     const hasRecordSign = import.meta.env.VITE_CONFIG_HAS_RECORD_SIGN === 'true'
     if (!hasRecordSign)
       data.recordInfo = {}
+
+    loading.value = false
   }
   catch (e) {
+    loading.value = false
+
     // eslint-disable-next-line no-console
     console.log('no data')
   }
@@ -126,6 +89,7 @@ const toggleDark = useToggle(isDark)
 
 <template>
   <div
+    v-if="!loading"
     w-full
     md:max-w="full"
     lg:max-w="[800px]"
@@ -254,7 +218,7 @@ const toggleDark = useToggle(isDark)
       >
         <svg width="300" height="12">
           <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-            CODE && DESIGN BY {{ userName.toUpperCase() }} © {{ createdAt }} - 2022
+            CODE && DESIGN BY {{ userName.toUpperCase() }} © {{ createdAt }} - {{ new Date().getFullYear() }}
           </text>
         </svg>
       </div>
