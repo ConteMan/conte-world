@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { pkgJson } from '~/utils'
+
 type ATarget = '_self' | '_blank' | '_parent' | '_top'
 interface navItem {
   name: string
@@ -212,7 +214,7 @@ const toggleDark = useToggle(isDark)
       >
         <svg width="300" height="12">
           <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-            CODE && DESIGN BY {{ userName.toUpperCase() }} © {{ createdAt }} - {{ new Date().getFullYear() }}
+            CODE && DESIGN BY {{ userName.toUpperCase() }} © {{ createdAt }} - {{ new Date().getFullYear() }} / v{{ pkgJson.version }}
           </text>
         </svg>
       </div>
