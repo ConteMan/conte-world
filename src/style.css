@@ -25,6 +25,14 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: radial-gradient(rgb(233, 233, 233) 0.75px, #fff 0.75px);
+  background-size: 3px 3px;
+  text-shadow: 1px 0 0 #fff,1px 1px 0 #fff,-1px 0 0 #fff,0 1px 0#fff,0 -1px 0 #fff,-1px -1px 0 #fff;
+}
+.dark body {
+  background-image: radial-gradient(rgb(50, 50, 50) 0.75px, #000 0.75px);
+  background-size: 3px 3px;
+  text-shadow: none;
 }
 
 #app {
