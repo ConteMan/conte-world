@@ -48,10 +48,10 @@ body {
 .global-markdown p {
   overflow: auto;
   word-wrap: break-word;
-  padding:2px 0;
+  padding: 1em 0;
 }
 .global-markdown blockquote {
-  margin: 1em 0 1em 0.5em;
+  margin: 1em 0;
   border-left: 0.5em solid gainsboro;
   padding-left: 1em;
 }
@@ -63,7 +63,7 @@ body {
   margin-left: 0.5em;
 }
 .global-markdown pre {
-  margin: 12px 0;
+  margin: 2em 0;
   padding: 12px;
   background-color: gainsboro;
   border-radius: 0.5rem;
@@ -80,13 +80,18 @@ body {
 }
 .global-markdown h1 {
   font-size: 1.8em;
-  padding: 12px 0 2px 0;
+  padding: 1em 0 2px 0;
 }
 .global-markdown h2 {
   font-size: 1.6em;
-  padding: 8px 0 2px 0;
+  padding: 0.8em 0 2px 0;
+  border-bottom: 1px solid gainsboro;
 }
 .global-markdown h3 {
   font-size: 1.4em;
   padding: 4px 0 2px 0;
+}
+.global-markdown strong {
+  color:rgb(255 0 0);
+  font-weight: bolder;
 }

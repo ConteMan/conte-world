@@ -35,8 +35,9 @@ getArticleList()
     min-h="[100vh]"
   >
     <div p="t-4 b-[24px] x-2" flex gap-2 text="[18px]">
-      <mdi-home cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/root')" />
-      <mdi-arrow-left cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/root')" />
+      <a cursor-pointer hover:text="red-600" @click="$router.push('/root')">
+        <SvgIcon icon="mdi:home" height="1.2em" />
+      </a>
     </div>
     <template v-if="list.length">
       <div flex="~ col" gap-4>

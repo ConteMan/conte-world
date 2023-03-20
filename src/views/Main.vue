@@ -185,27 +185,27 @@ const toggleDark = useToggle(isDark)
     <div
       v-if="social?.length"
       class="social-container"
-      h="[32px]"
+      min-h="[32px]"
       flex="~ grow-0 shrink-0 wrap" justify-start items-center
-      space="x-[16px]"
+      gap="x-[16px] y-[8px]"
     >
       <div
         v-for="socialItem in social" :key="socialItem.name"
-        flex items-center
+        flex="~ wrap" items-center
         hover:text="red-600"
         text="[18px]"
       >
-        <a rel="me" :href="socialItem.link" :target="socialItem.target">
+        <a :href="socialItem.link" :target="socialItem.target">
           <SvgIcon :icon="socialItem.icon" height="1em" />
         </a>
       </div>
-      <div />
-      <button
+      <div
         text="[18px] gray-400" dark:text=" gray-500" hover:text="red-600"
+        cursor-pointer
         @click="toggleDark()"
       >
-        <div i-mdi-theme-light-dark />
-      </button>
+        <SvgIcon icon="mdi-theme-light-dark" height="1em" />
+      </div>
     </div>
     <div mt="[24px]" pb="[24px]">
       <div

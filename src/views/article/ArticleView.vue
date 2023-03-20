@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
 import { useRoute, useRouter } from 'vue-router'
 import { fetchArticle } from '~/services'
 
@@ -38,8 +37,12 @@ getArticle(id)
     p="[2em]"
   >
     <div p="t-4 b-[24px] x-2" flex gap-2 text="[18px]">
-      <mdi-home cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/root')" />
-      <mdi-arrow-left cursor-pointer opacity="40" hover="opacity-100" @click="$router.push('/article')" />
+      <a cursor-pointer hover:text="red-600" @click="$router.push('/root')">
+        <SvgIcon icon="mdi:home" height="1.2em" />
+      </a>
+      <a cursor-pointer hover:text="red-600" @click="$router.push('/article')">
+        <SvgIcon icon="mdi:arrow-left" height="1.2em" />
+      </a>
     </div>
     <div class="global-markdown p-2" v-html="content?.content_html" />
   </div>
