@@ -3,8 +3,6 @@ import { Icon } from '@iconify/vue'
 
 defineProps<Props>()
 
-defineOptions({ name: 'SvgIcon' })
-
 /**
  * 图标组件
  * - 支持iconify

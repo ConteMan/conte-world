@@ -1,0 +1,1 @@
+const r="https://api.isconte.com";async function c(){return await fetch(`${r}/articles`,{mode:"cors",credentials:"omit"}).then(async e=>(await e.json()).data??null)}async function a(t){return await fetch(`${r}/articles/${t}`,{mode:"cors",credentials:"omit"}).then(async s=>(await s.json()).data??null)}export{a,c as f};

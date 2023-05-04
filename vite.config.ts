@@ -6,7 +6,6 @@ import Components from 'unplugin-vue-components/vite'
 import Unocss from 'unocss/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
-import VueMacros from 'unplugin-vue-macros/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -39,10 +38,6 @@ export default defineConfig(({ mode }) => {
 
       Unocss(),
       Icons(),
-
-      VueMacros({
-        reactivityTransform: false,
-      }),
     ],
     build: {
       emptyOutDir: true,
