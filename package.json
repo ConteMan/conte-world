@@ -18,28 +18,28 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@unocss/reset": "^0.51.8",
+    "@unocss/reset": "^0.51.12",
     "@vueuse/core": "^10.1.2",
     "dayjs": "^1.11.7",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.38.5",
-    "@iconify-json/mdi": "^1.1.50",
+    "@antfu/eslint-config": "^0.38.6",
+    "@iconify-json/mdi": "^1.1.51",
     "@iconify/vue": "^4.1.1",
     "@types/node": "^18.16.3",
-    "@unocss/preset-attributify": "^0.51.8",
-    "@unocss/preset-icons": "^0.51.8",
-    "@unocss/preset-uno": "^0.51.8",
+    "@unocss/preset-attributify": "^0.51.12",
+    "@unocss/preset-icons": "^0.51.12",
+    "@unocss/preset-uno": "^0.51.12",
     "@vitejs/plugin-vue": "^4.2.1",
-    "eslint": "^8.39.0",
+    "eslint": "^8.40.0",
     "typescript": "^5.0.4",
-    "unocss": "^0.51.8",
+    "unocss": "^0.51.12",
     "unplugin-auto-import": "^0.15.3",
     "unplugin-icons": "^0.16.1",
     "unplugin-vue-components": "^0.24.1",
-    "vite": "^4.3.4",
+    "vite": "^4.3.5",
     "vue-tsc": "^1.6.4"
   }
 }
