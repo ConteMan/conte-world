@@ -1,0 +1,9 @@
+module.exports = {
+  apps: [
+    {
+      name: 'conte-world-f-nuxt',
+      port: '7106',
+      script: './.output/server/index.mjs'
+    }
+  ]
+}
