@@ -9,6 +9,7 @@
 			"daisyui",
 			"nuxtjs",
 			"postcss"
-		]
+		],
+		"typescript.tsdk": "node_modules/typescript/lib"
 	}
 }

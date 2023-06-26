@@ -6,6 +6,6 @@ export interface ResOptions<T> {
 
 export async function useHttp(url: string) {
   const config = useRuntimeConfig()
-  const { data, error } = await useFetch(`${config.public.apiUrl}${url}`)
+  const { data } = await useFetch(`${config.public.apiUrl}${url}`)
   return data.value as ResOptions<any>
 }

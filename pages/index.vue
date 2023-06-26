@@ -2,36 +2,47 @@
 import { Profile } from '~/apis/index'
 
 definePageMeta({
-  layout: "default",
-});
+  layout: 'default',
+})
 const profile = await Profile.index()
 </script>
 
 <template>
-  <div class="w-[1280px] lg:h-[416px] lt-lg:w-full m-4 lt-lg:m-6 flex lg:flex-row flex-col gap-3 lt-lg:gap-4 justify-center items-center text-black">
+  <div class="w-[1280px] lg:h-[416px] lt-lg:w-full m-4 lt-lg:m-6 flex lg:flex-row flex-col gap-4 lt-lg:gap-4 justify-center items-center text-black">
     <div class="max-w-[500px] lt-lg:w-full lt-lg:max-w-full h-full lt-lg:h-[240px] flex-grow-2 flex flex-col">
       <div class="cw-card w-full flex-grow flex">
-        <div class="w-[16px] h-full bg-black"></div>
+        <div class="w-[16px] h-full bg-black" />
         <div class="flex-grow p-(l-[48px] t-[48px])">
-          <img :src="profile.logo" alt="logo" class="h-24 lt-lg:h-18"/>
-          <div class="mt-[40px]">"{{ profile.slogan }}"</div>
-          <div class="mt-[8px]">via. <span class="italic">{{ profile.userName }}</span></div>
+          <img :src="profile.logo" alt="logo" class="h-24 lt-lg:h-18">
+          <div class="mt-[40px]">
+            "{{ profile.slogan }}"
+          </div>
+          <div class="mt-[8px]">
+            via. <span class="italic">{{ profile.userName }}</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="w-[272px] lt-lg:w-full h-full lt-lg:h-[400px] flex flex-col gap-3 lt-lg:gap-4">
+    <div class="w-[272px] lt-lg:w-full h-full lt-lg:h-[400px] flex flex-col gap-4 lt-lg:gap-4">
       <div class="cw-card w-full h-[160px] overflow-scroll">
         <div class="cw-card-content">
-          Notes && Memos
+          <NuxtLink to="/article" class=" flex gap-1 justify-start items-center no-underline text-black">
+            <span>文章</span>
+            <Icon name="bx:link-external" size="18" />
+          </NuxtLink>
         </div>
       </div>
       <div class="flex-grow flex gap-3">
         <div class="cw-card w-[60%]">
-          <div class="cw-card-content h-full">Movie && Book</div>
+          <div class="cw-card-content h-full">
+            Movie && Book
+          </div>
         </div>
-        <div class="flex-grow flex flex-col gap-3 lt-lg:gap-4">
+        <div class="flex-grow flex flex-col gap-4 lt-lg:gap-4">
           <div class="cw-card w-full h-[50%]">
-            <div class="cw-card-content">Project</div>
+            <div class="cw-card-content">
+              Project
+            </div>
           </div>
           <div class="cw-card w-full h-[50%] flex justify-center items-center">
             <div class="font-bold text-[48px]">
@@ -44,9 +55,9 @@ const profile = await Profile.index()
     <div class="w-[300px] lt-lg:w-full h-full lt-lg:h-[420px] flex-grow-1 flex flex-col gap-3">
       <div class="cw-card h-[80px] flex justify-center items-center">
         <div class="flex flex-wrap justify-center gap-2">
-          <template v-for="item in profile.social">
+          <template v-for="item in profile.social" :key="item.link">
             <a class="text-black visited:text-black" :href="item.link" :target="item.target">
-              <Icon :name="item.icon"></Icon>
+              <Icon :name="item.icon" />
             </a>
           </template>
         </div>
@@ -54,8 +65,10 @@ const profile = await Profile.index()
       <div class="flex-grow flex flex-row gap-3">
         <div class="cw-card w-[50%]">
           <div class="h-full px-4 flex flex-col justify-center">
-            <template v-for="item in (profile.tag).split('/')">
-              <div class="text-right">{{ item }}</div>
+            <template v-for="item in (profile.tag).split('/')" :key="item">
+              <div class="text-right">
+                {{ item }}
+              </div>
             </template>
           </div>
         </div>
@@ -97,7 +110,7 @@ const profile = await Profile.index()
           </div>
         </div>
         <div class="cw-card w-[80px] flex justify-center items-center">
-            <Icon name="mdi:information" size="32" />
+          <Icon name="mdi:information" size="32" />
         </div>
       </div>
     </div>

@@ -3,4 +3,4 @@ export default new class Profile {
     const res = await useHttp('/profile')
     return res.data ?? {}
   }
-}
+}()

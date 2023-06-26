@@ -1,21 +1,43 @@
 {
-  "name": "nuxt-app",
+  "name": "conte-world",
+  "version": "3.0.10",
   "private": true,
+  "description": "ConteMan Personal Site",
+  "author": "ConteMan <real.conteman@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.6.1",
-    "@nuxtjs/tailwindcss": "^6.7.2",
+    "@antfu/eslint-config": "^0.39.5",
+    "@nuxt/devtools": "^0.6.4",
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@pinia/nuxt": "^0.4.11",
     "@types/node": "^20.3.1",
-    "@unocss/nuxt": "^0.53.1",
-    "@unocss/transformer-variant-group": "^0.53.1",
-    "daisyui": "^3.1.1",
-    "nuxt": "^3.5.3",
-    "nuxt-icon": "^0.4.1"
+    "@unocss/nuxt": "^0.53.4",
+    "@unocss/transformer-variant-group": "^0.53.4",
+    "@vueuse/core": "^10.2.0",
+    "@vueuse/nuxt": "^10.2.0",
+    "daisyui": "^3.1.6",
+    "eslint": "^8.43.0",
+    "lint-staged": "^13.2.2",
+    "nuxt": "^3.6.0",
+    "nuxt-icon": "^0.4.1",
+    "pinia": "^2.1.4",
+    "simple-git-hooks": "^2.8.1",
+    "typescript": "5.0.x",
+    "unocss-preset-daisy": "^5.0.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }

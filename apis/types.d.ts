@@ -1,3 +1,16 @@
+type FetchResponse<T> = {
+  code: number
+  message: string
+  data: T
+}
+
+interface ListMeta {
+  page: number
+  per_page: number
+  total: number
+  has_more: boolean
+}
+
 declare namespace Profile {
   type ATarget = '_self' | '_blank' | '_parent' | '_top'
   interface navItem {
@@ -26,5 +39,28 @@ declare namespace Profile {
     social?: socialItem[]
     createdAt: string
     recordInfo?: RecordInfo
+  }
+}
+
+declare namespace Article {
+  export interface Item {
+    id: number
+    slug: string
+    title: string
+    is_public: number
+    status: number
+    published_at: string
+    info_at: string
+    created_at: string
+    updated_at: string
+  }
+
+  export interface List {
+    meta: ListMeta
+    items: Item[]
+  }
+
+  export type viewItem = Item & {
+    content_html: string
   }
 }
