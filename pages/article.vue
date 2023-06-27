@@ -18,6 +18,11 @@ const showArticleContent = computed(() => {
 const showArticleListOnly = computed(() => {
   return ['small', 'medium'].includes(screenStore.screenSize) && route.fullPath === '/article'
 })
+
+onMounted(() => {
+  if (showArticleListOnly)
+    document.querySelector('.article-list')?.classList.add('article-list-only')
+})
 </script>
 
 <template>

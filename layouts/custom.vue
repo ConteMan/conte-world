@@ -1,15 +1,12 @@
 <script setup lang="ts">
-const route = useRoute()
+const screenStore = useScreenStore()
+const screenSizeClass = computed(() => {
+  return [screenStore.screenSize]
+})
 
 const loading = ref(true)
-
-const screenStore = useScreenStore()
-const screenSize = computed(() => {
-  return screenStore.screenSize
-})
-const screenSizeClass = computed(() => [screenStore.screenSize])
 onMounted(() => {
-  document.querySelector('.custom-container')?.classList.add(screenSize.value)
+  document.querySelector('.custom-container')?.classList.add(`${screenStore.screenSize}`)
   loading.value = false
 })
 
@@ -33,7 +30,7 @@ const systemStore = useSystemStore()
             <span>主页</span>
           </NuxtLink>
         </div>
-        <div class="nav-item" :class="{ active: route.path.match('article') }">
+        <div class="nav-item" :class="{ active: $route.path.match('article') }">
           <NuxtLink to="/article" class="nav-link">
             <Icon name="bx:note" size="24" />
             <span>文章</span>
@@ -69,7 +66,7 @@ const systemStore = useSystemStore()
                 <span>主页</span>
               </div>
             </div>
-            <div class="nav-item" :class="{ active: route.path.match('article') }">
+            <div class="nav-item" :class="{ active: $route.path.match('article') }">
               <div class="nav-link" @click="useDrawerNav('/article')">
                 <Icon name="bx:note" size="24" />
                 <span>文章</span>
@@ -91,6 +88,10 @@ const systemStore = useSystemStore()
 .head-side-drawer {
   @apply w-[180px] flex-shrink-0 flex flex-col h-full bg-[#F5F5F5] border-r-[#F5F5F5];
 }
+.head-side-drawer {
+  @apply max-w-[100%] w-[280px];
+}
+
 .small,
 .medium {
   @apply flex-col items-start;

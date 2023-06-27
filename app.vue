@@ -15,8 +15,6 @@ const screenSize = computed(() => {
 })
 
 watchImmediate(screenSize, () => {
-  // eslint-disable-next-line no-console
-  console.log('[ screenSize] >', screenSize.value)
   screenSizeStore.setScreenSize(screenSize.value)
 })
 </script>

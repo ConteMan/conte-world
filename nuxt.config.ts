@@ -3,8 +3,8 @@ import { presetDaisy } from 'unocss-preset-daisy'
 
 export default defineNuxtConfig({
   modules: [
-    '@unocss/nuxt',
     '@nuxtjs/tailwindcss',
+    '@unocss/nuxt',
     'nuxt-icon',
     '@vueuse/nuxt',
     '@pinia/nuxt',
@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config',
     exposeConfig: false,
     exposeLevel: 2,
-    injectPosition: 'first',
+    // injectPosition: 'first',
     viewer: true,
   },
   unocss: {
