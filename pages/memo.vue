@@ -55,7 +55,7 @@ function pageAction(action: 'next' | 'prev') {
 <template>
   <div class="flex flex-col w-full h-full overflow-y-auto">
     <div v-for="item in currentList" :key="item.id" class="item">
-      <div>{{ item.content }}</div>
+      <div v-html="item.contentHtml" />
       <div v-if="item.resourceList.length" class="mt-4 flex flex-wrap justify-start items-center gap-4">
         <img
           v-for="imgItem in item.resourceList" :key="imgItem.id"
@@ -84,5 +84,8 @@ function pageAction(action: 'next' | 'prev') {
     p-[36px] pb-[12px] box-border w-full flex flex-col justify-start
     leading-6
     border-b border-solid border-b-[#F5F5F5] border-l-0 border-t-0 border-r-0;
+}
+:deep(a) {
+  @apply text-gray-700 visited:text-gray-700;
 }
 </style>

@@ -73,6 +73,7 @@ declare namespace Memo {
     createdTs: number
     updatedTs: number
     content: string
+    contentHtml: string
     visibility: string
     pinned: boolean
     creatorName: string
