@@ -24,10 +24,15 @@ const profile = await Profile.index()
       </div>
     </div>
     <div class="w-[272px] lt-lg:w-full h-full lt-lg:h-[400px] flex flex-col gap-4 lt-lg:gap-4">
-      <div class="cw-card w-full h-[160px] overflow-scroll">
-        <div class="cw-card-content">
-          <NuxtLink to="/article" class=" flex gap-1 justify-start items-center no-underline text-black">
-            <span>文章</span>
+      <div class="cw-card w-full h-[160px]">
+        <div class="cw-card-content flex flex-col justify-between">
+          <NuxtLink to="/article" class="flex gap-1 justify-start items-center no-underline text-black">
+            <span class="link-title">文章</span>
+            <Icon name="bx:link-external" size="18" />
+          </NuxtLink>
+
+          <NuxtLink to="/memo" class="flex gap-1 justify-end items-center no-underline text-black">
+            <span class="link-title">Memo</span>
             <Icon name="bx:link-external" size="18" />
           </NuxtLink>
         </div>
@@ -110,7 +115,7 @@ const profile = await Profile.index()
           </div>
         </div>
         <div class="cw-card w-[80px] flex justify-center items-center">
-          <Icon name="mdi:information" size="32" />
+          <Icon name="mdi:information-outline" size="32" />
         </div>
       </div>
     </div>
@@ -122,7 +127,12 @@ const profile = await Profile.index()
   @apply rounded-md border-2 border-solid border-black;
 }
 .cw-card-content {
-  @apply m-4;
+  @apply p-4 h-full box-border text-[18px];
+  --at-apply: lt-lg:text-[16px];
+}
+.link-title {
+  @apply text-[18px];
+  --at-apply: lt-lg:text-[16px];
 }
 .copyright svg {
   fill: #8c8c8c;

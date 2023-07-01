@@ -36,6 +36,12 @@ const systemStore = useSystemStore()
             <span>文章</span>
           </NuxtLink>
         </div>
+        <div class="nav-item" :class="{ active: $route.path.match('memo') }">
+          <NuxtLink to="/memo" class="nav-link">
+            <Icon name="bx:box" size="24" />
+            <span>Memo</span>
+          </NuxtLink>
+        </div>
       </div>
     </div>
 
@@ -72,12 +78,18 @@ const systemStore = useSystemStore()
                 <span>文章</span>
               </div>
             </div>
+            <div class="nav-item" :class="{ active: $route.path.match('memo') }">
+              <div class="nav-link" @click="useDrawerNav('/memo')">
+                <Icon name="bx:box" size="24" />
+                <span>Memo</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="content-container h-full grow-1">
+    <div class="content-container h-full grow-1 flex-wrap">
       <slot />
     </div>
   </div>
@@ -113,13 +125,13 @@ const systemStore = useSystemStore()
   height: calc(100% - 80px);
 }
 .nav {
-  @apply flex flex-col gap-[8px] px-[20px];
+  @apply flex flex-col gap-[12px] px-[20px];
 }
 .nav-item {
   @apply flex justify-start items-center pl-[16px] py-[4px] no-underline rounded-md;
 }
 .nav-link {
-  @apply flex gap-[12px] justify-start items-center text-black visited:text-black no-underline;
+  @apply w-full flex gap-[12px] justify-start items-center text-black visited:text-black no-underline;
 }
 .active {
   @apply border border-solid border-black shadow-md;

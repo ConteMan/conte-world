@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    'dayjs-nuxt',
   ],
   devtools: {
     enabled: true,

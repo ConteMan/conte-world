@@ -64,3 +64,24 @@ declare namespace Article {
     content_html: string
   }
 }
+
+declare namespace Memo {
+  export interface Item {
+    id: number
+    rouStatus: string
+    creatorId: number
+    createdTs: number
+    updatedTs: number
+    content: string
+    visibility: string
+    pinned: boolean
+    creatorName: string
+    resourceList: any[]
+    relationList: any[]
+  }
+
+  export interface List {
+    meta: ListMeta
+    items: Item[]
+  }
+}
