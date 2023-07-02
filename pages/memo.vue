@@ -55,7 +55,7 @@ function pageAction(action: 'next' | 'prev') {
 <template>
   <div class="flex flex-col w-full h-full overflow-y-auto">
     <div v-for="item in currentList" :key="item.id" class="item">
-      <div v-html="item.contentHtml" />
+      <div class="memo-content" v-html="item.contentHtml" />
       <div v-if="item.resourceList.length" class="mt-4 flex flex-wrap justify-start items-center gap-4">
         <img
           v-for="imgItem in item.resourceList" :key="imgItem.id"
@@ -87,5 +87,8 @@ function pageAction(action: 'next' | 'prev') {
 }
 :deep(a) {
   @apply text-gray-700 visited:text-gray-700;
+}
+:deep(.memo-content img) {
+  --at-apply: h-[200px] lt-lg:max-w-full rounded-md;
 }
 </style>
