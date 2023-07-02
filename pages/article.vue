@@ -20,7 +20,7 @@ const showArticleListOnly = computed(() => {
 })
 
 onMounted(() => {
-  if (showArticleListOnly)
+  if (showArticleListOnly.value)
     document.querySelector('.article-list')?.classList.add('article-list-only')
 })
 </script>
@@ -60,8 +60,7 @@ onMounted(() => {
     border-b border-solid border-b-[#F5F5F5] border-l-0 border-t-0 border-r-0;
 }
 .article-item.active a{
-  @apply
-    underline underline-offset-4 decoration-1;
+  @apply underline underline-offset-4 decoration-1;
 }
 .article-list-only {
   @apply w-full border-none;

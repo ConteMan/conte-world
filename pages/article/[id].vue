@@ -23,7 +23,7 @@ getList()
       </NuxtLink>
     </div>
     <ClientOnly>
-      <div class="article-content" v-html="data.content_html" />
+      <div class="global-markdown article-content" v-html="data.content_html" />
     </ClientOnly>
   </div>
 </template>
@@ -35,8 +35,8 @@ getList()
 .nav-link {
   @apply flex gap-[12px] justify-start items-center text-black visited:text-black no-underline;
 }
-:deep(.article-content a) {
-  @apply text-gray-700 visited:text-gray-700;
+:deep(.article-content) a {
+  @apply leading-6 text-gray-700 visited:text-gray-700 underline underline-offset-4 decoration-1;
 }
 :deep(.small .article-list) {
   display: none;

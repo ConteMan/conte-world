@@ -21,3 +21,57 @@ html,body {
 body {
   margin: 0;
 }
+
+/* 全局 Markdown 样式 */
+.global-markdown p {
+  overflow: auto;
+  word-wrap: break-word;
+}
+.global-markdown blockquote {
+  margin: 1em 0;
+  border-left: 0.5em solid gainsboro;
+  padding-left: 1em;
+}
+.global-markdown ul,ol {
+  margin: 2px 0 16px 0;
+}
+.global-markdown li {
+  list-style-type: disc;
+  margin: 14px 0;
+}
+.global-markdown li:has(p) {
+  margin: 0;
+}
+.global-markdown pre {
+  margin: 2em 0;
+  padding: 12px;
+  background-color: gainsboro;
+  border-radius: 0.5rem;
+}
+.global-markdown code {
+  padding: 0 4px;
+  margin: 0 2px;
+  background-color: gainsboro;
+  white-space: pre-wrap;
+}
+.dark .global-markdown pre,
+.dark .global-markdown code {
+  background-color: rgb(106, 106, 106);
+}
+.global-markdown h1 {
+  font-size: 1.8em;
+  padding: 1em 0 2px 0;
+}
+.global-markdown h2 {
+  font-size: 1.6em;
+  padding: 0.8em 0 2px 0;
+  border-bottom: 1px solid gainsboro;
+}
+.global-markdown h3 {
+  font-size: 1.4em;
+  padding: 4px 0 2px 0;
+}
+.global-markdown strong {
+  color:rgb(255 0 0);
+  font-weight: bolder;
+}
