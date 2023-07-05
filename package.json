@@ -1,6 +1,6 @@
 {
   "name": "conte-world",
-  "version": "3.0.20",
+  "version": "3.0.21",
   "private": true,
   "description": "ConteMan Personal Site",
   "author": "ConteMan <real.conteman@gmail.com>",
@@ -15,7 +15,7 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.6",
+    "@antfu/eslint-config": "^0.39.7",
     "@nuxt/devtools": "^0.6.6",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia/nuxt": "^0.4.11",

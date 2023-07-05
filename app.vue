@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { watchImmediate } from '@vueuse/core'
 
+useHead({
+  script: [
+    {
+      'async': true,
+      'src': 'https://umami.isconte.com/script.js',
+      'data-website-id': '041aca14-99aa-4427-88ab-52717fd0ee8f',
+    },
+  ],
+})
+
 const { isLargeScreen, isMediumScreen, isSmallScreen } = useScreenSize()
 const screenSizeStore = useScreenStore()
 
