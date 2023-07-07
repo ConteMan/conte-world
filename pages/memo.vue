@@ -16,8 +16,8 @@ const emptyLastPage = ref(false)
 const data = await Memo.list(page, per_page)
 
 const currentList = computed(() => {
-  if (data.value?.items.length) {
-    list.value = data.value?.items
+  if (data.value?.data.items.length) {
+    list.value = data.value?.data.items
   }
   else {
     if (lastAction.value === 'next')
@@ -27,7 +27,7 @@ const currentList = computed(() => {
 })
 
 const hasMore = computed(() => {
-  return !!data.value?.items.length && data.value?.items.length >= per_page.value
+  return !!data.value?.data.items.length && data.value?.data.items.length >= per_page.value
 })
 
 function pageAction(action: 'next' | 'prev') {
@@ -89,6 +89,8 @@ function pageAction(action: 'next' | 'prev') {
   @apply text-gray-700 visited:text-gray-700;
 }
 :deep(.memo-content img) {
-  --at-apply: h-[200px] lt-lg:max-w-full rounded-md;
+  --at-apply:
+    h-[200px] w-[355px] object-cover lt-lg:max-w-full rounded-md
+    border border-solid border-[#F5F5F5];
 }
 </style>

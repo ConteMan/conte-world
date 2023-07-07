@@ -85,6 +85,7 @@ declare namespace Memo {
     meta: ListMeta
     items: Item[]
   }
+  export type FetchList = FetchResponse<List>
 }
 
 declare namespace Subject {

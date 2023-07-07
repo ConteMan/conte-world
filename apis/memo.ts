@@ -3,7 +3,7 @@ export default new class Memo {
 
   async list(page: Ref<number>, per_page: Ref<number>) {
     const config = useRuntimeConfig()
-    const { data } = await useFetch<Memo.List>(`${config.public.apiUrl}${this.prefix}`, {
+    const { data } = await useFetch<Memo.FetchList>(`${config.public.apiUrl}${this.prefix}`, {
       query: {
         page,
         per_page,
