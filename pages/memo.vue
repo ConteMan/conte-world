@@ -13,11 +13,11 @@ const list: Ref<Memo.Item[] | []> = ref([])
 const lastAction = ref()
 const emptyLastPage = ref(false)
 
-const { data } = await Memo.list(page, per_page)
+const data = await Memo.list(page, per_page)
 
 const currentList = computed(() => {
-  if (data.value?.data.items.length) {
-    list.value = data.value?.data.items
+  if (data.value?.items.length) {
+    list.value = data.value?.items
   }
   else {
     if (lastAction.value === 'next')
@@ -27,7 +27,7 @@ const currentList = computed(() => {
 })
 
 const hasMore = computed(() => {
-  return !!data.value?.data.items.length && data.value?.data.items.length >= per_page.value
+  return !!data.value?.items.length && data.value?.items.length >= per_page.value
 })
 
 function pageAction(action: 'next' | 'prev') {

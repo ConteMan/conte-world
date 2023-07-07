@@ -86,3 +86,26 @@ declare namespace Memo {
     items: Item[]
   }
 }
+
+declare namespace Subject {
+  export interface Item {
+    id: number
+    slug: string
+    type: string
+    status: string
+    status_at: string
+    name: string
+    images: string
+    platform_douban_id: string
+    platform_imdb_id: string
+    sync_at: string
+    data: any
+  }
+
+  export interface List {
+    meta: ListMeta
+    items: Item[]
+  }
+
+  export type FetchList = FetchResponse<List>
+}

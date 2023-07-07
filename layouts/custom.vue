@@ -42,6 +42,12 @@ const systemStore = useSystemStore()
             <span>Memo</span>
           </NuxtLink>
         </div>
+        <div class="nav-item" :class="{ active: $route.path.match('subject') }">
+          <NuxtLink to="/subject" class="nav-link">
+            <Icon name="bx:movie" size="24" />
+            <span>书影音</span>
+          </NuxtLink>
+        </div>
       </div>
     </div>
 
@@ -82,6 +88,12 @@ const systemStore = useSystemStore()
               <div class="nav-link" @click="useDrawerNav('/memo')">
                 <Icon name="bx:box" size="24" />
                 <span>Memo</span>
+              </div>
+            </div>
+            <div class="nav-item" :class="{ active: $route.path.match('subject') }">
+              <div class="nav-link" @click="useDrawerNav('/subject')">
+                <Icon name="bx:movie" size="24" />
+                <span>书影音</span>
               </div>
             </div>
           </div>

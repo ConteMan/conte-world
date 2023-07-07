@@ -40,7 +40,10 @@ const profile = await Profile.index()
       <div class="flex-grow flex gap-3">
         <div class="cw-card w-[60%]">
           <div class="cw-card-content h-full">
-            Movie && Book
+            <NuxtLink to="/subject" class="flex gap-1 justify-start items-center no-underline text-black">
+              <span class="link-title">书影音</span>
+              <Icon name="bx:link-external" size="18" />
+            </NuxtLink>
           </div>
         </div>
         <div class="flex-grow flex flex-col gap-4 lt-lg:gap-4">
