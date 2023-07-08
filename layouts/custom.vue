@@ -51,7 +51,7 @@ const systemStore = useSystemStore()
       </div>
     </div>
 
-    <div class="head-top-container">
+    <div class="head-mobile-container">
       <div class="grow-0 flex-shrink-0">
         <NuxtLink to="/" class="nav-link">
           <img src="/public/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
@@ -62,7 +62,7 @@ const systemStore = useSystemStore()
       </div>
     </div>
 
-    <div class="drawer fixed">
+    <div class="drawer fixed z-[999]">
       <input id="my-drawer" v-model="systemStore.showNavDrawer" type="checkbox" class="drawer-toggle">
       <div class="drawer-side">
         <label for="my-drawer" class="drawer-overlay" />
@@ -101,7 +101,7 @@ const systemStore = useSystemStore()
       </div>
     </div>
 
-    <div class="content-container h-full grow-1 flex-wrap">
+    <div class="content-container grow-1 h-full overflow-y-auto flex-wrap">
       <slot />
     </div>
   </div>
@@ -124,17 +124,20 @@ const systemStore = useSystemStore()
 .medium .head-side-container {
   @apply !hidden;
 }
-.head-top-container {
+.head-mobile-container {
   @apply hidden;
 }
-.small .head-top-container,
-.medium .head-top-container {
-  @apply w-full flex justify-start items-center px-[36px] py-[24px] box-border bg-[#F5F5F5];
+.small .head-mobile-container,
+.medium .head-mobile-container {
+  @apply w-[60%] fixed bottom-[10px] left-[20%] z-[1] flex justify-start items-center px-[36px] py-[8px] box-border bg-[#F5F5F5] rounded-lg shadow-md;
+}
+.small .head-mobile-container {
+  @apply w-[90%] left-[5%];
 }
 .small .content-container,
 .medium .content-container {
   @apply w-full;
-  height: calc(100% - 80px);
+  padding-bottom: 80px;
 }
 .nav {
   @apply flex flex-col gap-[12px] px-[20px];

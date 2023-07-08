@@ -1,6 +1,6 @@
 {
   "name": "conte-world",
-  "version": "3.0.21",
+  "version": "3.0.22",
   "private": true,
   "description": "ConteMan Personal Site",
   "author": "ConteMan <real.conteman@gmail.com>",
@@ -19,13 +19,13 @@
     "@nuxt/devtools": "^0.6.7",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia/nuxt": "^0.4.11",
-    "@types/node": "^20.4.0",
+    "@types/node": "^20.4.1",
     "@unocss/nuxt": "^0.53.4",
     "@unocss/transformer-directives": "^0.53.4",
     "@unocss/transformer-variant-group": "^0.53.4",
     "@vueuse/core": "^10.2.1",
     "@vueuse/nuxt": "^10.2.1",
-    "daisyui": "^3.1.10",
+    "daisyui": "^3.2.1",
     "dayjs-nuxt": "^1.1.2",
     "eslint": "^8.44.0",
     "lint-staged": "^13.2.3",
@@ -33,7 +33,7 @@
     "nuxt-icon": "^0.4.2",
     "pinia": "^2.1.4",
     "simple-git-hooks": "^2.8.1",
-    "typescript": "5.0.x",
+    "typescript": "5.1.6",
     "unocss-preset-daisy": "^6.0.0"
   },
   "simple-git-hooks": {
