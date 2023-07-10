@@ -139,10 +139,10 @@ async function toggleStatus(current: SubjectStatuses) {
 </script>
 
 <template>
-  <div class="subject-container box-border w-full p-[24px]">
+  <div class="subject-container box-border flex flex-col items-center w-full h-full px-[24px] overflow-x-hidden overflow-y-auto">
     <ClientOnly>
-      <div class="action-bar sticky top-0 z-1 w-full rounded-lg bg-white">
-        <div class="p-2 px-4 flex gap-4">
+      <div class="action-bar sticky top-0 z-1 w-full max-w-[800px] bg-white">
+        <div class="pt-4 px-4 flex gap-4">
           <span
             v-for="itemType in TYPES" :key="itemType.value"
             class="span-btn py-2"
@@ -152,7 +152,7 @@ async function toggleStatus(current: SubjectStatuses) {
             {{ itemType.name }}
           </span>
         </div>
-        <div class="p-2 px-4 flex gap-4">
+        <div class="pb-2 px-4 flex gap-4">
           <span
             v-for="itemStatus in STATUSES" :key="itemStatus.value"
             class="span-btn py-2"
@@ -164,10 +164,10 @@ async function toggleStatus(current: SubjectStatuses) {
         </div>
       </div>
       <template v-for="dealItem in dealList" :key="dealItem.date">
-        <div class="date-title w-full box-border px-4 py-2 font-medium bg-[#F5F5F5]">
+        <div class="date-title w-full max-w-[800px] box-border px-4 py-2 font-medium bg-[#F5F5F5]">
           {{ dealItem.date }}
         </div>
-        <div class="grid-list grid justify-between p-4 gap-4">
+        <div class="grid-list w-full max-w-[800px] grid justify-between p-4 gap-4">
           <div v-for="item in dealItem.items" :key="item.id" class="item relative overflow-hidden">
             <img
               v-if="item.images"
@@ -227,6 +227,6 @@ img::before {
   color: transparent;
 }
 .action-bar + div {
-  margin-top: 10px
+  @apply mt-6;
 }
 </style>

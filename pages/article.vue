@@ -35,7 +35,7 @@ onMounted(() => {
       >
         <NuxtLink
           :to="`/article/${item.id}`"
-          class="no-underline text-black visited:text-black"
+          class="item-link no-underline text-black visited:text-black"
         >
           {{ item.title }}
         </NuxtLink>
@@ -52,13 +52,16 @@ onMounted(() => {
 .article-list {
   @apply
     w-[300px] h-full box-border overflow-y-auto flex flex-col items-start shrink-0
-    border-r border-solid border-[#F5F5F5] border-l-0 border-t-0 border-b-0;
+    border border-solid border-[#F5F5F5] border-t-0 border-b-0;
 }
 .article-item {
   @apply
     h-[64px] p-[36px] box-border w-full flex items-center
     leading-6
     border-b border-solid border-b-[#F5F5F5] border-l-0 border-t-0 border-r-0;
+}
+.article-item .item-link:hover {
+  @apply text-gray-600;
 }
 .article-item.active a{
   @apply underline underline-offset-4 decoration-1;

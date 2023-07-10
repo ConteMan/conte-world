@@ -13,7 +13,7 @@ const profile = await Profile.index()
       <div class="cw-card w-full flex-grow flex">
         <div class="w-[16px] h-full bg-black" />
         <div class="flex-grow p-(l-[48px] t-[48px])">
-          <img :src="profile.logo" alt="logo" class="h-24 lt-lg:h-18">
+          <img :src="profile.logo" alt="logo" class="h-24 lt-lg:h-18" data-not-lazy>
           <div class="mt-[40px]">
             "{{ profile.slogan }}"
           </div>
@@ -32,7 +32,7 @@ const profile = await Profile.index()
           </NuxtLink>
 
           <NuxtLink to="/memo" class="flex gap-1 justify-end items-center no-underline text-black">
-            <span class="link-title">Memo</span>
+            <span class="link-title">说说</span>
             <Icon name="bx:link-external" size="18" />
           </NuxtLink>
         </div>
@@ -41,7 +41,7 @@ const profile = await Profile.index()
         <div class="cw-card w-[60%]">
           <div class="cw-card-content h-full">
             <NuxtLink to="/subject" class="flex gap-1 justify-start items-center no-underline text-black">
-              <span class="link-title">书影音</span>
+              <span class="link-title">影音</span>
               <Icon name="bx:link-external" size="18" />
             </NuxtLink>
           </div>
@@ -49,7 +49,7 @@ const profile = await Profile.index()
         <div class="flex-grow flex flex-col gap-4 lt-lg:gap-4">
           <div class="cw-card w-full h-[50%]">
             <div class="cw-card-content">
-              Project
+              Project ...
             </div>
           </div>
           <div class="cw-card w-full h-[50%] flex justify-center items-center">
@@ -82,7 +82,7 @@ const profile = await Profile.index()
         </div>
         <div class="cw-card w-[50%]">
           <div class="cw-card-content">
-            Lab
+            Lab ...
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@ const profile = await Profile.index()
           <div class="h-[14px]">
             <svg width="240" height="12">
               <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-                CODE && DESIGN BY {{ profile.userName.toUpperCase() }} © {{ profile.createdAt }} - {{ new Date().getFullYear() }}
+                {{ profile.userName.toUpperCase() }} © {{ profile.createdAt }} - {{ new Date().getFullYear() }}
               </text>
             </svg>
           </div>
@@ -118,7 +118,7 @@ const profile = await Profile.index()
           </div>
         </div>
         <div class="cw-card w-[80px] flex justify-center items-center">
-          <Icon name="mdi:information-outline" size="32" />
+          <Icon name="mdi:information-outline" size="24" />
         </div>
       </div>
     </div>
@@ -134,10 +134,10 @@ const profile = await Profile.index()
   --at-apply: lt-lg:text-[16px];
 }
 .link-title {
-  @apply text-[18px];
+  @apply text-[20px];
   --at-apply: lt-lg:text-[16px];
 }
 .copyright svg {
-  fill: #8c8c8c;
+  fill: #000000;
 }
 </style>

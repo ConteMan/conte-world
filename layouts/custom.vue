@@ -21,31 +21,27 @@ const systemStore = useSystemStore()
   >
     <div class="head-side-container">
       <div class="logo py-[24px] pl-[36px]">
-        <img src="/public/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
+        <NuxtLink to="/" class="nav-link">
+          <img src="/public/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
+        </NuxtLink>
       </div>
       <div class="nav">
-        <div class="nav-item">
-          <NuxtLink to="/" class="nav-link">
-            <Icon name="bx:home-alt-2" size="24" />
-            <span>主页</span>
-          </NuxtLink>
-        </div>
         <div class="nav-item" :class="{ active: $route.path.match('article') }">
           <NuxtLink to="/article" class="nav-link">
-            <Icon name="bx:note" size="24" />
+            <!-- <Icon name="bx:note" size="24" /> -->
             <span>文章</span>
           </NuxtLink>
         </div>
         <div class="nav-item" :class="{ active: $route.path.match('memo') }">
           <NuxtLink to="/memo" class="nav-link">
-            <Icon name="bx:box" size="24" />
-            <span>Memo</span>
+            <!-- <Icon name="bx:box" size="24" /> -->
+            <span>说说</span>
           </NuxtLink>
         </div>
         <div class="nav-item" :class="{ active: $route.path.match('subject') }">
           <NuxtLink to="/subject" class="nav-link">
-            <Icon name="bx:movie" size="24" />
-            <span>书影音</span>
+            <!-- <Icon name="bx:movie" size="24" /> -->
+            <span>影音</span>
           </NuxtLink>
         </div>
       </div>
@@ -72,28 +68,22 @@ const systemStore = useSystemStore()
             <img src="/public/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
           </div>
           <div class="nav">
-            <div class="nav-item">
-              <div class="nav-link" @click="useDrawerNav('/')">
-                <Icon name="bx:home-alt-2" size="24" />
-                <span>主页</span>
-              </div>
-            </div>
             <div class="nav-item" :class="{ active: $route.path.match('article') }">
               <div class="nav-link" @click="useDrawerNav('/article')">
-                <Icon name="bx:note" size="24" />
+                <!-- <Icon name="bx:note" size="24" /> -->
                 <span>文章</span>
               </div>
             </div>
             <div class="nav-item" :class="{ active: $route.path.match('memo') }">
               <div class="nav-link" @click="useDrawerNav('/memo')">
-                <Icon name="bx:box" size="24" />
-                <span>Memo</span>
+                <!-- <Icon name="bx:box" size="24" /> -->
+                <span>说说</span>
               </div>
             </div>
             <div class="nav-item" :class="{ active: $route.path.match('subject') }">
               <div class="nav-link" @click="useDrawerNav('/subject')">
-                <Icon name="bx:movie" size="24" />
-                <span>书影音</span>
+                <!-- <Icon name="bx:movie" size="24" /> -->
+                <span>影音</span>
               </div>
             </div>
           </div>
@@ -101,7 +91,7 @@ const systemStore = useSystemStore()
       </div>
     </div>
 
-    <div class="content-container grow-1 h-full overflow-y-auto">
+    <div class="content-container grow-1 h-full overflow-x-hidden overflow-y-auto">
       <slot />
     </div>
   </div>
@@ -110,7 +100,7 @@ const systemStore = useSystemStore()
 <style lang="postcss" scoped>
 .head-side-container,
 .head-side-drawer {
-  @apply w-[180px] flex-shrink-0 flex flex-col h-full bg-[#F5F5F5] border-r-[#F5F5F5];
+  @apply w-[180px] flex-shrink-0 flex flex-col h-full bg-white overflow-x-hidden overflow-y-auto;
 }
 .head-side-drawer {
   @apply max-w-[100%] w-[280px];
@@ -129,7 +119,7 @@ const systemStore = useSystemStore()
 }
 .small .head-mobile-container,
 .medium .head-mobile-container {
-  @apply w-[60%] fixed bottom-[10px] left-[20%] z-[1] flex justify-start items-center px-[36px] py-[8px] box-border bg-[#F5F5F5] rounded-lg shadow-md;
+  @apply w-[60%] fixed bottom-[10px] left-[20%] z-[1] flex justify-start items-center px-[36px] py-[8px] box-border bg-white rounded-lg shadow-md;
 }
 .small .head-mobile-container {
   @apply w-[90%] left-[5%];
@@ -142,12 +132,19 @@ const systemStore = useSystemStore()
   @apply flex flex-col gap-[12px] px-[20px];
 }
 .nav-item {
-  @apply flex justify-start items-center pl-[16px] py-[4px] no-underline rounded-md;
+  @apply relative flex justify-start items-center pl-[16px] py-[4px] no-underline;
 }
 .nav-link {
-  @apply w-full flex gap-[12px] justify-start items-center text-black visited:text-black no-underline;
+  @apply box-border w-full py-2 flex gap-[12px] justify-start items-center text-black visited:text-black no-underline;
 }
-.active {
-  @apply border border-solid border-black shadow-md;
+.nav-link:hover {
+  @apply text-gray-600;
+}
+.active::before {
+  @apply absolute -left-2 inline-block w-[2px] h-4 rounded-sm bg-black;
+  content: '';
+}
+.active .nav-link {
+  @apply text-black;
 }
 </style>

@@ -53,18 +53,18 @@ function pageAction(action: 'next' | 'prev') {
 </script>
 
 <template>
-  <div class="flex flex-col w-full h-full overflow-y-auto">
-    <div v-for="item in currentList" :key="item.id" class="item">
+  <div class="w-full h-full flex flex-col items-center overflow-y-auto">
+    <div v-for="item in currentList" :key="item.id" class="item max-w-[800px]">
       <div class="memo-content" v-html="item.contentHtml" />
-      <div v-if="item.resourceList.length" class="mt-4 flex flex-wrap justify-start items-center gap-4">
+      <div v-if="item.resourceList.length" class="mb-2 flex flex-wrap justify-start items-center gap-4">
         <img
           v-for="imgItem in item.resourceList" :key="imgItem.id"
           :src="imgItem.externalLink"
           class="max-h-[200px] lt-lg:max-w-full rounded-md"
         >
       </div>
-      <div class="text-gray-400 pt-2 italic">
-        {{ dayjs.unix(item.createdTs).format('YYYY-MM-DD HH:mm') }}
+      <div class="pt-2 text-end">
+        {{ dayjs.unix(item.createdTs).format('MM-DD') }}
       </div>
     </div>
     <div class="h-[100px] flex justify-center items-center gap-4">
@@ -81,10 +81,13 @@ function pageAction(action: 'next' | 'prev') {
 
 <style lang="postcss" scoped>
 .item {
-  @apply
-    p-[36px] pb-[12px] box-border w-full flex flex-col justify-start
-    leading-6
-    border-b border-solid border-b-[#F5F5F5] border-l-0 border-t-0 border-r-0;
+  @apply p-[36px] pb-[12px] box-border w-full flex flex-col justify-start leading-6;
+}
+.item:nth-child(2n) {
+  @apply rounded-bl-md border border-solid border-[#a9a9a9] border-t-0 border-r-0;
+}
+.item:nth-child(2n+1) {
+  @apply rounded-br-md border border-solid border-[#a9a9a9] border-t-0 border-l-0;
 }
 :deep(a) {
   @apply text-gray-700 visited:text-gray-700;
@@ -93,5 +96,9 @@ function pageAction(action: 'next' | 'prev') {
   --at-apply:
     h-[200px] w-[355px] object-cover lt-lg:max-w-full rounded-md
     border border-solid border-[#F5F5F5];
+}
+.small .item,
+.medium .item {
+  --at-apply: rounded-none border-x-none border-[#dedede];
 }
 </style>
