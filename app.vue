@@ -2,6 +2,7 @@
 import { watchImmediate } from '@vueuse/core'
 
 useHead({
+  title: 'Conte World',
   script: [
     {
       'async': true,

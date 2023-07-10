@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@pinia/nuxt',
     'dayjs-nuxt',
+    'nuxt-lazy-load',
   ],
   devtools: {
     enabled: true,

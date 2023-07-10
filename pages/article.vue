@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-row w-full h-full">
+  <div class=" w-full h-full flex flex-row">
     <div v-show="showArticleList" class="article-list" :class="{ 'article-list-only': showArticleListOnly }">
       <div
         v-for="item in list.items" :key="item.id"
@@ -40,8 +40,9 @@ onMounted(() => {
           {{ item.title }}
         </NuxtLink>
       </div>
+      <ScrollBottom />
     </div>
-    <div v-show="showArticleContent" class="article-content grow-1">
+    <div v-show="showArticleContent" class="article-content grow-1 overflow-y-auto">
       <NuxtPage />
     </div>
   </div>

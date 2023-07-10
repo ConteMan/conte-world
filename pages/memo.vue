@@ -75,6 +75,7 @@ function pageAction(action: 'next' | 'prev') {
         <Icon name="bx:right-arrow" class="w-[16px]" />
       </div>
     </div>
+    <ScrollBottom />
   </div>
 </template>
 

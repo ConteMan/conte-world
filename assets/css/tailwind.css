@@ -22,6 +22,28 @@ body {
   margin: 0;
 }
 
+h1:before,
+h2:before,
+h3:before {
+  font-size: 0.6rem !important;
+  width: auto;
+  margin-top: calc(var(--h2-size) - 0.2em);
+  margin-right: 1px;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  overflow: visible;
+  font-weight: normal !important;
+}
+h1:before {
+  content: 'H1'
+}
+h2:before {
+  content: 'H2'
+}
+h3:before {
+  content: 'H3';
+}
+
 /* 全局 Markdown 样式 */
 .global-markdown p {
   overflow: auto;

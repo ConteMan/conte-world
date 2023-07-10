@@ -16,14 +16,15 @@ getList()
 </script>
 
 <template>
-  <div class="flex flex-col h-full px-[36px] overflow-y-auto box-border">
-    <div class="tool-bar flex justify-start items-center pt-4 pb-2">
+  <div class="flex flex-col px-[36px] box-border">
+    <div class="sticky top-0 bg-white tool-bar flex justify-start items-center pt-4 pb-2">
       <NuxtLink to="/article" class="nav-link">
         <Icon name="bx:left-arrow-alt" size="24" />
       </NuxtLink>
     </div>
     <ClientOnly>
       <div class="global-markdown article-content" v-html="data.content_html" />
+      <ScrollBottom />
     </ClientOnly>
   </div>
 </template>

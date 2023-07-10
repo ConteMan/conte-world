@@ -101,7 +101,7 @@ const systemStore = useSystemStore()
       </div>
     </div>
 
-    <div class="content-container grow-1 h-full overflow-y-auto flex-wrap">
+    <div class="content-container grow-1 h-full overflow-y-auto">
       <slot />
     </div>
   </div>
@@ -137,7 +137,6 @@ const systemStore = useSystemStore()
 .small .content-container,
 .medium .content-container {
   @apply w-full;
-  padding-bottom: 80px;
 }
 .nav {
   @apply flex flex-col gap-[12px] px-[20px];
