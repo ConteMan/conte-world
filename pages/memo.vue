@@ -64,7 +64,7 @@ function pageAction(action: 'next' | 'prev') {
         >
       </div>
       <div class="pt-2 text-end">
-        {{ dayjs.unix(item.createdTs).format('MM-DD') }}
+        {{ dayjs.unix(item.createdTs).format('MM/DD') }}
       </div>
     </div>
     <div class="h-[100px] flex justify-center items-center gap-4">
