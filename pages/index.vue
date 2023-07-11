@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Navigations } from '~/constants'
 import { Profile } from '~/apis/index'
 
 definePageMeta({
@@ -27,12 +28,12 @@ const profile = await Profile.index()
       <div class="cw-card w-full h-[160px]">
         <div class="cw-card-content flex flex-col justify-between">
           <NuxtLink to="/article" class="flex gap-1 justify-start items-center no-underline text-black">
-            <span class="link-title">文章</span>
+            <span class="link-title">{{ Navigations.ARTICLE }}</span>
             <Icon name="bx:link-external" size="18" />
           </NuxtLink>
 
           <NuxtLink to="/memo" class="flex gap-1 justify-end items-center no-underline text-black">
-            <span class="link-title">说说</span>
+            <span class="link-title">{{ Navigations.MEMO }}</span>
             <Icon name="bx:link-external" size="18" />
           </NuxtLink>
         </div>
@@ -41,7 +42,7 @@ const profile = await Profile.index()
         <div class="cw-card w-[60%]">
           <div class="cw-card-content h-full">
             <NuxtLink to="/subject" class="flex gap-1 justify-start items-center no-underline text-black">
-              <span class="link-title">影音</span>
+              <span class="link-title">{{ Navigations.SUBJECT }}</span>
               <Icon name="bx:link-external" size="18" />
             </NuxtLink>
           </div>

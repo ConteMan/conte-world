@@ -64,7 +64,7 @@ const dealList = computed(() => {
   const res: any[] = []
   let temp: any[] = []
   currentList.value.forEach((item, index) => {
-    const itemDate = dayjs(item.status_at).format('YYYY-MM-DD')
+    const itemDate = dayjs(item.status_at).format('YYYY-MM')
     if (!date) {
       date = itemDate
       temp.push(item)
@@ -148,7 +148,7 @@ async function toggleStatus(current: SubjectStatuses) {
             {{ itemType.name }}
           </span>
         </div>
-        <div class="pb-2 px-4 flex gap-4">
+        <div class="pt-2 pb-2 px-4 flex gap-4">
           <span
             v-for="itemStatus in STATUSES" :key="itemStatus.value"
             class="span-btn py-2"
@@ -160,8 +160,8 @@ async function toggleStatus(current: SubjectStatuses) {
         </div>
       </div>
       <template v-for="dealItem in dealList" :key="dealItem.date">
-        <div class="date-title w-full max-w-[800px] box-border px-4 pt-6 text-end">
-          {{ dayjs(dealItem.date).format('MM/DD') }}
+        <div class="date-title w-full max-w-[800px] box-border px-2 pt-6 text-end">
+          {{ dayjs(dealItem.date).format('MMM / YYYY').toUpperCase() }}
         </div>
         <div class="w-full max-w-[800px] flex flex-col justify-start p-4 gap-4">
           <div v-for="item in dealItem.items" :key="item.id" class="item relative overflow-hidden">
@@ -186,9 +186,12 @@ async function toggleStatus(current: SubjectStatuses) {
           </div>
         </div>
       </template>
-      <div class="w-full max-w-[800px] mt-4 flex justify-start items-center">
-        <div key="next-btn" class="box-border w-full item !justify-center btn glass" :class="{ 'btn-disabled !bg-transparent': !hasMore }" @click="pageAction('next')">
-          <Icon name="bx:right-arrow" class="w-[16px]" />
+      <div v-if="hasMore" class="w-full max-w-[800px] mt-4 flex justify-start items-center">
+        <div
+          class="btn glass box-border w-full py-2 flex !flex-col justify-center items-center"
+          @click="pageAction('next')"
+        >
+          <div>· · ·</div>
         </div>
       </div>
     </ClientOnly>

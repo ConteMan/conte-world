@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Navigations } from '~/constants'
+
 const screenStore = useScreenStore()
 const screenSizeClass = computed(() => {
   return [screenStore.screenSize]
@@ -28,20 +30,17 @@ const systemStore = useSystemStore()
       <div class="nav">
         <div class="nav-item" :class="{ active: $route.path.match('article') }">
           <NuxtLink to="/article" class="nav-link">
-            <!-- <Icon name="bx:note" size="24" /> -->
-            <span>文章</span>
+            <span>{{ Navigations.ARTICLE }}</span>
           </NuxtLink>
         </div>
         <div class="nav-item" :class="{ active: $route.path.match('memo') }">
           <NuxtLink to="/memo" class="nav-link">
-            <!-- <Icon name="bx:box" size="24" /> -->
-            <span>说说</span>
+            <span>{{ Navigations.MEMO }}</span>
           </NuxtLink>
         </div>
         <div class="nav-item" :class="{ active: $route.path.match('subject') }">
           <NuxtLink to="/subject" class="nav-link">
-            <!-- <Icon name="bx:movie" size="24" /> -->
-            <span>影音</span>
+            <span>{{ Navigations.SUBJECT }}</span>
           </NuxtLink>
         </div>
       </div>
@@ -70,20 +69,17 @@ const systemStore = useSystemStore()
           <div class="nav">
             <div class="nav-item" :class="{ active: $route.path.match('article') }">
               <div class="nav-link" @click="useDrawerNav('/article')">
-                <!-- <Icon name="bx:note" size="24" /> -->
-                <span>文章</span>
+                <span>{{ Navigations.ARTICLE }}</span>
               </div>
             </div>
             <div class="nav-item" :class="{ active: $route.path.match('memo') }">
               <div class="nav-link" @click="useDrawerNav('/memo')">
-                <!-- <Icon name="bx:box" size="24" /> -->
-                <span>说说</span>
+                <span>{{ Navigations.MEMO }}</span>
               </div>
             </div>
             <div class="nav-item" :class="{ active: $route.path.match('subject') }">
               <div class="nav-link" @click="useDrawerNav('/subject')">
-                <!-- <Icon name="bx:movie" size="24" /> -->
-                <span>影音</span>
+                <span>{{ Navigations.SUBJECT }}</span>
               </div>
             </div>
           </div>
@@ -119,7 +115,7 @@ const systemStore = useSystemStore()
 }
 .small .head-mobile-container,
 .medium .head-mobile-container {
-  @apply w-[60%] fixed bottom-[10px] left-[20%] z-[1] flex justify-start items-center px-[36px] py-[8px] box-border bg-white rounded-lg shadow-md;
+  @apply w-[60%] fixed bottom-[10px] left-[20%] z-[2] flex justify-start items-center px-[36px] py-[8px] box-border bg-white rounded-lg shadow-md;
 }
 .small .head-mobile-container {
   @apply w-[90%] left-[5%];
