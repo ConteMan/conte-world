@@ -1,5 +1,5 @@
 :root {
-  font-family: "LXGW WenKai", Helvetica, Arial, sans-serif;
+  font-family: 'jiangxizhuokai', 'LXGW WenKai', Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
 
@@ -20,12 +20,25 @@
 
 html,body {
   overflow: overlay;
-}
-
-body {
   margin: 0;
+
 }
 
+.lxgw {
+  font-family: 'LXGW WenKai' !important;
+}
+.lxgw-bold {
+  font-family: 'LXGW WenKai' !important;
+  font-weight: bold;
+}
+.jxzk {
+  font-family: 'jiangxizhuokai' !important;
+}
+.monospace {
+  font-family: monospace !important;
+}
+
+/* 标题样式 */
 h1:before,
 h2:before,
 h3:before {
@@ -68,22 +81,6 @@ h3:before {
 .global-markdown li:has(p) {
   margin: 0;
 }
-.global-markdown pre {
-  margin: 2em 0;
-  padding: 12px;
-  background-color: gainsboro;
-  border-radius: 0.5rem;
-}
-.global-markdown code {
-  padding: 0 4px;
-  margin: 0 2px;
-  background-color: gainsboro;
-  white-space: pre-wrap;
-}
-.dark .global-markdown pre,
-.dark .global-markdown code {
-  background-color: rgb(106, 106, 106);
-}
 .global-markdown h1 {
   font-size: 1.8em;
   padding: 1em 0 2px 0;
@@ -100,4 +97,8 @@ h3:before {
 .global-markdown strong {
   color:rgb(255 0 0);
   font-weight: bolder;
+}
+
+.heti pre {
+  background: none;
 }

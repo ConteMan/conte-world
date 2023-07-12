@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Prism from 'prismjs'
 import { Article } from '~/apis/index'
 
 definePageMeta({
@@ -11,21 +12,32 @@ const data = ref({
 })
 async function getList() {
   data.value = await Article.view(Number(route.params.id))
+  delayToHighlight()
 }
 getList()
+
+function delayToHighlight() {
+  setTimeout(() => {
+    Prism.highlightAll()
+  }, 400)
+}
+
+watch(data, () => {
+  delayToHighlight()
+})
 </script>
 
 <template>
   <div class="flex flex-col px-[36px] box-border">
-    <div class="sticky top-0 bg-white tool-bar flex justify-start items-center pt-4 pb-2">
+    <div class="sticky top-0 z-1 bg-white tool-bar flex justify-start items-center pt-4 pb-2">
       <NuxtLink to="/article" class="nav-link">
         <Icon name="bx:left-arrow-alt" size="24" />
       </NuxtLink>
     </div>
     <ClientOnly>
-      <div class="global-markdown article-content" v-html="data.content_html" />
-      <ScrollBottom />
+      <div class="global-markdown article-content heti jxzk" v-html="data.content_html" />
     </ClientOnly>
+    <ScrollBottom />
   </div>
 </template>
 
@@ -36,10 +48,22 @@ getList()
 .nav-link {
   @apply flex gap-[12px] justify-start items-center text-black visited:text-black no-underline;
 }
+.article-content {
+  @apply py-4;
+}
 :deep(.article-content) a {
   @apply leading-6 text-gray-700 visited:text-gray-700 underline underline-offset-4 decoration-1;
 }
 :deep(.small .article-list) {
   display: none;
+}
+:deep(div.code-toolbar > .toolbar > .toolbar-item) {
+  @apply cursor-pointer pr-[8px];
+}
+:deep(div.code-toolbar > .toolbar .copy-to-clipboard-button) {
+  @apply cursor-pointer;
+}
+:deep(.language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url) {
+  background: none;
 }
 </style>

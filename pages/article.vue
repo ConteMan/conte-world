@@ -35,14 +35,14 @@ onMounted(() => {
       >
         <NuxtLink
           :to="`/article/${item.id}`"
-          class="item-link no-underline text-black visited:text-black"
+          class="item-link w-full h-full block no-underline text-black visited:text-black flex justify-start items-center px-[24px] py-[12px]"
         >
-          {{ item.title }}
+          <span>{{ item.title }}</span>
         </NuxtLink>
       </div>
       <ScrollBottom />
     </div>
-    <div v-show="showArticleContent" class="article-content grow-1 overflow-y-auto">
+    <div v-show="showArticleContent" class="grow-1 overflow-y-auto">
       <NuxtPage />
     </div>
   </div>
@@ -56,12 +56,16 @@ onMounted(() => {
 }
 .article-item {
   @apply
-    h-[64px] p-[36px] box-border w-full flex items-center
-    leading-6
+    h-[64px] max-h-[64px] box-border w-full flex items-center
+    leading-6 text-black
     border-b border-solid border-b-[#F5F5F5] border-l-0 border-t-0 border-r-0;
+  --at-apply: grow-1;
 }
 .article-item .item-link:hover {
-  @apply text-gray-600;
+  --at-apply: text-red;
+}
+.article-item.active .item-link {
+  --at-apply: text-black;
 }
 .article-item.active a{
   @apply underline underline-offset-4 decoration-1;

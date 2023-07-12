@@ -134,7 +134,7 @@ const systemStore = useSystemStore()
   @apply box-border w-full py-2 flex gap-[12px] justify-start items-center text-black visited:text-black no-underline;
 }
 .nav-link:hover {
-  @apply text-gray-600;
+  --at-apply: text-red;
 }
 .active::before {
   @apply absolute -left-2 inline-block w-[2px] h-4 rounded-sm bg-black;

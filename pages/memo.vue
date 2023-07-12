@@ -62,8 +62,8 @@ async function pageAction(action: 'next' | 'prev') {
   <div class="memo-container pt-4 w-full h-full flex flex-col items-center overflow-y-auto">
     <ClientOnly>
       <div v-for="item in currentList" :key="item.id" class="item max-w-[800px]">
-        <div class="memo-content" v-html="item.contentHtml" />
-        <div v-if="item.resourceList.length" class="mb-4 flex flex-wrap justify-start items-center gap-4">
+        <div class="jxzk memo-content heti" v-html="item.contentHtml" />
+        <div v-if="item.resourceList.length" class="mt-4 mb-4 flex flex-wrap justify-start items-center gap-4">
           <img
             v-for="imgItem in item.resourceList" :key="imgItem.id"
             :src="imgItem.externalLink"
@@ -71,7 +71,7 @@ async function pageAction(action: 'next' | 'prev') {
           >
         </div>
         <div class="date-container pt-2 flex justify-end">
-          <div class="px-[12px] rounded-t-md bg-[#a9a9a9] text-white text-[12px]">
+          <div class="monospace px-[12px] rounded-t-md bg-[#a9a9a9] text-white text-[12px] font-bold">
             {{ dayjs.unix(item.createdTs).format('MM/DD') }}
           </div>
         </div>
@@ -81,7 +81,9 @@ async function pageAction(action: 'next' | 'prev') {
           class="btn glass box-border w-full py-2 flex !flex-col justify-center items-center"
           @click="pageAction('next')"
         >
-          <div>· · ·</div>
+          <div class="lxgw">
+            · · ·
+          </div>
         </div>
       </div>
       <ScrollBottom />
@@ -91,7 +93,7 @@ async function pageAction(action: 'next' | 'prev') {
 
 <style lang="postcss" scoped>
 .item {
-  @apply p-[24px] box-border w-full flex flex-col justify-start leading-6;
+  @apply p-[24px] pt-[32px] box-border w-full flex flex-col justify-start leading-6;
 }
 .item:first-child {
   @apply !border-t-[1px];
@@ -100,7 +102,7 @@ async function pageAction(action: 'next' | 'prev') {
   @apply relative rounded-bl-md border border-solid border-[#a9a9a9] border-t-0 border-r-0;
 }
 .item:nth-child(2n):before {
-  @apply absolute inline-block bg-[#a9a9a9] w-[58px] h-[22px] top-[-1px] left-[-1px] rounded-tl-md rounded-br-md;
+  @apply absolute inline-block bg-[#a9a9a9] w-[61px] h-[22px] top-[-1px] left-[-1px] rounded-tl-md rounded-br-md;
   content: '';
   box-shadow: -6px -6px 0px #fff;
 }
@@ -114,7 +116,7 @@ async function pageAction(action: 'next' | 'prev') {
   @apply relative rounded-br-md border border-solid border-[#a9a9a9] border-t-0 border-l-0;
 }
 .item:nth-child(2n+1):after {
-  @apply absolute inline-block bg-[#a9a9a9] w-[58px] h-[22px] top-[-1px] right-[-1px] rounded-bl-md rounded-tr-md;
+  @apply absolute inline-block bg-[#a9a9a9] w-[61px] h-[22px] top-[-1px] right-[-1px] rounded-bl-md rounded-tr-md;
   content: '';
   box-shadow: 8px -8px 0px #fff;
 }
@@ -124,7 +126,7 @@ async function pageAction(action: 'next' | 'prev') {
 .item:nth-child(2n+1) .date-container > div {
   --at-apply: rounded-bl-md rounded-tl-0 rounded-tr-md rounded-br-0 z-1;
 }
-:deep(a) {
+:deep(.memo-content) a {
   @apply text-gray-700 visited:text-gray-700 underline underline-offset-4 decoration-1;
 }
 :deep(.memo-content img) {

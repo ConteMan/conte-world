@@ -208,6 +208,8 @@ async function toggleStatus(current: SubjectStatuses) {
 }
 :deep(a:hover) {
   @apply underline underline-offset-4 decoration-1;
+  padding-block-end: 1px;
+  border-block-end: 1px solid currentColor;
 }
 :deep(.memo-content img) {
   --at-apply: h-[200px] lt-lg:max-w-full rounded-md;

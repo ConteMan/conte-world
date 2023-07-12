@@ -1,6 +1,6 @@
 {
   "name": "conte-world",
-  "version": "3.0.31",
+  "version": "3.0.35",
   "private": true,
   "description": "ConteMan Personal Site",
   "author": "ConteMan <real.conteman@gmail.com>",
@@ -14,15 +14,13 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "dependencies": {
-    "nuxt-lazy-load": "^3.0.4"
-  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.7",
     "@nuxt/devtools": "^0.6.7",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia/nuxt": "^0.4.11",
     "@types/node": "^20.4.1",
+    "@types/prismjs": "^1.26.0",
     "@unocss/nuxt": "^0.53.5",
     "@unocss/transformer-directives": "^0.53.5",
     "@unocss/transformer-variant-group": "^0.53.5",
@@ -34,10 +32,13 @@
     "lint-staged": "^13.2.3",
     "nuxt": "^3.6.2",
     "nuxt-icon": "^0.4.2",
+    "nuxt-lazy-load": "^3.0.4",
     "pinia": "^2.1.4",
+    "prismjs": "^1.29.0",
     "simple-git-hooks": "^2.8.1",
     "typescript": "5.1.6",
-    "unocss-preset-daisy": "^6.0.0"
+    "unocss-preset-daisy": "^6.0.0",
+    "vite-plugin-prismjs": "^0.0.8"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
