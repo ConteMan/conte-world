@@ -70,9 +70,13 @@ async function pageAction(action: 'next' | 'prev') {
             class="max-h-[200px] lt-lg:max-w-full rounded-md"
           >
         </div>
+        <div v-if="item?.relationData && item?.relationData.content" class="relation mt-4 p-2 border-l-solid border-l-gray border-l-[4px] text-gray-600 bg-gray-2 rounded-sm">
+          // {{ dayjs.unix(item.relationData.createdTs).format('YYYY-MM-DD') }}<br>{{ item.relationData.content }}
+        </div>
         <div class="date-container pt-2 flex justify-end">
-          <div class="monospace px-[12px] rounded-t-md bg-[#a9a9a9] text-white text-[12px] font-bold">
-            {{ dayjs.unix(item.createdTs).format('MM/DD') }}
+          <div class="date-detail monospace px-[12px] rounded-t-md bg-[#a9a9a9] text-white text-[12px] font-bold">
+            <span class="month-day">{{ dayjs.unix(item.createdTs).format('MM/DD') }}</span>
+            <span class="year">{{ dayjs.unix(item.createdTs).format('YYYY') }}</span>
           </div>
         </div>
       </div>
@@ -141,5 +145,21 @@ async function pageAction(action: 'next' | 'prev') {
 .small .memo-container,
 .medium .memo-container {
   @apply box-border px-[12px];
+}
+.date-container {
+  .month-day {
+    display: block;
+  }
+  .year {
+    display: none;
+  }
+}
+.date-container:hover {
+  .month-day {
+    display: none;
+  }
+  .year {
+    display: block;
+  }
 }
 </style>

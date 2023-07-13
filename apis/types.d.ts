@@ -79,6 +79,7 @@ declare namespace Memo {
     creatorName: string
     resourceList: any[]
     relationList: any[]
+    relationData?: any
   }
 
   export interface List {

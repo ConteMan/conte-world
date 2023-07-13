@@ -36,7 +36,6 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: 'https://ik.imagekit.io/chinesefonts/packages/jxzk/dist/江西拙楷/result.css' },
         { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.6.0/style.min.css' },
         { rel: 'stylesheet', href: '//unpkg.com/heti/umd/heti.min.css' },
-        { rel: 'stylesheet', href: '/assets/css/prism-theme.css' },
       ],
       script: [],
     },
@@ -46,6 +45,9 @@ export default defineNuxtConfig({
       apiUrl: '',
     },
   },
+  css: [
+    '~/assets/css/prism-theme.css',
+  ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config',

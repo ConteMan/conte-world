@@ -7,28 +7,30 @@ definePageMeta({
 })
 
 const route = useRoute()
+const articleContent = ref(null)
 const data = ref({
   content_html: '',
 })
 async function getList() {
   data.value = await Article.view(Number(route.params.id))
-  delayToHighlight()
 }
 getList()
 
 function delayToHighlight() {
   setTimeout(() => {
     Prism.highlightAll()
-  }, 400)
+  }, 1000)
 }
 
 watch(data, () => {
-  delayToHighlight()
+  nextTick(() => {
+    delayToHighlight()
+  })
 })
 </script>
 
 <template>
-  <div class="flex flex-col px-[36px] box-border">
+  <div ref="articleContent" class="article-detail flex flex-col px-[36px] box-border">
     <div class="sticky top-0 z-1 bg-white tool-bar flex justify-start items-center pt-4 pb-2">
       <NuxtLink to="/article" class="nav-link">
         <Icon name="bx:left-arrow-alt" size="24" />
