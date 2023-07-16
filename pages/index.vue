@@ -82,8 +82,15 @@ const profile = await Profile.index()
           </div>
         </div>
         <div class="cw-card w-[50%]">
-          <div class="cw-card-content">
-            Lab ...
+          <div class="cw-card-content flex flex-col justify-center items-start gap-2">
+            <NuxtLink to="/leetcode" class="flex gap-1 justify-start items-center no-underline text-black">
+              <span class="link-title !text-[16px]">{{ Navigations.LEETCODE }}</span>
+              <Icon name="bx:link-external" size="16" />
+            </NuxtLink>
+            <NuxtLink to="/wiki" class="flex gap-1 justify-start items-center no-underline text-black">
+              <span class="link-title !text-[16px]">{{ Navigations.WIKI }}</span>
+              <Icon name="bx:link-external" size="16" />
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -135,7 +142,6 @@ const profile = await Profile.index()
   --at-apply: lt-lg:text-[16px];
 }
 .link-title {
-  @apply text-[20px];
   --at-apply:  hover:(font-bold text-red underline underline-offset-6 decoration-2) lt-lg:text-[16px];
 }
 .copyright svg {

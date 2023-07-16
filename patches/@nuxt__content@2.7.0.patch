@@ -1,0 +1,12 @@
+diff --git a/dist/runtime/markdown-parser/handler/code.mjs b/dist/runtime/markdown-parser/handler/code.mjs
+index d4de2287efcd9f0c78d2bb043ae66862772854bd..72c3faa6156aa1312a720ec1ceace3966ae11e8d 100644
+--- a/dist/runtime/markdown-parser/handler/code.mjs
++++ b/dist/runtime/markdown-parser/handler/code.mjs
+@@ -16,6 +16,6 @@ export default (h, node) => {
+       code,
+       className: [`language-${language}`]
+     },
+-    [h(node, "pre", {}, [h(node, "code", { __ignoreMap: "" }, [u("text", code)])])]
++    [h(node, 'pre', {}, [h(node, 'code', { __ignoreMap: '', className: [`language-${language}`] }, [u('text', code)])])]
+   );
+ };
