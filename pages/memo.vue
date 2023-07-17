@@ -62,7 +62,7 @@ async function pageAction(action: 'next' | 'prev') {
   <div class="memo-container pt-4 w-full h-full flex flex-col items-center overflow-y-auto">
     <ClientOnly>
       <div v-for="item in currentList" :key="item.id" class="item max-w-[800px]">
-        <div class="jxzk memo-content heti" v-html="item.contentHtml" />
+        <div class="memo-content heti" v-html="item.contentHtml" />
         <div v-if="item.resourceList.length" class="mt-4 mb-4 flex flex-wrap justify-start items-center gap-4">
           <img
             v-for="imgItem in item.resourceList" :key="imgItem.id"
@@ -70,7 +70,7 @@ async function pageAction(action: 'next' | 'prev') {
             class="max-h-[200px] lt-lg:max-w-full rounded-md"
           >
         </div>
-        <div v-if="item?.relationData && item?.relationData.content" class="relation mt-4 p-2 border-l-solid border-l-gray border-l-[4px] text-gray-600 bg-gray-2 rounded-sm">
+        <div v-if="item?.relationData && item?.relationData.content" class="relation mt-4 p-4 border-l-solid border-l-gray border-l-[4px] text-gray-600 bg-gray-2 rounded-sm">
           // {{ dayjs.unix(item.relationData.createdTs).format('YYYY-MM-DD') }}<br>{{ item.relationData.content }}
         </div>
         <div class="date-container pt-2 flex justify-end">
@@ -137,6 +137,9 @@ async function pageAction(action: 'next' | 'prev') {
   --at-apply:
     h-[200px] w-[355px] object-cover lt-lg:max-w-full rounded-md
     border border-solid border-[#F5F5F5];
+}
+:deep(.memo-content) iframe {
+  max-width: 100%;
 }
 .small .item,
 .medium .item {

@@ -15,11 +15,11 @@ const profile = await Profile.index()
         <div class="w-[16px] h-full bg-black" />
         <div class="flex-grow p-(l-[48px] t-[48px])">
           <img :src="profile.logo" alt="logo" class="h-24 lt-lg:h-18" data-not-lazy>
-          <div class="mt-[40px] text-[16px]">
+          <div class="jxzk mt-[40px] text-[16px]">
             "{{ profile.slogan }}"
           </div>
           <div class="mt-[8px]">
-            via. <span class="italic text-[18px]">{{ profile.userName }}</span>
+            via. <span class="jxzk italic text-[18px]">{{ profile.userName }}</span>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ const profile = await Profile.index()
             </div>
           </div>
           <div class="cw-card lxgw w-full h-[50%] flex justify-center items-center">
-            <div class="font-bold text-[48px]">
+            <div class="lxgw-bold font-bold text-[48px]">
               泊
             </div>
           </div>
@@ -65,7 +65,7 @@ const profile = await Profile.index()
       <div class="cw-card h-[80px] flex justify-center items-center">
         <div class="flex flex-wrap justify-center gap-2">
           <template v-for="item in profile.social" :key="item.link">
-            <a class="text-black visited:text-black" :href="item.link" :target="item.target">
+            <a class="text-black visited:text-black hover:(text-red)" :href="item.link" :target="item.target">
               <Icon :name="item.icon" />
             </a>
           </template>
@@ -73,7 +73,7 @@ const profile = await Profile.index()
       </div>
       <div class="flex-grow flex flex-row gap-3">
         <div class="cw-card w-[50%]">
-          <div class="h-full px-4 flex flex-col justify-center">
+          <div class="h-full px-4 flex flex-col justify-center gap-1">
             <template v-for="item in (profile.tag).split('/')" :key="item">
               <div class="text-right">
                 {{ item }}
@@ -84,17 +84,17 @@ const profile = await Profile.index()
         <div class="cw-card w-[50%]">
           <div class="cw-card-content flex flex-col justify-center items-start gap-2">
             <NuxtLink to="/leetcode" class="flex gap-1 justify-start items-center no-underline text-black">
-              <span class="link-title !text-[16px]">{{ Navigations.LEETCODE }}</span>
-              <Icon name="bx:link-external" size="16" />
+              <span class="link-title">{{ Navigations.LEETCODE }}</span>
+              <Icon name="bx:link-external" size="18" />
             </NuxtLink>
             <NuxtLink to="/wiki" class="flex gap-1 justify-start items-center no-underline text-black">
-              <span class="link-title !text-[16px]">{{ Navigations.WIKI }}</span>
-              <Icon name="bx:link-external" size="16" />
+              <span class="link-title">{{ Navigations.WIKI }}</span>
+              <Icon name="bx:link-external" size="18" />
             </NuxtLink>
           </div>
         </div>
       </div>
-      <div class="lxgw h-[80px] flex gap-3">
+      <div class="h-[80px] flex gap-3">
         <div class="copyright cw-card pl-4 flex-grow flex flex-col justify-center">
           <div class="h-[14px]">
             <svg width="240" height="12">
@@ -142,7 +142,7 @@ const profile = await Profile.index()
   --at-apply: lt-lg:text-[16px];
 }
 .link-title {
-  --at-apply:  hover:(font-bold text-red underline underline-offset-6 decoration-2) lt-lg:text-[16px];
+  --at-apply:  hover:(text-red underline underline-offset-6 decoration-2) lt-lg:text-[16px];
 }
 .copyright svg {
   fill: #000000;

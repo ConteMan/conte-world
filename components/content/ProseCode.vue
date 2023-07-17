@@ -32,7 +32,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="p-4 border border-solid border-gray-300 rounded-sm">
+  <div class="p-4 bg-gray-100 rounded-sm">
     <slot />
   </div>
 </template>

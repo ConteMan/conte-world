@@ -37,7 +37,7 @@ watch(data, () => {
       </NuxtLink>
     </div>
     <ClientOnly>
-      <div class="global-markdown article-content heti jxzk" v-html="data.content_html" />
+      <div class="global-markdown article-content heti" v-html="data.content_html" />
     </ClientOnly>
     <ScrollBottom />
   </div>

@@ -1,5 +1,5 @@
 :root {
-  font-family: 'jiangxizhuokai', 'LXGW WenKai', Helvetica, Arial, sans-serif;
+  font-family: system-ui,-apple-system,Helvetica,Arial,sans-serif;
   font-size: 14px;
   font-weight: 400;
 
@@ -21,7 +21,6 @@
 html,body {
   overflow: overlay;
   margin: 0;
-
 }
 
 .lxgw {
@@ -44,10 +43,8 @@ h2:before,
 h3:before {
   font-size: 0.6rem !important;
   width: auto;
-  margin-top: calc(var(--h2-size) - 0.2em);
+  margin-top: 0.2em;
   margin-right: 1px;
-  border-radius: var(--radius-xs);
-  color: var(--text-muted);
   overflow: visible;
   font-weight: normal !important;
 }
