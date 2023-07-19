@@ -12,7 +12,7 @@ const data = ref({
   content_html: '',
 })
 async function getList() {
-  data.value = await Article.view(Number(route.params.id))
+  data.value = await Article.view(route.params.id as string)
 }
 getList()
 

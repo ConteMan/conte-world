@@ -6,8 +6,8 @@ export default new class Article {
     return res.data ?? {}
   }
 
-  async view(id: number): Promise<Article.viewItem> {
-    const res = await useHttp(`${this.prefix}/${id}`)
+  async view(slug: string): Promise<Article.viewItem> {
+    const res = await useHttp(`${this.prefix}/${slug}`)
     return res.data ?? {}
   }
 }()

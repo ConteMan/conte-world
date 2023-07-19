@@ -8,8 +8,8 @@ const query = queryContent('wiki')
 </script>
 
 <template>
-  <main class="flex w-full h-full min-h-screen box-border">
-    <div class="h-full w-[400px] grow-0 shrink-0 py-4 px-6 flex flex-col gap-4">
+  <main class="box-border w-full h-screen flex">
+    <div class="box-border h-full w-[400px] grow-0 shrink-0 py-4 px-6 flex flex-col gap-4">
       <ContentNavigation v-slot="{ navigation }" :query="query">
         <NuxtLink to="/" class="mb-4 text-[16px]">
           Home
@@ -23,7 +23,7 @@ const query = queryContent('wiki')
         </NuxtLink>
       </ContentNavigation>
     </div>
-    <div class="grow-1 h-full">
+    <div class="grow-1 h-full overflow-y-auto">
       <NuxtPage />
     </div>
   </main>

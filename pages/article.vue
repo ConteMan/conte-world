@@ -31,10 +31,10 @@ onMounted(() => {
       <div
         v-for="item in list.items" :key="item.id"
         class="article-item"
-        :class="{ active: item.id === Number(route.params.id) }"
+        :class="{ active: item.slug === route.params.id }"
       >
         <NuxtLink
-          :to="`/article/${item.id}`"
+          :to="`/article/${item.slug}`"
           class="item-link w-full h-full block no-underline text-black visited:text-black flex justify-start items-center px-[24px] py-[12px]"
         >
           <span>{{ item.title }}</span>
@@ -56,7 +56,7 @@ onMounted(() => {
 }
 .article-item {
   @apply
-    h-[64px] max-h-[64px] box-border w-full flex items-center
+    h-[64px] max-h-[64px] box-border w-full flex items-center shrink-0
     leading-6 text-black
     border-b border-solid border-b-[#F5F5F5] border-l-0 border-t-0 border-r-0;
   --at-apply: grow-1;
