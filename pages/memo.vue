@@ -59,7 +59,7 @@ async function pageAction(action: 'next' | 'prev') {
 </script>
 
 <template>
-  <div class="memo-container pt-4 w-full h-full flex flex-col items-center overflow-y-auto">
+  <div class="memo-container pt-4 w-full h-full flex flex-col items-center">
     <ClientOnly>
       <div v-for="item in currentList" :key="item.id" class="item max-w-[800px]">
         <div class="memo-content heti" v-html="item.contentHtml" />
