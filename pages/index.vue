@@ -11,15 +11,15 @@ const profile = await Profile.index()
 <template>
   <div class="w-[1280px] lg:h-[416px] lt-lg:w-full m-4 lt-lg:m-6 flex lg:flex-row flex-col gap-4 lt-lg:gap-4 justify-center items-center text-black">
     <div class="max-w-[500px] lt-lg:w-full lt-lg:max-w-full h-full lt-lg:h-[240px] flex-grow-2 flex flex-col">
-      <div class="cw-card w-full flex-grow flex">
+      <div class="profile-card cw-card w-full flex-grow flex">
         <div class="w-[16px] h-full bg-black" />
         <div class="flex-grow p-(l-[48px] t-[48px])">
           <img :src="profile.logo" alt="logo" class="h-24 lt-lg:h-18" data-not-lazy>
-          <div class="jxzk mt-[40px] text-[16px]">
+          <div class="mt-[40px] text-[16px]">
             "{{ profile.slogan }}"
           </div>
           <div class="mt-[8px]">
-            via. <span class="jxzk italic text-[18px]">{{ profile.userName }}</span>
+            via. <span class="italic text-[18px]">{{ profile.userName }}</span>
           </div>
         </div>
       </div>
@@ -149,5 +149,21 @@ const profile = await Profile.index()
 }
 .copyright a {
   @apply no-underline;
+}
+
+.profile-card {
+  opacity: 0;
+  animation: slideRight 1s ease forwards;
+}
+
+@keyframes slideRight {
+  0% {
+      transform: translateX(-100px);
+  }
+
+  100% {
+      transform: translateX(0);
+      opacity: 1;
+  }
 }
 </style>
