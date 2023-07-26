@@ -38,6 +38,10 @@ export default defineNuxtConfig({
   },
   devtools: {
     enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
   },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },

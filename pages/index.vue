@@ -56,8 +56,8 @@ const packageJson = await useFetch<PkgJson>('/api/package')
               Project ...
             </div>
           </div>
-          <div class="cw-card lxgw w-full h-[50%] flex justify-center items-center">
-            <div class="lxgw-bold font-bold text-[48px]">
+          <div class="cw-card lxgw word-bo w-full h-[50%] flex justify-center items-center">
+            <div class="lxgw-bold font-bold text-[48px] absolute z-1">
               泊
             </div>
           </div>
@@ -140,6 +140,9 @@ const packageJson = await useFetch<PkgJson>('/api/package')
 .cw-card {
   @apply rounded-md border-2 border-solid border-black;
 }
+.cw-card:hover {
+  box-shadow: -1px 3px 0px 1px rgba(0, 0, 0);
+}
 .cw-card-content {
   @apply p-4 h-full box-border text-[18px];
   --at-apply: lt-lg:text-[16px];
@@ -161,12 +164,53 @@ const packageJson = await useFetch<PkgJson>('/api/package')
 
 @keyframes slideRight {
   0% {
-      transform: translateX(-100px);
+    transform: translateX(-100px);
   }
 
   100% {
-      transform: translateX(0);
-      opacity: 1;
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.word-bo {
+  border: none;
+  border-radius: 4px;
+  position: relative;
+  background: repeating-conic-gradient(from var(--a), #000 0%, #fff 5%, transparent 5%, transparent 40%, #000 50%);
+  animation: degAnime 4s linear infinite;
+}
+.word-bo:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: repeating-conic-gradient(from var(--a), #000 0%, #fff 5%, transparent 5%, transparent 40%, #000 50%);
+  animation: degAnime 4s linear infinite;
+  animation-delay: -1s;
+}
+.word-bo::after {
+  position: absolute;
+  content: '';
+  inset: 2px;
+  border-radius: 4px;
+  background: white;
+}
+.word-bo:hover {
+  box-shadow: none;
+}
+@property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes degAnime {
+  0% {
+    --a: 0deg;
+  }
+  100% {
+    --a: 360deg;
   }
 }
 </style>
