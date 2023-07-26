@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { Navigations } from '~/constants'
 import { Profile } from '~/apis/index'
+import type { PkgJson } from '~/server/api/package'
 
 definePageMeta({
   layout: 'default',
 })
 const profile = await Profile.index()
+
+const packageJson = await useFetch<PkgJson>('/api/package')
 </script>
 
 <template>
@@ -99,7 +102,7 @@ const profile = await Profile.index()
           <div class="h-[14px]">
             <svg width="240" height="12">
               <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-                {{ profile.userName.toUpperCase() }} © {{ profile.createdAt }} - {{ new Date().getFullYear() }}
+                {{ profile.userName.toUpperCase() }} © {{ profile.createdAt }} - {{ new Date().getFullYear() }} / v{{ packageJson.data.value?.version }}
               </text>
             </svg>
           </div>
