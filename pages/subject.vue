@@ -63,7 +63,12 @@ const dealList = computed(() => {
   let date = ''
   const res: any[] = []
   let temp: any[] = []
-  currentList.value.forEach((item, index) => {
+  currentList.value.forEach((oriItem, index) => {
+    const item = {
+      ...oriItem,
+      comment: dealComment(oriItem),
+      rating: dealRating(oriItem),
+    }
     const itemDate = dayjs(item.status_at).format('YYYY-MM')
     if (!date) {
       date = itemDate
@@ -90,6 +95,8 @@ const dealList = computed(() => {
       })
     }
   })
+  // eslint-disable-next-line no-console
+  console.log('[ res ] >', res)
   return res
 })
 
@@ -132,6 +139,22 @@ async function toggleStatus(current: SubjectStatuses) {
     await getList()
   }
 }
+
+function dealComment(item: any) {
+  let comment = ''
+  comment = item?.comments?.[0]?.content ?? ''
+  if (!comment)
+    comment = item?.data?.comment ?? ''
+  return comment
+}
+
+function dealRating(item: any) {
+  let rating = ''
+  rating = item.data?.doubanHtml?.myRating?.value ?? ''
+  if (!rating)
+    rating = item.data?.douban?.interest?.rating?.value ?? ''
+  return Number.parseInt(rating)
+}
 </script>
 
 <template>
@@ -167,18 +190,18 @@ async function toggleStatus(current: SubjectStatuses) {
           <div v-for="item in dealItem.items" :key="item.id" class="item relative overflow-hidden">
             <div class="box-border w-full p-[2px] rounded-md border border-solid border-[#F5F5F5] flex justify-start items-start flex-warp text-[14px]">
               <div tabindex="0" class="collapse bg-[#F5F5F5] rounded-md">
-                <div class="collapse-title min-h-0 box-border pl-2 pr-4 py-4 flex items-center" :class="{ '!cursor-auto': !item?.data?.douban?.interest?.comment }">
+                <div class="collapse-title min-h-0 box-border pl-2 pr-4 py-4 flex items-center" :class="{ '!cursor-auto': !item.comment }">
                   <span>《<a :href="`https://${type}.douban.com/subject/${item.platform_douban_id}`" target="_blank">{{ item.name }}</a>》</span>
-                  <div v-if="item?.data?.douban?.interest?.rating?.value" class="before-h inline-block">
-                    <span v-for="rateItem in item?.data?.douban?.interest?.rating?.value" :key="rateItem">★</span>
+                  <div v-if="item?.rating" class="before-h inline-block">
+                    <span v-for="rateItem in item?.rating" :key="rateItem">★</span>
                   </div>
-                  <div v-if="item?.data?.douban?.interest?.comment" class="unfold-btn grow-1 inline-block flex justify-end cursor-pointer">
+                  <div v-if="item.comment" class="unfold-btn grow-1 inline-block flex justify-end cursor-pointer">
                     <Icon name="mdi:unfold-more-horizontal" class="w-[14px]" />
                   </div>
                 </div>
-                <div v-if="item?.data?.douban?.interest?.comment" class="collapse-content">
+                <div v-if="item.comment" class="collapse-content">
                   <div>
-                    {{ item?.data?.douban?.interest?.comment }}
+                    {{ item.comment }}
                   </div>
                 </div>
               </div>
