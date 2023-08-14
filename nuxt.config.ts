@@ -1,5 +1,4 @@
 import { presetUno } from 'unocss'
-import { presetDaisy } from 'unocss-preset-daisy'
 import prismjs from 'vite-plugin-prismjs'
 
 export default defineNuxtConfig({
@@ -72,7 +71,7 @@ export default defineNuxtConfig({
     viewer: true,
   },
   unocss: {
-    presets: [presetUno(), presetDaisy()],
+    presets: [presetUno()],
   },
   imports: {
     dirs: ['apis', 'stores'],

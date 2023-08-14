@@ -24,7 +24,7 @@ const systemStore = useSystemStore()
     <div class="head-side-container">
       <div class="logo py-[24px] pl-[36px]">
         <NuxtLink to="/" class="nav-link">
-          <img src="/public/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
+          <img src="/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
         </NuxtLink>
       </div>
       <div class="nav">
@@ -49,7 +49,7 @@ const systemStore = useSystemStore()
     <div class="head-mobile-container">
       <div class="grow-0 flex-shrink-0">
         <NuxtLink to="/" class="nav-link">
-          <img src="/public/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
+          <img src="/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
         </NuxtLink>
       </div>
       <div class="grow-1 flex justify-end gap-2">
@@ -58,13 +58,13 @@ const systemStore = useSystemStore()
     </div>
 
     <div class="drawer fixed z-[999]">
-      <input id="my-drawer" v-model="systemStore.showNavDrawer" type="checkbox" class="drawer-toggle">
+      <input id="my-drawer" v-model="systemStore.showNavDrawer" class="drawer-toggle" type="checkbox">
       <div class="drawer-side">
         <label for="my-drawer" class="drawer-overlay" />
 
         <div class="head-side-drawer">
           <div class="logo py-[24px] pl-[36px]">
-            <img src="/public/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
+            <img src="/images/logo.gif" alt="logo" class="w-[32px] h-[32px]">
           </div>
           <div class="nav">
             <div class="nav-item" :class="{ active: $route.path.match('article') }">
