@@ -13,10 +13,10 @@ const packageJson = await useFetch<PkgJson>('/api/package')
 
 <template>
   <div class="w-[1280px] h-[416px] lt-lg:h-auto lt-lg:w-full m-4 lt-lg:m-6 flex flex-row lt-lg:flex-col gap-4 lt-lg:gap-4 justify-center items-center text-black">
-    <div class="max-w-[500px] lt-lg:w-full lt-lg:max-w-full h-full lt-lg:h-[240px] flex-grow-2 flex flex-col">
+    <div class="max-w-[500px] lt-lg:w-full lt-lg:max-w-full h-full lt-lg:h-[280px] flex-grow-2 flex flex-col">
       <div class="profile-card cw-card w-full flex-grow flex">
         <div class="w-[16px] h-full bg-black" />
-        <div class="flex-grow p-(l-[48px] t-[48px] b-[24px])">
+        <div class="flex-grow p-(l-[48px] t-[48px])">
           <img :src="profile.logo" alt="logo" class="h-24 lt-lg:h-18" data-not-lazy>
           <div class="mt-[40px] text-[16px]">
             "{{ profile.slogan }}"
