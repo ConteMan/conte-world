@@ -12,7 +12,7 @@ const packageJson = await useFetch<PkgJson>('/api/package')
 </script>
 
 <template>
-  <div class="w-[1280px] lg:h-[416px] lt-lg:w-full m-4 lt-lg:m-6 flex lg:flex-row flex-col gap-4 lt-lg:gap-4 justify-center items-center text-black">
+  <div class="w-[1280px] h-[416px] lt-lg:h-auto lt-lg:w-full m-4 lt-lg:m-6 flex lg:flex-row flex-col gap-4 lt-lg:gap-4 justify-center items-center text-black">
     <div class="max-w-[500px] lt-lg:w-full lt-lg:max-w-full h-full lt-lg:h-[240px] flex-grow-2 flex flex-col">
       <div class="profile-card cw-card w-full flex-grow flex">
         <div class="w-[16px] h-full bg-black" />

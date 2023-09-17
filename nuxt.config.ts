@@ -4,13 +4,13 @@ import prismjs from 'vite-plugin-prismjs'
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
-    '@unocss/nuxt',
     'nuxt-icon',
     '@vueuse/nuxt',
     '@pinia/nuxt',
     'dayjs-nuxt',
     'nuxt-lazy-load',
     '@nuxt/content',
+    '@unocss/nuxt',
   ],
   content: {
     highlight: {
