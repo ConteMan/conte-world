@@ -48,7 +48,6 @@ export default defineNuxtConfig({
     head: {
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.min.css' },
         { rel: 'stylesheet', href: '//unpkg.com/heti/umd/heti.min.css' },
       ],
       script: [],
@@ -76,5 +75,5 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['apis', 'stores'],
   },
-  ssr: true,
+  ssr: false,
 })

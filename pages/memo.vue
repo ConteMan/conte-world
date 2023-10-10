@@ -85,7 +85,7 @@ async function pageAction(action: 'next' | 'prev') {
           class="btn glass box-border w-full py-2 flex !flex-col justify-center items-center"
           @click="pageAction('next')"
         >
-          <div class="lxgw">
+          <div>
             · · ·
           </div>
         </div>

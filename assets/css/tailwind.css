@@ -27,14 +27,6 @@ html,body {
   margin: 0;
 }
 
-.lxgw {
-  font-family: 'LXGW WenKai' !important;
-}
-.lxgw-bold {
-  font-family: 'LXGW WenKai' !important;
-  font-weight: bold;
-}
-
 .monospace {
   font-family: monospace !important;
 }

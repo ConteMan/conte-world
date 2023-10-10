@@ -35,9 +35,9 @@ onMounted(() => {
       >
         <NuxtLink
           :to="`/article/${item.slug}`"
-          class="item-link w-full h-full block no-underline text-black visited:text-black flex justify-start items-center px-[24px] py-[12px]"
+          class="item-link w-full h-full block no-underline text-black visited:text-black p-[24px] text-ellipsis"
         >
-          <span>{{ item.title }}</span>
+          {{ item.title }}
         </NuxtLink>
       </div>
       <ScrollBottom />
@@ -51,12 +51,12 @@ onMounted(() => {
 <style lang="postcss" scoped>
 .article-list {
   @apply
-    w-[300px] h-full box-border overflow-y-auto flex flex-col items-start shrink-0
+    w-[300px] h-full box-border overflow-y-auto shrink-0
     border border-solid border-[#F5F5F5] border-t-0 border-b-0;
 }
 .article-item {
   @apply
-    h-[64px] max-h-[64px] box-border w-full flex items-center shrink-0
+    h-auto box-border w-full flex items-center shrink-0
     leading-6 text-black
     border-b border-solid border-b-[#F5F5F5] border-l-0 border-t-0 border-r-0;
   --at-apply: grow-1;

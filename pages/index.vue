@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { Navigations } from '~/constants'
+import { Navigations, packageJson } from '~/constants'
 import { Profile } from '~/apis/index'
-import type { PkgJson } from '~/server/api/package'
 
 definePageMeta({
   layout: 'default',
 })
 const profile = await Profile.index()
-
-const packageJson = await useFetch<PkgJson>('/api/package')
 </script>
 
 <template>
@@ -53,11 +50,11 @@ const packageJson = await useFetch<PkgJson>('/api/package')
         <div class="flex-grow flex flex-col gap-4 lt-lg:gap-4">
           <div class="cw-card w-full h-[50%]">
             <div class="cw-card-content">
-              Project ...
+              .
             </div>
           </div>
-          <div class="cw-card lxgw word-bo w-full h-[50%] flex justify-center items-center">
-            <div class="lxgw-bold font-bold text-[48px] absolute z-1">
+          <div class="cw-card word-bo w-full h-[50%] flex justify-center items-center">
+            <div class="font-bold text-[48px] absolute z-1">
               泊
             </div>
           </div>
@@ -85,15 +82,16 @@ const packageJson = await useFetch<PkgJson>('/api/package')
           </div>
         </div>
         <div class="cw-card w-[50%]">
-          <div class="cw-card-content flex flex-col justify-center items-start gap-2">
-            <NuxtLink to="/leetcode" class="flex gap-1 justify-start items-center no-underline text-black">
+          <div class="cw-card-content">
+            .
+            <!-- <NuxtLink to="/leetcode" class="flex gap-1 justify-start items-center no-underline text-black">
               <span class="link-title">{{ Navigations.LEETCODE }}</span>
               <Icon name="bx:link-external" size="18" />
             </NuxtLink>
             <NuxtLink to="/wiki" class="flex gap-1 justify-start items-center no-underline text-black">
               <span class="link-title">{{ Navigations.WIKI }}</span>
               <Icon name="bx:link-external" size="18" />
-            </NuxtLink>
+            </NuxtLink> -->
           </div>
         </div>
       </div>
@@ -102,7 +100,7 @@ const packageJson = await useFetch<PkgJson>('/api/package')
           <div class="h-[14px]">
             <svg width="240" height="12">
               <text dominant-baseline="baseline" font-size="10" y="10" x="0" text-anchor="start">
-                {{ profile.userName.toUpperCase() }} © {{ profile.createdAt }} - {{ new Date().getFullYear() }} / v{{ packageJson.data.value?.version }}
+                {{ profile.userName.toUpperCase() }} © {{ profile.createdAt }} - {{ new Date().getFullYear() }} / v{{ packageJson.version }}
               </text>
             </svg>
           </div>
@@ -128,8 +126,11 @@ const packageJson = await useFetch<PkgJson>('/api/package')
             </a>
           </div>
         </div>
-        <div class="cw-card w-[80px] flex justify-center items-center">
-          <Icon name="mdi:information-outline" size="24" />
+        <div class="cw-card w-[80px]">
+          <div class="cw-card-content">
+            .
+          </div>
+          <!-- <Icon name="mdi:information-outline" size="24" /> -->
         </div>
       </div>
     </div>
