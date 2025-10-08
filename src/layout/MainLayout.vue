@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-background layout-main">
     <!-- 顶部固定导航栏 -->
-    <header class="fixed top-0 left-0 right-0 flex justify-center items-center z-50 bg-white">
+    <header class="top-nav fixed top-0 left-0 right-0 flex justify-center items-center z-50">
       <div class="w-[45rem] mx-auto px-4">
         <div class="flex items-center justify-end h-16">
 
@@ -37,6 +37,11 @@ const navigationItems: { name: string, path: string }[] = [
 /* 平滑滚动效果 */
 html {
   scroll-behavior: smooth;
+}
+
+.top-nav {
+  color: var(--color-text);
+  background: var(--color-background);
 }
 
 /* 导航链接悬停效果 */
