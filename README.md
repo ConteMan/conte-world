@@ -1,45 +1,33 @@
-# .
+# Conte World
 
-This template should help get you started developing with Vue 3 in Vite.
+一个基于 Vue 3 + TypeScript 的个人网站项目，采用现代化的前端技术栈构建。
 
-## Recommended IDE Setup
+## 技术栈
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **前端框架**: Vue 3 + Composition API
+- **开发语言**: TypeScript
+- **构建工具**: Vite
+- **样式方案**: CSS + Tailwind CSS
+- **路由管理**: Vue Router
+- **状态管理**: Pinia
+- **代码规范**: ESLint + Prettier
 
-## Type Support for `.vue` Imports in TS
+## 设计特色
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **简约设计** - 采用黑白灰配色方案
+- **响应式布局** - 适配各种设备屏幕尺寸
+- **性能优化** - 基于 Vite 的快速开发和构建
+- **模块化架构** - 清晰的项目结构和组件划分
 
-## Customize configuration
+## 快速开始
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
+# 安装依赖
 pnpm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# 启动开发服务器
 pnpm dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
+# 构建生产版本
 pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
 ```
