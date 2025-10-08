@@ -8,3 +8,5 @@
 import MainLayout from '@/layout/MainLayout.vue'
 import SiteInfo from '@/components/SiteInfo.vue'
 </script>
+
+<style scoped></style>

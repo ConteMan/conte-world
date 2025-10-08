@@ -187,7 +187,7 @@ onMounted(() => {
 
 /* 链接列表 */
 .links-list {
-  color: #9d9fa0;
+  color: #34495e;
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
@@ -196,7 +196,7 @@ onMounted(() => {
 }
 
 .link-item {
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: 500;
   font-size: 1rem;
   transition: color 0.2s ease;
@@ -204,7 +204,7 @@ onMounted(() => {
 }
 
 a.link-item {
-  color: #7c7c7c;
+  color: #34495e;
 }
 
 .link-item::after {

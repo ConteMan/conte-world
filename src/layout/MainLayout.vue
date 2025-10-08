@@ -1,15 +1,14 @@
 <template>
   <div class="min-h-screen bg-background layout-main">
     <!-- 顶部固定导航栏 -->
-    <header class="fixed top-0 left-0 right-0 flex justify-center items-center z-50">
+    <header class="fixed top-0 left-0 right-0 flex justify-center items-center z-50 bg-white">
       <div class="w-[45rem] mx-auto px-4">
         <div class="flex items-center justify-end h-16">
 
           <!-- 导航菜单 -->
-          <nav class="flex items-center space-x-6">
+          <nav class="flex items-center gap-6">
             <RouterLink v-for="item in navigationItems" :key="item.name" :to="item.path"
-              class="text-foreground-muted hover:text-foreground text-sm transition-colors duration-200"
-              active-class="text-foreground">
+              class="font-bold text-sm transition-colors duration-200" active-class="text-foreground">
               {{ item.name }}
             </RouterLink>
           </nav>
@@ -18,7 +17,7 @@
     </header>
 
     <!-- 主要内容区域 -->
-    <main class="pt-16 max-w-[45rem] flex items-center justify-center">
+    <main class="main pt-16 max-w-[45rem] flex flex-col items-center justify-center">
       <slot />
     </main>
   </div>
@@ -28,7 +27,10 @@
 import { RouterLink } from 'vue-router'
 
 // 导航菜单项配置
-const navigationItems: { name: string, path: string }[] = []
+const navigationItems: { name: string, path: string }[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Movie', path: '/movies' },
+]
 </script>
 
 <style scoped>
@@ -60,6 +62,10 @@ nav a.router-link-active::after {
 
 .shadow-nav {
   box-shadow: inset 0 -1px 0 0 #eaeaea;
+}
+
+.main {
+  min-height: calc(100vh - 16rem);
 }
 
 @media screen and (min-width: 1024px) {
